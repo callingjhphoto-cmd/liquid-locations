@@ -3,2301 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liquid Locations &mdash; Premium Production Services in Spain | Barcelona &amp; Mallorca</title>
-    <meta name="description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, and the Canary Islands.">
-    <meta property="og:title" content="Liquid Locations &mdash; Premium Production Services in Spain">
-    <meta property="og:description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, and the Canary Islands.">
+    <title>Liquid Locations — Premium Production Services in Spain</title>
+    <meta name="description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, Andalusia and the Canary Islands.">
+    <meta name="keywords" content="production service company Spain, bilingual location scout Barcelona, fixer Mallorca film, production services Spain for UK companies, filming in Spain, Spanish tax incentives film, location scouting Spain, production services Barcelona, film fixer Spain">
+    <meta property="og:title" content="Liquid Locations — Premium Production Services in Spain">
+    <meta property="og:description" content="Your London-standard production partner in Spain. Location scouting, crew coordination, and full production management across six regions.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://liquidlocations.co">
+    <meta property="og:url" content="https://callingjhphoto-cmd.github.io/liquid-locations/">
+    <meta property="og:site_name" content="Liquid Locations">
+    <meta property="og:locale" content="en_GB">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Liquid Locations &mdash; Premium Production Services in Spain">
-    <meta name="twitter:description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management.">
+    <meta name="twitter:title" content="Liquid Locations — Premium Production Services in Spain">
+    <meta name="twitter:description" content="Your London-standard production partner in Spain. Bilingual. Tech-forward. Overhead-free.">
+    <link rel="canonical" href="https://callingjhphoto-cmd.github.io/liquid-locations/">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Liquid Locations",
+        "description": "Premium production services company bridging London and Spain.",
+        "url": "https://callingjhphoto-cmd.github.io/liquid-locations/",
+        "areaServed": ["Barcelona", "Mallorca", "Madrid", "Ibiza", "Andalusia", "Canary Islands"],
+        "founder": {"@type": "Person", "name": "James Huertas"},
+        "serviceType": ["Location Scouting", "Production Services", "Crew Coordination"],
+        "knowsLanguage": ["English", "Spanish"]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --white: #FAFAFA;
-            --charcoal: #1A1A1A;
-            --stone: #D4C5B2;
-            --blue: #2B5B84;
-            --stone-light: #EDE7DF;
-            --stone-dark: #B8A997;
-            --grey-subtle: #E8E8E8;
-            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --serif: 'Playfair Display', Georgia, serif;
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: var(--sans);
-            background: var(--white);
-            color: var(--charcoal);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        ::selection {
-            background: var(--stone);
-            color: var(--charcoal);
-        }
-
-        /* ================================================================
-           GRAIN OVERLAY
-           ================================================================ */
-        .grain {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.028;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* ================================================================
-           CUSTOM CURSOR (desktop only)
-           ================================================================ */
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: var(--white);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
-        }
-
-        .cursor-ring {
-            width: 44px;
-            height: 44px;
-            border: 1px solid rgba(250, 250, 250, 0.25);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: difference;
-            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                        border-color 0.3s ease;
-        }
-
-        .cursor-ring.hovering {
-            transform: scale(1.8) !important;
-            border-color: var(--stone);
-        }
-
-        @media (pointer: coarse) {
-            .cursor-dot, .cursor-ring { display: none; }
-        }
-
-        /* ================================================================
-           NAVIGATION
-           ================================================================ */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 32px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            mix-blend-mode: difference;
-            transition: padding 0.4s ease;
-        }
-
-        nav.scrolled {
-            padding: 20px 48px;
-        }
-
-        nav .logo {
-            font-family: var(--sans);
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--white);
-            text-decoration: none;
-        }
-
-        nav .nav-links {
-            display: flex;
-            gap: 48px;
-            list-style: none;
-        }
-
-        nav .nav-links a {
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--white);
-            text-decoration: none;
-            position: relative;
-            padding-bottom: 2px;
-        }
-
-        nav .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--white);
-            transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        nav .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile menu */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 8px;
-            z-index: 1001;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: var(--white);
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: var(--charcoal);
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 48px;
-        }
-
-        .mobile-nav.active {
-            display: flex;
-        }
-
-        .mobile-nav a {
-            font-family: var(--serif);
-            font-size: 36px;
-            font-weight: 400;
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        @media (max-width: 768px) {
-            nav { padding: 24px 24px; }
-            nav.scrolled { padding: 16px 24px; }
-            nav .nav-links { display: none; }
-            .menu-toggle { display: flex; }
-        }
-
-        /* ================================================================
-           GLOBAL SECTION STYLES
-           ================================================================ */
-        section {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 48px;
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 0 24px; }
-        }
-
-        /* ================================================================
-           HERO
-           ================================================================ */
-        #hero {
-            background: var(--charcoal);
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            min-height: 100vh;
-            min-height: 100dvh;
-        }
-
-        .hero-content {
-            width: 100%;
-            text-align: center;
-            padding: 0 24px;
-        }
-
-        .hero-eyebrow {
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--stone);
-            margin-bottom: 40px;
-            opacity: 0;
-        }
-
-        .hero-title {
-            font-family: var(--sans);
-            font-size: clamp(52px, 11vw, 160px);
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--white);
-            text-align: center;
-            line-height: 0.95;
-        }
-
-        .hero-title .word {
-            display: inline-block;
-            overflow: hidden;
-        }
-
-        .hero-title .letter {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(100%);
-        }
-
-        .hero-subtitle {
-            font-family: var(--serif);
-            font-size: clamp(18px, 2.2vw, 26px);
-            font-weight: 400;
-            font-style: italic;
-            color: var(--stone);
-            text-align: center;
-            margin-top: 40px;
-            opacity: 0;
-        }
-
-        .hero-line {
-            width: 1px;
-            height: 0;
-            background: var(--stone);
-            margin: 48px auto 0;
-            opacity: 0.4;
-        }
-
-        .hero-locations {
-            position: absolute;
-            bottom: 80px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-family: var(--sans);
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: rgba(250, 250, 250, 0.35);
-            opacity: 0;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 28px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-        }
-
-        .scroll-indicator span {
-            font-size: 9px;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: rgba(250, 250, 250, 0.25);
-        }
-
-        .scroll-arrow {
-            width: 1px;
-            height: 48px;
-            background: linear-gradient(to bottom, rgba(250,250,250,0.3), transparent);
-            animation: scrollPulse 2.5s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.2; transform: scaleY(0.5); }
-            50% { opacity: 0.8; transform: scaleY(1); }
-        }
-
-        @media (max-width: 768px) {
-            .hero-locations { bottom: 64px; font-size: 10px; letter-spacing: 0.2em; }
-            .hero-line { display: none; }
-        }
-
-        /* ================================================================
-           MANIFESTO
-           ================================================================ */
-        #manifesto {
-            background: var(--white);
-            padding: 200px 0;
-        }
-
-        .manifesto-grid {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
-            gap: 140px;
-            align-items: start;
-        }
-
-        .manifesto-statement {
-            font-family: var(--serif);
-            font-size: clamp(32px, 4.2vw, 60px);
-            font-weight: 400;
-            line-height: 1.25;
-            color: var(--charcoal);
-        }
-
-        .manifesto-statement em {
-            font-style: italic;
-            color: var(--blue);
-        }
-
-        .manifesto-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 56px;
-            padding-top: 16px;
-        }
-
-        .stat-item {
-            padding-left: 28px;
-            border-left: 1px solid var(--stone);
-            opacity: 0;
-            transform: translateX(40px);
-        }
-
-        .stat-number {
-            font-family: var(--serif);
-            font-size: 48px;
-            font-weight: 400;
-            color: var(--charcoal);
-            line-height: 1;
-            margin-bottom: 12px;
-        }
-
-        .stat-number .counter-suffix {
-            font-size: 36px;
-            color: var(--stone-dark);
-        }
-
-        .stat-label-title {
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--blue);
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-family: var(--sans);
-            font-size: 15px;
-            font-weight: 300;
-            color: rgba(26, 26, 26, 0.65);
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            #manifesto { padding: 120px 0; }
-            .manifesto-grid {
-                grid-template-columns: 1fr;
-                gap: 80px;
-            }
-            .stat-number { font-size: 36px; }
-        }
-
-        /* ================================================================
-           SECTION DIVIDER
-           ================================================================ */
-        .section-divider {
-            width: 100%;
-            height: 1px;
-            background: var(--grey-subtle);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ================================================================
-           SERVICES
-           ================================================================ */
-        #services {
-            background: var(--white);
-            padding: 200px 0;
-            min-height: auto;
-        }
-
-        .section-label {
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            margin-bottom: 80px;
-        }
-
-        .section-heading {
-            font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 400;
-            color: var(--charcoal);
-            margin-bottom: 80px;
-            max-width: 800px;
-            line-height: 1.2;
-        }
-
-        .service-card {
-            display: grid;
-            grid-template-columns: 80px 1fr 1fr;
-            gap: 48px;
-            padding: 72px 0;
-            border-top: 1px solid var(--grey-subtle);
-            align-items: start;
-            opacity: 0;
-            transform: translateY(50px);
-            cursor: pointer;
-            transition: background 0.5s ease;
-            position: relative;
-        }
-
-        .service-card:last-child {
-            border-bottom: 1px solid var(--grey-subtle);
-        }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(212, 197, 178, 0.05), transparent);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .service-card:hover::after {
-            opacity: 1;
-        }
-
-        .service-number {
-            font-family: var(--serif);
-            font-size: 56px;
-            font-weight: 400;
-            color: var(--stone);
-            line-height: 1;
-        }
-
-        .service-header h3 {
-            font-family: var(--sans);
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--charcoal);
-            margin-bottom: 20px;
-        }
-
-        .service-header p {
-            font-family: var(--serif);
-            font-size: clamp(24px, 2.8vw, 36px);
-            font-weight: 400;
-            font-style: italic;
-            color: var(--charcoal);
-            line-height: 1.3;
-        }
-
-        .service-details {
-            padding-top: 4px;
-        }
-
-        .service-details ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .service-details li {
-            font-size: 15px;
-            font-weight: 300;
-            color: rgba(26, 26, 26, 0.6);
-            padding-left: 20px;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .service-details li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 6px;
-            height: 1px;
-            background: var(--stone-dark);
-        }
-
-        .service-price {
-            font-family: var(--sans);
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--blue);
-            margin-top: 24px;
-            letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 768px) {
-            #services { padding: 120px 0; }
-            .service-card {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 48px 0;
-                transform: translateY(30px);
-            }
-            .service-number { font-size: 36px; }
-        }
-
-        /* ================================================================
-           LOCATIONS
-           ================================================================ */
-        #locations {
-            background: var(--charcoal);
-            padding: 0;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
-        .locations-header {
-            padding: 100px 48px 60px;
-        }
-
-        .locations-header .section-label {
-            color: var(--stone);
-        }
-
-        .locations-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 64px);
-            font-weight: 400;
-            color: var(--white);
-            margin-top: 16px;
-            line-height: 1.2;
-        }
-
-        .locations-header h2 em {
-            font-style: italic;
-            color: var(--stone);
-        }
-
-        .locations-scroll-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .locations-track {
-            display: flex;
-            gap: 28px;
-            padding: 0 48px 100px;
-            will-change: transform;
-        }
-
-        .location-card {
-            flex-shrink: 0;
-            width: 380px;
-            height: 540px;
-            border: 1px solid rgba(250, 250, 250, 0.08);
-            border-radius: 3px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 48px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .location-card:hover {
-            border-color: rgba(212, 197, 178, 0.4);
-            transform: translateY(-8px);
-        }
-
-        .location-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        .location-card:nth-child(1)::before {
-            background: linear-gradient(175deg, rgba(43,91,132,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
-        }
-        .location-card:nth-child(2)::before {
-            background: linear-gradient(175deg, rgba(212,197,178,0.25) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
-        }
-        .location-card:nth-child(3)::before {
-            background: linear-gradient(175deg, rgba(180,160,140,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
-        }
-        .location-card:nth-child(4)::before {
-            background: linear-gradient(175deg, rgba(200,170,130,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
-        }
-        .location-card:nth-child(5)::before {
-            background: linear-gradient(175deg, rgba(200,160,100,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
-        }
-        .location-card:nth-child(6)::before {
-            background: linear-gradient(175deg, rgba(43,91,132,0.25) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
-        }
-
-        .location-card:hover::before {
-            opacity: 0.6;
-        }
-
-        .location-desc {
-            font-family: var(--sans);
-            font-size: 13px;
-            font-weight: 300;
-            color: rgba(250, 250, 250, 0.5);
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 24px;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
-        }
-
-        .location-card:hover .location-desc {
-            max-height: 80px;
-            opacity: 1;
-            margin-bottom: 24px;
-        }
-
-        .location-name {
-            font-family: var(--serif);
-            font-size: 40px;
-            font-weight: 400;
-            color: var(--white);
-            position: relative;
-            z-index: 1;
-            margin-bottom: 16px;
-            line-height: 1.1;
-        }
-
-        .location-tags {
-            display: flex;
-            gap: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .location-tags span {
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--stone);
-        }
-
-        .location-rebate {
-            position: absolute;
-            top: 32px;
-            right: 32px;
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--blue);
-            background: rgba(43, 91, 132, 0.12);
-            padding: 8px 16px;
-            border-radius: 2px;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            .locations-header { padding: 80px 24px 40px; }
-            .locations-track {
-                flex-direction: column;
-                padding: 0 24px 60px;
-                gap: 16px;
-            }
-            .location-card {
-                width: 100%;
-                height: 260px;
-                padding: 32px;
-            }
-            .location-name { font-size: 28px; }
-            .location-desc { display: none; }
-        }
-
-        @media (max-width: 375px) {
-            .hero-title { letter-spacing: 0.12em; }
-            .location-card { height: 220px; padding: 24px; }
-        }
-
-        /* ================================================================
-           TAX INCENTIVES
-           ================================================================ */
-        #incentives {
-            background: var(--white);
-            padding: 200px 0;
-        }
-
-        .incentives-header {
-            margin-bottom: 100px;
-        }
-
-        .incentives-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 60px);
-            font-weight: 400;
-            color: var(--charcoal);
-            margin-top: 16px;
-            line-height: 1.2;
-        }
-
-        .incentives-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-        }
-
-        .incentive-col {
-            padding: 0 32px;
-            border-left: 1px solid var(--grey-subtle);
-            opacity: 0;
-        }
-
-        .incentive-col:first-child {
-            padding-left: 0;
-            border-left: none;
-        }
-
-        .incentive-country {
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            margin-bottom: 48px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid var(--grey-subtle);
-        }
-
-        .incentive-col.featured .incentive-country {
-            color: var(--blue);
-            border-bottom-color: var(--blue);
-        }
-
-        .incentive-row {
-            margin-bottom: 40px;
-        }
-
-        .incentive-row-label {
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            margin-bottom: 8px;
-        }
-
-        .incentive-value {
-            font-family: var(--serif);
-            font-size: 42px;
-            font-weight: 400;
-            color: var(--charcoal);
-            line-height: 1;
-        }
-
-        .incentive-col.featured .incentive-value {
-            color: var(--blue);
-        }
-
-        .incentive-value-small {
-            font-family: var(--sans);
-            font-size: 15px;
-            font-weight: 300;
-            color: rgba(26, 26, 26, 0.5);
-            margin-top: 4px;
-        }
-
-        .incentive-dash {
-            font-family: var(--serif);
-            font-size: 32px;
-            color: var(--stone);
-        }
-
-        .incentives-note {
-            margin-top: 80px;
-            font-size: 14px;
-            font-weight: 300;
-            color: rgba(26, 26, 26, 0.45);
-            line-height: 1.7;
-            max-width: 800px;
-        }
-
-        @media (max-width: 768px) {
-            #incentives { padding: 120px 0; }
-            .incentives-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 48px 0;
-            }
-            .incentive-col { padding: 0 20px; }
-            .incentive-col:nth-child(3) { border-left: none; padding-left: 0; }
-            .incentive-value { font-size: 28px; }
-        }
-
-        @media (max-width: 480px) {
-            .incentives-grid { grid-template-columns: 1fr; gap: 48px; }
-            .incentive-col { padding: 0; border-left: none; border-bottom: 1px solid var(--grey-subtle); padding-bottom: 48px; }
-        }
-
-        /* ================================================================
-           SAMPLE QUOTE / CASE STUDY
-           ================================================================ */
-        #case-study {
-            background: var(--charcoal);
-            padding: 200px 0;
-        }
-
-        .case-study-header {
-            margin-bottom: 100px;
-        }
-
-        .case-study-header .section-label {
-            color: var(--stone);
-        }
-
-        .case-study-header h2 {
-            font-family: var(--serif);
-            font-size: clamp(32px, 4vw, 52px);
-            font-weight: 400;
-            font-style: italic;
-            color: var(--white);
-            margin-top: 16px;
-            max-width: 750px;
-            line-height: 1.25;
-        }
-
-        .quote-grid {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 0;
-            max-width: 900px;
-        }
-
-        .quote-line {
-            display: contents;
-        }
-
-        .quote-item {
-            font-size: 16px;
-            font-weight: 300;
-            color: rgba(250, 250, 250, 0.75);
-            padding: 22px 0;
-            border-bottom: 1px solid rgba(250, 250, 250, 0.06);
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
-        .quote-price {
-            font-family: var(--sans);
-            font-size: 16px;
-            font-weight: 400;
-            color: var(--stone);
-            padding: 22px 0;
-            text-align: right;
-            border-bottom: 1px solid rgba(250, 250, 250, 0.06);
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
-        .quote-total {
-            margin-top: 56px;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding-top: 40px;
-            border-top: 1px solid var(--stone);
-            opacity: 0;
-            max-width: 900px;
-        }
-
-        .quote-total-label {
-            font-family: var(--serif);
-            font-size: 20px;
-            font-weight: 400;
-            color: var(--white);
-        }
-
-        .quote-total-price {
-            font-family: var(--serif);
-            font-size: clamp(40px, 6vw, 64px);
-            font-weight: 400;
-            color: var(--white);
-        }
-
-        .quote-context {
-            margin-top: 48px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
-            max-width: 900px;
-            opacity: 0;
-        }
-
-        .quote-context-item {
-            padding-top: 20px;
-            border-top: 1px solid rgba(250, 250, 250, 0.1);
-        }
-
-        .quote-context-label {
-            font-family: var(--sans);
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            margin-bottom: 8px;
-        }
-
-        .quote-context-value {
-            font-family: var(--serif);
-            font-size: 18px;
-            font-style: italic;
-            color: var(--white);
-        }
-
-        @media (max-width: 768px) {
-            #case-study { padding: 120px 0; }
-            .quote-context { grid-template-columns: 1fr; gap: 32px; }
-        }
-
-        /* ================================================================
-           ABOUT
-           ================================================================ */
-        #about {
-            background: var(--white);
-            padding: 200px 0;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
-            gap: 140px;
-            align-items: start;
-        }
-
-        .about-left {
-            position: sticky;
-            top: 160px;
-        }
-
-        .about-name {
-            font-family: var(--serif);
-            font-size: clamp(40px, 5vw, 64px);
-            font-weight: 400;
-            color: var(--charcoal);
-            line-height: 1.1;
-        }
-
-        .about-role {
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            margin-top: 24px;
-        }
-
-        .about-locations-list {
-            margin-top: 48px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .about-locations-list span {
-            font-family: var(--sans);
-            font-size: 13px;
-            font-weight: 300;
-            color: rgba(26, 26, 26, 0.5);
-        }
-
-        .about-bio {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        .about-bio p {
-            font-size: 17px;
-            font-weight: 300;
-            line-height: 1.85;
-            color: rgba(26, 26, 26, 0.7);
-        }
-
-        .about-bio p:first-child {
-            font-family: var(--serif);
-            font-size: 24px;
-            font-weight: 400;
-            line-height: 1.5;
-            color: var(--charcoal);
-        }
-
-        @media (max-width: 768px) {
-            #about { padding: 120px 0; }
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 56px;
-            }
-            .about-left { position: relative; top: auto; }
-        }
-
-        /* ================================================================
-           CLIENTS MARQUEE
-           ================================================================ */
-        #clients {
-            background: var(--stone-light);
-            padding: 72px 0;
-            min-height: auto;
-            overflow: hidden;
-        }
-
-        .clients-label {
-            text-align: center;
-            font-family: var(--sans);
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            margin-bottom: 40px;
-        }
-
-        .marquee-wrapper {
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .marquee-track {
-            display: flex;
-            gap: 80px;
-            animation: marquee 35s linear infinite;
-            white-space: nowrap;
-        }
-
-        .marquee-item {
-            font-family: var(--sans);
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-            flex-shrink: 0;
-        }
-
-        .marquee-divider {
-            color: var(--stone);
-            flex-shrink: 0;
-            font-size: 8px;
-            opacity: 0.5;
-            align-self: center;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* ================================================================
-           CONTACT
-           ================================================================ */
-        #contact {
-            background: var(--charcoal);
-            padding: 200px 0 100px;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .contact-headline {
-            font-family: var(--serif);
-            font-size: clamp(56px, 12vw, 140px);
-            font-weight: 400;
-            font-style: italic;
-            color: var(--white);
-            margin-bottom: 100px;
-            line-height: 1;
-        }
-
-        .contact-headline .letter-reveal {
-            display: inline-block;
-            opacity: 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 120px;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 36px;
-        }
-
-        .contact-link {
-            font-family: var(--sans);
-            font-size: 18px;
-            font-weight: 300;
-            color: var(--stone);
-            text-decoration: none;
-            transition: color 0.4s ease;
-            display: inline-block;
-            position: relative;
-        }
-
-        .contact-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--white);
-            transition: width 0.4s ease;
-        }
-
-        .contact-link:hover {
-            color: var(--white);
-        }
-
-        .contact-link:hover::after {
-            width: 100%;
-        }
-
-        .contact-location {
-            font-size: 13px;
-            font-weight: 300;
-            color: rgba(250, 250, 250, 0.3);
-            margin-top: 8px;
-            line-height: 1.7;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--stone-dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(250, 250, 250, 0.1);
-            padding: 14px 0;
-            font-family: var(--sans);
-            font-size: 16px;
-            font-weight: 300;
-            color: var(--white);
-            outline: none;
-            transition: border-color 0.4s ease;
-            width: 100%;
-            min-height: 44px;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(250, 250, 250, 0.15);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--stone);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 110px;
-        }
-
-        .submit-btn {
-            margin-top: 20px;
-            background: transparent;
-            border: 1px solid rgba(212, 197, 178, 0.4);
-            padding: 20px 56px;
-            font-family: var(--sans);
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--white);
-            cursor: pointer;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            align-self: flex-start;
-            min-height: 44px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--stone);
-            transform: translateX(-101%);
-            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 0;
-        }
-
-        .submit-btn:hover::before {
-            transform: translateX(0);
-        }
-
-        .submit-btn:hover {
-            color: var(--charcoal);
-            border-color: var(--stone);
-        }
-
-        .submit-btn span {
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            #contact { padding: 120px 0 80px; }
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 80px;
-            }
-        }
-
-        /* ================================================================
-           FOOTER
-           ================================================================ */
-        footer {
-            background: var(--charcoal);
-            padding: 48px 0;
-            border-top: 1px solid rgba(250, 250, 250, 0.06);
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-left {
-            font-size: 11px;
-            font-weight: 300;
-            color: rgba(250, 250, 250, 0.25);
-            letter-spacing: 0.05em;
-        }
-
-        .footer-right {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .footer-social {
-            font-size: 11px;
-            font-weight: 400;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(250, 250, 250, 0.3);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-social:hover {
-            color: var(--white);
-        }
-
-        .footer-note {
-            font-size: 10px;
-            font-weight: 300;
-            color: rgba(250, 250, 250, 0.12);
-        }
-
-        @media (max-width: 768px) {
-            .footer-inner {
-                flex-direction: column;
-                gap: 24px;
-                text-align: center;
-            }
-        }
-
-        /* ================================================================
-           REVEAL ANIMATIONS
-           ================================================================ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        /* ================================================================
-           PAGE TRANSITION
-           ================================================================ */
-        .page-loader {
-            position: fixed;
-            inset: 0;
-            background: var(--charcoal);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .page-loader span {
-            font-family: var(--sans);
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--stone);
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--white:#FFF;--off-white:#FAFAFA;--light-gray:#F5F5F7;--mid-gray:#E8E8ED;--text-secondary:#86868B;--text-primary:#1D1D1F;--charcoal:#111;--accent:#0071E3;--transition-smooth:cubic-bezier(.25,.1,.25,1)}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text-primary);background:var(--white);line-height:1.6;overflow-x:hidden}
+        img,video{display:block;max-width:100%}
+        a{text-decoration:none;color:inherit}
+
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.04);transition:all .3s var(--transition-smooth)}
+        .nav.scrolled{box-shadow:0 1px 3px rgba(0,0,0,.06)}
+        .nav-logo{font-size:18px;font-weight:700;letter-spacing:-.5px;color:var(--charcoal)}
+        .nav-logo span{font-weight:300;color:var(--text-secondary)}
+        .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+        .nav-links a{font-size:13px;font-weight:500;color:var(--text-secondary);transition:color .2s ease;letter-spacing:.01em}
+        .nav-links a:hover{color:var(--text-primary)}
+        .nav-cta{font-size:13px;font-weight:500;color:var(--white) !important;background:var(--charcoal);padding:8px 20px;border-radius:980px;transition:all .2s ease}
+        .nav-cta:hover{background:#333;transform:scale(1.02)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+        .nav-mobile-toggle span{width:20px;height:1.5px;background:var(--charcoal);transition:all .3s ease;display:block}
+
+        /* HERO */
+        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;background:linear-gradient(135deg,#0c1445 0%,#1a3a8a 25%,#2d6bc4 45%,#4a9bd9 60%,#f0c27f 80%,#fc5c7d 100%);overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(255,255,255,.1) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(252,92,125,.15) 0%,transparent 40%),radial-gradient(ellipse at 50% 80%,rgba(240,194,127,.1) 0%,transparent 50%);pointer-events:none}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--white),transparent);pointer-events:none}
+        .hero-content{position:relative;z-index:2;max-width:860px}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:980px;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:500;color:rgba(255,255,255,.9);letter-spacing:.05em;text-transform:uppercase;margin-bottom:32px;opacity:0;transform:translateY(20px);animation:fadeUp .8s .2s var(--transition-smooth) forwards}
+        .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse-dot 2s infinite}
+        .hero h1{font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1.08;letter-spacing:-.03em;color:var(--white);margin-bottom:24px;opacity:0;transform:translateY(30px);animation:fadeUp .8s .4s var(--transition-smooth) forwards}
+        .hero p{font-size:clamp(17px,2vw,21px);font-weight:400;line-height:1.5;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto 40px;opacity:0;transform:translateY(30px);animation:fadeUp .8s .6s var(--transition-smooth) forwards}
+        .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(30px);animation:fadeUp .8s .8s var(--transition-smooth) forwards}
+        .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--white);color:var(--charcoal);font-size:15px;font-weight:600;border-radius:980px;border:none;cursor:pointer;transition:all .3s var(--transition-smooth)}
+        .btn-primary:hover{transform:scale(1.04);box-shadow:0 8px 30px rgba(0,0,0,.15)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);color:var(--white);font-size:15px;font-weight:500;border-radius:980px;border:1px solid rgba(255,255,255,.25);cursor:pointer;transition:all .3s var(--transition-smooth)}
+        .btn-secondary:hover{background:rgba(255,255,255,.2);transform:scale(1.02)}
+        .scroll-indicator{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadeUp .8s 1.2s var(--transition-smooth) forwards}
+        .scroll-indicator .mouse{width:24px;height:38px;border:2px solid rgba(255,255,255,.4);border-radius:12px;position:relative}
+        .scroll-indicator .mouse::after{content:'';width:3px;height:8px;background:rgba(255,255,255,.6);border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scrollWheel 2s infinite}
+
+        /* TRUST BAR */
+        .trust-bar{padding:48px;text-align:center;background:var(--white)}
+        .trust-bar p{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:24px}
+        .trust-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.4}
+        .trust-logos span{font-size:14px;font-weight:600;color:var(--text-secondary);letter-spacing:.02em}
+
+        /* SECTIONS */
+        section{padding:120px 48px}
+        .section-label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .section-title{font-size:clamp(32px,4vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--charcoal);margin-bottom:16px}
+        .section-subtitle{font-size:18px;font-weight:400;color:var(--text-secondary);max-width:580px;line-height:1.6}
+        .section-header{margin-bottom:64px}
+        .section-header.center{text-align:center}
+        .section-header.center .section-subtitle{margin:0 auto}
+
+        /* SERVICES */
+        #services{background:var(--off-white)}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+        .service-card{background:var(--white);border-radius:20px;padding:48px 36px;border:1px solid var(--mid-gray);transition:all .4s var(--transition-smooth);position:relative;overflow:hidden}
+        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#64B5F6);opacity:0;transition:opacity .3s ease}
+        .service-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.06);border-color:transparent}
+        .service-card:hover::before{opacity:1}
+        .service-tier{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+        .service-card h3{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+        .service-price{font-size:15px;font-weight:500;color:var(--text-secondary);margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--mid-gray)}
+        .service-price strong{font-size:32px;font-weight:700;color:var(--charcoal);letter-spacing:-.02em}
+        .service-features{list-style:none;display:flex;flex-direction:column;gap:14px}
+        .service-features li{font-size:14px;color:var(--text-secondary);padding-left:24px;position:relative;line-height:1.5}
+        .service-features li::before{content:'';position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:var(--mid-gray);transition:background .3s ease}
+        .service-card:hover .service-features li::before{background:var(--accent)}
+        .service-card.featured{background:var(--charcoal);border-color:transparent}
+        .service-card.featured .service-tier{color:#64B5F6}
+        .service-card.featured h3{color:var(--white)}
+        .service-card.featured .service-price{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.1)}
+        .service-card.featured .service-price strong{color:var(--white)}
+        .service-card.featured .service-features li{color:rgba(255,255,255,.7)}
+        .service-card.featured .service-features li::before{background:rgba(255,255,255,.2)}
+        .service-card.featured:hover .service-features li::before{background:#64B5F6}
+        .service-card.featured::before{opacity:1;background:linear-gradient(90deg,#64B5F6,#a78bfa)}
+
+        /* TAX */
+        #tax-incentives{background:var(--white)}
+        .tax-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;max-width:1200px;margin:0 auto;align-items:start}
+        .tax-highlight{background:linear-gradient(135deg,#0c1445,#1a3a8a);border-radius:24px;padding:48px;color:var(--white)}
+        .tax-highlight h3{font-size:21px;font-weight:600;margin-bottom:24px;letter-spacing:-.01em}
+        .tax-stat{display:flex;align-items:baseline;gap:12px;margin-bottom:32px}
+        .tax-stat .number{font-size:72px;font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,#64B5F6,#f0c27f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .tax-stat .label{font-size:15px;color:rgba(255,255,255,.7);line-height:1.4}
+        .tax-canaries{background:rgba(255,255,255,.08);border-radius:16px;padding:24px;margin-top:8px}
+        .tax-canaries h4{font-size:14px;font-weight:600;margin-bottom:8px;color:#f0c27f}
+        .tax-canaries p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5}
+        .tax-canaries .number{font-size:36px;font-weight:800;background:linear-gradient(135deg,#f0c27f,#fc5c7d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+        .tax-table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch}
+        .tax-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;border:1px solid var(--mid-gray)}
+        .tax-table thead{background:var(--light-gray)}
+        .tax-table th{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-secondary);padding:16px 20px;text-align:left;white-space:nowrap}
+        .tax-table td{font-size:14px;padding:18px 20px;border-top:1px solid var(--mid-gray);color:var(--text-primary)}
+        .tax-table tr{transition:background .2s ease}
+        .tax-table tbody tr:hover td{background:var(--light-gray)}
+        .tax-table .highlight-row td{background:rgba(0,113,227,.04);font-weight:600}
+        .tax-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;white-space:nowrap}
+        .tax-badge.best{background:#dcfce7;color:#166534}
+        .tax-badge.good{background:#dbeafe;color:#1e40af}
+        .tax-badge.avg{background:#fef9c3;color:#854d0e}
+
+        /* LOCATIONS */
+        #locations{background:var(--off-white)}
+        .locations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+        .location-card{border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:all .4s var(--transition-smooth)}
+        .location-card:hover{transform:scale(1.02);box-shadow:0 20px 60px rgba(0,0,0,.15)}
+        .location-card .location-bg{position:absolute;inset:0;transition:transform .6s var(--transition-smooth)}
+        .location-card:hover .location-bg{transform:scale(1.08)}
+        .location-card:nth-child(1) .location-bg{background:linear-gradient(135deg,#2d6bc4,#4a9bd9,#87ceeb)}
+        .location-card:nth-child(2) .location-bg{background:linear-gradient(135deg,#1a8a5c,#3abf8f,#87ceeb)}
+        .location-card:nth-child(3) .location-bg{background:linear-gradient(135deg,#c4842d,#d9a84a,#f0c27f)}
+        .location-card:nth-child(4) .location-bg{background:linear-gradient(135deg,#8a1a6c,#bf3a8f,#fc5c7d)}
+        .location-card:nth-child(5) .location-bg{background:linear-gradient(135deg,#6c1a1a,#bf5c3a,#f0c27f)}
+        .location-card:nth-child(6) .location-bg{background:linear-gradient(135deg,#0c1445,#2d6bc4,#fdbb2d)}
+        .location-card .location-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 50%,transparent 100%);z-index:1}
+        .location-info{position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:2}
+        .location-info h3{font-size:24px;font-weight:700;color:var(--white);letter-spacing:-.01em;margin-bottom:6px}
+        .location-info p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.5}
+        .location-tag{display:inline-block;padding:4px 10px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,.9);margin-top:10px}
+
+        /* WHY US */
+        #why-us{background:var(--white)}
+        .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto}
+        .pillar-card{text-align:center;padding:48px 28px;border-radius:20px;border:1px solid var(--mid-gray);transition:all .3s var(--transition-smooth)}
+        .pillar-card:hover{border-color:transparent;box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-2px)}
+        .pillar-icon{width:56px;height:56px;border-radius:16px;background:var(--light-gray);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;transition:all .3s ease}
+        .pillar-card:hover .pillar-icon{background:var(--charcoal);transform:scale(1.05)}
+        .pillar-card:hover .pillar-icon svg{stroke:white}
+        .pillar-card h3{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
+        .pillar-card p{font-size:14px;color:var(--text-secondary);line-height:1.6}
+
+        /* ABOUT */
+        #about{background:var(--off-white)}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:center}
+        .about-image{aspect-ratio:4/5;border-radius:24px;background:linear-gradient(135deg,#1a2a6c,#2d6bc4,#4a9bd9);position:relative;overflow:hidden}
+        .about-image::after{content:'JH';position:absolute;bottom:32px;left:32px;font-size:64px;font-weight:800;color:rgba(255,255,255,.1);letter-spacing:-.04em}
+        .about-content h3{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
+        .about-content h2{font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:24px}
+        .about-content p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
+        .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;padding-top:32px;border-top:1px solid var(--mid-gray)}
+        .about-stat .number{font-size:32px;font-weight:800;color:var(--charcoal);letter-spacing:-.02em}
+        .about-stat .label{font-size:12px;color:var(--text-secondary);font-weight:500;margin-top:2px}
+
+        /* SAMPLE QUOTE */
+        #sample-quote{background:var(--white)}
+        .quote-wrapper{max-width:900px;margin:0 auto}
+        .quote-card{background:var(--white);border:1px solid var(--mid-gray);border-radius:24px;overflow:hidden}
+        .quote-header{background:var(--charcoal);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+        .quote-header-left h3{font-size:20px;font-weight:700;color:var(--white);margin-bottom:4px}
+        .quote-header-left p{font-size:13px;color:rgba(255,255,255,.5)}
+        .quote-header-right{text-align:right}
+        .quote-header-right .quote-id{font-size:12px;color:rgba(255,255,255,.4);font-weight:500;letter-spacing:.04em}
+        .quote-header-right .quote-date{font-size:13px;color:rgba(255,255,255,.6);margin-top:2px}
+        .quote-body{padding:36px 48px}
+        .quote-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:28px;border-bottom:1px solid var(--mid-gray);margin-bottom:28px}
+        .quote-meta-item .label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:4px}
+        .quote-meta-item .value{font-size:15px;font-weight:600;color:var(--charcoal)}
+        .quote-table{width:100%;border-collapse:collapse}
+        .quote-table th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);text-align:left;padding:12px 0;border-bottom:2px solid var(--mid-gray)}
+        .quote-table th:last-child{text-align:right}
+        .quote-table td{padding:14px 0;font-size:14px;border-bottom:1px solid var(--light-gray)}
+        .quote-table td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+        .quote-table .item-desc{font-size:12px;color:var(--text-secondary);margin-top:2px}
+        .quote-total-section{margin-top:24px;padding-top:20px;border-top:2px solid var(--charcoal)}
+        .quote-total-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+        .quote-total-row .label{font-size:14px;color:var(--text-secondary)}
+        .quote-total-row .value{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
+        .quote-total-row.grand{padding-top:16px;margin-top:8px;border-top:1px solid var(--mid-gray)}
+        .quote-total-row.grand .label{font-size:18px;font-weight:700;color:var(--charcoal)}
+        .quote-total-row.grand .value{font-size:24px;font-weight:800;color:var(--charcoal)}
+        .quote-footer-note{margin-top:32px;padding:20px 24px;background:var(--light-gray);border-radius:12px;font-size:12px;color:var(--text-secondary);line-height:1.6}
+
+        /* CONTACT */
+        #contact{background:var(--charcoal);color:var(--white)}
+        #contact .section-label{color:#64B5F6}
+        #contact .section-title{color:var(--white)}
+        #contact .section-subtitle{color:rgba(255,255,255,.5)}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto}
+        .contact-info{display:flex;flex-direction:column;gap:40px}
+        .contact-method{display:flex;gap:20px}
+        .contact-method .icon{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .contact-method h4{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px}
+        .contact-method p{font-size:17px;font-weight:500;color:var(--white)}
+        .contact-method p a{transition:color .2s ease}
+        .contact-method p a:hover{color:#64B5F6}
+        .contact-form{display:flex;flex-direction:column;gap:16px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .form-group{display:flex;flex-direction:column;gap:6px}
+        .form-group label{font-size:12px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.02em}
+        .form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;color:var(--white);font-family:'Inter',sans-serif;font-size:14px;transition:all .2s ease;outline:none}
+        .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.25)}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.08)}
+        .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+        .form-group select option{background:var(--charcoal);color:var(--white)}
+        .form-group textarea{resize:vertical;min-height:100px}
+        .btn-submit{width:100%;padding:16px;background:var(--white);color:var(--charcoal);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:12px;cursor:pointer;transition:all .3s var(--transition-smooth);margin-top:8px}
+        .btn-submit:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(255,255,255,.15)}
+
+        /* FOOTER */
+        .footer{background:var(--charcoal);border-top:1px solid rgba(255,255,255,.06);padding:40px 48px}
+        .footer-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+        .footer-left p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.6}
+        .footer-left .company-name{font-weight:600;color:rgba(255,255,255,.5)}
+        .footer-right{display:flex;gap:32px}
+        .footer-right a{font-size:12px;color:rgba(255,255,255,.35);transition:color .2s ease}
+        .footer-right a:hover{color:rgba(255,255,255,.7)}
+
+        /* ANIMATIONS */
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+        @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+        @keyframes scrollWheel{0%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(12px)}}
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s var(--transition-smooth)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+        .reveal-delay-1{transition-delay:.1s}
+        .reveal-delay-2{transition-delay:.2s}
+        .reveal-delay-3{transition-delay:.3s}
+        .reveal-delay-4{transition-delay:.4s}
+
+        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+
+        /* RESPONSIVE */
+        @media(max-width:1024px){
+            section{padding:80px 32px}
+            .services-grid,.locations-grid{grid-template-columns:repeat(2,1fr)}
+            .pillars-grid{grid-template-columns:repeat(2,1fr)}
+            .tax-grid{grid-template-columns:1fr}
+            .about-grid{grid-template-columns:1fr;gap:48px}
+            .about-image{aspect-ratio:16/9}
+            .contact-grid{grid-template-columns:1fr;gap:48px}
+        }
+        @media(max-width:768px){
+            .nav{padding:0 24px}
+            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--white);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid var(--mid-gray);box-shadow:0 8px 30px rgba(0,0,0,.08)}
+            .nav-links.open{display:flex}
+            .nav-mobile-toggle{display:flex}
+            .hero{padding:120px 24px 80px}
+            section{padding:64px 24px}
+            .services-grid,.locations-grid,.pillars-grid{grid-template-columns:1fr}
+            .quote-header,.quote-body{padding:24px}
+            .quote-meta{grid-template-columns:1fr;gap:12px}
+            .form-row{grid-template-columns:1fr}
+            .footer-content{flex-direction:column;gap:16px;text-align:center}
+            .footer-right{gap:20px}
+            .about-stats{grid-template-columns:repeat(3,1fr);gap:16px}
+            .trust-logos{gap:24px}
+            .trust-bar{padding:32px 24px}
+        }
+        @media(max-width:480px){
+            .hero h1{font-size:34px}
+            .hero-actions{flex-direction:column;align-items:stretch}
+            .btn-primary,.btn-secondary{justify-content:center}
+            .about-stats{grid-template-columns:1fr;gap:16px}
+        }
+        @media print{
+            .nav,.scroll-indicator,.hero-actions,.contact-form,.nav-mobile-toggle,.trust-bar{display:none !important}
+            .hero{min-height:auto;padding:48px}
+            section{padding:32px;page-break-inside:avoid}
+            .reveal{opacity:1 !important;transform:none !important}
         }
     </style>
 </head>
 <body>
-
-    <!-- PAGE LOADER -->
-    <div class="page-loader" id="pageLoader">
-        <span>Liquid Locations</span>
-    </div>
-
-    <div class="grain"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
-
-    <!-- MOBILE NAV OVERLAY -->
-    <div class="mobile-nav" id="mobileNav">
-        <a href="#manifesto" class="mobile-nav-link">About</a>
-        <a href="#services" class="mobile-nav-link">Services</a>
-        <a href="#locations" class="mobile-nav-link">Locations</a>
-        <a href="#incentives" class="mobile-nav-link">Incentives</a>
-        <a href="#contact" class="mobile-nav-link">Contact</a>
-    </div>
-
-    <!-- NAV -->
-    <nav id="mainNav">
-        <a href="#hero" class="logo">Liquid Locations</a>
-        <ul class="nav-links">
-            <li><a href="#services" class="hoverable">Services</a></li>
-            <li><a href="#locations" class="hoverable">Locations</a></li>
-            <li><a href="#incentives" class="hoverable">Incentives</a></li>
-            <li><a href="#about" class="hoverable">About</a></li>
-            <li><a href="#contact" class="hoverable">Contact</a></li>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="#" class="nav-logo">Liquid <span>Locations</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#tax-incentives">Tax Incentives</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#sample-quote">Pricing</a></li>
+            <li><a href="#contact" class="nav-cta">Brief Us</a></li>
         </ul>
-        <div class="menu-toggle" id="menuToggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+        <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
-    <!-- HERO -->
-    <header>
-    <section id="hero">
+    <header class="hero" id="hero">
         <div class="hero-content">
-            <p class="hero-eyebrow">Production Services &mdash; Spain</p>
-            <h1 class="hero-title" id="heroTitle">Liquid Locations</h1>
-            <p class="hero-subtitle">London standards. Spanish locations.<br>One point of contact.</p>
-            <div class="hero-line" id="heroLine"></div>
+            <div class="hero-badge">Now accepting briefs for 2026</div>
+            <h1>Your London-standard production partner in Spain</h1>
+            <p>Location scouting, crew coordination, and full production management across Spain's most cinematic landscapes. Bilingual. Tech-forward. Overhead-free.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">Brief us on your project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                <a href="#services" class="btn-secondary">View services</a>
+            </div>
         </div>
-        <p class="hero-locations">Barcelona &middot; Mallorca &middot; Madrid &middot; Ibiza &middot; Andalusia &middot; Canary Islands</p>
-        <div class="scroll-indicator" id="scrollIndicator">
-            <span>Scroll</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+        <div class="scroll-indicator" aria-hidden="true"><div class="mouse"></div></div>
     </header>
 
-    <main>
-
-    <!-- MANIFESTO -->
-    <section id="manifesto">
-        <div class="container">
-            <div class="manifesto-grid">
-                <div class="manifesto-statement reveal">
-                    We bridge London&rsquo;s creative standards with Spain&rsquo;s <em>extraordinary</em> locations.
-                </div>
-                <div class="manifesto-stats">
-                    <div class="stat-item">
-                        <div class="stat-number"><span class="counter" data-target="320">0</span><span class="counter-suffix"> days</span></div>
-                        <div class="stat-label-title">Annual sunshine</div>
-                        <div class="stat-label">More than any major European production hub. Schedule-dependent shoots land on time.</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number"><span class="counter" data-target="30">0</span><span class="counter-suffix">%</span></div>
-                        <div class="stat-label-title">National tax rebate</div>
-                        <div class="stat-label">International productions qualify under Article 36.2. In the Canary Islands, that figure reaches 54%.</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number"><span class="counter" data-target="8">0</span><span class="counter-suffix"> years</span></div>
-                        <div class="stat-label-title">London + Spain</div>
-                        <div class="stat-label">Seven years embedded in London production. Bilingual English-Spanish. We think in both.</div>
-                    </div>
-                </div>
-            </div>
+    <div class="trust-bar" aria-label="Industry affiliations">
+        <p>Industry affiliations</p>
+        <div class="trust-logos">
+            <span>APCP Member (pending)</span>
+            <span>Spain Film Commission</span>
+            <span>Barcelona Film Commission</span>
+            <span>Mallorca Film Commission</span>
         </div>
-    </section>
+    </div>
 
-    <div class="section-divider"></div>
-
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="container">
-            <p class="section-label">What we do</p>
-            <h2 class="section-heading reveal">Three tiers. Scaled to your production.</h2>
-
-            <article class="service-card">
-                <div class="service-number">01</div>
-                <div class="service-header">
-                    <h3>Scout</h3>
-                    <p>Location scouting &amp; management</p>
-                </div>
-                <div class="service-details">
-                    <ul>
-                        <li>GPS-tagged proprietary location database</li>
-                        <li>360&deg; virtual recces via drone photogrammetry</li>
-                        <li>Municipal &amp; Costas permit acquisition</li>
-                        <li>On-set location management</li>
-                    </ul>
-                    <div class="service-price">&euro;450 / day</div>
-                </div>
+    <section id="services" aria-labelledby="services-title">
+        <div class="section-header center">
+            <p class="section-label">Services</p>
+            <h2 class="section-title" id="services-title">Three tiers. Zero friction.</h2>
+            <p class="section-subtitle">From location scouting to full turnkey production. Scale your service level to match the brief.</p>
+        </div>
+        <div class="services-grid">
+            <article class="service-card reveal">
+                <p class="service-tier">Tier 1</p>
+                <h3>Scout</h3>
+                <p class="service-price"><strong>&euro;450</strong> / day</p>
+                <ul class="service-features">
+                    <li>Creative brief translation</li>
+                    <li>Proprietary digital location library access</li>
+                    <li>Bespoke physical scouting</li>
+                    <li>GPS-tagged, 360-degree location packages</li>
+                    <li>Municipal permit acquisition</li>
+                    <li>On-set location management</li>
+                </ul>
             </article>
-
-            <article class="service-card">
-                <div class="service-number">02</div>
-                <div class="service-header">
-                    <h3>Coordinate</h3>
-                    <p>Crew &amp; equipment sourcing</p>
-                </div>
-                <div class="service-details">
-                    <ul>
-                        <li>Bilingual technical crews (camera, grip, electric, art)</li>
-                        <li>Partner rental network: 711rent, Palma Equipment Rental, Welab</li>
-                        <li>Equipment logistics, insurance &amp; ATA Carnets</li>
-                        <li>Administrative processing, IRPF &amp; payroll</li>
-                    </ul>
-                    <div class="service-price">15&ndash;20% coordination fee</div>
-                </div>
+            <article class="service-card featured reveal reveal-delay-1">
+                <p class="service-tier">Tier 2 &mdash; Most Popular</p>
+                <h3>Coordinate</h3>
+                <p class="service-price"><strong>+15&ndash;20%</strong> markup on crew &amp; equipment</p>
+                <ul class="service-features">
+                    <li>Everything in Scout tier</li>
+                    <li>Local bilingual crew procurement</li>
+                    <li>Camera, grip, electric, art department</li>
+                    <li>Equipment rental coordination (711rent, etc.)</li>
+                    <li>Transport and logistics planning</li>
+                    <li>Day-rate transparency &mdash; you see every line</li>
+                </ul>
             </article>
-
-            <article class="service-card">
-                <div class="service-number">03</div>
-                <div class="service-header">
-                    <h3>Produce</h3>
-                    <p>Full production service</p>
-                </div>
-                <div class="service-details">
-                    <ul>
-                        <li>End-to-end production facilitation &mdash; brief to wrap</li>
-                        <li>Transport, premium catering, accommodation logistics</li>
-                        <li>Comprehensive civil liability &amp; equipment insurance</li>
-                        <li>Tax rebate SPV structuring &amp; compliance</li>
-                    </ul>
-                    <div class="service-price">20% management fee</div>
-                </div>
+            <article class="service-card reveal reveal-delay-2">
+                <p class="service-tier">Tier 3</p>
+                <h3>Full Service</h3>
+                <p class="service-price"><strong>+20%</strong> of BTL budget</p>
+                <ul class="service-features">
+                    <li>Everything in Coordinate tier</li>
+                    <li>End-to-end production management</li>
+                    <li>High-end catering coordination</li>
+                    <li>Accommodation and travel logistics</li>
+                    <li>Comprehensive civil liability insurance</li>
+                    <li>Single point of contact, start to wrap</li>
+                </ul>
             </article>
         </div>
     </section>
 
-    <!-- LOCATIONS -->
-    <section id="locations">
-        <div style="width:100%;">
-            <div class="locations-header">
-                <p class="section-label">Where we shoot</p>
-                <h2>Six regions.<br><em>One jurisdiction.</em></h2>
+    <section id="tax-incentives" aria-labelledby="tax-title">
+        <div class="section-header">
+            <p class="section-label">Tax Incentives</p>
+            <h2 class="section-title" id="tax-title">Spain pays you to shoot here.</h2>
+            <p class="section-subtitle">Up to 54% tax rebate in the Canary Islands. The most competitive incentive framework in Europe.</p>
+        </div>
+        <div class="tax-grid">
+            <div class="tax-highlight reveal">
+                <h3>Spanish National Rebate</h3>
+                <div class="tax-stat">
+                    <span class="number">30%</span>
+                    <span class="label">tax rebate on<br>qualifying spend</span>
+                </div>
+                <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:24px">Under Article 36.2 of Spain's Corporate Tax Law, international productions qualify for a 30% rebate on eligible local expenditure. Minimum spend: &euro;1M live-action, &euro;200K animation.</p>
+                <div class="tax-canaries">
+                    <h4>Canary Islands Special Zone</h4>
+                    <div class="number">54%</div>
+                    <p>Europe's highest combined rebate through the ZEC special economic zone. Competitive with Caribbean and Middle Eastern incentives.</p>
+                </div>
             </div>
-            <div class="locations-scroll-wrapper">
-                <div class="locations-track" id="locationsTrack">
-                    <div class="location-card">
-                        <div class="location-desc">Gothic Quarter, Eixample grid, brutalist Forum, Mediterranean waterfront. Europe's most visually diverse city.</div>
-                        <div class="location-name">Barcelona</div>
-                        <div class="location-tags">
-                            <span>Urban</span>
-                            <span>Industrial</span>
-                            <span>Gothic</span>
-                        </div>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-desc">Serra de Tramuntana mountains, turquoise calas, centuries-old fincas, luxury estates with infinity pools.</div>
-                        <div class="location-name">Mallorca</div>
-                        <div class="location-tags">
-                            <span>Coastal</span>
-                            <span>Rural</span>
-                            <span>Luxury</span>
-                        </div>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-desc">Gran V&iacute;a, Retiro Park, world-class studios, brutalist and neo-classical architecture side by side.</div>
-                        <div class="location-name">Madrid</div>
-                        <div class="location-tags">
-                            <span>Modern</span>
-                            <span>Historic</span>
-                            <span>Studio</span>
-                        </div>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-desc">Whitewashed villages, pine-fringed coves, golden hour that lasts forever, raw Mediterranean beauty.</div>
-                        <div class="location-name">Ibiza</div>
-                        <div class="location-tags">
-                            <span>Beach</span>
-                            <span>Rustic</span>
-                            <span>Golden Hour</span>
-                        </div>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-desc">Tabernas Desert doubling for North Africa, Moorish palaces, olive groves, 8,000km of coastline.</div>
-                        <div class="location-name">Andalusia</div>
-                        <div class="location-tags">
-                            <span>Desert</span>
-                            <span>Moorish</span>
-                            <span>Countryside</span>
-                        </div>
-                    </div>
-                    <div class="location-card">
-                        <div class="location-rebate">54% rebate</div>
-                        <div class="location-desc">Volcanic landscapes, subtropical forests, year-round shooting. Europe's highest production rebate.</div>
-                        <div class="location-name">Canary Islands</div>
-                        <div class="location-tags">
-                            <span>Volcanic</span>
-                            <span>Tropical</span>
-                            <span>Year-round</span>
-                        </div>
-                    </div>
+            <div class="tax-table-wrapper reveal reveal-delay-1">
+                <table class="tax-table">
+                    <thead><tr><th>Country</th><th>Base Rebate</th><th>Max Regional</th><th>Min. Spend</th><th>Rating</th></tr></thead>
+                    <tbody>
+                        <tr class="highlight-row"><td><strong>Spain (Mainland)</strong></td><td>30%</td><td>30%</td><td>&euro;1M</td><td><span class="tax-badge good">Strong</span></td></tr>
+                        <tr class="highlight-row"><td><strong>Spain (Canaries)</strong></td><td>54%</td><td>54%</td><td>&euro;1M</td><td><span class="tax-badge best">Best in EU</span></td></tr>
+                        <tr><td>United Kingdom</td><td>25.5%</td><td>25.5%</td><td>&pound;1M</td><td><span class="tax-badge avg">Standard</span></td></tr>
+                        <tr><td>France</td><td>30%</td><td>40%</td><td>&euro;250K</td><td><span class="tax-badge good">Strong</span></td></tr>
+                        <tr><td>Italy</td><td>30%</td><td>30%</td><td>&euro;0</td><td><span class="tax-badge good">Strong</span></td></tr>
+                        <tr><td>Portugal</td><td>25%</td><td>30%</td><td>&euro;500K</td><td><span class="tax-badge avg">Standard</span></td></tr>
+                        <tr><td>Greece</td><td>40%</td><td>40%</td><td>&euro;100K</td><td><span class="tax-badge best">Competitive</span></td></tr>
+                    </tbody>
+                </table>
+                <p style="font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.5">Rates reflect 2025/2026 fiscal frameworks. We handle all incentive applications as part of our Full Service tier.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="locations" aria-labelledby="locations-title">
+        <div class="section-header center">
+            <p class="section-label">Locations</p>
+            <h2 class="section-title" id="locations-title">Six regions. Infinite frames.</h2>
+            <p class="section-subtitle">From brutalist Barcelona to volcanic Canary Islands. One jurisdiction, every landscape your brief demands.</p>
+        </div>
+        <div class="locations-grid">
+            <article class="location-card reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Barcelona"></div><div class="location-overlay"></div><div class="location-info"><h3>Barcelona</h3><p>Brutalist architecture, Gothic quarter, Mediterranean coastline, modernist villas</p><span class="location-tag">320 days of sun</span></div></article>
+            <article class="location-card reveal reveal-delay-1" tabindex="0"><div class="location-bg" role="img" aria-label="Mallorca"></div><div class="location-overlay"></div><div class="location-info"><h3>Mallorca</h3><p>Turquoise coves, Serra de Tramuntana, luxury fincas, old-town Palma</p><span class="location-tag">Premium villa access</span></div></article>
+            <article class="location-card reveal reveal-delay-2" tabindex="0"><div class="location-bg" role="img" aria-label="Madrid"></div><div class="location-overlay"></div><div class="location-info"><h3>Madrid</h3><p>Grand boulevards, royal palaces, urban grit, world-class studio facilities</p><span class="location-tag">Europe's sunniest capital</span></div></article>
+            <article class="location-card reveal reveal-delay-1" tabindex="0"><div class="location-bg" role="img" aria-label="Ibiza"></div><div class="location-overlay"></div><div class="location-info"><h3>Ibiza</h3><p>White-washed villages, cliff-top villas, sunset coast, bohemian interiors</p><span class="location-tag">Fashion &amp; lifestyle</span></div></article>
+            <article class="location-card reveal reveal-delay-2" tabindex="0"><div class="location-bg" role="img" aria-label="Andalusia"></div><div class="location-overlay"></div><div class="location-info"><h3>Andalusia</h3><p>Tabernas desert, Moorish palaces, olive groves, Atlantic coastline</p><span class="location-tag">Desert to coast in 2hrs</span></div></article>
+            <article class="location-card reveal reveal-delay-3" tabindex="0"><div class="location-bg" role="img" aria-label="Canary Islands"></div><div class="location-overlay"></div><div class="location-info"><h3>Canary Islands</h3><p>Volcanic landscapes, black sand beaches, sub-tropical forests, 54% tax rebate</p><span class="location-tag">54% tax rebate zone</span></div></article>
+        </div>
+    </section>
+
+    <section id="why-us" aria-labelledby="why-title">
+        <div class="section-header center">
+            <p class="section-label">Why Liquid</p>
+            <h2 class="section-title" id="why-title">Built for London. Based in Spain.</h2>
+            <p class="section-subtitle">We are not a local fixer learning your language. We are London production people who know this ground.</p>
+        </div>
+        <div class="pillars-grid">
+            <article class="pillar-card reveal"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><h3>London-Trained</h3><p>8 years in London production. We understand the pace, the politics, and the precision your agency expects. No cultural translation required.</p></article>
+            <article class="pillar-card reveal reveal-delay-1"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><h3>Fully Bilingual</h3><p>Native-level English and Spanish. Your creative brief lands with the local crew exactly as you intended. No friction, no misinterpretation.</p></article>
+            <article class="pillar-card reveal reveal-delay-2"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div><h3>Local Network</h3><p>Direct relationships with Spain's top crew, equipment houses, and property owners. No middlemen. We call, they answer.</p></article>
+            <article class="pillar-card reveal reveal-delay-3"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div><h3>Tech-Forward</h3><p>GPS-tagged location libraries, 360-degree virtual recces, drone photogrammetry. Scout from your desk before you book a flight.</p></article>
+        </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+        <div class="about-grid">
+            <div class="about-image reveal" role="img" aria-label="James Huertas, Founder"></div>
+            <div class="about-content">
+                <h3>About the Founder</h3>
+                <h2 class="reveal" id="about-title">London production.<br>Spanish ground.</h2>
+                <p class="reveal reveal-delay-1">Liquid Locations was founded by James Huertas, a bilingual British-Spanish production professional with over 8 years of experience across London and Spain's most demanding shoots.</p>
+                <p class="reveal reveal-delay-2">Having worked with companies like Palma Pictures and across London's commercial and fashion production scene, James identified a critical gap: international producers forced to choose between expensive, inflexible conglomerates and local fixers who did not understand London standards.</p>
+                <p class="reveal reveal-delay-3">Liquid Locations sits precisely in that gap &mdash; delivering the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique.</p>
+                <div class="about-stats reveal reveal-delay-4">
+                    <div class="about-stat"><div class="number">8+</div><div class="label">Years in production</div></div>
+                    <div class="about-stat"><div class="number">2</div><div class="label">Markets (UK + ES)</div></div>
+                    <div class="about-stat"><div class="number">6</div><div class="label">Regions covered</div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TAX INCENTIVES -->
-    <section id="incentives">
-        <div class="container">
-            <div class="incentives-header">
-                <p class="section-label">The numbers</p>
-                <h2 class="reveal">Tax incentives that change the equation</h2>
-            </div>
-            <div class="incentives-grid" id="incentivesGrid">
-                <div class="incentive-col featured">
-                    <div class="incentive-country">Spain</div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">National rebate</div>
-                        <div class="incentive-value"><span class="counter" data-target="30">0</span>%</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Canary Islands</div>
-                        <div class="incentive-value"><span class="counter" data-target="54">0</span>%</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Min. spend</div>
-                        <div class="incentive-value-small">&euro;1M live-action / &euro;200K animation</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">VAT mechanism</div>
-                        <div class="incentive-value-small">Reverse charge (0% IVA to UK clients)</div>
-                    </div>
-                </div>
-                <div class="incentive-col">
-                    <div class="incentive-country">United Kingdom</div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">National rebate</div>
-                        <div class="incentive-value"><span class="counter" data-target="25">0</span>%</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Regional bonus</div>
-                        <div class="incentive-dash">&mdash;</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Min. spend</div>
-                        <div class="incentive-value-small">Nil</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">VAT mechanism</div>
-                        <div class="incentive-value-small">Standard 20%</div>
-                    </div>
-                </div>
-                <div class="incentive-col">
-                    <div class="incentive-country">France</div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">National rebate</div>
-                        <div class="incentive-value"><span class="counter" data-target="30">0</span>%</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Regional bonus</div>
-                        <div class="incentive-dash">&mdash;</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Min. spend</div>
-                        <div class="incentive-value-small">&euro;250K</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">VAT mechanism</div>
-                        <div class="incentive-value-small">Standard 20%</div>
-                    </div>
-                </div>
-                <div class="incentive-col">
-                    <div class="incentive-country">Italy</div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">National rebate</div>
-                        <div class="incentive-value"><span class="counter" data-target="40">0</span>%</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Regional bonus</div>
-                        <div class="incentive-dash">&mdash;</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">Min. spend</div>
-                        <div class="incentive-value-small">&euro;1M</div>
-                    </div>
-                    <div class="incentive-row">
-                        <div class="incentive-row-label">VAT mechanism</div>
-                        <div class="incentive-value-small">Standard 22%</div>
-                    </div>
-                </div>
-            </div>
-            <p class="incentives-note reveal">Spain&rsquo;s Article 36.2 of the Corporate Tax Law governs international production incentives. The Canary Islands offer a combined regional + national incentive reaching 54% &mdash; the highest rebate in Europe. Productions must partner with a registered Spanish entity (S.L.) to qualify.</p>
+    <section id="sample-quote" aria-labelledby="quote-title">
+        <div class="section-header center">
+            <p class="section-label">Transparent Pricing</p>
+            <h2 class="section-title" id="quote-title">See every line.</h2>
+            <p class="section-subtitle">A sample quote for a 3-day fashion commercial in Barcelona. No hidden fees. No bloated overhead.</p>
         </div>
-    </section>
-
-    <!-- SAMPLE QUOTE -->
-    <section id="case-study">
-        <div class="container">
-            <div class="case-study-header">
-                <p class="section-label">Sample quote</p>
-                <h2 class="reveal">What a 3-day fashion shoot in Barcelona looks like</h2>
-            </div>
-            <div class="quote-grid" id="quoteGrid">
-                <div class="quote-line"><span class="quote-item">Location scouting &amp; management (3 days @ &euro;450)</span><span class="quote-price">&euro;1,350</span></div>
-                <div class="quote-line"><span class="quote-item">Location fees &mdash; 2 premium locations (3 days)</span><span class="quote-price">&euro;9,000</span></div>
-                <div class="quote-line"><span class="quote-item">Local crew &mdash; 10 technicians (3 days)</span><span class="quote-price">&euro;10,500</span></div>
-                <div class="quote-line"><span class="quote-item">Camera &amp; lighting package (ARRI / Cooke / Profoto)</span><span class="quote-price">&euro;6,000</span></div>
-                <div class="quote-line"><span class="quote-item">Grip &amp; electric equipment</span><span class="quote-price">&euro;3,200</span></div>
-                <div class="quote-line"><span class="quote-item">Transport, unit base &amp; runners</span><span class="quote-price">&euro;2,400</span></div>
-                <div class="quote-line"><span class="quote-item">Catering &amp; craft services (3 days, 20 crew)</span><span class="quote-price">&euro;2,700</span></div>
-                <div class="quote-line"><span class="quote-item">Municipal permits &amp; police coordination</span><span class="quote-price">&euro;1,800</span></div>
-                <div class="quote-line"><span class="quote-item">Production insurance (civil liability + equipment)</span><span class="quote-price">&euro;1,750</span></div>
-            </div>
-            <div class="quote-total" id="quoteTotal">
-                <span class="quote-total-label">Total production cost</span>
-                <span class="quote-total-price">&euro;38,700</span>
-            </div>
-            <div class="quote-context" id="quoteContext">
-                <div class="quote-context-item">
-                    <div class="quote-context-label">Includes</div>
-                    <div class="quote-context-value">All-inclusive. No surprises.</div>
+        <div class="quote-wrapper">
+            <div class="quote-card reveal">
+                <div class="quote-header">
+                    <div class="quote-header-left"><h3>3-Day Fashion Commercial &mdash; Barcelona</h3><p>London Client &bull; 10 Local Crew &bull; 2 Locations &bull; Full Package</p></div>
+                    <div class="quote-header-right"><p class="quote-id">LL-2026-SAMPLE</p><p class="quote-date">Indicative Quote</p></div>
                 </div>
-                <div class="quote-context-item">
-                    <div class="quote-context-label">Payment</div>
-                    <div class="quote-context-value">50% upfront, balance within 14 days</div>
-                </div>
-                <div class="quote-context-item">
-                    <div class="quote-context-label">VAT</div>
-                    <div class="quote-context-value">0% IVA via reverse charge</div>
+                <div class="quote-body">
+                    <div class="quote-meta">
+                        <div class="quote-meta-item"><p class="label">Duration</p><p class="value">3 shoot days</p></div>
+                        <div class="quote-meta-item"><p class="label">Location</p><p class="value">Barcelona, Spain</p></div>
+                        <div class="quote-meta-item"><p class="label">Service Tier</p><p class="value">Full Service (Tier 3)</p></div>
+                    </div>
+                    <table class="quote-table">
+                        <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Location Fees</strong><p class="item-desc">2 premium locations &times; 3 days (luxury villa + urban rooftop)</p></td><td>&euro;9,000</td></tr>
+                            <tr><td><strong>Location Commission</strong><p class="item-desc">Standard 20% agency commission on location fees</p></td><td>&euro;1,800</td></tr>
+                            <tr><td><strong>Local Crew</strong><p class="item-desc">10 crew (camera, grip, electric, art dept, HMU) &times; 3 days @ avg &euro;350/day</p></td><td>&euro;10,500</td></tr>
+                            <tr><td><strong>Equipment Rental</strong><p class="item-desc">Full camera/lighting/grip package via partner rental houses</p></td><td>&euro;6,000</td></tr>
+                            <tr><td><strong>Transport &amp; Logistics</strong><p class="item-desc">Unit base, crew transport, parking permits, fuel</p></td><td>&euro;3,600</td></tr>
+                            <tr><td><strong>Catering</strong><p class="item-desc">Premium on-set catering &times; 3 days (breakfast, lunch, craft services)</p></td><td>&euro;2,400</td></tr>
+                            <tr><td><strong>Permits &amp; Insurance</strong><p class="item-desc">Municipal filming permits, civil liability, equipment coverage (2-3% of budget)</p></td><td>&euro;1,500</td></tr>
+                        </tbody>
+                    </table>
+                    <div class="quote-total-section">
+                        <div class="quote-total-row"><span class="label">Subtotal (BTL Production Costs)</span><span class="value">&euro;34,800</span></div>
+                        <div class="quote-total-row"><span class="label">EP / Location Manager (3 days &times; &euro;450)</span><span class="value">&euro;1,350</span></div>
+                        <div class="quote-total-row"><span class="label">Coordination markup (crew + equipment @ 15%)</span><span class="value">&euro;2,475</span></div>
+                        <div class="quote-total-row grand"><span class="label">Total</span><span class="value">&euro;38,625</span></div>
+                    </div>
+                    <div class="quote-footer-note"><strong>Payment terms:</strong> 50% mobilisation fee upon project confirmation. Balance within 14 days post-wrap. All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients &mdash; 0% Spanish IVA). Quote valid 30 days.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-left reveal">
-                    <div class="about-name">James<br>Huertas</div>
-                    <div class="about-role">Founder &amp; Executive Producer</div>
-                    <div class="about-locations-list">
-                        <span>Based in Barcelona &amp; Mallorca</span>
-                        <span>Formerly London, 2016&ndash;2023</span>
-                    </div>
+    <section id="contact" aria-labelledby="contact-title">
+        <div class="contact-grid">
+            <div>
+                <div class="section-header">
+                    <p class="section-label">Get in Touch</p>
+                    <h2 class="section-title" id="contact-title">Brief us on your next shoot.</h2>
+                    <p class="section-subtitle">Share your creative brief. We will return a bespoke location package and production estimate within 48 hours.</p>
                 </div>
-                <div class="about-bio">
-                    <p class="reveal">Seven years embedded in London&rsquo;s production machine. Eight years on set. Now bridging two markets that rarely speak the same language.</p>
-                    <p class="reveal">I built my career inside some of London&rsquo;s most demanding production environments &mdash; the pace, the standards, the unspoken expectations that separate competent from exceptional. When I relocated to Spain, I brought that standard with me. Not as theory, but as the only way I know how to operate.</p>
-                    <p class="reveal">Today I work with Palma Pictures, international agencies, and productions across the Iberian Peninsula. Bilingual English-Spanish. Connected to every rental house, location owner, and trusted freelancer in the region. When a London EP calls needing 10 crew in Barcelona by Thursday, I don&rsquo;t start from scratch &mdash; the team is already built.</p>
-                    <p class="reveal">Liquid Locations exists because there shouldn&rsquo;t be a gap between what you expect and what you get on the ground. The cultural nuance, the logistical precision, the on-set etiquette that London demands &mdash; that&rsquo;s what we deliver. Every time.</p>
+                <div class="contact-info">
+                    <div class="contact-method"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><h4>Email</h4><p><a href="mailto:hello@liquidlocations.com">hello@liquidlocations.com</a></p></div></div>
+                    <div class="contact-method"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><div><h4>Phone / WhatsApp</h4><p><a href="tel:+34600000000">+34 600 000 000</a></p></div></div>
+                    <div class="contact-method"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div><h4>Based in</h4><p>Barcelona &amp; Mallorca, Spain</p></div></div>
                 </div>
             </div>
+            <form class="contact-form" id="contactForm" aria-label="Project enquiry form">
+                <div class="form-row">
+                    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name"></div>
+                    <div class="form-group"><label for="company">Production Company</label><input type="text" id="company" name="company" placeholder="Pulse Films" autocomplete="organization"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="jane@pulsefilms.com" required autocomplete="email"></div>
+                    <div class="form-group"><label for="project-type">Project Type</label><select id="project-type" name="project-type"><option value="" disabled selected>Select type</option><option value="commercial">Commercial (TVC)</option><option value="fashion">Fashion Campaign</option><option value="music-video">Music Video</option><option value="editorial">Editorial / Stills</option><option value="film-tv">Film / TV Series</option><option value="brand-content">Brand Content</option><option value="other">Other</option></select></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="dates">Proposed Dates</label><input type="text" id="dates" name="dates" placeholder="e.g. June 2026, flexible"></div>
+                    <div class="form-group"><label for="crew-size">Estimated Crew Size</label><input type="text" id="crew-size" name="crew-size" placeholder="e.g. 8-12 local crew"></div>
+                </div>
+                <div class="form-group"><label for="brief">Project Brief</label><textarea id="brief" name="brief" rows="4" placeholder="Tell us about your project — locations needed, creative direction, any specific requirements..."></textarea></div>
+                <button type="submit" class="btn-submit">Send Brief</button>
+            </form>
         </div>
     </section>
 
-    <!-- CLIENTS -->
-    <section id="clients">
-        <p class="clients-label">Trusted by</p>
-        <div class="marquee-wrapper">
-            <div class="marquee-track" id="marqueeTrack">
-                <span class="marquee-item">Palma Pictures</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Twenty Four Seven</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">TrueGroup</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Bakery Productions</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Chelsea &amp; Co</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Questex</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">711rent</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Palma Equipment Rental</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Welab Barcelona</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Palma Pictures</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Twenty Four Seven</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">TrueGroup</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Bakery Productions</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Chelsea &amp; Co</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Questex</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">711rent</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Palma Equipment Rental</span>
-                <span class="marquee-divider">&bull;</span>
-                <span class="marquee-item">Welab Barcelona</span>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-left">
+                <p><span class="company-name">Liquid Locations S.L.</span> (pending registration)</p>
+                <p>Member of APCP (pending) &bull; Spain Film Commission network</p>
+                <p>&copy; 2026 Liquid Locations. All rights reserved.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="contact-headline" id="contactHeadline">Let's shoot.</h2>
-            <div class="contact-grid">
-                <div class="contact-info reveal">
-                    <div>
-                        <a href="mailto:james@huertas.co.uk" class="contact-link hoverable">james@huertas.co.uk</a>
-                    </div>
-                    <div>
-                        <a href="tel:+34668554738" class="contact-link hoverable">+34 668 554 738</a>
-                    </div>
-                    <div>
-                        <a href="https://wa.me/34668554738" class="contact-link hoverable" target="_blank" rel="noopener">WhatsApp</a>
-                    </div>
-                    <p class="contact-location">Barcelona &amp; Mallorca, Spain<br>Registered S.L. &mdash; APCP membership pending</p>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company</label>
-                        <input type="text" id="company" name="company" placeholder="Production company or agency">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="brief">Project brief</label>
-                        <textarea id="brief" name="brief" placeholder="Locations, crew size, dates, creative direction..." rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn hoverable"><span>Send enquiry</span></button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <span class="footer-left">&copy; 2026 Liquid Locations S.L.</span>
-                <div class="footer-right">
-                    <a href="https://instagram.com/liquidlocations" class="footer-social hoverable" target="_blank" rel="noopener">Instagram</a>
-                    <a href="https://vimeo.com/liquidlocations" class="footer-social hoverable" target="_blank" rel="noopener">Vimeo</a>
-                    <span class="footer-note">Barcelona &middot; Mallorca</span>
-                </div>
+            <div class="footer-right">
+                <a href="#services">Services</a>
+                <a href="#locations">Locations</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </footer>
 
     <script>
-        /* ================================================================
-           GSAP INIT
-           ================================================================ */
-        gsap.registerPlugin(ScrollTrigger);
-
-        /* ================================================================
-           PAGE LOADER
-           ================================================================ */
-        window.addEventListener('load', function() {
-            var loader = document.getElementById('pageLoader');
-            gsap.to(loader, {
-                opacity: 0,
-                duration: 0.6,
-                delay: 0.3,
-                ease: 'power2.inOut',
-                onComplete: function() {
-                    loader.style.display = 'none';
-                    initAnimations();
-                }
-            });
-        });
-
-        /* ================================================================
-           CUSTOM CURSOR (desktop only)
-           ================================================================ */
-        (function() {
-            var dot = document.getElementById('cursorDot');
-            var ring = document.getElementById('cursorRing');
-            var mouseX = 0, mouseY = 0;
-            var ringX = 0, ringY = 0;
-
-            if (window.matchMedia('(pointer: fine)').matches) {
-                document.addEventListener('mousemove', function(e) {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    dot.style.left = (mouseX - 3) + 'px';
-                    dot.style.top = (mouseY - 3) + 'px';
-                });
-
-                (function animate() {
-                    ringX += (mouseX - ringX) * 0.1;
-                    ringY += (mouseY - ringY) * 0.1;
-                    ring.style.left = (ringX - 22) + 'px';
-                    ring.style.top = (ringY - 22) + 'px';
-                    requestAnimationFrame(animate);
-                })();
-
-                document.querySelectorAll('.hoverable, a, button, .service-card, .location-card').forEach(function(el) {
-                    el.addEventListener('mouseenter', function() { ring.classList.add('hovering'); });
-                    el.addEventListener('mouseleave', function() { ring.classList.remove('hovering'); });
-                });
-            }
-        })();
-
-        /* ================================================================
-           MOBILE MENU
-           ================================================================ */
-        (function() {
-            var toggle = document.getElementById('menuToggle');
-            var mobileNav = document.getElementById('mobileNav');
-            var links = mobileNav.querySelectorAll('a');
-
-            toggle.addEventListener('click', function() {
-                toggle.classList.toggle('active');
-                mobileNav.classList.toggle('active');
-                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-
-                if (mobileNav.classList.contains('active')) {
-                    gsap.fromTo(links,
-                        { opacity: 0, y: 20 },
-                        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out', delay: 0.15 }
-                    );
-                }
-            });
-
-            links.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    toggle.classList.remove('active');
-                    mobileNav.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-        })();
-
-        /* ================================================================
-           NAV SCROLL STATE
-           ================================================================ */
-        (function() {
-            var nav = document.getElementById('mainNav');
-            var scrolled = false;
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 80 && !scrolled) {
-                    nav.classList.add('scrolled');
-                    scrolled = true;
-                } else if (window.scrollY <= 80 && scrolled) {
-                    nav.classList.remove('scrolled');
-                    scrolled = false;
-                }
-            }, { passive: true });
-        })();
-
-        /* ================================================================
-           ALL ANIMATIONS (called after loader)
-           ================================================================ */
-        function initAnimations() {
-
-            /* ── HERO: LETTER-BY-LETTER ── */
-            (function() {
-                var heroTitle = document.getElementById('heroTitle');
-                var words = heroTitle.textContent.trim().split(/\s+/);
-                heroTitle.innerHTML = '';
-
-                words.forEach(function(word, wi) {
-                    var wordSpan = document.createElement('span');
-                    wordSpan.className = 'word';
-                    word.split('').forEach(function(char) {
-                        var letterSpan = document.createElement('span');
-                        letterSpan.className = 'letter';
-                        letterSpan.textContent = char;
-                        wordSpan.appendChild(letterSpan);
-                    });
-                    heroTitle.appendChild(wordSpan);
-                    if (wi < words.length - 1) {
-                        var space = document.createElement('span');
-                        space.innerHTML = '&nbsp;';
-                        space.className = 'letter';
-                        heroTitle.appendChild(space);
-                    }
-                });
-
-                var tl = gsap.timeline({ delay: 0.2 });
-
-                tl.fromTo('.hero-eyebrow',
-                    { opacity: 0, y: 15 },
-                    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }
-                )
-                .fromTo('.letter',
-                    { opacity: 0, y: '100%' },
-                    { opacity: 1, y: '0%', duration: 0.8, stagger: 0.025, ease: 'power3.out' },
-                    '-=0.3'
-                )
-                .fromTo('.hero-subtitle',
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
-                    '-=0.4'
-                )
-                .fromTo('#heroLine',
-                    { height: 0, opacity: 0 },
-                    { height: 60, opacity: 0.4, duration: 1.2, ease: 'power2.out' },
-                    '-=0.6'
-                )
-                .fromTo('.hero-locations',
-                    { opacity: 0 },
-                    { opacity: 1, duration: 1, ease: 'power2.out' },
-                    '-=0.8'
-                )
-                .fromTo('#scrollIndicator',
-                    { opacity: 0 },
-                    { opacity: 1, duration: 0.8, ease: 'power2.out' },
-                    '-=0.5'
-                );
-            })();
-
-            /* ── REVEAL ON SCROLL ── */
-            gsap.utils.toArray('.reveal').forEach(function(el) {
-                gsap.fromTo(el,
-                    { opacity: 0, y: 50 },
-                    {
-                        opacity: 1, y: 0,
-                        duration: 1,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 88%',
-                            toggleActions: 'play none none none'
-                        }
-                    }
-                );
-            });
-
-            /* ── MANIFESTO PARALLAX ── */
-            gsap.to('.manifesto-statement', {
-                y: -30,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '#manifesto',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5
-                }
-            });
-
-            /* ── MANIFESTO STAT ITEMS ── */
-            gsap.utils.toArray('.stat-item').forEach(function(item, i) {
-                gsap.to(item, {
-                    opacity: 1, x: 0,
-                    duration: 0.9,
-                    delay: i * 0.2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 88%',
-                        toggleActions: 'play none none none'
-                    }
-                });
-            });
-
-            /* ── ANIMATED COUNTERS ── */
-            document.querySelectorAll('.counter').forEach(function(el) {
-                var target = parseInt(el.getAttribute('data-target'));
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 88%',
-                    onEnter: function() {
-                        gsap.to({ val: 0 }, {
-                            val: target,
-                            duration: 2,
-                            ease: 'power2.out',
-                            onUpdate: function() {
-                                el.textContent = Math.round(this.targets()[0].val);
-                            }
-                        });
-                    },
-                    once: true
-                });
-            });
-
-            /* ── SERVICE CARDS: STAGGER UP ── */
-            gsap.utils.toArray('.service-card').forEach(function(card, i) {
-                gsap.to(card, {
-                    opacity: 1, y: 0,
-                    duration: 1,
-                    delay: i * 0.15,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 88%',
-                        toggleActions: 'play none none none'
-                    }
-                });
-            });
-
-            /* ── HORIZONTAL SCROLL LOCATIONS (desktop) ── */
-            (function() {
-                var track = document.getElementById('locationsTrack');
-                var isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-                if (!isMobile && track) {
-                    var cards = track.querySelectorAll('.location-card');
-                    var totalWidth = 0;
-                    cards.forEach(function(card) {
-                        totalWidth += card.offsetWidth + 28;
-                    });
-                    totalWidth += 96;
-                    var viewportWidth = window.innerWidth;
-                    var scrollDist = totalWidth - viewportWidth;
-
-                    if (scrollDist > 0) {
-                        gsap.to(track, {
-                            x: -scrollDist,
-                            ease: 'none',
-                            scrollTrigger: {
-                                trigger: '#locations',
-                                start: 'top top',
-                                end: function() { return '+=' + (scrollDist * 1.2); },
-                                scrub: 1,
-                                pin: true,
-                                anticipatePin: 1,
-                                invalidateOnRefresh: true
-                            }
-                        });
-                    }
-                }
-            })();
-
-            /* ── INCENTIVES GRID STAGGER ── */
-            gsap.utils.toArray('.incentive-col').forEach(function(col, i) {
-                gsap.fromTo(col,
-                    { opacity: 0, y: 40 },
-                    {
-                        opacity: 1, y: 0,
-                        duration: 0.8,
-                        delay: i * 0.12,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: '#incentivesGrid',
-                            start: 'top 85%',
-                            toggleActions: 'play none none none'
-                        }
-                    }
-                );
-            });
-
-            /* ── QUOTE LINES: STAGGER REVEAL ── */
-            (function() {
-                var items = document.querySelectorAll('.quote-item, .quote-price');
-                items.forEach(function(item, i) {
-                    gsap.to(item, {
-                        opacity: 1, y: 0,
-                        duration: 0.5,
-                        delay: Math.floor(i / 2) * 0.1,
-                        ease: 'power2.out',
-                        scrollTrigger: {
-                            trigger: '#quoteGrid',
-                            start: 'top 82%',
-                            toggleActions: 'play none none none'
-                        }
-                    });
-                });
-
-                gsap.to('#quoteTotal', {
-                    opacity: 1,
-                    duration: 0.9,
-                    delay: 1,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: '#quoteGrid',
-                        start: 'top 82%',
-                        toggleActions: 'play none none none'
-                    }
-                });
-
-                gsap.to('#quoteContext', {
-                    opacity: 1,
-                    duration: 0.7,
-                    delay: 1.4,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: '#quoteGrid',
-                        start: 'top 82%',
-                        toggleActions: 'play none none none'
-                    }
-                });
-            })();
-
-            /* ── CONTACT: LETTER-BY-LETTER REVEAL ── */
-            (function() {
-                var headline = document.getElementById('contactHeadline');
-                var text = headline.textContent;
-                headline.innerHTML = '';
-                text.split('').forEach(function(char) {
-                    var span = document.createElement('span');
-                    span.className = 'letter-reveal';
-                    span.textContent = char === ' ' ? '\u00A0' : char;
-                    headline.appendChild(span);
-                });
-
-                ScrollTrigger.create({
-                    trigger: '#contact',
-                    start: 'top 72%',
-                    onEnter: function() {
-                        gsap.to('.letter-reveal', {
-                            opacity: 1,
-                            duration: 0.4,
-                            stagger: 0.04,
-                            ease: 'power2.out'
-                        });
-                    },
-                    once: true
-                });
-            })();
-
-            /* ── PARALLAX: ABOUT SECTION ── */
-            gsap.to('.about-bio', {
-                y: -20,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '#about',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 2
-                }
-            });
-
-        } // end initAnimations
-
-        /* ================================================================
-           FORM HANDLER
-           ================================================================ */
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            var btn = this.querySelector('.submit-btn span');
-            btn.textContent = 'Sent \u2014 we\'ll be in touch';
-            this.querySelector('.submit-btn').style.borderColor = 'var(--blue)';
-            this.querySelector('.submit-btn').disabled = true;
-        });
-
-        /* ================================================================
-           SMOOTH SCROLL FOR ANCHOR LINKS
-           ================================================================ */
-        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                var target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    var offset = target.id === 'hero' ? 0 : 0;
-                    window.scrollTo({
-                        top: target.offsetTop - offset,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    (function(){var r=document.querySelectorAll('.reveal');if('IntersectionObserver' in window){var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('visible');o.unobserve(n.target)}})},{threshold:.1,rootMargin:'0px 0px -60px 0px'});r.forEach(function(e){o.observe(e)})}else{r.forEach(function(e){e.classList.add('visible')})}})();
+    (function(){var n=document.querySelector('.nav'),t=false;window.addEventListener('scroll',function(){if(!t){window.requestAnimationFrame(function(){n.classList.toggle('scrolled',window.pageYOffset>50);t=false});t=true}},{passive:true})})();
+    (function(){var b=document.getElementById('navToggle'),l=document.getElementById('navLinks'),s=b.querySelectorAll('span');function c(){l.classList.remove('open');b.setAttribute('aria-expanded','false');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');if(o){s[0].style.transform='rotate(45deg) translate(4px,4px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(4px,-4px)'}else{c()}});l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&l.classList.contains('open')){c();b.focus()}})})();
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var h=this.getAttribute('href');if(h==='#'){window.scrollTo({top:0,behavior:'smooth'});return}var t=document.querySelector(h);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-64,behavior:'smooth'})}})});
+    document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();var b=this.querySelector('.btn-submit');b.textContent='Brief received \u2014 we\'ll be in touch.';b.style.background='#4ade80';b.style.color='#111';b.disabled=true});
     </script>
 </body>
 </html>
