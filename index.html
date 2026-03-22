@@ -15,6 +15,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Liquid Locations — Premium Production Services in Spain">
     <meta name="twitter:description" content="Your London-standard production partner in Spain. Bilingual. Tech-forward. Overhead-free.">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="color-scheme" content="dark">
     <link rel="canonical" href="https://callingjhphoto-cmd.github.io/liquid-locations/">
     <script type="application/ld+json">
     {
@@ -31,281 +33,375 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        :root{--white:#FFF;--off-white:#FAFAFA;--light-gray:#F5F5F7;--mid-gray:#E8E8ED;--text-secondary:#86868B;--text-primary:#1D1D1F;--charcoal:#111;--accent:#0071E3;--transition-smooth:cubic-bezier(.25,.1,.25,1)}
-        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text-primary);background:var(--white);line-height:1.6;overflow-x:hidden}
+        :root{
+            --bg:#0a0a0a;
+            --bg-elevated:#111;
+            --bg-card:#161616;
+            --bg-subtle:#1a1a1a;
+            --border:rgba(255,255,255,.08);
+            --text-primary:rgba(255,255,255,.92);
+            --text-secondary:rgba(255,255,255,.5);
+            --text-tertiary:rgba(255,255,255,.3);
+            --accent:#c9a96e;
+            --accent-subtle:rgba(201,169,110,.15);
+            --white:#fff;
+            --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+            --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+            --ease:cubic-bezier(.25,.1,.25,1);
+        }
+        html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:auto}
+        body{font-family:var(--sans);color:var(--text-primary);background:var(--bg);line-height:1.6;overflow-x:hidden;opacity:0;transition:opacity .6s ease}
+        body.loaded{opacity:1}
         img,video{display:block;max-width:100%}
         a{text-decoration:none;color:inherit}
+        ::selection{background:var(--accent);color:var(--bg)}
+        ::-webkit-scrollbar{width:6px}
+        ::-webkit-scrollbar-track{background:var(--bg)}
+        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px}
+        ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.2)}
+        html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.12) var(--bg)}
+
+        /* FOCUS & ACCESSIBILITY */
+        :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+        a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+        .nav-links a:focus-visible{outline-offset:8px}
+        button,a,.location-card,.service-card,.pillar-card{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+        /* FILM GRAIN OVERLAY */
+        .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;will-change:transform}
+        .grain::after{content:'';position:absolute;inset:-100%;width:300%;height:300%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");animation:grain 6s steps(4) infinite}
+        @keyframes grain{0%,100%{transform:translate3d(0,0,0)}25%{transform:translate3d(-5%,-5%,0)}50%{transform:translate3d(5%,5%,0)}75%{transform:translate3d(-2%,8%,0)}}
 
         /* NAV */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.04);transition:all .3s var(--transition-smooth)}
-        .nav.scrolled{box-shadow:0 1px 3px rgba(0,0,0,.06)}
-        .nav-logo{font-size:18px;font-weight:700;letter-spacing:-.5px;color:var(--charcoal)}
-        .nav-logo span{font-weight:300;color:var(--text-secondary)}
-        .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
-        .nav-links a{font-size:13px;font-weight:500;color:var(--text-secondary);transition:color .2s ease;letter-spacing:.01em}
-        .nav-links a:hover{color:var(--text-primary)}
-        .nav-cta{font-size:13px;font-weight:500;color:var(--white) !important;background:var(--charcoal);padding:8px 20px;border-radius:980px;transition:all .2s ease}
-        .nav-cta:hover{background:#333;transform:scale(1.02)}
-        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
-        .nav-mobile-toggle span{width:20px;height:1.5px;background:var(--charcoal);transition:all .3s ease;display:block}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 60px;height:72px;display:flex;align-items:center;justify-content:space-between;background:transparent;border-bottom:1px solid rgba(255,255,255,.04);transition:all .4s var(--ease)}
+        .nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+        .nav-logo{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em;color:var(--white)}
+        .nav-logo span{font-weight:400;font-style:italic;color:var(--text-secondary)}
+        .nav-links{display:flex;align-items:center;gap:40px;list-style:none}
+        .nav-links a{font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);transition:color .3s ease}
+        .nav-links a:hover{color:var(--white)}
+        .nav-cta{color:var(--accent) !important;border:1px solid rgba(201,169,110,.3);padding:8px 24px;border-radius:0;transition:all .3s ease !important}
+        .nav-cta:hover{background:var(--accent);color:var(--bg) !important}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:8px;background:none;border:none}
+        .nav-mobile-toggle span{width:24px;height:1px;background:var(--white);transition:all .3s ease;display:block}
 
         /* HERO */
-        .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;background:linear-gradient(135deg,#0c1445 0%,#1a3a8a 25%,#2d6bc4 45%,#4a9bd9 60%,#f0c27f 80%,#fc5c7d 100%);overflow:hidden}
-        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(255,255,255,.1) 0%,transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(252,92,125,.15) 0%,transparent 40%),radial-gradient(ellipse at 50% 80%,rgba(240,194,127,.1) 0%,transparent 50%);pointer-events:none}
-        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--white),transparent);pointer-events:none}
-        .hero-content{position:relative;z-index:2;max-width:860px}
-        .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:980px;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:500;color:rgba(255,255,255,.9);letter-spacing:.05em;text-transform:uppercase;margin-bottom:32px;opacity:0;transform:translateY(20px);animation:fadeUp .8s .2s var(--transition-smooth) forwards}
-        .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse-dot 2s infinite}
-        .hero h1{font-size:clamp(40px,6vw,72px);font-weight:700;line-height:1.08;letter-spacing:-.03em;color:var(--white);margin-bottom:24px;opacity:0;transform:translateY(30px);animation:fadeUp .8s .4s var(--transition-smooth) forwards}
-        .hero p{font-size:clamp(17px,2vw,21px);font-weight:400;line-height:1.5;color:rgba(255,255,255,.8);max-width:600px;margin:0 auto 40px;opacity:0;transform:translateY(30px);animation:fadeUp .8s .6s var(--transition-smooth) forwards}
-        .hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;transform:translateY(30px);animation:fadeUp .8s .8s var(--transition-smooth) forwards}
-        .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--white);color:var(--charcoal);font-size:15px;font-weight:600;border-radius:980px;border:none;cursor:pointer;transition:all .3s var(--transition-smooth)}
-        .btn-primary:hover{transform:scale(1.04);box-shadow:0 8px 30px rgba(0,0,0,.15)}
-        .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);color:var(--white);font-size:15px;font-weight:500;border-radius:980px;border:1px solid rgba(255,255,255,.25);cursor:pointer;transition:all .3s var(--transition-smooth)}
-        .btn-secondary:hover{background:rgba(255,255,255,.2);transform:scale(1.02)}
-        .scroll-indicator{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:fadeUp .8s 1.2s var(--transition-smooth) forwards}
-        .scroll-indicator .mouse{width:24px;height:38px;border:2px solid rgba(255,255,255,.4);border-radius:12px;position:relative}
-        .scroll-indicator .mouse::after{content:'';width:3px;height:8px;background:rgba(255,255,255,.6);border-radius:2px;position:absolute;top:8px;left:50%;transform:translateX(-50%);animation:scrollWheel 2s infinite}
+        .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 60px 120px;background:var(--bg);overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,169,110,.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 30%,rgba(100,130,180,.05) 0%,transparent 40%),radial-gradient(ellipse at 50% 90%,rgba(201,169,110,.04) 0%,transparent 50%);pointer-events:none;animation:heroGlow 12s ease-in-out infinite alternate}
+        .hero::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(180deg,transparent 0%,rgba(201,169,110,.015) 50%,transparent 100%);pointer-events:none}
+        .hero-line{position:absolute;top:72px;right:120px;bottom:120px;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.06) 30%,rgba(201,169,110,.12) 50%,rgba(255,255,255,.06) 70%,transparent);opacity:0}
+        .hero-coords{position:absolute;right:60px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:mixed;opacity:0}
+        .hero-coords span{display:block;font-size:11px;letter-spacing:.12em;color:var(--text-tertiary);font-weight:400;margin-bottom:24px;font-variant-numeric:tabular-nums}
+        .hero-coords span:last-child{margin-bottom:0;color:rgba(201,169,110,.4)}
+        .hero-regions{position:absolute;right:180px;bottom:120px;text-align:right;opacity:0}
+        .hero-regions span{display:block;font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;color:rgba(255,255,255,.04);line-height:1.4;letter-spacing:-.01em}
+        @keyframes heroGlow{0%{opacity:.8}100%{opacity:1}}
+        .hero-content{position:relative;z-index:2;max-width:1000px}
+        .hero-eyebrow{font-size:12px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:40px;opacity:0}
+        .hero h1{font-family:var(--serif);font-size:clamp(48px,7vw,88px);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--white);margin-bottom:32px;text-shadow:0 0 80px rgba(201,169,110,.08)}
+        .hero h1 em{font-style:italic;color:var(--text-secondary)}
+        .hero-sub{font-size:18px;font-weight:400;line-height:1.7;color:var(--text-secondary);max-width:520px;margin-bottom:56px;opacity:0}
+        .hero-actions{display:flex;gap:24px;align-items:center;opacity:0}
+        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s var(--ease)}
+        .btn-primary:hover{background:#d4b478;transform:translateY(-1px)}
+        .btn-secondary{font-size:13px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);cursor:pointer;transition:color .3s ease;background:none;border:none;border-bottom:1px solid var(--text-tertiary);padding-bottom:2px}
+        .btn-secondary:hover{color:var(--white);border-color:var(--white)}
+        .hero-scroll{position:absolute;bottom:40px;right:60px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-tertiary);display:flex;align-items:center;gap:16px}
+        .hero-scroll::after{content:'';width:1px;height:60px;background:linear-gradient(to bottom,var(--text-tertiary),transparent);animation:scrollLine 2s infinite}
+        @keyframes scrollLine{0%{opacity:1;transform:scaleY(1)}50%{opacity:.3}100%{opacity:1;transform:scaleY(1)}}
 
-        /* TRUST BAR */
-        .trust-bar{padding:48px;text-align:center;background:var(--white)}
-        .trust-bar p{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:24px}
-        .trust-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;opacity:.4}
-        .trust-logos span{font-size:14px;font-weight:600;color:var(--text-secondary);letter-spacing:.02em}
+        /* SECTION FUNDAMENTALS */
+        section{padding:160px 60px;position:relative}
+        .section-label{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+        .section-title{font-family:var(--serif);font-size:clamp(36px,4.5vw,64px);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:20px}
+        .section-title em{font-style:italic;color:var(--text-secondary)}
+        .section-subtitle{font-size:16px;font-weight:400;color:var(--text-secondary);max-width:480px;line-height:1.7}
+        .section-header{margin-bottom:80px}
 
-        /* SECTIONS */
-        section{padding:120px 48px}
-        .section-label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-        .section-title{font-size:clamp(32px,4vw,48px);font-weight:700;letter-spacing:-.03em;line-height:1.1;color:var(--charcoal);margin-bottom:16px}
-        .section-subtitle{font-size:18px;font-weight:400;color:var(--text-secondary);max-width:580px;line-height:1.6}
-        .section-header{margin-bottom:64px}
-        .section-header.center{text-align:center}
-        .section-header.center .section-subtitle{margin:0 auto}
+        /* STATEMENT BREAK */
+        .statement{padding:200px 60px;text-align:center;position:relative}
+        .statement-text{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.3;color:var(--text-primary);max-width:800px;margin:0 auto;letter-spacing:-.01em}
+        .statement-text em{font-style:italic;color:var(--accent)}
+        .statement::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--border))}
+        .statement::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,var(--border),transparent)}
+
+        /* CINEMATIC INTERSTITIAL */
+        .cinematic{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);overflow:hidden;padding:0 60px}
+        .cinematic-inner{position:relative;z-index:2;text-align:center;max-width:1200px}
+        .cinematic-number{font-family:var(--serif);font-size:clamp(100px,15vw,200px);font-weight:400;line-height:1;letter-spacing:-.04em;color:rgba(201,169,110,.1);-webkit-text-stroke:1px rgba(201,169,110,.3);margin-bottom:16px}
+        @supports(-webkit-text-stroke:1px transparent){.cinematic-number{color:transparent}}
+        .cinematic-label{font-size:13px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--text-secondary)}
+        .cinematic-line{position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.15),transparent);transform:scaleX(0);transform-origin:center}
+        .cinematic-stats{display:flex;justify-content:center;gap:120px;margin-top:80px}
+        .cinematic-stat{text-align:center}
+        .cinematic-stat .num{font-family:var(--serif);font-size:clamp(48px,6vw,72px);font-weight:400;color:var(--white);letter-spacing:-.03em;line-height:1}
+        .cinematic-stat .txt{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-top:12px}
+
+        /* REEL / WORK SECTION */
+        .reel-section{position:relative;padding:200px 60px;background:var(--bg);text-align:center;overflow:hidden}
+        .reel-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,169,110,.04) 0%,transparent 70%);pointer-events:none}
+        .reel-play{width:100px;height:100px;border:1px solid rgba(201,169,110,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 40px;cursor:pointer;transition:all .4s var(--ease);position:relative}
+        .reel-play:hover{border-color:var(--accent);transform:scale(1.08)}
+        .reel-play::after{content:'';width:0;height:0;border-left:20px solid var(--accent);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:4px}
+        .reel-play-ring{position:absolute;inset:-12px;border:1px solid rgba(201,169,110,.1);border-radius:50%;animation:ringPulse 3s ease-in-out infinite}
+        @keyframes ringPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.3}}
+        .reel-title{font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--white);margin-bottom:12px}
+        .reel-sub{font-size:14px;color:var(--text-tertiary);letter-spacing:.06em;text-transform:uppercase}
+
+        /* ACT DIVIDER */
+        .act-divider{height:1px;max-width:200px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.25}
+
+        /* CLOSING STATEMENT */
+        .closing{padding:200px 60px 120px;text-align:center;position:relative}
+        .closing::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:1px;background:var(--accent);opacity:.3}
+        .closing-text{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;font-style:italic;color:var(--text-secondary);max-width:600px;margin:0 auto;line-height:1.4;letter-spacing:-.01em}
 
         /* SERVICES */
-        #services{background:var(--off-white)}
-        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
-        .service-card{background:var(--white);border-radius:20px;padding:48px 36px;border:1px solid var(--mid-gray);transition:all .4s var(--transition-smooth);position:relative;overflow:hidden}
-        .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#64B5F6);opacity:0;transition:opacity .3s ease}
-        .service-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.06);border-color:transparent}
-        .service-card:hover::before{opacity:1}
-        .service-tier{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
-        .service-card h3{font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
-        .service-price{font-size:15px;font-weight:500;color:var(--text-secondary);margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--mid-gray)}
-        .service-price strong{font-size:32px;font-weight:700;color:var(--charcoal);letter-spacing:-.02em}
-        .service-features{list-style:none;display:flex;flex-direction:column;gap:14px}
-        .service-features li{font-size:14px;color:var(--text-secondary);padding-left:24px;position:relative;line-height:1.5}
-        .service-features li::before{content:'';position:absolute;left:0;top:7px;width:8px;height:8px;border-radius:50%;background:var(--mid-gray);transition:background .3s ease}
-        .service-card:hover .service-features li::before{background:var(--accent)}
-        .service-card.featured{background:var(--charcoal);border-color:transparent}
-        .service-card.featured .service-tier{color:#64B5F6}
-        .service-card.featured h3{color:var(--white)}
-        .service-card.featured .service-price{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.1)}
-        .service-card.featured .service-price strong{color:var(--white)}
-        .service-card.featured .service-features li{color:rgba(255,255,255,.7)}
-        .service-card.featured .service-features li::before{background:rgba(255,255,255,.2)}
-        .service-card.featured:hover .service-features li::before{background:#64B5F6}
-        .service-card.featured::before{opacity:1;background:linear-gradient(90deg,#64B5F6,#a78bfa)}
+        #services{background:var(--bg)}
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:1200px;margin:0 auto;background:var(--border)}
+        .service-card{background:var(--bg);padding:56px 44px;transition:all .5s var(--ease);position:relative;overflow:hidden}
+        .service-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .6s var(--ease)}
+        .service-card:hover{background:var(--bg-card)}
+        .service-card:hover::after{transform:scaleX(1)}
+        .service-tier{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+        .service-card h3{font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:-.01em;margin-bottom:8px;color:var(--white)}
+        .service-price{font-size:14px;font-weight:300;color:var(--text-secondary);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border)}
+        .service-price strong{font-size:28px;font-weight:500;color:var(--white);font-family:var(--serif)}
+        .service-features{list-style:none;display:flex;flex-direction:column;gap:16px}
+        .service-features li{font-size:14px;font-weight:300;color:var(--text-secondary);padding-left:20px;position:relative;line-height:1.6}
+        .service-features li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--accent)}
+        .service-card.featured{background:var(--bg-card);border-left:1px solid rgba(201,169,110,.2);border-right:1px solid rgba(201,169,110,.2)}
+        .service-card.featured:hover{background:var(--bg-subtle)}
+        .service-card.featured .service-tier{color:var(--accent)}
 
         /* TAX */
-        #tax-incentives{background:var(--white)}
-        .tax-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;max-width:1200px;margin:0 auto;align-items:start}
-        .tax-highlight{background:linear-gradient(135deg,#0c1445,#1a3a8a);border-radius:24px;padding:48px;color:var(--white)}
-        .tax-highlight h3{font-size:21px;font-weight:600;margin-bottom:24px;letter-spacing:-.01em}
-        .tax-stat{display:flex;align-items:baseline;gap:12px;margin-bottom:32px}
-        .tax-stat .number{font-size:72px;font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,#64B5F6,#f0c27f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-        .tax-stat .label{font-size:15px;color:rgba(255,255,255,.7);line-height:1.4}
-        .tax-canaries{background:rgba(255,255,255,.08);border-radius:16px;padding:24px;margin-top:8px}
-        .tax-canaries h4{font-size:14px;font-weight:600;margin-bottom:8px;color:#f0c27f}
-        .tax-canaries p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5}
-        .tax-canaries .number{font-size:36px;font-weight:800;background:linear-gradient(135deg,#f0c27f,#fc5c7d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+        #tax-incentives{background:var(--bg-elevated)}
+        .tax-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start}
+        .tax-highlight{background:var(--bg-card);border:1px solid var(--border);padding:56px;position:relative;overflow:hidden}
+        .tax-highlight::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+        .tax-highlight h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:32px;color:var(--white)}
+        .tax-stat{display:flex;align-items:baseline;gap:16px;margin-bottom:32px}
+        .tax-stat .number{font-family:var(--serif);font-size:80px;font-weight:400;letter-spacing:-.04em;line-height:1;color:var(--accent)}
+        .tax-stat .label{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.5}
+        .tax-canaries{border-top:1px solid var(--border);padding-top:32px;margin-top:8px}
+        .tax-canaries h4{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .tax-canaries .number{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--accent);margin-bottom:8px}
+        .tax-canaries p{font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.6}
         .tax-table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch}
-        .tax-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:16px;overflow:hidden;border:1px solid var(--mid-gray)}
-        .tax-table thead{background:var(--light-gray)}
-        .tax-table th{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-secondary);padding:16px 20px;text-align:left;white-space:nowrap}
-        .tax-table td{font-size:14px;padding:18px 20px;border-top:1px solid var(--mid-gray);color:var(--text-primary)}
-        .tax-table tr{transition:background .2s ease}
-        .tax-table tbody tr:hover td{background:var(--light-gray)}
-        .tax-table .highlight-row td{background:rgba(0,113,227,.04);font-weight:600}
-        .tax-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;white-space:nowrap}
-        .tax-badge.best{background:#dcfce7;color:#166534}
-        .tax-badge.good{background:#dbeafe;color:#1e40af}
-        .tax-badge.avg{background:#fef9c3;color:#854d0e}
+        .tax-table{width:100%;border-collapse:collapse}
+        .tax-table thead{border-bottom:1px solid var(--border)}
+        .tax-table th{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);padding:16px 20px 16px 0;text-align:left;white-space:nowrap}
+        .tax-table td{font-size:14px;font-weight:300;padding:18px 20px 18px 0;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-secondary)}
+        .tax-table tr{transition:color .2s ease}
+        .tax-table tbody tr:hover td{color:var(--text-primary)}
+        .tax-table .highlight-row td{color:var(--white);font-weight:400}
+        .tax-badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
+        .tax-badge.best{color:var(--accent)}
+        .tax-badge.good{color:rgba(255,255,255,.7)}
+        .tax-badge.avg{color:var(--text-secondary)}
+        .tax-note{font-size:12px;color:var(--text-tertiary);margin-top:24px;line-height:1.6;font-weight:300}
 
         /* LOCATIONS */
-        #locations{background:var(--off-white)}
-        .locations-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
-        .location-card{border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:all .4s var(--transition-smooth)}
-        .location-card:hover{transform:scale(1.02);box-shadow:0 20px 60px rgba(0,0,0,.15)}
-        .location-card .location-bg{position:absolute;inset:0;transition:transform .6s var(--transition-smooth)}
-        .location-card:hover .location-bg{transform:scale(1.08)}
-        .location-card:nth-child(1) .location-bg{background:linear-gradient(135deg,#2d6bc4,#4a9bd9,#87ceeb)}
-        .location-card:nth-child(2) .location-bg{background:linear-gradient(135deg,#1a8a5c,#3abf8f,#87ceeb)}
-        .location-card:nth-child(3) .location-bg{background:linear-gradient(135deg,#c4842d,#d9a84a,#f0c27f)}
-        .location-card:nth-child(4) .location-bg{background:linear-gradient(135deg,#8a1a6c,#bf3a8f,#fc5c7d)}
-        .location-card:nth-child(5) .location-bg{background:linear-gradient(135deg,#6c1a1a,#bf5c3a,#f0c27f)}
-        .location-card:nth-child(6) .location-bg{background:linear-gradient(135deg,#0c1445,#2d6bc4,#fdbb2d)}
-        .location-card .location-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 50%,transparent 100%);z-index:1}
-        .location-info{position:absolute;bottom:0;left:0;right:0;padding:32px;z-index:2}
-        .location-info h3{font-size:24px;font-weight:700;color:var(--white);letter-spacing:-.01em;margin-bottom:6px}
-        .location-info p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.5}
-        .location-tag{display:inline-block;padding:4px 10px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border-radius:6px;font-size:11px;font-weight:500;color:rgba(255,255,255,.9);margin-top:10px}
+        #locations{background:var(--bg);padding-left:0;padding-right:0}
+        #locations .section-header{padding:0 60px}
+        .locations-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:2px}
+        .location-card{position:relative;aspect-ratio:3/4;cursor:pointer;overflow:hidden;transition:all .5s var(--ease);-webkit-tap-highlight-color:transparent}
+        .location-card:nth-child(1){aspect-ratio:2/3}
+        .location-card:nth-child(2){aspect-ratio:1/1}
+        .location-card:nth-child(3){aspect-ratio:3/4}
+        .location-card:nth-child(4){aspect-ratio:1/1}
+        .location-card:nth-child(5){aspect-ratio:3/4}
+        .location-card:nth-child(6){aspect-ratio:2/3}
+        .location-card .location-bg{position:absolute;inset:0;transition:transform .8s var(--ease);background-size:cover;background-position:center}
+        .location-card:hover .location-bg{transform:scale(1.05)}
+        .location-card:nth-child(1) .location-bg{background:linear-gradient(160deg,#0d1b2a 0%,#1b2838 40%,#1a3a5c 100%)}
+        .location-card:nth-child(2) .location-bg{background:linear-gradient(170deg,#0a1f14 0%,#1a3a2a 50%,#2a5a3a 100%)}
+        .location-card:nth-child(3) .location-bg{background:linear-gradient(150deg,#1a1408 0%,#2d2414 40%,#4a3a1a 100%)}
+        .location-card:nth-child(4) .location-bg{background:linear-gradient(165deg,#1a0a1e 0%,#2a1a32 50%,#3a2848 100%)}
+        .location-card:nth-child(5) .location-bg{background:linear-gradient(155deg,#1a0e08 0%,#3a1e0e 40%,#5a3018 100%)}
+        .location-card:nth-child(6) .location-bg{background:linear-gradient(175deg,#080818 0%,#12122e 50%,#1a1a48 100%)}
+        .location-card .location-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.05) 100%);z-index:1;transition:background .5s ease}
+        .location-card .location-texture{position:absolute;inset:0;opacity:.08;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");mix-blend-mode:overlay}
+        .location-card:hover .location-overlay{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 40%,rgba(0,0,0,0) 100%)}
+        .location-info{position:absolute;bottom:0;left:0;right:0;padding:40px;z-index:2}
+        .location-info h3{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--white);letter-spacing:-.01em;margin-bottom:8px}
+        .location-info p{font-size:13px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.6;max-width:240px}
+        .location-tag{display:inline-block;font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:12px}
 
         /* WHY US */
-        #why-us{background:var(--white)}
-        .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto}
-        .pillar-card{text-align:center;padding:48px 28px;border-radius:20px;border:1px solid var(--mid-gray);transition:all .3s var(--transition-smooth)}
-        .pillar-card:hover{border-color:transparent;box-shadow:0 12px 40px rgba(0,0,0,.06);transform:translateY(-2px)}
-        .pillar-icon{width:56px;height:56px;border-radius:16px;background:var(--light-gray);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;transition:all .3s ease}
-        .pillar-card:hover .pillar-icon{background:var(--charcoal);transform:scale(1.05)}
-        .pillar-card:hover .pillar-icon svg{stroke:white}
-        .pillar-card h3{font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:10px}
-        .pillar-card p{font-size:14px;color:var(--text-secondary);line-height:1.6}
+        #why-us{background:var(--bg-elevated)}
+        .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;max-width:1000px;margin:0 auto;background:var(--border)}
+        .pillar-card{background:var(--bg-elevated);padding:64px 48px;transition:all .4s var(--ease);position:relative}
+        .pillar-card:hover{background:var(--bg-card)}
+        .pillar-card::before{content:'';position:absolute;top:0;left:48px;right:48px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);opacity:0;transition:opacity .4s ease}
+        .pillar-card:hover::before{opacity:1}
+        .pillar-number{font-family:var(--serif);font-size:48px;font-weight:400;color:rgba(255,255,255,.08);margin-bottom:24px;line-height:1;transition:color .4s ease}
+        .pillar-card:hover .pillar-number{color:rgba(201,169,110,.15)}
+        .pillar-card h3{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-.01em;margin-bottom:12px;color:var(--white)}
+        .pillar-card p{font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.7}
 
         /* ABOUT */
-        #about{background:var(--off-white)}
-        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto;align-items:center}
-        .about-image{aspect-ratio:4/5;border-radius:24px;background:linear-gradient(135deg,#1a2a6c,#2d6bc4,#4a9bd9);position:relative;overflow:hidden}
-        .about-image::after{content:'JH';position:absolute;bottom:32px;left:32px;font-size:64px;font-weight:800;color:rgba(255,255,255,.1);letter-spacing:-.04em}
-        .about-content h3{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px}
-        .about-content h2{font-size:36px;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:24px}
-        .about-content p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:16px}
-        .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;padding-top:32px;border-top:1px solid var(--mid-gray)}
-        .about-stat .number{font-size:32px;font-weight:800;color:var(--charcoal);letter-spacing:-.02em}
-        .about-stat .label{font-size:12px;color:var(--text-secondary);font-weight:500;margin-top:2px}
+        #about{background:var(--bg);position:relative}
+        #about::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,169,110,.02) 0%,transparent 60%);pointer-events:none}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;max-width:1200px;margin:0 auto;align-items:center}
+        .about-image{aspect-ratio:4/5;background:linear-gradient(180deg,#161616 0%,#0c0c0c 100%);position:relative;overflow:hidden}
+        .about-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,169,110,.06) 0%,transparent 70%);pointer-events:none}
+        .about-image::after{content:'';position:absolute;inset:0;border:1px solid var(--border)}
+        .about-content{}
+        .about-content .section-label{margin-bottom:24px}
+        .about-content h2{font-family:var(--serif);font-size:40px;font-weight:400;letter-spacing:-.02em;line-height:1.15;margin-bottom:32px;color:var(--white)}
+        .about-content h2 em{font-style:italic;color:var(--text-secondary)}
+        .about-content p{font-size:15px;font-weight:400;color:var(--text-secondary);line-height:1.8;margin-bottom:20px}
+        .about-stats{display:flex;gap:48px;margin-top:48px;padding-top:40px;border-top:1px solid var(--border)}
+        .about-stat .number{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--white);letter-spacing:-.02em}
+        .about-stat .label{font-size:12px;font-weight:300;color:var(--text-tertiary);letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
 
         /* SAMPLE QUOTE */
-        #sample-quote{background:var(--white)}
+        #sample-quote{background:var(--bg);border-top:1px solid var(--border)}
         .quote-wrapper{max-width:900px;margin:0 auto}
-        .quote-card{background:var(--white);border:1px solid var(--mid-gray);border-radius:24px;overflow:hidden}
-        .quote-header{background:var(--charcoal);padding:36px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-        .quote-header-left h3{font-size:20px;font-weight:700;color:var(--white);margin-bottom:4px}
-        .quote-header-left p{font-size:13px;color:rgba(255,255,255,.5)}
+        .quote-card{border:1px solid var(--border);overflow:hidden}
+        .quote-header{background:var(--bg-card);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-bottom:1px solid var(--border)}
+        .quote-header-left h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:4px}
+        .quote-header-left p{font-size:13px;font-weight:300;color:var(--text-tertiary)}
         .quote-header-right{text-align:right}
-        .quote-header-right .quote-id{font-size:12px;color:rgba(255,255,255,.4);font-weight:500;letter-spacing:.04em}
-        .quote-header-right .quote-date{font-size:13px;color:rgba(255,255,255,.6);margin-top:2px}
-        .quote-body{padding:36px 48px}
-        .quote-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:28px;border-bottom:1px solid var(--mid-gray);margin-bottom:28px}
-        .quote-meta-item .label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:4px}
-        .quote-meta-item .value{font-size:15px;font-weight:600;color:var(--charcoal)}
+        .quote-header-right .quote-id{font-size:11px;color:var(--text-tertiary);font-weight:400;letter-spacing:.08em;text-transform:uppercase}
+        .quote-header-right .quote-date{font-size:13px;font-weight:300;color:var(--text-secondary);margin-top:2px}
+        .quote-body{padding:40px 48px}
+        .quote-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:32px;border-bottom:1px solid var(--border);margin-bottom:32px}
+        .quote-meta-item .label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px}
+        .quote-meta-item .value{font-size:15px;font-weight:400;color:var(--white)}
         .quote-table{width:100%;border-collapse:collapse}
-        .quote-table th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);text-align:left;padding:12px 0;border-bottom:2px solid var(--mid-gray)}
+        .quote-table th{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);text-align:left;padding:14px 0;border-bottom:1px solid var(--border)}
         .quote-table th:last-child{text-align:right}
-        .quote-table td{padding:14px 0;font-size:14px;border-bottom:1px solid var(--light-gray)}
-        .quote-table td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
-        .quote-table .item-desc{font-size:12px;color:var(--text-secondary);margin-top:2px}
-        .quote-total-section{margin-top:24px;padding-top:20px;border-top:2px solid var(--charcoal)}
-        .quote-total-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
-        .quote-total-row .label{font-size:14px;color:var(--text-secondary)}
-        .quote-total-row .value{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}
-        .quote-total-row.grand{padding-top:16px;margin-top:8px;border-top:1px solid var(--mid-gray)}
-        .quote-total-row.grand .label{font-size:18px;font-weight:700;color:var(--charcoal)}
-        .quote-total-row.grand .value{font-size:24px;font-weight:800;color:var(--charcoal)}
-        .quote-footer-note{margin-top:32px;padding:20px 24px;background:var(--light-gray);border-radius:12px;font-size:12px;color:var(--text-secondary);line-height:1.6}
+        .quote-table td{padding:16px 0;font-size:14px;font-weight:300;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-secondary)}
+        .quote-table td strong{font-weight:400;color:var(--white)}
+        .quote-table td:last-child{text-align:right;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white)}
+        .quote-table .item-desc{font-size:12px;color:var(--text-tertiary);margin-top:3px;font-weight:300}
+        .quote-total-section{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
+        .quote-total-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+        .quote-total-row .label{font-size:14px;font-weight:300;color:var(--text-secondary)}
+        .quote-total-row .value{font-size:14px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white)}
+        .quote-total-row.grand{padding-top:20px;margin-top:12px;border-top:1px solid var(--border)}
+        .quote-total-row.grand .label{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--white)}
+        .quote-total-row.grand .value{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--accent)}
+        .quote-footer-note{margin-top:40px;padding:24px;border:1px solid var(--border);font-size:12px;font-weight:300;color:var(--text-tertiary);line-height:1.7}
 
         /* CONTACT */
-        #contact{background:var(--charcoal);color:var(--white)}
-        #contact .section-label{color:#64B5F6}
+        #contact{background:var(--bg);border-top:1px solid var(--border);position:relative}
+        #contact::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:120px;background:linear-gradient(to bottom,var(--accent),transparent);opacity:.3}
+        #contact .section-label{color:var(--accent)}
         #contact .section-title{color:var(--white)}
-        #contact .section-subtitle{color:rgba(255,255,255,.5)}
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;margin:0 auto}
+        #contact .section-subtitle{color:var(--text-secondary)}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;max-width:1200px;margin:0 auto}
         .contact-info{display:flex;flex-direction:column;gap:40px}
         .contact-method{display:flex;gap:20px}
-        .contact-method .icon{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-        .contact-method h4{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:6px}
-        .contact-method p{font-size:17px;font-weight:500;color:var(--white)}
+        .contact-method .icon{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s ease}
+        .contact-method:hover .icon{border-color:var(--accent)}
+        .contact-method h4{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px}
+        .contact-method p{font-size:16px;font-weight:300;color:var(--white)}
         .contact-method p a{transition:color .2s ease}
-        .contact-method p a:hover{color:#64B5F6}
-        .contact-form{display:flex;flex-direction:column;gap:16px}
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-        .form-group{display:flex;flex-direction:column;gap:6px}
-        .form-group label{font-size:12px;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.02em}
-        .form-group input,.form-group select,.form-group textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;color:var(--white);font-family:'Inter',sans-serif;font-size:14px;transition:all .2s ease;outline:none}
-        .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,.25)}
-        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);background:rgba(255,255,255,.08)}
-        .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-        .form-group select option{background:var(--charcoal);color:var(--white)}
-        .form-group textarea{resize:vertical;min-height:100px}
-        .btn-submit{width:100%;padding:16px;background:var(--white);color:var(--charcoal);font-family:'Inter',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:12px;cursor:pointer;transition:all .3s var(--transition-smooth);margin-top:8px}
-        .btn-submit:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(255,255,255,.15)}
+        .contact-method p a:hover{color:var(--accent)}
+        .contact-form{display:flex;flex-direction:column;gap:20px}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .form-group{display:flex;flex-direction:column;gap:8px}
+        .form-group label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary)}
+        .form-group input,.form-group select,.form-group textarea{background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:0;padding:16px 18px;color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;transition:all .3s ease;outline:none}
+        .form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-tertiary)}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent)}
+        .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+        .form-group select option{background:var(--bg);color:var(--white)}
+        .form-group textarea{resize:vertical;min-height:120px}
+        .btn-submit{width:100%;padding:18px;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s var(--ease);margin-top:8px}
+        .btn-submit:hover{background:#d4b478;transform:translateY(-1px)}
 
         /* FOOTER */
-        .footer{background:var(--charcoal);border-top:1px solid rgba(255,255,255,.06);padding:40px 48px}
+        .footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 60px}
         .footer-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-        .footer-left p{font-size:12px;color:rgba(255,255,255,.35);line-height:1.6}
-        .footer-left .company-name{font-weight:600;color:rgba(255,255,255,.5)}
+        .footer-left p{font-size:12px;font-weight:300;color:var(--text-tertiary);line-height:1.8}
+        .footer-left .company-name{font-weight:400;color:var(--text-secondary)}
         .footer-right{display:flex;gap:32px}
-        .footer-right a{font-size:12px;color:rgba(255,255,255,.35);transition:color .2s ease}
-        .footer-right a:hover{color:rgba(255,255,255,.7)}
+        .footer-right a{font-size:11px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);transition:color .2s ease}
+        .footer-right a:hover{color:var(--white)}
 
-        /* ANIMATIONS */
-        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-        @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-        @keyframes scrollWheel{0%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(12px)}}
-        .reveal{opacity:0;transform:translateY(40px);transition:all .8s var(--transition-smooth)}
-        .reveal.visible{opacity:1;transform:translateY(0)}
-        .reveal-delay-1{transition-delay:.1s}
-        .reveal-delay-2{transition-delay:.2s}
-        .reveal-delay-3{transition-delay:.3s}
-        .reveal-delay-4{transition-delay:.4s}
-
-        @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}.reveal{opacity:1;transform:none}}
+        /* GSAP REVEAL */
+        .gs-reveal{opacity:0;visibility:hidden}
 
         /* RESPONSIVE */
         @media(max-width:1024px){
-            section{padding:80px 32px}
-            .services-grid,.locations-grid{grid-template-columns:repeat(2,1fr)}
+            section{padding:120px 40px}
+            .statement{padding:140px 40px}
+            .cinematic{min-height:80vh;padding:0 40px}
+            .cinematic-stats{gap:60px}
+            .services-grid{grid-template-columns:repeat(2,1fr)}
+            .locations-grid{grid-template-columns:repeat(2,1fr)}
+            .location-card,.location-card:nth-child(n){aspect-ratio:3/4}
+            #locations .section-header{padding:0 40px}
             .pillars-grid{grid-template-columns:repeat(2,1fr)}
             .tax-grid{grid-template-columns:1fr}
-            .about-grid{grid-template-columns:1fr;gap:48px}
+            .about-grid{grid-template-columns:1fr;gap:60px}
             .about-image{aspect-ratio:16/9}
-            .contact-grid{grid-template-columns:1fr;gap:48px}
+            .contact-grid{grid-template-columns:1fr;gap:60px}
         }
         @media(max-width:768px){
-            .nav{padding:0 24px}
-            .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--white);flex-direction:column;padding:24px;gap:20px;border-bottom:1px solid var(--mid-gray);box-shadow:0 8px 30px rgba(0,0,0,.08)}
-            .nav-links.open{display:flex}
+            .nav{padding:0 24px;height:64px}
+            .nav-links{position:absolute;top:64px;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(20px);flex-direction:column;padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);display:flex;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all .3s var(--ease)}
+            .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
             .nav-mobile-toggle{display:flex}
-            .hero{padding:120px 24px 80px}
-            section{padding:64px 24px}
-            .services-grid,.locations-grid,.pillars-grid{grid-template-columns:1fr}
+            .hero{padding:0 24px 80px}
+            section{padding:100px 24px}
+            .statement{padding:120px 24px}
+            .services-grid,.pillars-grid{grid-template-columns:1fr;background:transparent;gap:1px}
+            .locations-grid{grid-template-columns:1fr 1fr;gap:2px}
+            .location-card:nth-child(n){aspect-ratio:1/1}
+            #locations .section-header{padding:0 24px}
+            .reel-section{padding:120px 24px}
+            .cinematic{min-height:70vh;padding:0 24px}
+            .cinematic-stats{flex-direction:column;gap:32px;margin-top:48px}
             .quote-header,.quote-body{padding:24px}
-            .quote-meta{grid-template-columns:1fr;gap:12px}
+            .quote-meta{grid-template-columns:1fr;gap:16px}
             .form-row{grid-template-columns:1fr}
-            .footer-content{flex-direction:column;gap:16px;text-align:center}
+            .footer{padding:40px 24px}
+            .footer-content{flex-direction:column;gap:20px;text-align:center}
             .footer-right{gap:20px}
-            .about-stats{grid-template-columns:repeat(3,1fr);gap:16px}
-            .trust-logos{gap:24px}
-            .trust-bar{padding:32px 24px}
+            .about-stats{flex-direction:row;gap:32px}
+            .about-grid{gap:48px}
+            .hero-scroll,.hero-coords,.hero-regions,.hero-line{display:none}
+            .contact-grid{gap:48px}
+            .closing{padding:120px 24px 80px}
         }
         @media(max-width:480px){
-            .hero h1{font-size:34px}
+            .hero h1{font-size:38px}
             .hero-actions{flex-direction:column;align-items:stretch}
-            .btn-primary,.btn-secondary{justify-content:center}
-            .about-stats{grid-template-columns:1fr;gap:16px}
+            .btn-primary{justify-content:center}
+            .about-stats{flex-wrap:wrap;gap:24px}
+        }
+        @media(prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+            .gs-reveal{opacity:1;visibility:visible}
         }
         @media print{
-            .nav,.scroll-indicator,.hero-actions,.contact-form,.nav-mobile-toggle,.trust-bar{display:none !important}
+            .nav,.hero-scroll,.hero-actions,.contact-form,.nav-mobile-toggle,.grain,.reel-section,.cinematic,.act-divider,.hero-line,.hero-coords,.hero-regions{display:none !important}
             .hero{min-height:auto;padding:48px}
             section{padding:32px;page-break-inside:avoid}
-            .reveal{opacity:1 !important;transform:none !important}
+            .gs-reveal{opacity:1 !important;visibility:visible !important}
+            body{background:#fff;color:#000}
         }
     </style>
 </head>
 <body>
+    <div class="grain" aria-hidden="true"></div>
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <a href="#" class="nav-logo">Liquid <span>Locations</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#services">Services</a></li>
-            <li><a href="#tax-incentives">Tax Incentives</a></li>
             <li><a href="#locations">Locations</a></li>
-            <li><a href="#why-us">Why Us</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#sample-quote">Pricing</a></li>
             <li><a href="#contact" class="nav-cta">Brief Us</a></li>
         </ul>
         <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -315,35 +411,53 @@
 
     <header class="hero" id="hero">
         <div class="hero-content">
-            <div class="hero-badge">Now accepting briefs for 2026</div>
-            <h1>Your London-standard production partner in Spain</h1>
-            <p>Location scouting, crew coordination, and full production management across Spain's most cinematic landscapes. Bilingual. Tech-forward. Overhead-free.</p>
+            <p class="hero-eyebrow">Production Services \u2014 Spain</p>
+            <h1>London production.<br><em>Spanish ground.</em></h1>
+            <p class="hero-sub">Location scouting, crew coordination, and full production management across Spain's six most cinematic regions. Bilingual. Overhead-free.</p>
             <div class="hero-actions">
-                <a href="#contact" class="btn-primary">Brief us on your project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                <a href="#services" class="btn-secondary">View services</a>
+                <a href="#contact" class="btn-primary">Brief Us</a>
+                <a href="#services" class="btn-secondary">View Services</a>
             </div>
         </div>
-        <div class="scroll-indicator" aria-hidden="true"><div class="mouse"></div></div>
+        <div class="hero-line" aria-hidden="true"></div>
+        <div class="hero-coords" aria-hidden="true">
+            <span>41.3874&deg;N</span>
+            <span>2.1686&deg;E</span>
+            <span>Barcelona</span>
+        </div>
+        <div class="hero-regions" aria-hidden="true">
+            <span>Barcelona</span>
+            <span>Mallorca</span>
+            <span>Madrid</span>
+            <span>Ibiza</span>
+            <span>Andalusia</span>
+            <span>Canary Islands</span>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">Scroll</div>
     </header>
 
-    <div class="trust-bar" aria-label="Industry affiliations">
-        <p>Industry affiliations</p>
-        <div class="trust-logos">
-            <span>APCP Member (pending)</span>
-            <span>Spain Film Commission</span>
-            <span>Barcelona Film Commission</span>
-            <span>Mallorca Film Commission</span>
-        </div>
+    <div class="statement">
+        <p class="statement-text gs-reveal">We are not a local fixer learning your language.<br>We are <em>London production people</em> who know this ground.</p>
     </div>
 
+    <div class="reel-section" id="reel">
+        <div class="reel-play gs-reveal" role="button" aria-label="Play showreel">
+            <div class="reel-play-ring"></div>
+        </div>
+        <h2 class="reel-title gs-reveal">Showreel</h2>
+        <p class="reel-sub gs-reveal">Coming Q3 2026</p>
+    </div>
+
+    <div class="act-divider" aria-hidden="true"></div>
+
     <section id="services" aria-labelledby="services-title">
-        <div class="section-header center">
-            <p class="section-label">Services</p>
-            <h2 class="section-title" id="services-title">Three tiers. Zero friction.</h2>
-            <p class="section-subtitle">From location scouting to full turnkey production. Scale your service level to match the brief.</p>
+        <div class="section-header">
+            <p class="section-label gs-reveal">Services</p>
+            <h2 class="section-title gs-reveal" id="services-title">Three tiers.<br><em>Zero friction.</em></h2>
+            <p class="section-subtitle gs-reveal">Scale your service level to match the brief. From location scouting to full turnkey production.</p>
         </div>
         <div class="services-grid">
-            <article class="service-card reveal">
+            <article class="service-card gs-reveal">
                 <p class="service-tier">Tier 1</p>
                 <h3>Scout</h3>
                 <p class="service-price"><strong>&euro;450</strong> / day</p>
@@ -356,20 +470,20 @@
                     <li>On-set location management</li>
                 </ul>
             </article>
-            <article class="service-card featured reveal reveal-delay-1">
-                <p class="service-tier">Tier 2 &mdash; Most Popular</p>
+            <article class="service-card featured gs-reveal">
+                <p class="service-tier">Tier 2 \u2014 Most Popular</p>
                 <h3>Coordinate</h3>
-                <p class="service-price"><strong>+15&ndash;20%</strong> markup on crew &amp; equipment</p>
+                <p class="service-price"><strong>+15\u201320%</strong> markup on crew &amp; equipment</p>
                 <ul class="service-features">
                     <li>Everything in Scout tier</li>
                     <li>Local bilingual crew procurement</li>
                     <li>Camera, grip, electric, art department</li>
-                    <li>Equipment rental coordination (711rent, etc.)</li>
+                    <li>Equipment rental coordination</li>
                     <li>Transport and logistics planning</li>
-                    <li>Day-rate transparency &mdash; you see every line</li>
+                    <li>Day-rate transparency \u2014 you see every line</li>
                 </ul>
             </article>
-            <article class="service-card reveal reveal-delay-2">
+            <article class="service-card gs-reveal">
                 <p class="service-tier">Tier 3</p>
                 <h3>Full Service</h3>
                 <p class="service-price"><strong>+20%</strong> of BTL budget</p>
@@ -387,25 +501,25 @@
 
     <section id="tax-incentives" aria-labelledby="tax-title">
         <div class="section-header">
-            <p class="section-label">Tax Incentives</p>
-            <h2 class="section-title" id="tax-title">Spain pays you to shoot here.</h2>
-            <p class="section-subtitle">Up to 54% tax rebate in the Canary Islands. The most competitive incentive framework in Europe.</p>
+            <p class="section-label gs-reveal">Tax Incentives</p>
+            <h2 class="section-title gs-reveal" id="tax-title">Spain pays you <em>to shoot here.</em></h2>
+            <p class="section-subtitle gs-reveal">The most competitive incentive framework in Europe. Up to 54% in the Canary Islands.</p>
         </div>
         <div class="tax-grid">
-            <div class="tax-highlight reveal">
+            <div class="tax-highlight gs-reveal">
                 <h3>Spanish National Rebate</h3>
                 <div class="tax-stat">
                     <span class="number">30%</span>
                     <span class="label">tax rebate on<br>qualifying spend</span>
                 </div>
-                <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:24px">Under Article 36.2 of Spain's Corporate Tax Law, international productions qualify for a 30% rebate on eligible local expenditure. Minimum spend: &euro;1M live-action, &euro;200K animation.</p>
+                <p style="font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.7;margin-bottom:32px">Under Article 36.2 of Spain's Corporate Tax Law, international productions qualify for a 30% rebate on eligible local expenditure. Minimum spend: &euro;1M live-action, &euro;200K animation.</p>
                 <div class="tax-canaries">
                     <h4>Canary Islands Special Zone</h4>
                     <div class="number">54%</div>
                     <p>Europe's highest combined rebate through the ZEC special economic zone. Competitive with Caribbean and Middle Eastern incentives.</p>
                 </div>
             </div>
-            <div class="tax-table-wrapper reveal reveal-delay-1">
+            <div class="tax-table-wrapper gs-reveal">
                 <table class="tax-table">
                     <thead><tr><th>Country</th><th>Base Rebate</th><th>Max Regional</th><th>Min. Spend</th><th>Rating</th></tr></thead>
                     <tbody>
@@ -418,69 +532,92 @@
                         <tr><td>Greece</td><td>40%</td><td>40%</td><td>&euro;100K</td><td><span class="tax-badge best">Competitive</span></td></tr>
                     </tbody>
                 </table>
-                <p style="font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.5">Rates reflect 2025/2026 fiscal frameworks. We handle all incentive applications as part of our Full Service tier.</p>
+                <p class="tax-note">Rates reflect 2025/2026 fiscal frameworks. We handle all incentive applications as part of our Full Service tier.</p>
             </div>
         </div>
     </section>
 
+    <div class="statement" style="padding:120px 60px">
+        <p class="statement-text gs-reveal" style="font-size:clamp(13px,1.5vw,16px);font-family:var(--sans);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);max-width:500px">One jurisdiction. Every landscape.</p>
+    </div>
+
     <section id="locations" aria-labelledby="locations-title">
-        <div class="section-header center">
-            <p class="section-label">Locations</p>
-            <h2 class="section-title" id="locations-title">Six regions. Infinite frames.</h2>
-            <p class="section-subtitle">From brutalist Barcelona to volcanic Canary Islands. One jurisdiction, every landscape your brief demands.</p>
+        <div class="section-header">
+            <p class="section-label gs-reveal">Locations</p>
+            <h2 class="section-title gs-reveal" id="locations-title">From brutalist Barcelona<br><em>to volcanic Canary Islands.</em></h2>
         </div>
         <div class="locations-grid">
-            <article class="location-card reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Barcelona"></div><div class="location-overlay"></div><div class="location-info"><h3>Barcelona</h3><p>Brutalist architecture, Gothic quarter, Mediterranean coastline, modernist villas</p><span class="location-tag">320 days of sun</span></div></article>
-            <article class="location-card reveal reveal-delay-1" tabindex="0"><div class="location-bg" role="img" aria-label="Mallorca"></div><div class="location-overlay"></div><div class="location-info"><h3>Mallorca</h3><p>Turquoise coves, Serra de Tramuntana, luxury fincas, old-town Palma</p><span class="location-tag">Premium villa access</span></div></article>
-            <article class="location-card reveal reveal-delay-2" tabindex="0"><div class="location-bg" role="img" aria-label="Madrid"></div><div class="location-overlay"></div><div class="location-info"><h3>Madrid</h3><p>Grand boulevards, royal palaces, urban grit, world-class studio facilities</p><span class="location-tag">Europe's sunniest capital</span></div></article>
-            <article class="location-card reveal reveal-delay-1" tabindex="0"><div class="location-bg" role="img" aria-label="Ibiza"></div><div class="location-overlay"></div><div class="location-info"><h3>Ibiza</h3><p>White-washed villages, cliff-top villas, sunset coast, bohemian interiors</p><span class="location-tag">Fashion &amp; lifestyle</span></div></article>
-            <article class="location-card reveal reveal-delay-2" tabindex="0"><div class="location-bg" role="img" aria-label="Andalusia"></div><div class="location-overlay"></div><div class="location-info"><h3>Andalusia</h3><p>Tabernas desert, Moorish palaces, olive groves, Atlantic coastline</p><span class="location-tag">Desert to coast in 2hrs</span></div></article>
-            <article class="location-card reveal reveal-delay-3" tabindex="0"><div class="location-bg" role="img" aria-label="Canary Islands"></div><div class="location-overlay"></div><div class="location-info"><h3>Canary Islands</h3><p>Volcanic landscapes, black sand beaches, sub-tropical forests, 54% tax rebate</p><span class="location-tag">54% tax rebate zone</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Barcelona"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Barcelona</h3><p>Brutalist architecture, Gothic quarter, Mediterranean coastline, modernist villas</p><span class="location-tag">320 days of sun</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Mallorca"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Mallorca</h3><p>Turquoise coves, Serra de Tramuntana, luxury fincas, old-town Palma</p><span class="location-tag">Premium villa access</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Madrid"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Madrid</h3><p>Grand boulevards, royal palaces, urban grit, world-class studio facilities</p><span class="location-tag">Europe's sunniest capital</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Ibiza"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Ibiza</h3><p>White-washed villages, cliff-top villas, sunset coast, bohemian interiors</p><span class="location-tag">Fashion &amp; lifestyle</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Andalusia"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Andalusia</h3><p>Tabernas desert, Moorish palaces, olive groves, Atlantic coastline</p><span class="location-tag">Desert to coast in 2hrs</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Canary Islands"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Canary Islands</h3><p>Volcanic landscapes, black sand beaches, sub-tropical forests, 54% tax rebate</p><span class="location-tag">54% tax rebate zone</span></div></article>
         </div>
     </section>
 
+    <div class="act-divider" aria-hidden="true"></div>
+
+    <div class="cinematic">
+        <div class="cinematic-line" aria-hidden="true"></div>
+        <div class="cinematic-inner">
+            <div class="cinematic-number gs-reveal">6</div>
+            <p class="cinematic-label gs-reveal">Regions across Spain</p>
+            <div class="cinematic-stats">
+                <div class="cinematic-stat gs-reveal"><div class="num">320</div><div class="txt">Days of sun</div></div>
+                <div class="cinematic-stat gs-reveal"><div class="num">54%</div><div class="txt">Max tax rebate</div></div>
+                <div class="cinematic-stat gs-reveal"><div class="num">48h</div><div class="txt">Brief turnaround</div></div>
+            </div>
+        </div>
+    </div>
+
     <section id="why-us" aria-labelledby="why-title">
-        <div class="section-header center">
-            <p class="section-label">Why Liquid</p>
-            <h2 class="section-title" id="why-title">Built for London. Based in Spain.</h2>
-            <p class="section-subtitle">We are not a local fixer learning your language. We are London production people who know this ground.</p>
+        <div class="section-header">
+            <p class="section-label gs-reveal">Why Liquid</p>
+            <h2 class="section-title gs-reveal" id="why-title">Built for London.<br><em>Based in Spain.</em></h2>
         </div>
         <div class="pillars-grid">
-            <article class="pillar-card reveal"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div><h3>London-Trained</h3><p>8 years in London production. We understand the pace, the politics, and the precision your agency expects. No cultural translation required.</p></article>
-            <article class="pillar-card reveal reveal-delay-1"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div><h3>Fully Bilingual</h3><p>Native-level English and Spanish. Your creative brief lands with the local crew exactly as you intended. No friction, no misinterpretation.</p></article>
-            <article class="pillar-card reveal reveal-delay-2"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div><h3>Local Network</h3><p>Direct relationships with Spain's top crew, equipment houses, and property owners. No middlemen. We call, they answer.</p></article>
-            <article class="pillar-card reveal reveal-delay-3"><div class="pillar-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div><h3>Tech-Forward</h3><p>GPS-tagged location libraries, 360-degree virtual recces, drone photogrammetry. Scout from your desk before you book a flight.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">01</div><h3>London-Trained</h3><p>8 years in London production. We understand the pace, the politics, and the precision your agency expects. No cultural translation required.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">02</div><h3>Fully Bilingual</h3><p>Native-level English and Spanish. Your creative brief lands with the local crew exactly as you intended. No friction, no misinterpretation.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">03</div><h3>Local Network</h3><p>Direct relationships with Spain's top crew, equipment houses, and property owners. No middlemen. We call, they answer.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">04</div><h3>Tech-Forward</h3><p>GPS-tagged location libraries, 360-degree virtual recces, drone photogrammetry. Scout from your desk before you book a flight.</p></article>
         </div>
     </section>
 
     <section id="about" aria-labelledby="about-title">
         <div class="about-grid">
-            <div class="about-image reveal" role="img" aria-label="James Huertas, Founder"></div>
+            <div class="about-image gs-reveal" role="img" aria-label="James Huertas, Founder">
+                <div style="position:absolute;bottom:40px;left:40px;z-index:2">
+                    <p style="font-family:var(--serif);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);opacity:.6">James Huertas</p>
+                    <p style="font-size:11px;color:var(--text-tertiary);margin-top:4px">Founder</p>
+                </div>
+            </div>
             <div class="about-content">
-                <h3>About the Founder</h3>
-                <h2 class="reveal" id="about-title">London production.<br>Spanish ground.</h2>
-                <p class="reveal reveal-delay-1">Liquid Locations was founded by James Huertas, a bilingual British-Spanish production professional with over 8 years of experience across London and Spain's most demanding shoots.</p>
-                <p class="reveal reveal-delay-2">Having worked with companies like Palma Pictures and across London's commercial and fashion production scene, James identified a critical gap: international producers forced to choose between expensive, inflexible conglomerates and local fixers who did not understand London standards.</p>
-                <p class="reveal reveal-delay-3">Liquid Locations sits precisely in that gap &mdash; delivering the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique.</p>
-                <div class="about-stats reveal reveal-delay-4">
-                    <div class="about-stat"><div class="number">8+</div><div class="label">Years in production</div></div>
-                    <div class="about-stat"><div class="number">2</div><div class="label">Markets (UK + ES)</div></div>
-                    <div class="about-stat"><div class="number">6</div><div class="label">Regions covered</div></div>
+                <p class="section-label gs-reveal">About</p>
+                <h2 class="gs-reveal" id="about-title">One person. <em>Two markets.</em><br>Zero compromise.</h2>
+                <p class="gs-reveal">Founded by James Huertas, a bilingual British-Spanish production professional with 8+ years across London and Spain. From Palma Pictures to London's commercial and fashion scene.</p>
+                <p class="gs-reveal">Liquid Locations fills a critical gap: the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique. No conglomerates. No compromises.</p>
+                <div class="about-stats gs-reveal">
+                    <div class="about-stat"><div class="number">8+</div><div class="label">Years</div></div>
+                    <div class="about-stat"><div class="number">2</div><div class="label">Markets</div></div>
+                    <div class="about-stat"><div class="number">6</div><div class="label">Regions</div></div>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="act-divider" aria-hidden="true"></div>
+
     <section id="sample-quote" aria-labelledby="quote-title">
-        <div class="section-header center">
-            <p class="section-label">Transparent Pricing</p>
-            <h2 class="section-title" id="quote-title">See every line.</h2>
-            <p class="section-subtitle">A sample quote for a 3-day fashion commercial in Barcelona. No hidden fees. No bloated overhead.</p>
+        <div class="section-header" style="text-align:center">
+            <p class="section-label gs-reveal">Transparent Pricing</p>
+            <h2 class="section-title gs-reveal" id="quote-title">See <em>every line.</em></h2>
+            <p class="section-subtitle gs-reveal" style="margin:0 auto">A sample quote for a 3-day fashion commercial in Barcelona. No hidden fees.</p>
         </div>
         <div class="quote-wrapper">
-            <div class="quote-card reveal">
+            <div class="quote-card gs-reveal">
                 <div class="quote-header">
-                    <div class="quote-header-left"><h3>3-Day Fashion Commercial &mdash; Barcelona</h3><p>London Client &bull; 10 Local Crew &bull; 2 Locations &bull; Full Package</p></div>
+                    <div class="quote-header-left"><h3>3-Day Fashion Commercial \u2014 Barcelona</h3><p>London Client \u2022 10 Local Crew \u2022 2 Locations \u2022 Full Package</p></div>
                     <div class="quote-header-right"><p class="quote-id">LL-2026-SAMPLE</p><p class="quote-date">Indicative Quote</p></div>
                 </div>
                 <div class="quote-body">
@@ -498,7 +635,7 @@
                             <tr><td><strong>Equipment Rental</strong><p class="item-desc">Full camera/lighting/grip package via partner rental houses</p></td><td>&euro;6,000</td></tr>
                             <tr><td><strong>Transport &amp; Logistics</strong><p class="item-desc">Unit base, crew transport, parking permits, fuel</p></td><td>&euro;3,600</td></tr>
                             <tr><td><strong>Catering</strong><p class="item-desc">Premium on-set catering &times; 3 days (breakfast, lunch, craft services)</p></td><td>&euro;2,400</td></tr>
-                            <tr><td><strong>Permits &amp; Insurance</strong><p class="item-desc">Municipal filming permits, civil liability, equipment coverage (2-3% of budget)</p></td><td>&euro;1,500</td></tr>
+                            <tr><td><strong>Permits &amp; Insurance</strong><p class="item-desc">Municipal filming permits, civil liability, equipment coverage</p></td><td>&euro;1,500</td></tr>
                         </tbody>
                     </table>
                     <div class="quote-total-section">
@@ -507,7 +644,7 @@
                         <div class="quote-total-row"><span class="label">Coordination markup (crew + equipment @ 15%)</span><span class="value">&euro;2,475</span></div>
                         <div class="quote-total-row grand"><span class="label">Total</span><span class="value">&euro;38,625</span></div>
                     </div>
-                    <div class="quote-footer-note"><strong>Payment terms:</strong> 50% mobilisation fee upon project confirmation. Balance within 14 days post-wrap. All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients &mdash; 0% Spanish IVA). Quote valid 30 days.</div>
+                    <div class="quote-footer-note"><strong>Payment terms:</strong> 50% mobilisation fee upon project confirmation. Balance within 14 days post-wrap. All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients \u2014 0% Spanish IVA). Quote valid 30 days.</div>
                 </div>
             </div>
         </div>
@@ -517,17 +654,16 @@
         <div class="contact-grid">
             <div>
                 <div class="section-header">
-                    <p class="section-label">Get in Touch</p>
-                    <h2 class="section-title" id="contact-title">Brief us on your next shoot.</h2>
-                    <p class="section-subtitle">Share your creative brief. We will return a bespoke location package and production estimate within 48 hours.</p>
+                    <p class="section-label gs-reveal">Get in Touch</p>
+                    <h2 class="section-title gs-reveal" id="contact-title">Brief us on your <em>next shoot.</em></h2>
+                    <p class="section-subtitle gs-reveal">Share your creative brief. We will return a bespoke location package and production estimate within 48 hours.</p>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-method"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><h4>Email</h4><p><a href="mailto:hello@liquidlocations.com">hello@liquidlocations.com</a></p></div></div>
-                    <div class="contact-method"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><div><h4>Phone / WhatsApp</h4><p><a href="tel:+34600000000">+34 600 000 000</a></p></div></div>
-                    <div class="contact-method"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div><h4>Based in</h4><p>Barcelona &amp; Mallorca, Spain</p></div></div>
+                    <div class="contact-method gs-reveal"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><h4>Email</h4><p><a href="mailto:hello@liquidlocations.com">hello@liquidlocations.com</a></p></div></div>
+                    <div class="contact-method gs-reveal"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div><h4>Based in</h4><p>Barcelona &amp; Mallorca, Spain</p></div></div>
                 </div>
             </div>
-            <form class="contact-form" id="contactForm" aria-label="Project enquiry form">
+            <form class="contact-form gs-reveal" id="contactForm" aria-label="Project enquiry form">
                 <div class="form-row">
                     <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name"></div>
                     <div class="form-group"><label for="company">Production Company</label><input type="text" id="company" name="company" placeholder="Pulse Films" autocomplete="organization"></div>
@@ -540,34 +676,165 @@
                     <div class="form-group"><label for="dates">Proposed Dates</label><input type="text" id="dates" name="dates" placeholder="e.g. June 2026, flexible"></div>
                     <div class="form-group"><label for="crew-size">Estimated Crew Size</label><input type="text" id="crew-size" name="crew-size" placeholder="e.g. 8-12 local crew"></div>
                 </div>
-                <div class="form-group"><label for="brief">Project Brief</label><textarea id="brief" name="brief" rows="4" placeholder="Tell us about your project — locations needed, creative direction, any specific requirements..."></textarea></div>
+                <div class="form-group"><label for="brief">Project Brief</label><textarea id="brief" name="brief" rows="4" placeholder="Tell us about your project \u2014 locations needed, creative direction, any specific requirements..."></textarea></div>
                 <button type="submit" class="btn-submit">Send Brief</button>
             </form>
         </div>
     </section>
 
+    <div class="closing">
+        <p class="closing-text gs-reveal">London pace. Spanish light.<br>Your next shoot starts here.</p>
+    </div>
+
     <footer class="footer" role="contentinfo">
         <div class="footer-content">
             <div class="footer-left">
-                <p><span class="company-name">Liquid Locations S.L.</span> (pending registration)</p>
-                <p>Member of APCP (pending) &bull; Spain Film Commission network</p>
-                <p>&copy; 2026 Liquid Locations. All rights reserved.</p>
+                <p class="company-name" style="font-family:var(--serif);font-size:16px;margin-bottom:8px">Liquid <span style="font-style:italic;color:var(--text-tertiary)">Locations</span></p>
+                <p>&copy; 2026</p>
             </div>
             <div class="footer-right">
                 <a href="#services">Services</a>
                 <a href="#locations">Locations</a>
-                <a href="#about">About</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </footer>
 
     <script>
-    (function(){var r=document.querySelectorAll('.reveal');if('IntersectionObserver' in window){var o=new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting){n.target.classList.add('visible');o.unobserve(n.target)}})},{threshold:.1,rootMargin:'0px 0px -60px 0px'});r.forEach(function(e){o.observe(e)})}else{r.forEach(function(e){e.classList.add('visible')})}})();
-    (function(){var n=document.querySelector('.nav'),t=false;window.addEventListener('scroll',function(){if(!t){window.requestAnimationFrame(function(){n.classList.toggle('scrolled',window.pageYOffset>50);t=false});t=true}},{passive:true})})();
-    (function(){var b=document.getElementById('navToggle'),l=document.getElementById('navLinks'),s=b.querySelectorAll('span');function c(){l.classList.remove('open');b.setAttribute('aria-expanded','false');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');if(o){s[0].style.transform='rotate(45deg) translate(4px,4px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(4px,-4px)'}else{c()}});l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&l.classList.contains('open')){c();b.focus()}})})();
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var h=this.getAttribute('href');if(h==='#'){window.scrollTo({top:0,behavior:'smooth'});return}var t=document.querySelector(h);if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-64,behavior:'smooth'})}})});
-    document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();var b=this.querySelector('.btn-submit');b.textContent='Brief received \u2014 we\'ll be in touch.';b.style.background='#4ade80';b.style.color='#111';b.disabled=true});
+    // Page load
+    document.body.classList.add('loaded');
+
+    // GSAP Setup
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    // Set initial states BEFORE animations
+    gsap.set('.hero h1',{opacity:0,y:40});
+    gsap.set('.hero-eyebrow',{opacity:0});
+    gsap.set('.hero-sub',{opacity:0,y:20});
+    gsap.set('.hero-actions',{opacity:0,y:20});
+    gsap.set('.hero-line',{opacity:0});
+    gsap.set('.hero-coords',{opacity:0,x:20});
+    gsap.set('.hero-regions',{opacity:0});
+
+    // Hero timeline
+    var heroTl = gsap.timeline({defaults:{ease:'power3.out'},delay:.2});
+    heroTl.to('.hero-eyebrow',{opacity:1,duration:1})
+          .to('.hero h1',{opacity:1,y:0,duration:1.2},'-=.6')
+          .to('.hero-sub',{opacity:1,y:0,duration:.8},'-=.6')
+          .to('.hero-actions',{opacity:1,y:0,duration:.6},'-=.4')
+          .to('.hero-line',{opacity:1,duration:1.5},'-=1')
+          .to('.hero-coords',{opacity:1,x:0,duration:1},'-=1.2')
+          .to('.hero-regions',{opacity:1,duration:2},'-=1');
+
+    // Scroll-triggered reveals with varied animations
+    gsap.utils.toArray('.gs-reveal').forEach(function(el,i){
+        var delay = i % 3 * .08;
+        gsap.fromTo(el,
+            {opacity:0,y:30,visibility:'hidden'},
+            {opacity:1,y:0,visibility:'visible',duration:.9,delay:delay,ease:'power2.out',
+             scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}
+            }
+        );
+    });
+
+    // Stagger service cards with slide-up
+    ScrollTrigger.create({
+        trigger:'.services-grid',
+        start:'top 82%',
+        onEnter:function(){
+            gsap.fromTo('.service-card',
+                {opacity:0,y:60,visibility:'hidden'},
+                {opacity:1,y:0,visibility:'visible',duration:.9,stagger:.12,ease:'power2.out'}
+            );
+        },
+        once:true
+    });
+
+    // Stagger location cards with scale
+    ScrollTrigger.create({
+        trigger:'.locations-grid',
+        start:'top 82%',
+        onEnter:function(){
+            gsap.fromTo('.location-card',
+                {opacity:0,scale:.95,visibility:'hidden'},
+                {opacity:1,scale:1,visibility:'visible',duration:.8,stagger:.08,ease:'power2.out'}
+            );
+        },
+        once:true
+    });
+
+    // Stagger pillar cards
+    ScrollTrigger.create({
+        trigger:'.pillars-grid',
+        start:'top 82%',
+        onEnter:function(){
+            gsap.fromTo('.pillar-card',
+                {opacity:0,y:40,visibility:'hidden'},
+                {opacity:1,y:0,visibility:'visible',duration:.8,stagger:.1,ease:'power2.out'}
+            );
+        },
+        once:true
+    });
+
+    // Parallax on statement text
+    gsap.utils.toArray('.statement-text').forEach(function(el){
+        gsap.fromTo(el,{y:30},{y:-30,ease:'none',scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:1}});
+    });
+
+    // Parallax on about image
+    gsap.fromTo('.about-image',{y:40},{y:-40,ease:'none',scrollTrigger:{trigger:'.about-grid',start:'top bottom',end:'bottom top',scrub:1}});
+
+    // Parallax on section titles
+    gsap.utils.toArray('.section-title').forEach(function(el){
+        gsap.fromTo(el,{y:10},{y:-10,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:2}});
+    });
+
+    // Cinematic interstitial line draw
+    gsap.to('.cinematic-line',{scaleX:1,ease:'power2.inOut',duration:1.5,scrollTrigger:{trigger:'.cinematic',start:'top 60%',toggleActions:'play none none none'}});
+
+    // Cinematic number outline fill
+    ScrollTrigger.create({
+        trigger:'.cinematic',
+        start:'top 50%',
+        onEnter:function(){
+            gsap.to('.cinematic-number',{'-webkit-text-stroke-color':'rgba(201,169,110,.5)',duration:1.5,ease:'power2.out'});
+        },
+        once:true
+    });
+
+    // Tax stat number count-up
+    ScrollTrigger.create({
+        trigger:'.tax-stat',
+        start:'top 85%',
+        onEnter:function(){
+            gsap.fromTo('.tax-stat .number',{opacity:0,scale:.8},{opacity:1,scale:1,duration:1,ease:'back.out(1.5)'});
+        },
+        once:true
+    });
+
+    // Nav scroll effect
+    (function(){var n=document.querySelector('.nav'),t=false;window.addEventListener('scroll',function(){if(!t){window.requestAnimationFrame(function(){n.classList.toggle('scrolled',window.pageYOffset>80);t=false});t=true}},{passive:true})})();
+
+    // Mobile nav toggle
+    (function(){var b=document.getElementById('navToggle'),l=document.getElementById('navLinks'),s=b.querySelectorAll('span');function c(){l.classList.remove('open');b.setAttribute('aria-expanded','false');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');if(o){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}else{c()}});l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&l.classList.contains('open')){c();b.focus()}})})();
+
+    // Smooth scroll via GSAP ScrollToPlugin
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var h=this.getAttribute('href');if(h==='#'){gsap.to(window,{scrollTo:0,duration:.8,ease:'power2.inOut'});return}var t=document.querySelector(h);if(t){gsap.to(window,{scrollTo:{y:t,offsetY:72},duration:.8,ease:'power2.inOut'})}})});
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit',function(e){
+        e.preventDefault();
+        var b=this.querySelector('.btn-submit');
+        b.textContent='Sending...';
+        b.style.opacity='.7';
+        b.disabled=true;
+        setTimeout(function(){
+            b.textContent='Brief received \u2014 we\'ll be in touch.';
+            b.style.background='#4ade80';
+            b.style.color='#0a0a0a';
+            b.style.opacity='1';
+        },800);
+    });
     </script>
 </body>
 </html>
