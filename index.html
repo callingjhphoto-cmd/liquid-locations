@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liquid Locations — Premium Production Services in Spain | Barcelona & Mallorca</title>
+    <title>Liquid Locations &mdash; Premium Production Services in Spain | Barcelona &amp; Mallorca</title>
     <meta name="description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, and the Canary Islands.">
-    <meta property="og:title" content="Liquid Locations — Premium Production Services in Spain">
+    <meta property="og:title" content="Liquid Locations &mdash; Premium Production Services in Spain">
     <meta property="og:description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, and the Canary Islands.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://liquidlocations.co">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Liquid Locations — Premium Production Services in Spain">
+    <meta name="twitter:title" content="Liquid Locations &mdash; Premium Production Services in Spain">
     <meta name="twitter:description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <style>
@@ -56,7 +57,9 @@
             color: var(--charcoal);
         }
 
-        /* ─── GRAIN OVERLAY ─── */
+        /* ================================================================
+           GRAIN OVERLAY
+           ================================================================ */
         .grain {
             position: fixed;
             top: -50%;
@@ -65,62 +68,74 @@
             height: 200%;
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
-        /* ─── CURSOR ─── */
+        /* ================================================================
+           CUSTOM CURSOR (desktop only)
+           ================================================================ */
         .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--charcoal);
+            width: 6px;
+            height: 6px;
+            background: var(--white);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 10000;
             mix-blend-mode: difference;
-            transition: transform 0.15s ease;
+            transition: transform 0.1s ease;
         }
 
         .cursor-ring {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(26, 26, 26, 0.3);
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(250, 250, 250, 0.25);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
             z-index: 10000;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            mix-blend-mode: difference;
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        border-color 0.3s ease;
         }
 
         .cursor-ring.hovering {
             transform: scale(1.8) !important;
-            border-color: var(--blue);
+            border-color: var(--stone);
         }
 
         @media (pointer: coarse) {
             .cursor-dot, .cursor-ring { display: none; }
         }
 
-        /* ─── NAVIGATION ─── */
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 28px 48px;
+            padding: 32px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             mix-blend-mode: difference;
+            transition: padding 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 20px 48px;
         }
 
         nav .logo {
             font-family: var(--sans);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--white);
             text-decoration: none;
@@ -128,14 +143,14 @@
 
         nav .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 48px;
             list-style: none;
         }
 
         nav .nav-links a {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 400;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--white);
             text-decoration: none;
@@ -151,19 +166,77 @@
             width: 0;
             height: 1px;
             background: var(--white);
-            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         nav .nav-links a:hover::after {
             width: 100%;
         }
 
-        @media (max-width: 768px) {
-            nav { padding: 20px 24px; }
-            nav .nav-links { display: none; }
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
         }
 
-        /* ─── SECTIONS ─── */
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--white);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--charcoal);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 24px 24px; }
+            nav.scrolled { padding: 16px 24px; }
+            nav .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+        }
+
+        /* ================================================================
+           GLOBAL SECTION STYLES
+           ================================================================ */
         section {
             min-height: 100vh;
             position: relative;
@@ -182,40 +255,74 @@
             .container { padding: 0 24px; }
         }
 
-        /* ─── HERO ─── */
+        /* ================================================================
+           HERO
+           ================================================================ */
         #hero {
             background: var(--charcoal);
             flex-direction: column;
             justify-content: center;
             overflow: hidden;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        .hero-content {
+            width: 100%;
+            text-align: center;
+            padding: 0 24px;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--stone);
+            margin-bottom: 40px;
+            opacity: 0;
         }
 
         .hero-title {
             font-family: var(--sans);
-            font-size: clamp(48px, 10vw, 140px);
+            font-size: clamp(52px, 11vw, 160px);
             font-weight: 300;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--white);
             text-align: center;
-            line-height: 1.1;
-            padding: 0 24px;
+            line-height: 0.95;
+        }
+
+        .hero-title .word {
+            display: inline-block;
+            overflow: hidden;
         }
 
         .hero-title .letter {
             display: inline-block;
             opacity: 0;
+            transform: translateY(100%);
         }
 
         .hero-subtitle {
             font-family: var(--serif);
-            font-size: clamp(18px, 2.5vw, 28px);
+            font-size: clamp(18px, 2.2vw, 26px);
             font-weight: 400;
             font-style: italic;
             color: var(--stone);
             text-align: center;
-            margin-top: 32px;
+            margin-top: 40px;
             opacity: 0;
+        }
+
+        .hero-line {
+            width: 1px;
+            height: 0;
+            background: var(--stone);
+            margin: 48px auto 0;
+            opacity: 0.4;
         }
 
         .hero-locations {
@@ -225,17 +332,17 @@
             right: 0;
             text-align: center;
             font-family: var(--sans);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 400;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: rgba(250, 250, 250, 0.5);
+            color: rgba(250, 250, 250, 0.35);
             opacity: 0;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 32px;
+            bottom: 28px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -246,85 +353,115 @@
         }
 
         .scroll-indicator span {
-            font-size: 10px;
-            letter-spacing: 0.2em;
+            font-size: 9px;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: rgba(250, 250, 250, 0.3);
+            color: rgba(250, 250, 250, 0.25);
         }
 
         .scroll-arrow {
             width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, rgba(250,250,250,0.4), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
+            height: 48px;
+            background: linear-gradient(to bottom, rgba(250,250,250,0.3), transparent);
+            animation: scrollPulse 2.5s ease-in-out infinite;
         }
 
         @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-            50% { opacity: 1; transform: scaleY(1); }
+            0%, 100% { opacity: 0.2; transform: scaleY(0.5); }
+            50% { opacity: 0.8; transform: scaleY(1); }
         }
 
-        /* ─── MANIFESTO ─── */
+        @media (max-width: 768px) {
+            .hero-locations { bottom: 64px; font-size: 10px; letter-spacing: 0.2em; }
+            .hero-line { display: none; }
+        }
+
+        /* ================================================================
+           MANIFESTO
+           ================================================================ */
         #manifesto {
             background: var(--white);
-            padding: 160px 0;
+            padding: 200px 0;
         }
 
         .manifesto-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 120px;
-            align-items: center;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 140px;
+            align-items: start;
         }
 
         .manifesto-statement {
             font-family: var(--serif);
-            font-size: clamp(32px, 4vw, 56px);
+            font-size: clamp(32px, 4.2vw, 60px);
             font-weight: 400;
-            line-height: 1.3;
+            line-height: 1.25;
             color: var(--charcoal);
+        }
+
+        .manifesto-statement em {
+            font-style: italic;
+            color: var(--blue);
         }
 
         .manifesto-stats {
             display: flex;
             flex-direction: column;
-            gap: 48px;
+            gap: 56px;
+            padding-top: 16px;
         }
 
         .stat-item {
-            padding-left: 24px;
+            padding-left: 28px;
             border-left: 1px solid var(--stone);
             opacity: 0;
-            transform: translateX(30px);
+            transform: translateX(40px);
         }
 
         .stat-number {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .stat-number .counter-suffix {
+            font-size: 36px;
+            color: var(--stone-dark);
+        }
+
+        .stat-label-title {
             font-family: var(--sans);
-            font-size: 14px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--blue);
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
 
         .stat-label {
             font-family: var(--sans);
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 300;
-            color: var(--charcoal);
-            line-height: 1.5;
+            color: rgba(26, 26, 26, 0.65);
+            line-height: 1.6;
         }
 
         @media (max-width: 768px) {
-            #manifesto { padding: 100px 0; }
+            #manifesto { padding: 120px 0; }
             .manifesto-grid {
                 grid-template-columns: 1fr;
-                gap: 64px;
+                gap: 80px;
             }
+            .stat-number { font-size: 36px; }
         }
 
-        /* ─── DIVIDER ─── */
+        /* ================================================================
+           SECTION DIVIDER
+           ================================================================ */
         .section-divider {
             width: 100%;
             height: 1px;
@@ -333,10 +470,12 @@
             margin: 0 auto;
         }
 
-        /* ─── SERVICES ─── */
+        /* ================================================================
+           SERVICES
+           ================================================================ */
         #services {
             background: var(--white);
-            padding: 160px 0;
+            padding: 200px 0;
             min-height: auto;
         }
 
@@ -344,36 +483,56 @@
             font-family: var(--sans);
             font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.3em;
+            letter-spacing: 0.35em;
             text-transform: uppercase;
             color: var(--stone-dark);
             margin-bottom: 80px;
         }
 
+        .section-heading {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 80px;
+            max-width: 800px;
+            line-height: 1.2;
+        }
+
         .service-card {
             display: grid;
-            grid-template-columns: 100px 1fr 1fr;
+            grid-template-columns: 80px 1fr 1fr;
             gap: 48px;
-            padding: 64px 0;
+            padding: 72px 0;
             border-top: 1px solid var(--grey-subtle);
             align-items: start;
             opacity: 0;
-            transform: translateX(60px);
+            transform: translateY(50px);
             cursor: pointer;
-            transition: background 0.4s ease;
+            transition: background 0.5s ease;
+            position: relative;
         }
 
         .service-card:last-child {
             border-bottom: 1px solid var(--grey-subtle);
         }
 
-        .service-card:hover {
-            background: linear-gradient(90deg, transparent, rgba(212, 197, 178, 0.06), transparent);
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(212, 197, 178, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .service-card:hover::after {
+            opacity: 1;
         }
 
         .service-number {
             font-family: var(--serif);
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 400;
             color: var(--stone);
             line-height: 1;
@@ -381,17 +540,17 @@
 
         .service-header h3 {
             font-family: var(--sans);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--charcoal);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .service-header p {
             font-family: var(--serif);
-            font-size: clamp(24px, 3vw, 36px);
+            font-size: clamp(24px, 2.8vw, 36px);
             font-weight: 400;
             font-style: italic;
             color: var(--charcoal);
@@ -399,22 +558,23 @@
         }
 
         .service-details {
-            padding-top: 8px;
+            padding-top: 4px;
         }
 
         .service-details ul {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
 
         .service-details li {
             font-size: 15px;
             font-weight: 300;
-            color: rgba(26, 26, 26, 0.7);
-            padding-left: 16px;
+            color: rgba(26, 26, 26, 0.6);
+            padding-left: 20px;
             position: relative;
+            line-height: 1.5;
         }
 
         .service-details li::before {
@@ -422,7 +582,7 @@
             position: absolute;
             left: 0;
             top: 10px;
-            width: 4px;
+            width: 6px;
             height: 1px;
             background: var(--stone-dark);
         }
@@ -432,21 +592,24 @@
             font-size: 14px;
             font-weight: 500;
             color: var(--blue);
-            margin-top: 20px;
+            margin-top: 24px;
             letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
-            #services { padding: 100px 0; }
+            #services { padding: 120px 0; }
             .service-card {
                 grid-template-columns: 1fr;
-                gap: 24px;
+                gap: 20px;
                 padding: 48px 0;
+                transform: translateY(30px);
             }
-            .service-number { font-size: 32px; }
+            .service-number { font-size: 36px; }
         }
 
-        /* ─── LOCATIONS ─── */
+        /* ================================================================
+           LOCATIONS
+           ================================================================ */
         #locations {
             background: var(--charcoal);
             padding: 0;
@@ -455,7 +618,7 @@
         }
 
         .locations-header {
-            padding: 80px 48px 48px;
+            padding: 100px 48px 60px;
         }
 
         .locations-header .section-label {
@@ -468,6 +631,12 @@
             font-weight: 400;
             color: var(--white);
             margin-top: 16px;
+            line-height: 1.2;
+        }
+
+        .locations-header h2 em {
+            font-style: italic;
+            color: var(--stone);
         }
 
         .locations-scroll-wrapper {
@@ -478,30 +647,30 @@
 
         .locations-track {
             display: flex;
-            gap: 24px;
-            padding: 0 48px 80px;
+            gap: 28px;
+            padding: 0 48px 100px;
             will-change: transform;
         }
 
         .location-card {
             flex-shrink: 0;
-            width: 340px;
-            height: 500px;
-            border: 1px solid rgba(250, 250, 250, 0.12);
-            border-radius: 4px;
+            width: 380px;
+            height: 540px;
+            border: 1px solid rgba(250, 250, 250, 0.08);
+            border-radius: 3px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 40px;
+            padding: 48px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: border-color 0.4s ease, transform 0.4s ease;
+            transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .location-card:hover {
-            border-color: var(--stone);
-            transform: translateY(-4px);
+            border-color: rgba(212, 197, 178, 0.4);
+            transform: translateY(-8px);
         }
 
         .location-card::before {
@@ -509,53 +678,75 @@
             position: absolute;
             inset: 0;
             z-index: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease;
         }
 
         .location-card:nth-child(1)::before {
-            background: linear-gradient(160deg, rgba(43,91,132,0.25) 0%, rgba(212,197,178,0.15) 50%, rgba(26,26,26,0.9) 100%);
+            background: linear-gradient(175deg, rgba(43,91,132,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
         }
         .location-card:nth-child(2)::before {
-            background: linear-gradient(160deg, rgba(212,197,178,0.3) 0%, rgba(43,91,132,0.12) 50%, rgba(26,26,26,0.9) 100%);
+            background: linear-gradient(175deg, rgba(212,197,178,0.25) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
         }
         .location-card:nth-child(3)::before {
-            background: linear-gradient(160deg, rgba(180,160,140,0.25) 0%, rgba(212,197,178,0.1) 50%, rgba(26,26,26,0.9) 100%);
+            background: linear-gradient(175deg, rgba(180,160,140,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
         }
         .location-card:nth-child(4)::before {
-            background: linear-gradient(160deg, rgba(212,197,178,0.2) 0%, rgba(200,170,130,0.15) 50%, rgba(26,26,26,0.9) 100%);
+            background: linear-gradient(175deg, rgba(200,170,130,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
         }
         .location-card:nth-child(5)::before {
-            background: linear-gradient(160deg, rgba(200,160,100,0.25) 0%, rgba(212,197,178,0.1) 50%, rgba(26,26,26,0.9) 100%);
+            background: linear-gradient(175deg, rgba(200,160,100,0.2) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
         }
         .location-card:nth-child(6)::before {
-            background: linear-gradient(160deg, rgba(80,140,120,0.2) 0%, rgba(43,91,132,0.15) 50%, rgba(26,26,26,0.9) 100%);
+            background: linear-gradient(175deg, rgba(43,91,132,0.25) 0%, rgba(26,26,26,0.4) 40%, rgba(26,26,26,0.95) 100%);
         }
 
         .location-card:hover::before {
-            opacity: 0.7;
+            opacity: 0.6;
+        }
+
+        .location-desc {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(250, 250, 250, 0.5);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 24px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+        }
+
+        .location-card:hover .location-desc {
+            max-height: 80px;
+            opacity: 1;
+            margin-bottom: 24px;
         }
 
         .location-name {
             font-family: var(--serif);
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 400;
             color: var(--white);
             position: relative;
             z-index: 1;
             margin-bottom: 16px;
+            line-height: 1.1;
         }
 
         .location-tags {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             position: relative;
             z-index: 1;
         }
 
         .location-tags span {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 400;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--stone);
         }
@@ -564,19 +755,19 @@
             position: absolute;
             top: 32px;
             right: 32px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--blue);
-            background: rgba(43, 91, 132, 0.15);
-            padding: 6px 14px;
+            background: rgba(43, 91, 132, 0.12);
+            padding: 8px 16px;
             border-radius: 2px;
             z-index: 1;
         }
 
         @media (max-width: 768px) {
-            .locations-header { padding: 60px 24px 32px; }
+            .locations-header { padding: 80px 24px 40px; }
             .locations-track {
                 flex-direction: column;
                 padding: 0 24px 60px;
@@ -584,105 +775,148 @@
             }
             .location-card {
                 width: 100%;
-                height: 300px;
+                height: 260px;
+                padding: 32px;
             }
+            .location-name { font-size: 28px; }
+            .location-desc { display: none; }
         }
 
-        /* ─── TAX INCENTIVES ─── */
+        @media (max-width: 375px) {
+            .hero-title { letter-spacing: 0.12em; }
+            .location-card { height: 220px; padding: 24px; }
+        }
+
+        /* ================================================================
+           TAX INCENTIVES
+           ================================================================ */
         #incentives {
             background: var(--white);
-            padding: 160px 0;
+            padding: 200px 0;
         }
 
         .incentives-header {
-            margin-bottom: 80px;
+            margin-bottom: 100px;
         }
 
         .incentives-header h2 {
             font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 56px);
+            font-size: clamp(36px, 5vw, 60px);
             font-weight: 400;
             color: var(--charcoal);
             margin-top: 16px;
+            line-height: 1.2;
         }
 
-        .incentives-table {
-            width: 100%;
-            border-collapse: collapse;
+        .incentives-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
         }
 
-        .incentives-table thead th {
+        .incentive-col {
+            padding: 0 32px;
+            border-left: 1px solid var(--grey-subtle);
+            opacity: 0;
+        }
+
+        .incentive-col:first-child {
+            padding-left: 0;
+            border-left: none;
+        }
+
+        .incentive-country {
             font-family: var(--sans);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--stone-dark);
-            text-align: left;
-            padding: 0 32px 24px 0;
+            margin-bottom: 48px;
+            padding-bottom: 16px;
             border-bottom: 1px solid var(--grey-subtle);
         }
 
-        .incentives-table thead th:first-child {
-            width: 200px;
+        .incentive-col.featured .incentive-country {
+            color: var(--blue);
+            border-bottom-color: var(--blue);
         }
 
-        .incentives-table tbody td {
-            padding: 32px 32px 32px 0;
-            border-bottom: 1px solid var(--grey-subtle);
+        .incentive-row {
+            margin-bottom: 40px;
+        }
+
+        .incentive-row-label {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            margin-bottom: 8px;
+        }
+
+        .incentive-value {
+            font-family: var(--serif);
+            font-size: 42px;
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1;
+        }
+
+        .incentive-col.featured .incentive-value {
+            color: var(--blue);
+        }
+
+        .incentive-value-small {
+            font-family: var(--sans);
             font-size: 15px;
             font-weight: 300;
-            vertical-align: top;
+            color: rgba(26, 26, 26, 0.5);
+            margin-top: 4px;
         }
 
-        .incentives-table tbody td:first-child {
-            font-weight: 400;
-            color: var(--charcoal);
-        }
-
-        .table-highlight {
-            color: var(--blue);
-            font-weight: 500 !important;
-            font-size: 28px !important;
+        .incentive-dash {
             font-family: var(--serif);
-        }
-
-        .table-number {
-            font-family: var(--serif);
-            font-size: 28px;
-            font-weight: 400;
-            color: var(--charcoal);
-        }
-
-        .table-dash {
+            font-size: 32px;
             color: var(--stone);
-            font-size: 20px;
         }
 
         .incentives-note {
-            margin-top: 48px;
+            margin-top: 80px;
             font-size: 14px;
             font-weight: 300;
-            color: rgba(26, 26, 26, 0.5);
-            line-height: 1.6;
+            color: rgba(26, 26, 26, 0.45);
+            line-height: 1.7;
+            max-width: 800px;
         }
 
         @media (max-width: 768px) {
-            #incentives { padding: 100px 0; }
-            .incentives-table { display: block; overflow-x: auto; }
-            .incentives-table thead th,
-            .incentives-table tbody td { padding: 20px 20px 20px 0; white-space: nowrap; }
-            .table-highlight, .table-number { font-size: 22px !important; }
+            #incentives { padding: 120px 0; }
+            .incentives-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 48px 0;
+            }
+            .incentive-col { padding: 0 20px; }
+            .incentive-col:nth-child(3) { border-left: none; padding-left: 0; }
+            .incentive-value { font-size: 28px; }
         }
 
-        /* ─── CASE STUDY ─── */
+        @media (max-width: 480px) {
+            .incentives-grid { grid-template-columns: 1fr; gap: 48px; }
+            .incentive-col { padding: 0; border-left: none; border-bottom: 1px solid var(--grey-subtle); padding-bottom: 48px; }
+        }
+
+        /* ================================================================
+           SAMPLE QUOTE / CASE STUDY
+           ================================================================ */
         #case-study {
             background: var(--charcoal);
-            padding: 160px 0;
+            padding: 200px 0;
         }
 
         .case-study-header {
-            margin-bottom: 80px;
+            margin-bottom: 100px;
         }
 
         .case-study-header .section-label {
@@ -691,18 +925,20 @@
 
         .case-study-header h2 {
             font-family: var(--serif);
-            font-size: clamp(32px, 4vw, 48px);
+            font-size: clamp(32px, 4vw, 52px);
             font-weight: 400;
             font-style: italic;
             color: var(--white);
             margin-top: 16px;
-            max-width: 700px;
+            max-width: 750px;
+            line-height: 1.25;
         }
 
         .quote-grid {
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 0;
+            max-width: 900px;
         }
 
         .quote-line {
@@ -712,9 +948,9 @@
         .quote-item {
             font-size: 16px;
             font-weight: 300;
-            color: rgba(250, 250, 250, 0.8);
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(250, 250, 250, 0.08);
+            color: rgba(250, 250, 250, 0.75);
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.06);
             opacity: 0;
             transform: translateY(15px);
         }
@@ -724,21 +960,22 @@
             font-size: 16px;
             font-weight: 400;
             color: var(--stone);
-            padding: 20px 0;
+            padding: 22px 0;
             text-align: right;
-            border-bottom: 1px solid rgba(250, 250, 250, 0.08);
+            border-bottom: 1px solid rgba(250, 250, 250, 0.06);
             opacity: 0;
             transform: translateY(15px);
         }
 
         .quote-total {
-            margin-top: 48px;
+            margin-top: 56px;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            padding-top: 32px;
+            padding-top: 40px;
             border-top: 1px solid var(--stone);
             opacity: 0;
+            max-width: 900px;
         }
 
         .quote-total-label {
@@ -750,95 +987,148 @@
 
         .quote-total-price {
             font-family: var(--serif);
-            font-size: clamp(36px, 5vw, 56px);
+            font-size: clamp(40px, 6vw, 64px);
             font-weight: 400;
             color: var(--white);
         }
 
-        .quote-tagline {
-            margin-top: 24px;
-            font-family: var(--serif);
-            font-size: 18px;
-            font-style: italic;
-            color: var(--stone);
-            text-align: right;
+        .quote-context {
+            margin-top: 48px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            max-width: 900px;
             opacity: 0;
         }
 
-        @media (max-width: 768px) {
-            #case-study { padding: 100px 0; }
+        .quote-context-item {
+            padding-top: 20px;
+            border-top: 1px solid rgba(250, 250, 250, 0.1);
         }
 
-        /* ─── ABOUT ─── */
+        .quote-context-label {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            margin-bottom: 8px;
+        }
+
+        .quote-context-value {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-style: italic;
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            #case-study { padding: 120px 0; }
+            .quote-context { grid-template-columns: 1fr; gap: 32px; }
+        }
+
+        /* ================================================================
+           ABOUT
+           ================================================================ */
         #about {
             background: var(--white);
-            padding: 160px 0;
+            padding: 200px 0;
         }
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 120px;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 140px;
             align-items: start;
         }
 
-        .about-name {
-            font-family: var(--serif);
-            font-size: clamp(36px, 4vw, 56px);
-            font-weight: 400;
-            color: var(--charcoal);
-            line-height: 1.2;
+        .about-left {
             position: sticky;
             top: 160px;
         }
 
-        .about-name span {
-            display: block;
+        .about-name {
+            font-family: var(--serif);
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1.1;
+        }
+
+        .about-role {
             font-family: var(--sans);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--stone-dark);
-            margin-top: 20px;
+            margin-top: 24px;
+        }
+
+        .about-locations-list {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .about-locations-list span {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 300;
+            color: rgba(26, 26, 26, 0.5);
         }
 
         .about-bio {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
 
         .about-bio p {
             font-size: 17px;
             font-weight: 300;
-            line-height: 1.8;
-            color: rgba(26, 26, 26, 0.8);
+            line-height: 1.85;
+            color: rgba(26, 26, 26, 0.7);
         }
 
         .about-bio p:first-child {
             font-family: var(--serif);
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 400;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--charcoal);
         }
 
         @media (max-width: 768px) {
-            #about { padding: 100px 0; }
+            #about { padding: 120px 0; }
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 48px;
+                gap: 56px;
             }
-            .about-name { position: relative; top: auto; }
+            .about-left { position: relative; top: auto; }
         }
 
-        /* ─── CLIENTS ─── */
+        /* ================================================================
+           CLIENTS MARQUEE
+           ================================================================ */
         #clients {
             background: var(--stone-light);
-            padding: 80px 0;
+            padding: 72px 0;
             min-height: auto;
             overflow: hidden;
+        }
+
+        .clients-label {
+            text-align: center;
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            margin-bottom: 40px;
         }
 
         .marquee-wrapper {
@@ -849,13 +1139,13 @@
         .marquee-track {
             display: flex;
             gap: 80px;
-            animation: marquee 25s linear infinite;
+            animation: marquee 35s linear infinite;
             white-space: nowrap;
         }
 
         .marquee-item {
             font-family: var(--sans);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 400;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -863,26 +1153,36 @@
             flex-shrink: 0;
         }
 
+        .marquee-divider {
+            color: var(--stone);
+            flex-shrink: 0;
+            font-size: 8px;
+            opacity: 0.5;
+            align-self: center;
+        }
+
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* ─── CONTACT ─── */
+        /* ================================================================
+           CONTACT
+           ================================================================ */
         #contact {
             background: var(--charcoal);
-            padding: 160px 0 80px;
+            padding: 200px 0 100px;
             flex-direction: column;
             justify-content: center;
         }
 
         .contact-headline {
             font-family: var(--serif);
-            font-size: clamp(48px, 10vw, 120px);
+            font-size: clamp(56px, 12vw, 140px);
             font-weight: 400;
             font-style: italic;
             color: var(--white);
-            margin-bottom: 80px;
+            margin-bottom: 100px;
             line-height: 1;
         }
 
@@ -900,33 +1200,51 @@
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 36px;
         }
 
         .contact-link {
+            font-family: var(--sans);
             font-size: 18px;
             font-weight: 300;
             color: var(--stone);
             text-decoration: none;
-            transition: color 0.3s ease;
-            display: block;
+            transition: color 0.4s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .contact-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--white);
+            transition: width 0.4s ease;
         }
 
         .contact-link:hover {
             color: var(--white);
         }
 
+        .contact-link:hover::after {
+            width: 100%;
+        }
+
         .contact-location {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 300;
-            color: rgba(250, 250, 250, 0.4);
-            margin-top: 16px;
+            color: rgba(250, 250, 250, 0.3);
+            margin-top: 8px;
+            line-height: 1.7;
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 28px;
         }
 
         .form-group {
@@ -936,9 +1254,9 @@
         }
 
         .form-group label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 500;
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--stone-dark);
         }
@@ -947,21 +1265,21 @@
         .form-group textarea {
             background: transparent;
             border: none;
-            border-bottom: 1px solid rgba(250, 250, 250, 0.15);
-            padding: 12px 0;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+            padding: 14px 0;
             font-family: var(--sans);
             font-size: 16px;
             font-weight: 300;
             color: var(--white);
             outline: none;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.4s ease;
             width: 100%;
             min-height: 44px;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: rgba(250, 250, 250, 0.2);
+            color: rgba(250, 250, 250, 0.15);
         }
 
         .form-group input:focus,
@@ -971,44 +1289,67 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 110px;
         }
 
         .submit-btn {
-            margin-top: 16px;
+            margin-top: 20px;
             background: transparent;
-            border: 1px solid var(--stone);
-            padding: 18px 48px;
+            border: 1px solid rgba(212, 197, 178, 0.4);
+            padding: 20px 56px;
             font-family: var(--sans);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.3em;
             text-transform: uppercase;
             color: var(--white);
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             align-self: flex-start;
             min-height: 44px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--stone);
+            transform: translateX(-101%);
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 0;
+        }
+
+        .submit-btn:hover::before {
+            transform: translateX(0);
         }
 
         .submit-btn:hover {
-            background: var(--stone);
             color: var(--charcoal);
+            border-color: var(--stone);
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
         }
 
         @media (max-width: 768px) {
-            #contact { padding: 100px 0 60px; }
+            #contact { padding: 120px 0 80px; }
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 64px;
+                gap: 80px;
             }
         }
 
-        /* ─── FOOTER ─── */
+        /* ================================================================
+           FOOTER
+           ================================================================ */
         footer {
             background: var(--charcoal);
             padding: 48px 0;
-            border-top: 1px solid rgba(250, 250, 250, 0.08);
+            border-top: 1px solid rgba(250, 250, 250, 0.06);
         }
 
         .footer-inner {
@@ -1018,22 +1359,24 @@
         }
 
         .footer-left {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 300;
-            color: rgba(250, 250, 250, 0.3);
+            color: rgba(250, 250, 250, 0.25);
+            letter-spacing: 0.05em;
         }
 
         .footer-right {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 40px;
         }
 
         .footer-social {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 400;
-            letter-spacing: 0.1em;
-            color: rgba(250, 250, 250, 0.4);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(250, 250, 250, 0.3);
             text-decoration: none;
             transition: color 0.3s ease;
         }
@@ -1043,9 +1386,9 @@
         }
 
         .footer-note {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 300;
-            color: rgba(250, 250, 250, 0.15);
+            color: rgba(250, 250, 250, 0.12);
         }
 
         @media (max-width: 768px) {
@@ -1056,44 +1399,85 @@
             }
         }
 
-        /* ─── REVEAL ANIMATIONS ─── */
+        /* ================================================================
+           REVEAL ANIMATIONS
+           ================================================================ */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(50px);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* ================================================================
+           PAGE TRANSITION
+           ================================================================ */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: var(--charcoal);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-loader span {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--stone);
         }
     </style>
 </head>
 <body>
 
+    <!-- PAGE LOADER -->
+    <div class="page-loader" id="pageLoader">
+        <span>Liquid Locations</span>
+    </div>
+
     <div class="grain"></div>
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
 
+    <!-- MOBILE NAV OVERLAY -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#manifesto" class="mobile-nav-link">About</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#locations" class="mobile-nav-link">Locations</a>
+        <a href="#incentives" class="mobile-nav-link">Incentives</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+    </div>
+
     <!-- NAV -->
-    <nav>
+    <nav id="mainNav">
         <a href="#hero" class="logo">Liquid Locations</a>
         <ul class="nav-links">
             <li><a href="#services" class="hoverable">Services</a></li>
             <li><a href="#locations" class="hoverable">Locations</a></li>
+            <li><a href="#incentives" class="hoverable">Incentives</a></li>
             <li><a href="#about" class="hoverable">About</a></li>
             <li><a href="#contact" class="hoverable">Contact</a></li>
         </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
     <!-- HERO -->
     <header>
     <section id="hero">
-        <div style="width:100%; text-align:center;">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Production Services &mdash; Spain</p>
             <h1 class="hero-title" id="heroTitle">Liquid Locations</h1>
-            <p class="hero-subtitle">Premium Production Services &mdash; Spain</p>
+            <p class="hero-subtitle">London standards. Spanish locations.<br>One point of contact.</p>
+            <div class="hero-line" id="heroLine"></div>
         </div>
-        <p class="hero-locations">Barcelona &middot; Mallorca &middot; Madrid &middot; Ibiza</p>
-        <div class="scroll-indicator">
+        <p class="hero-locations">Barcelona &middot; Mallorca &middot; Madrid &middot; Ibiza &middot; Andalusia &middot; Canary Islands</p>
+        <div class="scroll-indicator" id="scrollIndicator">
             <span>Scroll</span>
             <div class="scroll-arrow"></div>
         </div>
@@ -1107,20 +1491,23 @@
         <div class="container">
             <div class="manifesto-grid">
                 <div class="manifesto-statement reveal">
-                    We bridge London&rsquo;s creative standards with Spain&rsquo;s extraordinary locations.
+                    We bridge London&rsquo;s creative standards with Spain&rsquo;s <em>extraordinary</em> locations.
                 </div>
                 <div class="manifesto-stats">
                     <div class="stat-item">
-                        <div class="stat-number">320 days of sunshine</div>
-                        <div class="stat-label">Spain averages more annual sunshine than any major European production hub. Schedule-dependent shoots land on time, every time.</div>
+                        <div class="stat-number"><span class="counter" data-target="320">0</span><span class="counter-suffix"> days</span></div>
+                        <div class="stat-label-title">Annual sunshine</div>
+                        <div class="stat-label">More than any major European production hub. Schedule-dependent shoots land on time.</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">30% tax rebate</div>
-                        <div class="stat-label">International productions qualify for Spain&rsquo;s national tax rebate. In the Canary Islands, that figure reaches 54%.</div>
+                        <div class="stat-number"><span class="counter" data-target="30">0</span><span class="counter-suffix">%</span></div>
+                        <div class="stat-label-title">National tax rebate</div>
+                        <div class="stat-label">International productions qualify under Article 36.2. In the Canary Islands, that figure reaches 54%.</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">8 years, 2 countries, 1 standard</div>
-                        <div class="stat-label">Seven years in London. Eight years on set. Bilingual English-Spanish. We understand both sides of the equation.</div>
+                        <div class="stat-number"><span class="counter" data-target="8">0</span><span class="counter-suffix"> years</span></div>
+                        <div class="stat-label-title">London + Spain</div>
+                        <div class="stat-label">Seven years embedded in London production. Bilingual English-Spanish. We think in both.</div>
                     </div>
                 </div>
             </div>
@@ -1133,8 +1520,9 @@
     <section id="services">
         <div class="container">
             <p class="section-label">What we do</p>
+            <h2 class="section-heading reveal">Three tiers. Scaled to your production.</h2>
 
-            <article class="service-card" role="button" tabindex="0">
+            <article class="service-card">
                 <div class="service-number">01</div>
                 <div class="service-header">
                     <h3>Scout</h3>
@@ -1143,15 +1531,15 @@
                 <div class="service-details">
                     <ul>
                         <li>GPS-tagged proprietary location database</li>
-                        <li>360-degree virtual recces</li>
-                        <li>Municipal permit acquisition</li>
+                        <li>360&deg; virtual recces via drone photogrammetry</li>
+                        <li>Municipal &amp; Costas permit acquisition</li>
                         <li>On-set location management</li>
                     </ul>
                     <div class="service-price">&euro;450 / day</div>
                 </div>
             </article>
 
-            <article class="service-card" role="button" tabindex="0">
+            <article class="service-card">
                 <div class="service-number">02</div>
                 <div class="service-header">
                     <h3>Coordinate</h3>
@@ -1159,16 +1547,16 @@
                 </div>
                 <div class="service-details">
                     <ul>
-                        <li>Bilingual technical crews</li>
-                        <li>Partner rental house network</li>
-                        <li>Equipment logistics &amp; insurance</li>
-                        <li>Administrative processing &amp; payroll</li>
+                        <li>Bilingual technical crews (camera, grip, electric, art)</li>
+                        <li>Partner rental network: 711rent, Palma Equipment Rental, Welab</li>
+                        <li>Equipment logistics, insurance &amp; ATA Carnets</li>
+                        <li>Administrative processing, IRPF &amp; payroll</li>
                     </ul>
                     <div class="service-price">15&ndash;20% coordination fee</div>
                 </div>
             </article>
 
-            <article class="service-card" role="button" tabindex="0">
+            <article class="service-card">
                 <div class="service-number">03</div>
                 <div class="service-header">
                     <h3>Produce</h3>
@@ -1176,10 +1564,10 @@
                 </div>
                 <div class="service-details">
                     <ul>
-                        <li>End-to-end production facilitation</li>
-                        <li>Transport, catering, accommodation</li>
-                        <li>Comprehensive civil liability insurance</li>
-                        <li>From permits to wrap party</li>
+                        <li>End-to-end production facilitation &mdash; brief to wrap</li>
+                        <li>Transport, premium catering, accommodation logistics</li>
+                        <li>Comprehensive civil liability &amp; equipment insurance</li>
+                        <li>Tax rebate SPV structuring &amp; compliance</li>
                     </ul>
                     <div class="service-price">20% management fee</div>
                 </div>
@@ -1192,11 +1580,12 @@
         <div style="width:100%;">
             <div class="locations-header">
                 <p class="section-label">Where we shoot</p>
-                <h2>Six regions. One jurisdiction.</h2>
+                <h2>Six regions.<br><em>One jurisdiction.</em></h2>
             </div>
             <div class="locations-scroll-wrapper">
                 <div class="locations-track" id="locationsTrack">
                     <div class="location-card">
+                        <div class="location-desc">Gothic Quarter, Eixample grid, brutalist Forum, Mediterranean waterfront. Europe's most visually diverse city.</div>
                         <div class="location-name">Barcelona</div>
                         <div class="location-tags">
                             <span>Urban</span>
@@ -1205,14 +1594,16 @@
                         </div>
                     </div>
                     <div class="location-card">
+                        <div class="location-desc">Serra de Tramuntana mountains, turquoise calas, centuries-old fincas, luxury estates with infinity pools.</div>
                         <div class="location-name">Mallorca</div>
                         <div class="location-tags">
                             <span>Coastal</span>
                             <span>Rural</span>
-                            <span>Luxury Villas</span>
+                            <span>Luxury</span>
                         </div>
                     </div>
                     <div class="location-card">
+                        <div class="location-desc">Gran V&iacute;a, Retiro Park, world-class studios, brutalist and neo-classical architecture side by side.</div>
                         <div class="location-name">Madrid</div>
                         <div class="location-tags">
                             <span>Modern</span>
@@ -1221,14 +1612,16 @@
                         </div>
                     </div>
                     <div class="location-card">
+                        <div class="location-desc">Whitewashed villages, pine-fringed coves, golden hour that lasts forever, raw Mediterranean beauty.</div>
                         <div class="location-name">Ibiza</div>
                         <div class="location-tags">
                             <span>Beach</span>
-                            <span>Clubs</span>
                             <span>Rustic</span>
+                            <span>Golden Hour</span>
                         </div>
                     </div>
                     <div class="location-card">
+                        <div class="location-desc">Tabernas Desert doubling for North Africa, Moorish palaces, olive groves, 8,000km of coastline.</div>
                         <div class="location-name">Andalusia</div>
                         <div class="location-tags">
                             <span>Desert</span>
@@ -1238,6 +1631,7 @@
                     </div>
                     <div class="location-card">
                         <div class="location-rebate">54% rebate</div>
+                        <div class="location-desc">Volcanic landscapes, subtropical forests, year-round shooting. Europe's highest production rebate.</div>
                         <div class="location-name">Canary Islands</div>
                         <div class="location-tags">
                             <span>Volcanic</span>
@@ -1255,67 +1649,104 @@
         <div class="container">
             <div class="incentives-header">
                 <p class="section-label">The numbers</p>
-                <h2>Tax incentives that change the equation</h2>
+                <h2 class="reveal">Tax incentives that change the equation</h2>
             </div>
-            <table class="incentives-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Spain</th>
-                        <th>UK</th>
-                        <th>France</th>
-                        <th>Italy</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>National rebate</td>
-                        <td><span class="table-highlight" data-target="30">0</span>%</td>
-                        <td><span class="table-number" data-target="25">0</span>%</td>
-                        <td><span class="table-number" data-target="30">0</span>%</td>
-                        <td><span class="table-number" data-target="40">0</span>%</td>
-                    </tr>
-                    <tr>
-                        <td>Canary Islands</td>
-                        <td><span class="table-highlight" data-target="54">0</span>%</td>
-                        <td><span class="table-dash">&mdash;</span></td>
-                        <td><span class="table-dash">&mdash;</span></td>
-                        <td><span class="table-dash">&mdash;</span></td>
-                    </tr>
-                    <tr>
-                        <td>Minimum spend</td>
-                        <td>&euro;1M</td>
-                        <td>Nil</td>
-                        <td>&euro;250K</td>
-                        <td>&euro;1M</td>
-                    </tr>
-                    <tr>
-                        <td>VAT recovery</td>
-                        <td>Reverse charge</td>
-                        <td>Standard</td>
-                        <td>Standard</td>
-                        <td>Standard</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="incentives-note">Spain&rsquo;s Article 36.2 of the Corporate Tax Law governs international production incentives. Minimum expenditure of &euro;1M for live-action, &euro;200K for animation. The Canary Islands offer a combined regional + national incentive reaching 54% &mdash; the highest in Europe.</p>
+            <div class="incentives-grid" id="incentivesGrid">
+                <div class="incentive-col featured">
+                    <div class="incentive-country">Spain</div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">National rebate</div>
+                        <div class="incentive-value"><span class="counter" data-target="30">0</span>%</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Canary Islands</div>
+                        <div class="incentive-value"><span class="counter" data-target="54">0</span>%</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Min. spend</div>
+                        <div class="incentive-value-small">&euro;1M live-action / &euro;200K animation</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">VAT mechanism</div>
+                        <div class="incentive-value-small">Reverse charge (0% IVA to UK clients)</div>
+                    </div>
+                </div>
+                <div class="incentive-col">
+                    <div class="incentive-country">United Kingdom</div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">National rebate</div>
+                        <div class="incentive-value"><span class="counter" data-target="25">0</span>%</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Regional bonus</div>
+                        <div class="incentive-dash">&mdash;</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Min. spend</div>
+                        <div class="incentive-value-small">Nil</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">VAT mechanism</div>
+                        <div class="incentive-value-small">Standard 20%</div>
+                    </div>
+                </div>
+                <div class="incentive-col">
+                    <div class="incentive-country">France</div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">National rebate</div>
+                        <div class="incentive-value"><span class="counter" data-target="30">0</span>%</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Regional bonus</div>
+                        <div class="incentive-dash">&mdash;</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Min. spend</div>
+                        <div class="incentive-value-small">&euro;250K</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">VAT mechanism</div>
+                        <div class="incentive-value-small">Standard 20%</div>
+                    </div>
+                </div>
+                <div class="incentive-col">
+                    <div class="incentive-country">Italy</div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">National rebate</div>
+                        <div class="incentive-value"><span class="counter" data-target="40">0</span>%</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Regional bonus</div>
+                        <div class="incentive-dash">&mdash;</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">Min. spend</div>
+                        <div class="incentive-value-small">&euro;1M</div>
+                    </div>
+                    <div class="incentive-row">
+                        <div class="incentive-row-label">VAT mechanism</div>
+                        <div class="incentive-value-small">Standard 22%</div>
+                    </div>
+                </div>
+            </div>
+            <p class="incentives-note reveal">Spain&rsquo;s Article 36.2 of the Corporate Tax Law governs international production incentives. The Canary Islands offer a combined regional + national incentive reaching 54% &mdash; the highest rebate in Europe. Productions must partner with a registered Spanish entity (S.L.) to qualify.</p>
         </div>
     </section>
 
-    <!-- CASE STUDY -->
+    <!-- SAMPLE QUOTE -->
     <section id="case-study">
         <div class="container">
             <div class="case-study-header">
                 <p class="section-label">Sample quote</p>
-                <h2>What a 3-day fashion shoot in Barcelona looks like</h2>
+                <h2 class="reveal">What a 3-day fashion shoot in Barcelona looks like</h2>
             </div>
             <div class="quote-grid" id="quoteGrid">
                 <div class="quote-line"><span class="quote-item">Location scouting &amp; management (3 days @ &euro;450)</span><span class="quote-price">&euro;1,350</span></div>
                 <div class="quote-line"><span class="quote-item">Location fees &mdash; 2 premium locations (3 days)</span><span class="quote-price">&euro;9,000</span></div>
                 <div class="quote-line"><span class="quote-item">Local crew &mdash; 10 technicians (3 days)</span><span class="quote-price">&euro;10,500</span></div>
-                <div class="quote-line"><span class="quote-item">Camera &amp; lighting package (ARRI / Cooke)</span><span class="quote-price">&euro;6,000</span></div>
+                <div class="quote-line"><span class="quote-item">Camera &amp; lighting package (ARRI / Cooke / Profoto)</span><span class="quote-price">&euro;6,000</span></div>
                 <div class="quote-line"><span class="quote-item">Grip &amp; electric equipment</span><span class="quote-price">&euro;3,200</span></div>
-                <div class="quote-line"><span class="quote-item">Transport &amp; logistics (unit base, runners)</span><span class="quote-price">&euro;2,400</span></div>
+                <div class="quote-line"><span class="quote-item">Transport, unit base &amp; runners</span><span class="quote-price">&euro;2,400</span></div>
                 <div class="quote-line"><span class="quote-item">Catering &amp; craft services (3 days, 20 crew)</span><span class="quote-price">&euro;2,700</span></div>
                 <div class="quote-line"><span class="quote-item">Municipal permits &amp; police coordination</span><span class="quote-price">&euro;1,800</span></div>
                 <div class="quote-line"><span class="quote-item">Production insurance (civil liability + equipment)</span><span class="quote-price">&euro;1,750</span></div>
@@ -1324,7 +1755,20 @@
                 <span class="quote-total-label">Total production cost</span>
                 <span class="quote-total-price">&euro;38,700</span>
             </div>
-            <p class="quote-tagline" id="quoteTagline">All-inclusive. No surprises.</p>
+            <div class="quote-context" id="quoteContext">
+                <div class="quote-context-item">
+                    <div class="quote-context-label">Includes</div>
+                    <div class="quote-context-value">All-inclusive. No surprises.</div>
+                </div>
+                <div class="quote-context-item">
+                    <div class="quote-context-label">Payment</div>
+                    <div class="quote-context-value">50% upfront, balance within 14 days</div>
+                </div>
+                <div class="quote-context-item">
+                    <div class="quote-context-label">VAT</div>
+                    <div class="quote-context-value">0% IVA via reverse charge</div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1332,15 +1776,19 @@
     <section id="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-name reveal">
-                    James<br>Huertas
-                    <span>Founder &amp; Executive Producer</span>
+                <div class="about-left reveal">
+                    <div class="about-name">James<br>Huertas</div>
+                    <div class="about-role">Founder &amp; Executive Producer</div>
+                    <div class="about-locations-list">
+                        <span>Based in Barcelona &amp; Mallorca</span>
+                        <span>Formerly London, 2016&ndash;2023</span>
+                    </div>
                 </div>
                 <div class="about-bio">
-                    <p class="reveal">Seven years in London. Eight years on set. Now based in Barcelona and Mallorca, bridging two worlds that rarely speak the same language.</p>
-                    <p class="reveal">I built my career inside London&rsquo;s production machine &mdash; the pace, the standards, the unspoken expectations that separate good from exceptional. When I moved to Spain, I brought that standard with me. Not as a theory, but as the only way I know how to work.</p>
-                    <p class="reveal">Today I work regularly with Palma Pictures and international productions across Spain. Bilingual English-Spanish. Connected to every rental house, location, and freelancer in the region. When a London agency calls, I don&rsquo;t translate their brief into Spanish logistics &mdash; I already think in both.</p>
-                    <p class="reveal">Liquid Locations exists because there shouldn&rsquo;t be a gap between what you expect and what you get on the ground. There isn&rsquo;t one when you work with us.</p>
+                    <p class="reveal">Seven years embedded in London&rsquo;s production machine. Eight years on set. Now bridging two markets that rarely speak the same language.</p>
+                    <p class="reveal">I built my career inside some of London&rsquo;s most demanding production environments &mdash; the pace, the standards, the unspoken expectations that separate competent from exceptional. When I relocated to Spain, I brought that standard with me. Not as theory, but as the only way I know how to operate.</p>
+                    <p class="reveal">Today I work with Palma Pictures, international agencies, and productions across the Iberian Peninsula. Bilingual English-Spanish. Connected to every rental house, location owner, and trusted freelancer in the region. When a London EP calls needing 10 crew in Barcelona by Thursday, I don&rsquo;t start from scratch &mdash; the team is already built.</p>
+                    <p class="reveal">Liquid Locations exists because there shouldn&rsquo;t be a gap between what you expect and what you get on the ground. The cultural nuance, the logistical precision, the on-set etiquette that London demands &mdash; that&rsquo;s what we deliver. Every time.</p>
                 </div>
             </div>
         </div>
@@ -1348,24 +1796,44 @@
 
     <!-- CLIENTS -->
     <section id="clients">
+        <p class="clients-label">Trusted by</p>
         <div class="marquee-wrapper">
-            <div class="marquee-track">
+            <div class="marquee-track" id="marqueeTrack">
                 <span class="marquee-item">Palma Pictures</span>
-                <span class="marquee-item">TrueGroup</span>
-                <span class="marquee-item">Bakery Productions</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Twenty Four Seven</span>
+                <span class="marquee-divider">&bull;</span>
+                <span class="marquee-item">TrueGroup</span>
+                <span class="marquee-divider">&bull;</span>
+                <span class="marquee-item">Bakery Productions</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Chelsea &amp; Co</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Questex</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">711rent</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Palma Equipment Rental</span>
+                <span class="marquee-divider">&bull;</span>
+                <span class="marquee-item">Welab Barcelona</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Palma Pictures</span>
-                <span class="marquee-item">TrueGroup</span>
-                <span class="marquee-item">Bakery Productions</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Twenty Four Seven</span>
+                <span class="marquee-divider">&bull;</span>
+                <span class="marquee-item">TrueGroup</span>
+                <span class="marquee-divider">&bull;</span>
+                <span class="marquee-item">Bakery Productions</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Chelsea &amp; Co</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Questex</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">711rent</span>
+                <span class="marquee-divider">&bull;</span>
                 <span class="marquee-item">Palma Equipment Rental</span>
+                <span class="marquee-divider">&bull;</span>
+                <span class="marquee-item">Welab Barcelona</span>
             </div>
         </div>
     </section>
@@ -1376,10 +1844,16 @@
             <h2 class="contact-headline" id="contactHeadline">Let's shoot.</h2>
             <div class="contact-grid">
                 <div class="contact-info reveal">
-                    <a href="mailto:james@huertas.co.uk" class="contact-link hoverable">james@huertas.co.uk</a>
-                    <a href="tel:+34668554738" class="contact-link hoverable">+34 668 554 738</a>
-                    <a href="https://wa.me/34668554738" class="contact-link hoverable" target="_blank" rel="noopener">WhatsApp</a>
-                    <p class="contact-location">Barcelona &amp; Mallorca, Spain</p>
+                    <div>
+                        <a href="mailto:james@huertas.co.uk" class="contact-link hoverable">james@huertas.co.uk</a>
+                    </div>
+                    <div>
+                        <a href="tel:+34668554738" class="contact-link hoverable">+34 668 554 738</a>
+                    </div>
+                    <div>
+                        <a href="https://wa.me/34668554738" class="contact-link hoverable" target="_blank" rel="noopener">WhatsApp</a>
+                    </div>
+                    <p class="contact-location">Barcelona &amp; Mallorca, Spain<br>Registered S.L. &mdash; APCP membership pending</p>
                 </div>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
@@ -1387,18 +1861,18 @@
                         <input type="text" id="name" name="name" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Production company or agency">
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="your@email.com" required>
                     </div>
                     <div class="form-group">
                         <label for="brief">Project brief</label>
-                        <textarea id="brief" name="brief" placeholder="Tell us about your project &mdash; locations, crew size, creative direction..." rows="4"></textarea>
+                        <textarea id="brief" name="brief" placeholder="Locations, crew size, dates, creative direction..." rows="4"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="dates">Proposed dates</label>
-                        <input type="text" id="dates" name="dates" placeholder="e.g. March 2026, flexible">
-                    </div>
-                    <button type="submit" class="submit-btn hoverable">Send enquiry</button>
+                    <button type="submit" class="submit-btn hoverable"><span>Send enquiry</span></button>
                 </form>
             </div>
         </div>
@@ -1410,266 +1884,419 @@
     <footer>
         <div class="container">
             <div class="footer-inner">
-                <span class="footer-left">&copy; 2026 Liquid Locations</span>
+                <span class="footer-left">&copy; 2026 Liquid Locations S.L.</span>
                 <div class="footer-right">
-                    <a href="https://instagram.com" class="footer-social hoverable" target="_blank" rel="noopener">Instagram</a>
-                    <a href="https://vimeo.com" class="footer-social hoverable" target="_blank" rel="noopener">Vimeo</a>
-                    <span class="footer-note">APCP membership pending</span>
+                    <a href="https://instagram.com/liquidlocations" class="footer-social hoverable" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://vimeo.com/liquidlocations" class="footer-social hoverable" target="_blank" rel="noopener">Vimeo</a>
+                    <span class="footer-note">Barcelona &middot; Mallorca</span>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // ─── GSAP INIT ───
+        /* ================================================================
+           GSAP INIT
+           ================================================================ */
         gsap.registerPlugin(ScrollTrigger);
 
-        // ─── CUSTOM CURSOR (desktop only) ───
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
+        /* ================================================================
+           PAGE LOADER
+           ================================================================ */
+        window.addEventListener('load', function() {
+            var loader = document.getElementById('pageLoader');
+            gsap.to(loader, {
+                opacity: 0,
+                duration: 0.6,
+                delay: 0.3,
+                ease: 'power2.inOut',
+                onComplete: function() {
+                    loader.style.display = 'none';
+                    initAnimations();
+                }
+            });
+        });
 
-        if (window.matchMedia('(pointer: fine)').matches) {
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                dot.style.left = (mouseX - 4) + 'px';
-                dot.style.top = (mouseY - 4) + 'px';
+        /* ================================================================
+           CUSTOM CURSOR (desktop only)
+           ================================================================ */
+        (function() {
+            var dot = document.getElementById('cursorDot');
+            var ring = document.getElementById('cursorRing');
+            var mouseX = 0, mouseY = 0;
+            var ringX = 0, ringY = 0;
+
+            if (window.matchMedia('(pointer: fine)').matches) {
+                document.addEventListener('mousemove', function(e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    dot.style.left = (mouseX - 3) + 'px';
+                    dot.style.top = (mouseY - 3) + 'px';
+                });
+
+                (function animate() {
+                    ringX += (mouseX - ringX) * 0.1;
+                    ringY += (mouseY - ringY) * 0.1;
+                    ring.style.left = (ringX - 22) + 'px';
+                    ring.style.top = (ringY - 22) + 'px';
+                    requestAnimationFrame(animate);
+                })();
+
+                document.querySelectorAll('.hoverable, a, button, .service-card, .location-card').forEach(function(el) {
+                    el.addEventListener('mouseenter', function() { ring.classList.add('hovering'); });
+                    el.addEventListener('mouseleave', function() { ring.classList.remove('hovering'); });
+                });
+            }
+        })();
+
+        /* ================================================================
+           MOBILE MENU
+           ================================================================ */
+        (function() {
+            var toggle = document.getElementById('menuToggle');
+            var mobileNav = document.getElementById('mobileNav');
+            var links = mobileNav.querySelectorAll('a');
+
+            toggle.addEventListener('click', function() {
+                toggle.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+                document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+
+                if (mobileNav.classList.contains('active')) {
+                    gsap.fromTo(links,
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out', delay: 0.15 }
+                    );
+                }
             });
 
-            (function animateCursor() {
-                ringX += (mouseX - ringX) * 0.12;
-                ringY += (mouseY - ringY) * 0.12;
-                ring.style.left = (ringX - 20) + 'px';
-                ring.style.top = (ringY - 20) + 'px';
-                requestAnimationFrame(animateCursor);
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    toggle.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+        })();
+
+        /* ================================================================
+           NAV SCROLL STATE
+           ================================================================ */
+        (function() {
+            var nav = document.getElementById('mainNav');
+            var scrolled = false;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 80 && !scrolled) {
+                    nav.classList.add('scrolled');
+                    scrolled = true;
+                } else if (window.scrollY <= 80 && scrolled) {
+                    nav.classList.remove('scrolled');
+                    scrolled = false;
+                }
+            }, { passive: true });
+        })();
+
+        /* ================================================================
+           ALL ANIMATIONS (called after loader)
+           ================================================================ */
+        function initAnimations() {
+
+            /* ── HERO: LETTER-BY-LETTER ── */
+            (function() {
+                var heroTitle = document.getElementById('heroTitle');
+                var words = heroTitle.textContent.trim().split(/\s+/);
+                heroTitle.innerHTML = '';
+
+                words.forEach(function(word, wi) {
+                    var wordSpan = document.createElement('span');
+                    wordSpan.className = 'word';
+                    word.split('').forEach(function(char) {
+                        var letterSpan = document.createElement('span');
+                        letterSpan.className = 'letter';
+                        letterSpan.textContent = char;
+                        wordSpan.appendChild(letterSpan);
+                    });
+                    heroTitle.appendChild(wordSpan);
+                    if (wi < words.length - 1) {
+                        var space = document.createElement('span');
+                        space.innerHTML = '&nbsp;';
+                        space.className = 'letter';
+                        heroTitle.appendChild(space);
+                    }
+                });
+
+                var tl = gsap.timeline({ delay: 0.2 });
+
+                tl.fromTo('.hero-eyebrow',
+                    { opacity: 0, y: 15 },
+                    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }
+                )
+                .fromTo('.letter',
+                    { opacity: 0, y: '100%' },
+                    { opacity: 1, y: '0%', duration: 0.8, stagger: 0.025, ease: 'power3.out' },
+                    '-=0.3'
+                )
+                .fromTo('.hero-subtitle',
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 1, ease: 'power2.out' },
+                    '-=0.4'
+                )
+                .fromTo('#heroLine',
+                    { height: 0, opacity: 0 },
+                    { height: 60, opacity: 0.4, duration: 1.2, ease: 'power2.out' },
+                    '-=0.6'
+                )
+                .fromTo('.hero-locations',
+                    { opacity: 0 },
+                    { opacity: 1, duration: 1, ease: 'power2.out' },
+                    '-=0.8'
+                )
+                .fromTo('#scrollIndicator',
+                    { opacity: 0 },
+                    { opacity: 1, duration: 0.8, ease: 'power2.out' },
+                    '-=0.5'
+                );
             })();
 
-            document.querySelectorAll('.hoverable, a, button, .service-card, .location-card').forEach(function(el) {
-                el.addEventListener('mouseenter', function() { ring.classList.add('hovering'); });
-                el.addEventListener('mouseleave', function() { ring.classList.remove('hovering'); });
-            });
-        }
-
-        // ─── HERO: LETTER SPLIT + ENTRANCE ───
-        (function() {
-            var heroTitle = document.getElementById('heroTitle');
-            var text = heroTitle.textContent;
-            heroTitle.innerHTML = '';
-            text.split('').forEach(function(char) {
-                var span = document.createElement('span');
-                span.className = 'letter';
-                span.textContent = char === ' ' ? '\u00A0' : char;
-                heroTitle.appendChild(span);
-            });
-
-            var tl = gsap.timeline({ delay: 0.4 });
-            tl.fromTo('.letter',
-                { opacity: 0, y: 50 },
-                { opacity: 1, y: 0, duration: 0.7, stagger: 0.03, ease: 'power3.out' }
-            )
-            .fromTo('.hero-subtitle',
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' },
-                '-=0.3'
-            )
-            .fromTo('.hero-locations',
-                { opacity: 0 },
-                { opacity: 1, duration: 1, ease: 'power2.out' },
-                '-=0.5'
-            )
-            .fromTo('.scroll-indicator',
-                { opacity: 0 },
-                { opacity: 1, duration: 0.8, ease: 'power2.out' },
-                '-=0.3'
-            );
-        })();
-
-        // ─── REVEAL ON SCROLL ───
-        gsap.utils.toArray('.reveal').forEach(function(el) {
-            gsap.fromTo(el,
-                { opacity: 0, y: 40 },
-                {
-                    opacity: 1, y: 0,
-                    duration: 0.9,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none'
-                    }
-                }
-            );
-        });
-
-        // ─── MANIFESTO STAT ITEMS ───
-        gsap.utils.toArray('.stat-item').forEach(function(item, i) {
-            gsap.to(item, {
-                opacity: 1, x: 0,
-                duration: 0.8,
-                delay: i * 0.18,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // ─── MANIFESTO PARALLAX ───
-        gsap.to('.manifesto-statement', {
-            y: -40,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '#manifesto',
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: 1
-            }
-        });
-
-        // ─── SERVICE CARDS: SLIDE FROM RIGHT ───
-        gsap.utils.toArray('.service-card').forEach(function(card, i) {
-            gsap.to(card, {
-                opacity: 1, x: 0,
-                duration: 0.9,
-                delay: i * 0.2,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        });
-
-        // ─── HORIZONTAL SCROLL LOCATIONS (desktop) ───
-        (function() {
-            var track = document.getElementById('locationsTrack');
-            var isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-            if (!isMobile && track) {
-                var cards = track.querySelectorAll('.location-card');
-                var totalWidth = (340 + 24) * cards.length + 96;
-                var viewportWidth = window.innerWidth;
-                var scrollDist = totalWidth - viewportWidth;
-
-                if (scrollDist > 0) {
-                    gsap.to(track, {
-                        x: -scrollDist,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: '#locations',
-                            start: 'top top',
-                            end: function() { return '+=' + scrollDist; },
-                            scrub: 1,
-                            pin: true,
-                            anticipatePin: 1,
-                            invalidateOnRefresh: true
-                        }
-                    });
-                }
-            }
-        })();
-
-        // ─── TAX TABLE: COUNT UP ───
-        document.querySelectorAll('[data-target]').forEach(function(el) {
-            var target = parseInt(el.getAttribute('data-target'));
-            ScrollTrigger.create({
-                trigger: el,
-                start: 'top 85%',
-                onEnter: function() {
-                    gsap.to({ val: 0 }, {
-                        val: target,
-                        duration: 1.8,
+            /* ── REVEAL ON SCROLL ── */
+            gsap.utils.toArray('.reveal').forEach(function(el) {
+                gsap.fromTo(el,
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 1,
                         ease: 'power2.out',
-                        onUpdate: function() {
-                            el.textContent = Math.round(this.targets()[0].val);
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 88%',
+                            toggleActions: 'play none none none'
                         }
-                    });
-                },
-                once: true
+                    }
+                );
             });
-        });
 
-        // ─── QUOTE LINES: STAGGER REVEAL ───
-        (function() {
-            var items = document.querySelectorAll('.quote-item, .quote-price');
-            items.forEach(function(item, i) {
+            /* ── MANIFESTO PARALLAX ── */
+            gsap.to('.manifesto-statement', {
+                y: -30,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#manifesto',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 1.5
+                }
+            });
+
+            /* ── MANIFESTO STAT ITEMS ── */
+            gsap.utils.toArray('.stat-item').forEach(function(item, i) {
                 gsap.to(item, {
-                    opacity: 1, y: 0,
-                    duration: 0.5,
-                    delay: Math.floor(i / 2) * 0.12,
+                    opacity: 1, x: 0,
+                    duration: 0.9,
+                    delay: i * 0.2,
                     ease: 'power2.out',
                     scrollTrigger: {
-                        trigger: '#quoteGrid',
-                        start: 'top 80%',
+                        trigger: item,
+                        start: 'top 88%',
                         toggleActions: 'play none none none'
                     }
                 });
             });
 
-            gsap.to('#quoteTotal', {
-                opacity: 1,
-                duration: 0.8,
-                delay: 1.2,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: '#quoteGrid',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
+            /* ── ANIMATED COUNTERS ── */
+            document.querySelectorAll('.counter').forEach(function(el) {
+                var target = parseInt(el.getAttribute('data-target'));
+                ScrollTrigger.create({
+                    trigger: el,
+                    start: 'top 88%',
+                    onEnter: function() {
+                        gsap.to({ val: 0 }, {
+                            val: target,
+                            duration: 2,
+                            ease: 'power2.out',
+                            onUpdate: function() {
+                                el.textContent = Math.round(this.targets()[0].val);
+                            }
+                        });
+                    },
+                    once: true
+                });
             });
 
-            gsap.to('#quoteTagline', {
-                opacity: 1,
-                duration: 0.6,
-                delay: 1.6,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: '#quoteGrid',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            });
-        })();
-
-        // ─── CONTACT: LETTER-BY-LETTER REVEAL ───
-        (function() {
-            var headline = document.getElementById('contactHeadline');
-            var text = headline.textContent;
-            headline.innerHTML = '';
-            text.split('').forEach(function(char) {
-                var span = document.createElement('span');
-                span.className = 'letter-reveal';
-                span.textContent = char === ' ' ? '\u00A0' : char;
-                headline.appendChild(span);
+            /* ── SERVICE CARDS: STAGGER UP ── */
+            gsap.utils.toArray('.service-card').forEach(function(card, i) {
+                gsap.to(card, {
+                    opacity: 1, y: 0,
+                    duration: 1,
+                    delay: i * 0.15,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none'
+                    }
+                });
             });
 
-            ScrollTrigger.create({
-                trigger: '#contact',
-                start: 'top 70%',
-                onEnter: function() {
-                    gsap.to('.letter-reveal', {
-                        opacity: 1,
-                        duration: 0.5,
-                        stagger: 0.05,
-                        ease: 'power2.out'
+            /* ── HORIZONTAL SCROLL LOCATIONS (desktop) ── */
+            (function() {
+                var track = document.getElementById('locationsTrack');
+                var isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+                if (!isMobile && track) {
+                    var cards = track.querySelectorAll('.location-card');
+                    var totalWidth = 0;
+                    cards.forEach(function(card) {
+                        totalWidth += card.offsetWidth + 28;
                     });
-                },
-                once: true
-            });
-        })();
+                    totalWidth += 96;
+                    var viewportWidth = window.innerWidth;
+                    var scrollDist = totalWidth - viewportWidth;
 
-        // ─── FORM HANDLER ───
+                    if (scrollDist > 0) {
+                        gsap.to(track, {
+                            x: -scrollDist,
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: '#locations',
+                                start: 'top top',
+                                end: function() { return '+=' + (scrollDist * 1.2); },
+                                scrub: 1,
+                                pin: true,
+                                anticipatePin: 1,
+                                invalidateOnRefresh: true
+                            }
+                        });
+                    }
+                }
+            })();
+
+            /* ── INCENTIVES GRID STAGGER ── */
+            gsap.utils.toArray('.incentive-col').forEach(function(col, i) {
+                gsap.fromTo(col,
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.8,
+                        delay: i * 0.12,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: '#incentivesGrid',
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        }
+                    }
+                );
+            });
+
+            /* ── QUOTE LINES: STAGGER REVEAL ── */
+            (function() {
+                var items = document.querySelectorAll('.quote-item, .quote-price');
+                items.forEach(function(item, i) {
+                    gsap.to(item, {
+                        opacity: 1, y: 0,
+                        duration: 0.5,
+                        delay: Math.floor(i / 2) * 0.1,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: '#quoteGrid',
+                            start: 'top 82%',
+                            toggleActions: 'play none none none'
+                        }
+                    });
+                });
+
+                gsap.to('#quoteTotal', {
+                    opacity: 1,
+                    duration: 0.9,
+                    delay: 1,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '#quoteGrid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+
+                gsap.to('#quoteContext', {
+                    opacity: 1,
+                    duration: 0.7,
+                    delay: 1.4,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '#quoteGrid',
+                        start: 'top 82%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            })();
+
+            /* ── CONTACT: LETTER-BY-LETTER REVEAL ── */
+            (function() {
+                var headline = document.getElementById('contactHeadline');
+                var text = headline.textContent;
+                headline.innerHTML = '';
+                text.split('').forEach(function(char) {
+                    var span = document.createElement('span');
+                    span.className = 'letter-reveal';
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    headline.appendChild(span);
+                });
+
+                ScrollTrigger.create({
+                    trigger: '#contact',
+                    start: 'top 72%',
+                    onEnter: function() {
+                        gsap.to('.letter-reveal', {
+                            opacity: 1,
+                            duration: 0.4,
+                            stagger: 0.04,
+                            ease: 'power2.out'
+                        });
+                    },
+                    once: true
+                });
+            })();
+
+            /* ── PARALLAX: ABOUT SECTION ── */
+            gsap.to('.about-bio', {
+                y: -20,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#about',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 2
+                }
+            });
+
+        } // end initAnimations
+
+        /* ================================================================
+           FORM HANDLER
+           ================================================================ */
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            var btn = this.querySelector('.submit-btn');
+            var btn = this.querySelector('.submit-btn span');
             btn.textContent = 'Sent \u2014 we\'ll be in touch';
-            btn.style.borderColor = 'var(--blue)';
-            btn.disabled = true;
+            this.querySelector('.submit-btn').style.borderColor = 'var(--blue)';
+            this.querySelector('.submit-btn').disabled = true;
+        });
+
+        /* ================================================================
+           SMOOTH SCROLL FOR ANCHOR LINKS
+           ================================================================ */
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                var target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    var offset = target.id === 'hero' ? 0 : 0;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
