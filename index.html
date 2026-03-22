@@ -3,1111 +3,1247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liquid Locations | Production Services Spain</title>
-    <meta name="description" content="London-standard production services in Spain. Location scouting, production coordination, and full-service production across Barcelona, Mallorca, Madrid, and beyond.">
+    <title>Liquid Locations — Premium Production Services in Spain | Barcelona & Mallorca</title>
+    <meta name="description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, and the Canary Islands.">
+    <meta property="og:title" content="Liquid Locations — Premium Production Services in Spain">
+    <meta property="og:description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management across Barcelona, Mallorca, Madrid, Ibiza, and the Canary Islands.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://liquidlocations.co">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Liquid Locations — Premium Production Services in Spain">
+    <meta name="twitter:description" content="London-standard production services in Spain. Location scouting, crew coordination, and full production management.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <style>
+        :root {
+            --white: #FAFAFA;
+            --charcoal: #1A1A1A;
+            --stone: #D4C5B2;
+            --blue: #2B5B84;
+            --stone-light: #EDE7DF;
+            --stone-dark: #B8A997;
+            --grey-subtle: #E8E8E8;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+        }
+
         *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --white: #FFFFFF;
-            --off-white: #FAFAFA;
-            --gray-50: #F9FAFB;
-            --gray-100: #F3F4F6;
-            --gray-200: #E5E7EB;
-            --gray-300: #D1D5DB;
-            --gray-400: #9CA3AF;
-            --gray-500: #6B7280;
-            --gray-600: #4B5563;
-            --gray-700: #374151;
-            --gray-800: #1F2937;
-            --gray-900: #111827;
-            --black: #0A0A0A;
-            --accent: #2563EB;
-            --accent-light: #3B82F6;
-            --accent-dark: #1D4ED8;
-            --warm: #F59E0B;
-        }
-
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--gray-900);
+            font-family: var(--sans);
             background: var(--white);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            color: var(--charcoal);
+            overflow-x: hidden;
             line-height: 1.6;
         }
 
-        /* ---- NAV ---- */
+        ::selection {
+            background: var(--stone);
+            color: var(--charcoal);
+        }
+
+        /* ─── GRAIN OVERLAY ─── */
+        .grain {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ─── CURSOR ─── */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--charcoal);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease;
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(26, 26, 26, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .cursor-ring.hovering {
+            transform: scale(1.8) !important;
+            border-color: var(--blue);
+        }
+
+        @media (pointer: coarse) {
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        /* ─── NAVIGATION ─── */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gray-200);
-            padding: 0 2rem;
-            height: 64px;
+            z-index: 1000;
+            padding: 28px 48px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
         }
 
-        .nav-logo {
-            font-weight: 700;
-            font-size: 1.125rem;
-            letter-spacing: -0.02em;
-            color: var(--black);
+        nav .logo {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--white);
+            text-decoration: none;
         }
 
-        .nav-logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
+        nav .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 40px;
             list-style: none;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--gray-600);
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--black);
-        }
-
-        .nav-cta {
-            background: var(--black);
-            color: var(--white) !important;
-            padding: 0.5rem 1.25rem;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .nav-cta:hover {
-            background: var(--gray-800) !important;
-            color: var(--white) !important;
-        }
-
-        .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
-        }
-
-        .nav-hamburger span {
-            width: 24px;
-            height: 2px;
-            background: var(--black);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-
-        /* ---- HERO ---- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(180deg, var(--white) 0%, var(--gray-50) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            padding: 0.375rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #22C55E;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5.5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -0.035em;
-            max-width: 900px;
-            margin-bottom: 1.5rem;
-            color: var(--black);
-        }
-
-        .hero h1 em {
-            font-style: normal;
-            color: var(--accent);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--gray-500);
-            max-width: 580px;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
+        nav .nav-links a {
+            font-size: 12px;
             font-weight: 400;
-        }
-
-        .hero-ctas {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--black);
-            color: var(--white);
-            padding: 0.875rem 2rem;
-            border-radius: 12px;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: var(--gray-800);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--white);
-            color: var(--gray-700);
-            padding: 0.875rem 2rem;
-            border-radius: 12px;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            text-decoration: none;
-            border: 1px solid var(--gray-300);
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--gray-400);
-            background: var(--gray-50);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 4rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--gray-200);
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--black);
-            letter-spacing: -0.02em;
-        }
-
-        .hero-stat-label {
-            font-size: 0.8125rem;
-            color: var(--gray-500);
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-
-        /* ---- SECTIONS ---- */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .section-title {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--black);
-        }
-
-        .section-desc {
-            font-size: 1.0625rem;
-            color: var(--gray-500);
-            max-width: 600px;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        /* ---- SERVICES BENTO GRID ---- */
-        .services {
-            background: var(--off-white);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            transition: all 0.3s;
+            color: var(--white);
+            text-decoration: none;
             position: relative;
-            overflow: hidden;
+            padding-bottom: 2px;
         }
 
-        .service-card:hover {
-            border-color: var(--gray-300);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-            transform: translateY(-2px);
-        }
-
-        .service-card.featured {
-            background: var(--black);
-            border-color: var(--black);
-            color: var(--white);
-        }
-
-        .service-card.featured .service-label {
-            color: var(--accent-light);
-        }
-
-        .service-card.featured .service-desc {
-            color: var(--gray-400);
-        }
-
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.25rem;
-        }
-
-        .service-card:nth-child(1) .service-icon {
-            background: #EFF6FF;
-        }
-
-        .service-card:nth-child(2) .service-icon {
-            background: var(--gray-800);
-        }
-
-        .service-card:nth-child(3) .service-icon {
-            background: #FEF3C7;
-        }
-
-        .service-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-
-        .service-title {
-            font-size: 1.375rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-
-        .service-desc {
-            font-size: 0.9375rem;
-            color: var(--gray-500);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-features {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.625rem;
-        }
-
-        .service-features li {
-            font-size: 0.875rem;
-            color: var(--gray-600);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .service-card.featured .service-features li {
-            color: var(--gray-300);
-        }
-
-        .service-features li::before {
+        nav .nav-links a::after {
             content: '';
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--accent);
-            flex-shrink: 0;
-        }
-
-        /* ---- WHY US ---- */
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .why-card {
-            background: var(--gray-50);
-            border: 1px solid var(--gray-100);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            transition: all 0.3s;
-        }
-
-        .why-card:hover {
-            background: var(--white);
-            border-color: var(--gray-200);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-        }
-
-        .why-number {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .why-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.75rem;
-        }
-
-        .why-desc {
-            font-size: 0.9375rem;
-            color: var(--gray-500);
-            line-height: 1.7;
-        }
-
-        /* ---- LOCATIONS GRID ---- */
-        .locations {
-            background: var(--off-white);
-        }
-
-        .locations-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto auto;
-            gap: 1.25rem;
-        }
-
-        .location-card {
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-            transition: all 0.4s;
-        }
-
-        .location-card:first-child {
-            grid-column: span 2;
-            aspect-ratio: 2/1;
-        }
-
-        .location-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-        }
-
-        .location-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* CSS gradient placeholders for locations */
-        .loc-barcelona { background: linear-gradient(135deg, #1e3a5f 0%, #4a90d9 40%, #e8c547 100%); }
-        .loc-mallorca { background: linear-gradient(135deg, #0077b6 0%, #00b4d8 40%, #90e0ef 70%, #f0e6d3 100%); }
-        .loc-madrid { background: linear-gradient(135deg, #8b4513 0%, #d4a574 40%, #ffd700 70%, #fff5e6 100%); }
-        .loc-ibiza { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 30%, #f0932b 60%, #fed330 100%); }
-        .loc-andalusia { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 30%, #f39c12 60%, #fff3e0 100%); }
-        .loc-canaries { background: linear-gradient(135deg, #0c2461 0%, #1e3799 30%, #4a69bd 60%, #82ccdd 100%); }
-
-        .location-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 1.75rem;
-        }
-
-        .location-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: -0.01em;
-        }
-
-        .location-type {
-            font-size: 0.8125rem;
-            color: rgba(255,255,255,0.7);
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-
-        /* ---- TAX INCENTIVES ---- */
-        .tax-section {
-            background: var(--black);
-            color: var(--white);
-        }
-
-        .tax-section .section-label {
-            color: var(--warm);
-        }
-
-        .tax-section .section-title {
-            color: var(--white);
-        }
-
-        .tax-section .section-desc {
-            color: var(--gray-400);
-            max-width: 700px;
-        }
-
-        .tax-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .tax-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s;
-        }
-
-        .tax-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .tax-value {
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
-        }
-
-        .tax-value.highlight {
-            color: var(--warm);
-        }
-
-        .tax-label {
-            font-size: 0.875rem;
-            color: var(--gray-400);
-            font-weight: 500;
-        }
-
-        .tax-note {
-            font-size: 0.8125rem;
-            color: var(--gray-500);
-            margin-top: 0.75rem;
-            line-height: 1.6;
-        }
-
-        /* ---- ABOUT ---- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            aspect-ratio: 4/5;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            width: 0;
+            height: 1px;
+            background: var(--white);
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .about-image-name {
-            font-size: 1.125rem;
-            font-weight: 700;
+        nav .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px 24px; }
+            nav .nav-links { display: none; }
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 24px; }
+        }
+
+        /* ─── HERO ─── */
+        #hero {
+            background: var(--charcoal);
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-family: var(--sans);
+            font-size: clamp(48px, 10vw, 140px);
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
             color: var(--white);
+            text-align: center;
+            line-height: 1.1;
+            padding: 0 24px;
         }
 
-        .about-image-role {
-            font-size: 0.8125rem;
-            color: rgba(255,255,255,0.7);
-            margin-top: 0.25rem;
+        .hero-title .letter {
+            display: inline-block;
+            opacity: 0;
         }
 
-        .about-text h3 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
+        .hero-subtitle {
+            font-family: var(--serif);
+            font-size: clamp(18px, 2.5vw, 28px);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--stone);
+            text-align: center;
+            margin-top: 32px;
+            opacity: 0;
+        }
+
+        .hero-locations {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: rgba(250, 250, 250, 0.5);
+            opacity: 0;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+        }
+
+        .scroll-indicator span {
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(250, 250, 250, 0.3);
+        }
+
+        .scroll-arrow {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(250,250,250,0.4), transparent);
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* ─── MANIFESTO ─── */
+        #manifesto {
+            background: var(--white);
+            padding: 160px 0;
+        }
+
+        .manifesto-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 120px;
+            align-items: center;
+        }
+
+        .manifesto-statement {
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 400;
+            line-height: 1.3;
+            color: var(--charcoal);
+        }
+
+        .manifesto-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .stat-item {
+            padding-left: 24px;
+            border-left: 1px solid var(--stone);
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .stat-number {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--charcoal);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            #manifesto { padding: 100px 0; }
+            .manifesto-grid {
+                grid-template-columns: 1fr;
+                gap: 64px;
+            }
+        }
+
+        /* ─── DIVIDER ─── */
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--grey-subtle);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ─── SERVICES ─── */
+        #services {
+            background: var(--white);
+            padding: 160px 0;
+            min-height: auto;
+        }
+
+        .section-label {
+            font-family: var(--sans);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            margin-bottom: 80px;
+        }
+
+        .service-card {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            gap: 48px;
+            padding: 64px 0;
+            border-top: 1px solid var(--grey-subtle);
+            align-items: start;
+            opacity: 0;
+            transform: translateX(60px);
+            cursor: pointer;
+            transition: background 0.4s ease;
+        }
+
+        .service-card:last-child {
+            border-bottom: 1px solid var(--grey-subtle);
+        }
+
+        .service-card:hover {
+            background: linear-gradient(90deg, transparent, rgba(212, 197, 178, 0.06), transparent);
+        }
+
+        .service-number {
+            font-family: var(--serif);
+            font-size: 48px;
+            font-weight: 400;
+            color: var(--stone);
+            line-height: 1;
+        }
+
+        .service-header h3 {
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .service-header p {
+            font-family: var(--serif);
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--charcoal);
             line-height: 1.3;
         }
 
-        .about-text p {
-            font-size: 1rem;
-            color: var(--gray-600);
-            line-height: 1.8;
-            margin-bottom: 1.25rem;
+        .service-details {
+            padding-top: 8px;
         }
 
-        .about-credentials {
+        .service-details ul {
+            list-style: none;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .credential-tag {
-            background: var(--gray-100);
-            color: var(--gray-700);
-            padding: 0.375rem 0.875rem;
-            border-radius: 8px;
-            font-size: 0.8125rem;
+        .service-details li {
+            font-size: 15px;
+            font-weight: 300;
+            color: rgba(26, 26, 26, 0.7);
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .service-details li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 4px;
+            height: 1px;
+            background: var(--stone-dark);
+        }
+
+        .service-price {
+            font-family: var(--sans);
+            font-size: 14px;
             font-weight: 500;
+            color: var(--blue);
+            margin-top: 20px;
+            letter-spacing: 0.05em;
         }
 
-        /* ---- CONTACT ---- */
-        .contact {
-            background: var(--off-white);
+        @media (max-width: 768px) {
+            #services { padding: 100px 0; }
+            .service-card {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 48px 0;
+            }
+            .service-number { font-size: 32px; }
+        }
+
+        /* ─── LOCATIONS ─── */
+        #locations {
+            background: var(--charcoal);
+            padding: 0;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .locations-header {
+            padding: 80px 48px 48px;
+        }
+
+        .locations-header .section-label {
+            color: var(--stone);
+        }
+
+        .locations-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400;
+            color: var(--white);
+            margin-top: 16px;
+        }
+
+        .locations-scroll-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .locations-track {
+            display: flex;
+            gap: 24px;
+            padding: 0 48px 80px;
+            will-change: transform;
+        }
+
+        .location-card {
+            flex-shrink: 0;
+            width: 340px;
+            height: 500px;
+            border: 1px solid rgba(250, 250, 250, 0.12);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+
+        .location-card:hover {
+            border-color: var(--stone);
+            transform: translateY(-4px);
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .location-card:nth-child(1)::before {
+            background: linear-gradient(160deg, rgba(43,91,132,0.25) 0%, rgba(212,197,178,0.15) 50%, rgba(26,26,26,0.9) 100%);
+        }
+        .location-card:nth-child(2)::before {
+            background: linear-gradient(160deg, rgba(212,197,178,0.3) 0%, rgba(43,91,132,0.12) 50%, rgba(26,26,26,0.9) 100%);
+        }
+        .location-card:nth-child(3)::before {
+            background: linear-gradient(160deg, rgba(180,160,140,0.25) 0%, rgba(212,197,178,0.1) 50%, rgba(26,26,26,0.9) 100%);
+        }
+        .location-card:nth-child(4)::before {
+            background: linear-gradient(160deg, rgba(212,197,178,0.2) 0%, rgba(200,170,130,0.15) 50%, rgba(26,26,26,0.9) 100%);
+        }
+        .location-card:nth-child(5)::before {
+            background: linear-gradient(160deg, rgba(200,160,100,0.25) 0%, rgba(212,197,178,0.1) 50%, rgba(26,26,26,0.9) 100%);
+        }
+        .location-card:nth-child(6)::before {
+            background: linear-gradient(160deg, rgba(80,140,120,0.2) 0%, rgba(43,91,132,0.15) 50%, rgba(26,26,26,0.9) 100%);
+        }
+
+        .location-card:hover::before {
+            opacity: 0.7;
+        }
+
+        .location-name {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+            margin-bottom: 16px;
+        }
+
+        .location-tags {
+            display: flex;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-tags span {
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--stone);
+        }
+
+        .location-rebate {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--blue);
+            background: rgba(43, 91, 132, 0.15);
+            padding: 6px 14px;
+            border-radius: 2px;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .locations-header { padding: 60px 24px 32px; }
+            .locations-track {
+                flex-direction: column;
+                padding: 0 24px 60px;
+                gap: 16px;
+            }
+            .location-card {
+                width: 100%;
+                height: 300px;
+            }
+        }
+
+        /* ─── TAX INCENTIVES ─── */
+        #incentives {
+            background: var(--white);
+            padding: 160px 0;
+        }
+
+        .incentives-header {
+            margin-bottom: 80px;
+        }
+
+        .incentives-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-top: 16px;
+        }
+
+        .incentives-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .incentives-table thead th {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            text-align: left;
+            padding: 0 32px 24px 0;
+            border-bottom: 1px solid var(--grey-subtle);
+        }
+
+        .incentives-table thead th:first-child {
+            width: 200px;
+        }
+
+        .incentives-table tbody td {
+            padding: 32px 32px 32px 0;
+            border-bottom: 1px solid var(--grey-subtle);
+            font-size: 15px;
+            font-weight: 300;
+            vertical-align: top;
+        }
+
+        .incentives-table tbody td:first-child {
+            font-weight: 400;
+            color: var(--charcoal);
+        }
+
+        .table-highlight {
+            color: var(--blue);
+            font-weight: 500 !important;
+            font-size: 28px !important;
+            font-family: var(--serif);
+        }
+
+        .table-number {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--charcoal);
+        }
+
+        .table-dash {
+            color: var(--stone);
+            font-size: 20px;
+        }
+
+        .incentives-note {
+            margin-top: 48px;
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(26, 26, 26, 0.5);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            #incentives { padding: 100px 0; }
+            .incentives-table { display: block; overflow-x: auto; }
+            .incentives-table thead th,
+            .incentives-table tbody td { padding: 20px 20px 20px 0; white-space: nowrap; }
+            .table-highlight, .table-number { font-size: 22px !important; }
+        }
+
+        /* ─── CASE STUDY ─── */
+        #case-study {
+            background: var(--charcoal);
+            padding: 160px 0;
+        }
+
+        .case-study-header {
+            margin-bottom: 80px;
+        }
+
+        .case-study-header .section-label {
+            color: var(--stone);
+        }
+
+        .case-study-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--white);
+            margin-top: 16px;
+            max-width: 700px;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0;
+        }
+
+        .quote-line {
+            display: contents;
+        }
+
+        .quote-item {
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(250, 250, 250, 0.8);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.08);
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .quote-price {
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--stone);
+            padding: 20px 0;
+            text-align: right;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.08);
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .quote-total {
+            margin-top: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-top: 32px;
+            border-top: 1px solid var(--stone);
+            opacity: 0;
+        }
+
+        .quote-total-label {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        .quote-total-price {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            color: var(--white);
+        }
+
+        .quote-tagline {
+            margin-top: 24px;
+            font-family: var(--serif);
+            font-size: 18px;
+            font-style: italic;
+            color: var(--stone);
+            text-align: right;
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            #case-study { padding: 100px 0; }
+        }
+
+        /* ─── ABOUT ─── */
+        #about {
+            background: var(--white);
+            padding: 160px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 120px;
+            align-items: start;
+        }
+
+        .about-name {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4vw, 56px);
+            font-weight: 400;
+            color: var(--charcoal);
+            line-height: 1.2;
+            position: sticky;
+            top: 160px;
+        }
+
+        .about-name span {
+            display: block;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            margin-top: 20px;
+        }
+
+        .about-bio {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .about-bio p {
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: rgba(26, 26, 26, 0.8);
+        }
+
+        .about-bio p:first-child {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        @media (max-width: 768px) {
+            #about { padding: 100px 0; }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            .about-name { position: relative; top: auto; }
+        }
+
+        /* ─── CLIENTS ─── */
+        #clients {
+            background: var(--stone-light);
+            padding: 80px 0;
+            min-height: auto;
+            overflow: hidden;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 80px;
+            animation: marquee 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
+            flex-shrink: 0;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ─── CONTACT ─── */
+        #contact {
+            background: var(--charcoal);
+            padding: 160px 0 80px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-headline {
+            font-family: var(--serif);
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--white);
+            margin-bottom: 80px;
+            line-height: 1;
+        }
+
+        .contact-headline .letter-reveal {
+            display: inline-block;
+            opacity: 0;
         }
 
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 120px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 32px;
         }
 
-        .contact-method {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.125rem;
-        }
-
-        .contact-method-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--gray-400);
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-method-value {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--black);
-        }
-
-        .contact-method-value a {
-            color: var(--black);
+        .contact-link {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--stone);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: color 0.3s ease;
+            display: block;
         }
 
-        .contact-method-value a:hover {
-            color: var(--accent);
+        .contact-link:hover {
+            color: var(--white);
+        }
+
+        .contact-location {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(250, 250, 250, 0.4);
+            margin-top: 16px;
         }
 
         .contact-form {
-            background: var(--white);
-            border: 1px solid var(--gray-200);
-            border-radius: 20px;
-            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            color: var(--gray-700);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--gray-200);
-            border-radius: 10px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9375rem;
-            color: var(--gray-900);
-            background: var(--gray-50);
-            transition: all 0.2s;
-            outline: none;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            border-color: var(--accent);
-            background: var(--white);
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 0.875rem;
-            background: var(--black);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9375rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .form-submit:hover {
-            background: var(--gray-800);
-        }
-
-        /* ---- FOOTER ---- */
-        footer {
-            background: var(--black);
-            color: var(--gray-400);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-logo span {
-            color: var(--accent);
-        }
-
-        footer p {
-            font-size: 0.8125rem;
-            color: var(--gray-500);
-        }
-
-        .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .footer-links a {
-            font-size: 0.8125rem;
-            color: var(--gray-500);
-            text-decoration: none;
-            transition: color 0.2s;
+        .form-group label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--stone-dark);
         }
 
-        .footer-links a:hover {
+        .form-group input,
+        .form-group textarea {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.15);
+            padding: 12px 0;
+            font-family: var(--sans);
+            font-size: 16px;
+            font-weight: 300;
             color: var(--white);
+            outline: none;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            min-height: 44px;
         }
 
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 1024px) {
-            .services-grid, .tax-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .services-grid .service-card:last-child {
-                grid-column: span 2;
-            }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(250, 250, 250, 0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--stone);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            margin-top: 16px;
+            background: transparent;
+            border: 1px solid var(--stone);
+            padding: 18px 48px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            align-self: flex-start;
+            min-height: 44px;
+        }
+
+        .submit-btn:hover {
+            background: var(--stone);
+            color: var(--charcoal);
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0 1.25rem; }
+            #contact { padding: 100px 0 60px; }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 64px;
+            }
+        }
 
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 64px;
-                left: 0;
-                right: 0;
-                background: var(--white);
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--charcoal);
+            padding: 48px 0;
+            border-top: 1px solid rgba(250, 250, 250, 0.08);
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(250, 250, 250, 0.3);
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-social {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: rgba(250, 250, 250, 0.4);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-social:hover {
+            color: var(--white);
+        }
+
+        .footer-note {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(250, 250, 250, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .footer-inner {
                 flex-direction: column;
-                padding: 1.5rem;
-                gap: 1rem;
-                border-bottom: 1px solid var(--gray-200);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+                gap: 24px;
+                text-align: center;
             }
+        }
 
-            .nav-links.active {
-                display: flex;
-            }
+        /* ─── REVEAL ANIMATIONS ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
 
-            .nav-hamburger {
-                display: flex;
-            }
-
-            .hero { padding: 7rem 1.5rem 3rem; min-height: auto; }
-
-            .hero-ctas {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .hero-ctas a {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .services-grid, .why-grid, .tax-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid .service-card:last-child {
-                grid-column: span 1;
-            }
-
-            .locations-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .location-card:first-child {
-                grid-column: span 1;
-                aspect-ratio: 16/9;
-            }
-
-            .about-grid, .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            section { padding: 4rem 1.25rem; }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
+    <div class="grain"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
     <!-- NAV -->
     <nav>
-        <div class="nav-logo">Liquid <span>Locations</span></div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#locations">Locations</a></li>
-            <li><a href="#incentives">Tax Incentives</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+        <a href="#hero" class="logo">Liquid Locations</a>
+        <ul class="nav-links">
+            <li><a href="#services" class="hoverable">Services</a></li>
+            <li><a href="#locations" class="hoverable">Locations</a></li>
+            <li><a href="#about" class="hoverable">About</a></li>
+            <li><a href="#contact" class="hoverable">Contact</a></li>
         </ul>
-        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
     </nav>
 
     <!-- HERO -->
-    <section class="hero">
-        <div class="hero-badge">Available for bookings across Spain</div>
-        <h1>Your London-standard production partner in <em>Spain</em></h1>
-        <p>Location scouting, production coordination, and full-service production across Barcelona, Mallorca, Madrid, Ibiza, and beyond. Built by London-trained professionals who speak both languages.</p>
-        <div class="hero-ctas">
-            <a href="#contact" class="btn-primary">Start a Project &#8594;</a>
-            <a href="#services" class="btn-secondary">View Services</a>
+    <header>
+    <section id="hero">
+        <div style="width:100%; text-align:center;">
+            <h1 class="hero-title" id="heroTitle">Liquid Locations</h1>
+            <p class="hero-subtitle">Premium Production Services &mdash; Spain</p>
         </div>
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="hero-stat-value">8+</div>
-                <div class="hero-stat-label">Years in production</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">200+</div>
-                <div class="hero-stat-label">Shoots completed</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">30%</div>
-                <div class="hero-stat-label">Spain tax rebate</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">EN/ES</div>
-                <div class="hero-stat-label">Fully bilingual</div>
+        <p class="hero-locations">Barcelona &middot; Mallorca &middot; Madrid &middot; Ibiza</p>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+    </header>
+
+    <main>
+
+    <!-- MANIFESTO -->
+    <section id="manifesto">
+        <div class="container">
+            <div class="manifesto-grid">
+                <div class="manifesto-statement reveal">
+                    We bridge London&rsquo;s creative standards with Spain&rsquo;s extraordinary locations.
+                </div>
+                <div class="manifesto-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">320 days of sunshine</div>
+                        <div class="stat-label">Spain averages more annual sunshine than any major European production hub. Schedule-dependent shoots land on time, every time.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">30% tax rebate</div>
+                        <div class="stat-label">International productions qualify for Spain&rsquo;s national tax rebate. In the Canary Islands, that figure reaches 54%.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">8 years, 2 countries, 1 standard</div>
+                        <div class="stat-label">Seven years in London. Eight years on set. Bilingual English-Spanish. We understand both sides of the equation.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- SERVICES -->
-    <section class="services" id="services">
-        <div class="section-container">
-            <div class="section-label">Services</div>
-            <h2 class="section-title">Three tiers. One standard.</h2>
-            <p class="section-desc">Whether you need a trusted local to scout a rooftop in the Gothic Quarter or a full-service production partner to run a five-day campaign shoot, we scale to your brief.</p>
+    <section id="services">
+        <div class="container">
+            <p class="section-label">What we do</p>
 
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">&#128205;</div>
-                    <div class="service-label">Tier 1</div>
-                    <h3 class="service-title">Location Scouting</h3>
-                    <p class="service-desc">We find, photograph, and vet locations across Spain so you can present options to your client before anyone boards a plane.</p>
-                    <ul class="service-features">
-                        <li>Bespoke location decks with GPS coordinates</li>
-                        <li>Permit feasibility assessment</li>
-                        <li>Sun path and lighting analysis</li>
-                        <li>Local access and logistics briefing</li>
-                        <li>Video walk-throughs on request</li>
+            <article class="service-card" role="button" tabindex="0">
+                <div class="service-number">01</div>
+                <div class="service-header">
+                    <h3>Scout</h3>
+                    <p>Location scouting &amp; management</p>
+                </div>
+                <div class="service-details">
+                    <ul>
+                        <li>GPS-tagged proprietary location database</li>
+                        <li>360-degree virtual recces</li>
+                        <li>Municipal permit acquisition</li>
+                        <li>On-set location management</li>
                     </ul>
+                    <div class="service-price">&euro;450 / day</div>
                 </div>
+            </article>
 
-                <div class="service-card featured">
-                    <div class="service-icon">&#127910;</div>
-                    <div class="service-label">Tier 2 &mdash; Most Popular</div>
-                    <h3 class="service-title">Production Coordination</h3>
-                    <p class="service-desc">Your London EP stays in control. We handle the local logistics, permitting, crew sourcing, and equipment rental so you don't have to.</p>
-                    <ul class="service-features">
-                        <li>Municipal and regional permit applications</li>
-                        <li>Local crew sourcing and vetting</li>
-                        <li>Equipment rental coordination (711rent, Palma Equipment Rental, Welab)</li>
-                        <li>Transport, catering, and accommodation</li>
-                        <li>On-set bilingual liaison</li>
+            <article class="service-card" role="button" tabindex="0">
+                <div class="service-number">02</div>
+                <div class="service-header">
+                    <h3>Coordinate</h3>
+                    <p>Crew &amp; equipment sourcing</p>
+                </div>
+                <div class="service-details">
+                    <ul>
+                        <li>Bilingual technical crews</li>
+                        <li>Partner rental house network</li>
+                        <li>Equipment logistics &amp; insurance</li>
+                        <li>Administrative processing &amp; payroll</li>
                     </ul>
+                    <div class="service-price">15&ndash;20% coordination fee</div>
                 </div>
+            </article>
 
-                <div class="service-card">
-                    <div class="service-icon">&#11088;</div>
-                    <div class="service-label">Tier 3</div>
-                    <h3 class="service-title">Full Service Production</h3>
-                    <p class="service-desc">End-to-end production management from pre-production through wrap. We become your Spanish production arm, including SPV setup for tax rebate eligibility.</p>
-                    <ul class="service-features">
-                        <li>Full budget management and cost reporting</li>
-                        <li>SPV establishment for tax rebate access</li>
-                        <li>Complete crew and talent booking</li>
-                        <li>Post-production coordination</li>
-                        <li>Insurance, compliance, and union management</li>
+            <article class="service-card" role="button" tabindex="0">
+                <div class="service-number">03</div>
+                <div class="service-header">
+                    <h3>Produce</h3>
+                    <p>Full production service</p>
+                </div>
+                <div class="service-details">
+                    <ul>
+                        <li>End-to-end production facilitation</li>
+                        <li>Transport, catering, accommodation</li>
+                        <li>Comprehensive civil liability insurance</li>
+                        <li>From permits to wrap party</li>
                     </ul>
+                    <div class="service-price">20% management fee</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WHY US -->
-    <section id="why">
-        <div class="section-container">
-            <div class="section-label">Why Liquid Locations</div>
-            <h2 class="section-title">London experience. Local knowledge.</h2>
-            <p class="section-desc">We bridge the gap between your London brief and flawless Spanish execution.</p>
-
-            <div class="why-grid">
-                <div class="why-card">
-                    <div class="why-number">01</div>
-                    <h3 class="why-title">Bilingual, London-trained</h3>
-                    <p class="why-desc">Seven years embedded in London production means we natively understand APA standards, British on-set etiquette, and the pace your clients expect. Fluent in English and Spanish.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">02</div>
-                    <h3 class="why-title">Rental house relationships</h3>
-                    <p class="why-desc">Established partnerships with 711rent in Barcelona, Palma Equipment Rental in Mallorca, and Welab across Spain. We get you the right kit at the right price, every time.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">03</div>
-                    <h3 class="why-title">Deep local crew network</h3>
-                    <p class="why-desc">We work alongside and can source the best local DOPs, gaffers, stylists, digital technicians, and production assistants in Catalonia and the Balearics.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">04</div>
-                    <h3 class="why-title">Tax rebate navigation</h3>
-                    <p class="why-desc">Spain offers up to 30% on the first million euros (54% in the Canary Islands). We handle the SPV setup, APCP compliance, and local spend reporting to maximise your rebate.</p>
-                </div>
-            </div>
+            </article>
         </div>
     </section>
 
     <!-- LOCATIONS -->
-    <section class="locations" id="locations">
-        <div class="section-container">
-            <div class="section-label">Locations</div>
-            <h2 class="section-title">From Sagrada Familia to Sierra Nevada</h2>
-            <p class="section-desc">Six regions, infinite possibilities. We scout and secure locations that transform your creative vision into reality.</p>
-
-            <div class="locations-grid">
-                <div class="location-card">
-                    <div class="location-bg loc-barcelona"></div>
-                    <div class="location-overlay">
+    <section id="locations">
+        <div style="width:100%;">
+            <div class="locations-header">
+                <p class="section-label">Where we shoot</p>
+                <h2>Six regions. One jurisdiction.</h2>
+            </div>
+            <div class="locations-scroll-wrapper">
+                <div class="locations-track" id="locationsTrack">
+                    <div class="location-card">
                         <div class="location-name">Barcelona</div>
-                        <div class="location-type">Urban / Architecture / Rooftops / Gothic Quarter / Beachfront</div>
+                        <div class="location-tags">
+                            <span>Urban</span>
+                            <span>Industrial</span>
+                            <span>Gothic</span>
+                        </div>
                     </div>
-                </div>
-                <div class="location-card">
-                    <div class="location-bg loc-mallorca"></div>
-                    <div class="location-overlay">
+                    <div class="location-card">
                         <div class="location-name">Mallorca</div>
-                        <div class="location-type">Coastal / Fincas / Luxury Villas / Mountains</div>
+                        <div class="location-tags">
+                            <span>Coastal</span>
+                            <span>Rural</span>
+                            <span>Luxury Villas</span>
+                        </div>
                     </div>
-                </div>
-                <div class="location-card">
-                    <div class="location-bg loc-madrid"></div>
-                    <div class="location-overlay">
+                    <div class="location-card">
                         <div class="location-name">Madrid</div>
-                        <div class="location-type">Urban / Studios / Historic Architecture</div>
+                        <div class="location-tags">
+                            <span>Modern</span>
+                            <span>Historic</span>
+                            <span>Studio</span>
+                        </div>
                     </div>
-                </div>
-                <div class="location-card">
-                    <div class="location-bg loc-ibiza"></div>
-                    <div class="location-overlay">
+                    <div class="location-card">
                         <div class="location-name">Ibiza</div>
-                        <div class="location-type">Sunset / Beach Clubs / Rustic Interiors</div>
+                        <div class="location-tags">
+                            <span>Beach</span>
+                            <span>Clubs</span>
+                            <span>Rustic</span>
+                        </div>
                     </div>
-                </div>
-                <div class="location-card">
-                    <div class="location-bg loc-andalusia"></div>
-                    <div class="location-overlay">
+                    <div class="location-card">
                         <div class="location-name">Andalusia</div>
-                        <div class="location-type">Desert / Moorish Architecture / Olive Groves</div>
+                        <div class="location-tags">
+                            <span>Desert</span>
+                            <span>Moorish</span>
+                            <span>Countryside</span>
+                        </div>
                     </div>
-                </div>
-                <div class="location-card">
-                    <div class="location-bg loc-canaries"></div>
-                    <div class="location-overlay">
+                    <div class="location-card">
+                        <div class="location-rebate">54% rebate</div>
                         <div class="location-name">Canary Islands</div>
-                        <div class="location-type">Volcanic / Subtropical / 54% Tax Rebate Zone</div>
+                        <div class="location-tags">
+                            <span>Volcanic</span>
+                            <span>Tropical</span>
+                            <span>Year-round</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1115,162 +1251,426 @@
     </section>
 
     <!-- TAX INCENTIVES -->
-    <section class="tax-section" id="incentives">
-        <div class="section-container">
-            <div class="section-label">Tax Incentives</div>
-            <h2 class="section-title">Spain's production incentives are among Europe's strongest</h2>
-            <p class="section-desc">The Spanish government's "Spain, Audiovisual Hub of Europe" plan backs over &euro;1.6 billion in public investment for 2021&ndash;2025. Here is what your production can access.</p>
-
-            <div class="tax-grid">
-                <div class="tax-card">
-                    <div class="tax-value highlight">30%</div>
-                    <div class="tax-label">Tax deduction on first &euro;1M spend</div>
-                    <p class="tax-note">Corporation Tax deduction for international productions shooting on mainland Spain. 25% on expenditure above &euro;1M.</p>
-                </div>
-                <div class="tax-card">
-                    <div class="tax-value highlight">54%</div>
-                    <div class="tax-label">Canary Islands rebate</div>
-                    <p class="tax-note">The Canary Islands offer one of Europe's most generous production rebates, making Tenerife and Gran Canaria exceptional value for large-scale shoots.</p>
-                </div>
-                <div class="tax-card">
-                    <div class="tax-value">SPV</div>
-                    <div class="tax-label">We handle the structure</div>
-                    <p class="tax-note">International productions must partner with a registered Spanish service company or establish a local SPV. Liquid Locations manages this process end-to-end.</p>
-                </div>
+    <section id="incentives">
+        <div class="container">
+            <div class="incentives-header">
+                <p class="section-label">The numbers</p>
+                <h2>Tax incentives that change the equation</h2>
             </div>
+            <table class="incentives-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Spain</th>
+                        <th>UK</th>
+                        <th>France</th>
+                        <th>Italy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>National rebate</td>
+                        <td><span class="table-highlight" data-target="30">0</span>%</td>
+                        <td><span class="table-number" data-target="25">0</span>%</td>
+                        <td><span class="table-number" data-target="30">0</span>%</td>
+                        <td><span class="table-number" data-target="40">0</span>%</td>
+                    </tr>
+                    <tr>
+                        <td>Canary Islands</td>
+                        <td><span class="table-highlight" data-target="54">0</span>%</td>
+                        <td><span class="table-dash">&mdash;</span></td>
+                        <td><span class="table-dash">&mdash;</span></td>
+                        <td><span class="table-dash">&mdash;</span></td>
+                    </tr>
+                    <tr>
+                        <td>Minimum spend</td>
+                        <td>&euro;1M</td>
+                        <td>Nil</td>
+                        <td>&euro;250K</td>
+                        <td>&euro;1M</td>
+                    </tr>
+                    <tr>
+                        <td>VAT recovery</td>
+                        <td>Reverse charge</td>
+                        <td>Standard</td>
+                        <td>Standard</td>
+                        <td>Standard</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="incentives-note">Spain&rsquo;s Article 36.2 of the Corporate Tax Law governs international production incentives. Minimum expenditure of &euro;1M for live-action, &euro;200K for animation. The Canary Islands offer a combined regional + national incentive reaching 54% &mdash; the highest in Europe.</p>
+        </div>
+    </section>
+
+    <!-- CASE STUDY -->
+    <section id="case-study">
+        <div class="container">
+            <div class="case-study-header">
+                <p class="section-label">Sample quote</p>
+                <h2>What a 3-day fashion shoot in Barcelona looks like</h2>
+            </div>
+            <div class="quote-grid" id="quoteGrid">
+                <div class="quote-line"><span class="quote-item">Location scouting &amp; management (3 days @ &euro;450)</span><span class="quote-price">&euro;1,350</span></div>
+                <div class="quote-line"><span class="quote-item">Location fees &mdash; 2 premium locations (3 days)</span><span class="quote-price">&euro;9,000</span></div>
+                <div class="quote-line"><span class="quote-item">Local crew &mdash; 10 technicians (3 days)</span><span class="quote-price">&euro;10,500</span></div>
+                <div class="quote-line"><span class="quote-item">Camera &amp; lighting package (ARRI / Cooke)</span><span class="quote-price">&euro;6,000</span></div>
+                <div class="quote-line"><span class="quote-item">Grip &amp; electric equipment</span><span class="quote-price">&euro;3,200</span></div>
+                <div class="quote-line"><span class="quote-item">Transport &amp; logistics (unit base, runners)</span><span class="quote-price">&euro;2,400</span></div>
+                <div class="quote-line"><span class="quote-item">Catering &amp; craft services (3 days, 20 crew)</span><span class="quote-price">&euro;2,700</span></div>
+                <div class="quote-line"><span class="quote-item">Municipal permits &amp; police coordination</span><span class="quote-price">&euro;1,800</span></div>
+                <div class="quote-line"><span class="quote-item">Production insurance (civil liability + equipment)</span><span class="quote-price">&euro;1,750</span></div>
+            </div>
+            <div class="quote-total" id="quoteTotal">
+                <span class="quote-total-label">Total production cost</span>
+                <span class="quote-total-price">&euro;38,700</span>
+            </div>
+            <p class="quote-tagline" id="quoteTagline">All-inclusive. No surprises.</p>
         </div>
     </section>
 
     <!-- ABOUT -->
     <section id="about">
-        <div class="section-container">
+        <div class="container">
             <div class="about-grid">
-                <div class="about-image">
-                    <div class="about-image-overlay">
-                        <div class="about-image-name">James Huertas</div>
-                        <div class="about-image-role">Founder, Liquid Locations</div>
-                    </div>
+                <div class="about-name reveal">
+                    James<br>Huertas
+                    <span>Founder &amp; Executive Producer</span>
                 </div>
-                <div class="about-text">
-                    <div class="section-label">About</div>
-                    <h3>Eight years in production. Two countries. One standard.</h3>
-                    <p>Liquid Locations was founded by James Huertas, a freelance digital technician and production professional who spent seven years working across London's commercial photography and advertising production industry before relocating to Spain.</p>
-                    <p>Based between Barcelona and Mallorca, James works regularly with Palma Pictures and other leading Spanish service companies, while maintaining deep relationships across the London production landscape. This dual perspective enables Liquid Locations to deliver a seamless bridge between London's creative ambition and Spain's world-class production infrastructure.</p>
-                    <p>Whether it is a two-day stills campaign for a premium spirits brand or a week-long TVC for a global automotive client, Liquid Locations brings London precision to every Spanish shoot.</p>
-                    <div class="about-credentials">
-                        <span class="credential-tag">Palma Pictures</span>
-                        <span class="credential-tag">711rent Barcelona</span>
-                        <span class="credential-tag">APA Standards</span>
-                        <span class="credential-tag">APCP Compliant</span>
-                        <span class="credential-tag">Bilingual EN/ES</span>
-                        <span class="credential-tag">Phase One / Hasselblad</span>
-                    </div>
+                <div class="about-bio">
+                    <p class="reveal">Seven years in London. Eight years on set. Now based in Barcelona and Mallorca, bridging two worlds that rarely speak the same language.</p>
+                    <p class="reveal">I built my career inside London&rsquo;s production machine &mdash; the pace, the standards, the unspoken expectations that separate good from exceptional. When I moved to Spain, I brought that standard with me. Not as a theory, but as the only way I know how to work.</p>
+                    <p class="reveal">Today I work regularly with Palma Pictures and international productions across Spain. Bilingual English-Spanish. Connected to every rental house, location, and freelancer in the region. When a London agency calls, I don&rsquo;t translate their brief into Spanish logistics &mdash; I already think in both.</p>
+                    <p class="reveal">Liquid Locations exists because there shouldn&rsquo;t be a gap between what you expect and what you get on the ground. There isn&rsquo;t one when you work with us.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section id="clients">
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <span class="marquee-item">Palma Pictures</span>
+                <span class="marquee-item">TrueGroup</span>
+                <span class="marquee-item">Bakery Productions</span>
+                <span class="marquee-item">Twenty Four Seven</span>
+                <span class="marquee-item">Chelsea &amp; Co</span>
+                <span class="marquee-item">Questex</span>
+                <span class="marquee-item">711rent</span>
+                <span class="marquee-item">Palma Equipment Rental</span>
+                <span class="marquee-item">Palma Pictures</span>
+                <span class="marquee-item">TrueGroup</span>
+                <span class="marquee-item">Bakery Productions</span>
+                <span class="marquee-item">Twenty Four Seven</span>
+                <span class="marquee-item">Chelsea &amp; Co</span>
+                <span class="marquee-item">Questex</span>
+                <span class="marquee-item">711rent</span>
+                <span class="marquee-item">Palma Equipment Rental</span>
             </div>
         </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="contact" id="contact">
-        <div class="section-container">
-            <div class="section-label">Contact</div>
-            <h2 class="section-title">Let's talk about your next Spanish shoot</h2>
-            <p class="section-desc">Whether you are in early planning or need a local partner tomorrow, we are ready.</p>
-
+    <section id="contact">
+        <div class="container">
+            <h2 class="contact-headline" id="contactHeadline">Let's shoot.</h2>
             <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-method">
-                        <div class="contact-icon">&#9993;</div>
-                        <div>
-                            <div class="contact-method-label">Email</div>
-                            <div class="contact-method-value"><a href="mailto:hello@liquidlocations.es">hello@liquidlocations.es</a></div>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">&#128222;</div>
-                        <div>
-                            <div class="contact-method-label">Phone / WhatsApp</div>
-                            <div class="contact-method-value"><a href="tel:+34668554738">+34 668 554 738</a></div>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">&#127758;</div>
-                        <div>
-                            <div class="contact-method-label">Website</div>
-                            <div class="contact-method-value"><a href="https://liquidlocations.es" target="_blank">liquidlocations.es</a></div>
-                        </div>
-                    </div>
-                    <div class="contact-method">
-                        <div class="contact-icon">&#128205;</div>
-                        <div>
-                            <div class="contact-method-label">Based in</div>
-                            <div class="contact-method-value">Barcelona &amp; Mallorca, Spain</div>
-                        </div>
-                    </div>
+                <div class="contact-info reveal">
+                    <a href="mailto:james@huertas.co.uk" class="contact-link hoverable">james@huertas.co.uk</a>
+                    <a href="tel:+34668554738" class="contact-link hoverable">+34 668 554 738</a>
+                    <a href="https://wa.me/34668554738" class="contact-link hoverable" target="_blank" rel="noopener">WhatsApp</a>
+                    <p class="contact-location">Barcelona &amp; Mallorca, Spain</p>
                 </div>
-
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! We will be in touch within 24 hours.');">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-input" placeholder="Your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Company</label>
-                            <input type="text" class="form-input" placeholder="Production company">
-                        </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-input" placeholder="you@company.com" required>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Project details</label>
-                        <textarea class="form-textarea" placeholder="Tell us about your shoot: dates, locations, crew requirements..."></textarea>
+                        <label for="brief">Project brief</label>
+                        <textarea id="brief" name="brief" placeholder="Tell us about your project &mdash; locations, crew size, creative direction..." rows="4"></textarea>
                     </div>
-                    <button type="submit" class="form-submit">Send Enquiry &#8594;</button>
+                    <div class="form-group">
+                        <label for="dates">Proposed dates</label>
+                        <input type="text" id="dates" name="dates" placeholder="e.g. March 2026, flexible">
+                    </div>
+                    <button type="submit" class="submit-btn hoverable">Send enquiry</button>
                 </form>
             </div>
         </div>
     </section>
 
+    </main>
+
     <!-- FOOTER -->
     <footer>
-        <div class="footer-logo">Liquid <span>Locations</span></div>
-        <p>Production services across Spain, built for London standards.</p>
-        <div class="footer-links">
-            <a href="#services">Services</a>
-            <a href="#locations">Locations</a>
-            <a href="#incentives">Incentives</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-left">&copy; 2026 Liquid Locations</span>
+                <div class="footer-right">
+                    <a href="https://instagram.com" class="footer-social hoverable" target="_blank" rel="noopener">Instagram</a>
+                    <a href="https://vimeo.com" class="footer-social hoverable" target="_blank" rel="noopener">Vimeo</a>
+                    <span class="footer-note">APCP membership pending</span>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Mobile nav toggle
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
-        });
+        // ─── GSAP INIT ───
+        gsap.registerPlugin(ScrollTrigger);
 
-        // Close mobile nav on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
+        // ─── CUSTOM CURSOR (desktop only) ───
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                dot.style.left = (mouseX - 4) + 'px';
+                dot.style.top = (mouseY - 4) + 'px';
             });
+
+            (function animateCursor() {
+                ringX += (mouseX - ringX) * 0.12;
+                ringY += (mouseY - ringY) * 0.12;
+                ring.style.left = (ringX - 20) + 'px';
+                ring.style.top = (ringY - 20) + 'px';
+                requestAnimationFrame(animateCursor);
+            })();
+
+            document.querySelectorAll('.hoverable, a, button, .service-card, .location-card').forEach(function(el) {
+                el.addEventListener('mouseenter', function() { ring.classList.add('hovering'); });
+                el.addEventListener('mouseleave', function() { ring.classList.remove('hovering'); });
+            });
+        }
+
+        // ─── HERO: LETTER SPLIT + ENTRANCE ───
+        (function() {
+            var heroTitle = document.getElementById('heroTitle');
+            var text = heroTitle.textContent;
+            heroTitle.innerHTML = '';
+            text.split('').forEach(function(char) {
+                var span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                heroTitle.appendChild(span);
+            });
+
+            var tl = gsap.timeline({ delay: 0.4 });
+            tl.fromTo('.letter',
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 0.7, stagger: 0.03, ease: 'power3.out' }
+            )
+            .fromTo('.hero-subtitle',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.9, ease: 'power2.out' },
+                '-=0.3'
+            )
+            .fromTo('.hero-locations',
+                { opacity: 0 },
+                { opacity: 1, duration: 1, ease: 'power2.out' },
+                '-=0.5'
+            )
+            .fromTo('.scroll-indicator',
+                { opacity: 0 },
+                { opacity: 1, duration: 0.8, ease: 'power2.out' },
+                '-=0.3'
+            );
+        })();
+
+        // ─── REVEAL ON SCROLL ───
+        gsap.utils.toArray('.reveal').forEach(function(el) {
+            gsap.fromTo(el,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.9,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
         });
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // ─── MANIFESTO STAT ITEMS ───
+        gsap.utils.toArray('.stat-item').forEach(function(item, i) {
+            gsap.to(item, {
+                opacity: 1, x: 0,
+                duration: 0.8,
+                delay: i * 0.18,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
                 }
             });
         });
-    </script>
 
+        // ─── MANIFESTO PARALLAX ───
+        gsap.to('.manifesto-statement', {
+            y: -40,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#manifesto',
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1
+            }
+        });
+
+        // ─── SERVICE CARDS: SLIDE FROM RIGHT ───
+        gsap.utils.toArray('.service-card').forEach(function(card, i) {
+            gsap.to(card, {
+                opacity: 1, x: 0,
+                duration: 0.9,
+                delay: i * 0.2,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+
+        // ─── HORIZONTAL SCROLL LOCATIONS (desktop) ───
+        (function() {
+            var track = document.getElementById('locationsTrack');
+            var isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+            if (!isMobile && track) {
+                var cards = track.querySelectorAll('.location-card');
+                var totalWidth = (340 + 24) * cards.length + 96;
+                var viewportWidth = window.innerWidth;
+                var scrollDist = totalWidth - viewportWidth;
+
+                if (scrollDist > 0) {
+                    gsap.to(track, {
+                        x: -scrollDist,
+                        ease: 'none',
+                        scrollTrigger: {
+                            trigger: '#locations',
+                            start: 'top top',
+                            end: function() { return '+=' + scrollDist; },
+                            scrub: 1,
+                            pin: true,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true
+                        }
+                    });
+                }
+            }
+        })();
+
+        // ─── TAX TABLE: COUNT UP ───
+        document.querySelectorAll('[data-target]').forEach(function(el) {
+            var target = parseInt(el.getAttribute('data-target'));
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                onEnter: function() {
+                    gsap.to({ val: 0 }, {
+                        val: target,
+                        duration: 1.8,
+                        ease: 'power2.out',
+                        onUpdate: function() {
+                            el.textContent = Math.round(this.targets()[0].val);
+                        }
+                    });
+                },
+                once: true
+            });
+        });
+
+        // ─── QUOTE LINES: STAGGER REVEAL ───
+        (function() {
+            var items = document.querySelectorAll('.quote-item, .quote-price');
+            items.forEach(function(item, i) {
+                gsap.to(item, {
+                    opacity: 1, y: 0,
+                    duration: 0.5,
+                    delay: Math.floor(i / 2) * 0.12,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '#quoteGrid',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none'
+                    }
+                });
+            });
+
+            gsap.to('#quoteTotal', {
+                opacity: 1,
+                duration: 0.8,
+                delay: 1.2,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '#quoteGrid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            gsap.to('#quoteTagline', {
+                opacity: 1,
+                duration: 0.6,
+                delay: 1.6,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '#quoteGrid',
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        })();
+
+        // ─── CONTACT: LETTER-BY-LETTER REVEAL ───
+        (function() {
+            var headline = document.getElementById('contactHeadline');
+            var text = headline.textContent;
+            headline.innerHTML = '';
+            text.split('').forEach(function(char) {
+                var span = document.createElement('span');
+                span.className = 'letter-reveal';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                headline.appendChild(span);
+            });
+
+            ScrollTrigger.create({
+                trigger: '#contact',
+                start: 'top 70%',
+                onEnter: function() {
+                    gsap.to('.letter-reveal', {
+                        opacity: 1,
+                        duration: 0.5,
+                        stagger: 0.05,
+                        ease: 'power2.out'
+                    });
+                },
+                once: true
+            });
+        })();
+
+        // ─── FORM HANDLER ───
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = this.querySelector('.submit-btn');
+            btn.textContent = 'Sent \u2014 we\'ll be in touch';
+            btn.style.borderColor = 'var(--blue)';
+            btn.disabled = true;
+        });
+    </script>
 </body>
 </html>
