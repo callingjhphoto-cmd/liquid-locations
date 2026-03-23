@@ -262,35 +262,83 @@
         .about-stat .number{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--white);letter-spacing:-.02em}
         .about-stat .label{font-size:12px;font-weight:300;color:var(--text-tertiary);letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
 
-        /* SAMPLE QUOTE */
-        #sample-quote{background:var(--bg);border-top:1px solid var(--border)}
-        .quote-wrapper{max-width:900px;margin:0 auto}
-        .quote-card{border:1px solid var(--border);overflow:hidden}
-        .quote-header{background:var(--bg-card);padding:40px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;border-bottom:1px solid var(--border)}
-        .quote-header-left h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:4px}
-        .quote-header-left p{font-size:13px;font-weight:300;color:var(--text-tertiary)}
-        .quote-header-right{text-align:right}
-        .quote-header-right .quote-id{font-size:11px;color:var(--text-tertiary);font-weight:400;letter-spacing:.08em;text-transform:uppercase}
-        .quote-header-right .quote-date{font-size:13px;font-weight:300;color:var(--text-secondary);margin-top:2px}
-        .quote-body{padding:40px 48px}
-        .quote-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-bottom:32px;border-bottom:1px solid var(--border);margin-bottom:32px}
-        .quote-meta-item .label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px}
-        .quote-meta-item .value{font-size:15px;font-weight:400;color:var(--white)}
-        .quote-table{width:100%;border-collapse:collapse}
-        .quote-table th{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);text-align:left;padding:14px 0;border-bottom:1px solid var(--border)}
-        .quote-table th:last-child{text-align:right}
-        .quote-table td{padding:16px 0;font-size:14px;font-weight:300;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-secondary)}
-        .quote-table td strong{font-weight:400;color:var(--white)}
-        .quote-table td:last-child{text-align:right;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white)}
-        .quote-table .item-desc{font-size:12px;color:var(--text-tertiary);margin-top:3px;font-weight:300}
-        .quote-total-section{margin-top:32px;padding-top:24px;border-top:1px solid var(--border)}
-        .quote-total-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
-        .quote-total-row .label{font-size:14px;font-weight:300;color:var(--text-secondary)}
-        .quote-total-row .value{font-size:14px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white)}
-        .quote-total-row.grand{padding-top:20px;margin-top:12px;border-top:1px solid var(--border)}
-        .quote-total-row.grand .label{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--white)}
-        .quote-total-row.grand .value{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--accent)}
-        .quote-footer-note{margin-top:40px;padding:24px;border:1px solid var(--border);font-size:12px;font-weight:300;color:var(--text-tertiary);line-height:1.7}
+        /* QUOTE BUILDER */
+        #quote-builder{background:var(--bg);border-top:1px solid var(--border)}
+        .qb-wrapper{max-width:1200px;margin:0 auto}
+        .qb-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+        .qb-controls{display:flex;flex-direction:column;gap:32px}
+        .qb-group{position:relative}
+        .qb-group-label{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .qb-select-wrap{position:relative}
+        .qb-select{width:100%;background:var(--bg-card);border:1px solid var(--border);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;padding:14px 44px 14px 18px;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .3s ease;outline:none;border-radius:0}
+        .qb-select:hover,.qb-select:focus{border-color:var(--accent)}
+        .qb-select option{background:var(--bg);color:var(--white)}
+        .qb-select-wrap::after{content:'';position:absolute;right:16px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--text-tertiary);pointer-events:none;transition:border-color .3s ease}
+        .qb-select-wrap:hover::after{border-top-color:var(--accent)}
+
+        /* Tier cards */
+        .qb-tier-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+        .qb-tier-card{background:var(--bg-card);padding:24px 20px;cursor:pointer;transition:all .35s var(--ease);position:relative;overflow:hidden;text-align:center}
+        .qb-tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .35s var(--ease)}
+        .qb-tier-card:hover{background:var(--bg-subtle)}
+        .qb-tier-card.active{background:var(--bg-subtle)}
+        .qb-tier-card.active::before{transform:scaleX(1)}
+        .qb-tier-card .tc-tier{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px;transition:color .3s ease}
+        .qb-tier-card.active .tc-tier{color:var(--accent)}
+        .qb-tier-card .tc-name{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--white);margin-bottom:6px}
+        .qb-tier-card .tc-price{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.5}
+
+        /* Slider */
+        .qb-slider-wrap{display:flex;align-items:center;gap:16px}
+        .qb-slider{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:linear-gradient(to right,var(--accent) 0%,var(--accent) 22%,var(--border) 22%,var(--border) 100%);outline:none;cursor:pointer;border-radius:0}
+        .qb-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;background:var(--accent);border:none;cursor:pointer;border-radius:0;margin-top:0}
+        .qb-slider::-moz-range-thumb{width:20px;height:20px;background:var(--accent);border:none;cursor:pointer;border-radius:0}
+        .qb-slider-val{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--white);min-width:36px;text-align:center}
+
+        /* Toggle */
+        .qb-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
+        .qb-toggle{position:relative;width:48px;height:26px;background:var(--bg-card);border:1px solid var(--border);cursor:pointer;flex-shrink:0;transition:all .3s ease}
+        .qb-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--text-tertiary);transition:all .3s ease}
+        .qb-toggle.on{background:var(--accent-subtle);border-color:var(--accent)}
+        .qb-toggle.on::after{left:25px;background:var(--accent)}
+        .qb-toggle-label{font-size:14px;font-weight:400;color:var(--text-secondary)}
+        .qb-toggle-sub{margin-top:12px;overflow:hidden;max-height:0;opacity:0;transition:max-height .4s var(--ease),opacity .3s ease,margin-top .3s ease}
+        .qb-toggle-sub.show{max-height:80px;opacity:1;margin-top:12px}
+
+        /* Quote output */
+        .qb-output{position:sticky;top:96px}
+        .qb-output-card{border:1px solid var(--border);overflow:hidden}
+        .qb-output-header{background:var(--bg-card);padding:32px 36px;border-bottom:1px solid var(--border)}
+        .qb-output-header h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:4px}
+        .qb-output-header p{font-size:12px;font-weight:300;color:var(--text-tertiary)}
+        .qb-output-body{padding:28px 36px}
+        .qb-line{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+        .qb-line:last-of-type{border-bottom:none}
+        .qb-line-label{font-size:13px;font-weight:300;color:var(--text-secondary);max-width:65%;line-height:1.5}
+        .qb-line-label small{display:block;font-size:11px;color:var(--text-tertiary);margin-top:2px}
+        .qb-line-value{font-size:14px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white);text-align:right;white-space:nowrap}
+        .qb-line-value.zero{color:var(--text-tertiary)}
+        .qb-total-section{margin-top:16px;padding-top:20px;border-top:1px solid var(--border)}
+        .qb-total-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+        .qb-total-row .label{font-size:13px;font-weight:300;color:var(--text-secondary)}
+        .qb-total-row .value{font-size:13px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white)}
+        .qb-total-row.grand{padding-top:16px;margin-top:8px;border-top:1px solid var(--border)}
+        .qb-total-row.grand .label{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--white)}
+        .qb-total-row.grand .value{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--accent);transition:all .3s ease}
+        .qb-footer-notes{padding:24px 36px;border-top:1px solid var(--border);background:var(--bg-card)}
+        .qb-footer-notes p{font-size:11px;font-weight:300;color:var(--text-tertiary);line-height:1.7;margin-bottom:8px}
+        .qb-footer-notes p:last-child{margin-bottom:0}
+        .qb-footer-notes strong{color:var(--accent);font-weight:400}
+        .qb-cta{display:block;width:100%;padding:16px;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;text-align:center;transition:all .3s var(--ease);margin-top:24px}
+        .qb-cta:hover{background:#d4b478;transform:translateY(-1px)}
+
+        @media(max-width:1024px){
+            .qb-layout{grid-template-columns:1fr;gap:48px}
+            .qb-output{position:static}
+        }
+        @media(max-width:768px){
+            .qb-tier-cards{grid-template-columns:1fr}
+        }
 
         /* CONTACT */
         #contact{background:var(--bg);border-top:1px solid var(--border);position:relative}
@@ -363,8 +411,12 @@
             .reel-section{padding:120px 24px}
             .cinematic{min-height:70vh;padding:0 24px}
             .cinematic-stats{flex-direction:column;gap:32px;margin-top:48px}
-            .quote-header,.quote-body{padding:24px}
-            .quote-meta{grid-template-columns:1fr;gap:16px}
+            .qb-layout{grid-template-columns:1fr;gap:40px}
+            .qb-output{position:static}
+            .qb-tier-cards{grid-template-columns:1fr}
+            .qb-output-header,.qb-output-body{padding:20px 24px}
+            .qb-footer-notes{padding:20px 24px}
+            .qb-total-row.grand .value{font-size:24px}
             .form-row{grid-template-columns:1fr}
             .footer{padding:40px 24px}
             .footer-content{flex-direction:column;gap:20px;text-align:center}
@@ -386,7 +438,7 @@
             .gs-reveal{opacity:1;visibility:visible}
         }
         @media print{
-            .nav,.hero-scroll,.hero-actions,.contact-form,.nav-mobile-toggle,.grain,.reel-section,.cinematic,.act-divider,.hero-line,.hero-coords,.hero-regions{display:none !important}
+            .nav,.hero-scroll,.hero-actions,.contact-form,.nav-mobile-toggle,.grain,.reel-section,.cinematic,.act-divider,.hero-line,.hero-coords,.hero-regions,.qb-controls,.qb-cta{display:none !important}
             .hero{min-height:auto;padding:48px}
             section{padding:32px;page-break-inside:avoid}
             .gs-reveal{opacity:1 !important;visibility:visible !important}
@@ -402,6 +454,7 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#locations">Locations</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#quote-builder">Pricing</a></li>
             <li><a href="#contact" class="nav-cta">Brief Us</a></li>
         </ul>
         <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -608,43 +661,187 @@
 
     <div class="act-divider" aria-hidden="true"></div>
 
-    <section id="sample-quote" aria-labelledby="quote-title">
+    <section id="quote-builder" aria-labelledby="quote-title">
         <div class="section-header" style="text-align:center">
             <p class="section-label gs-reveal">Transparent Pricing</p>
-            <h2 class="section-title gs-reveal" id="quote-title">See <em>every line.</em></h2>
-            <p class="section-subtitle gs-reveal" style="margin:0 auto">A sample quote for a 3-day fashion commercial in Barcelona. No hidden fees.</p>
+            <h2 class="section-title gs-reveal" id="quote-title">Estimate Your <em>Production</em></h2>
+            <p class="section-subtitle gs-reveal" style="margin:0 auto">Every production is unique. Use this tool to get an indicative estimate \u2014 we'll refine the details together.</p>
         </div>
-        <div class="quote-wrapper">
-            <div class="quote-card gs-reveal">
-                <div class="quote-header">
-                    <div class="quote-header-left"><h3>3-Day Fashion Commercial \u2014 Barcelona</h3><p>London Client \u2022 10 Local Crew \u2022 2 Locations \u2022 Full Package</p></div>
-                    <div class="quote-header-right"><p class="quote-id">LL-2026-SAMPLE</p><p class="quote-date">Indicative Quote</p></div>
+        <div class="qb-wrapper">
+            <div class="qb-layout">
+                <!-- LEFT: Controls -->
+                <div class="qb-controls gs-reveal">
+                    <!-- Location -->
+                    <div class="qb-group">
+                        <p class="qb-group-label">Shoot Location</p>
+                        <div class="qb-select-wrap">
+                            <select class="qb-select" id="qbLocation">
+                                <option value="barcelona" selected>Barcelona</option>
+                                <option value="mallorca">Mallorca</option>
+                                <option value="madrid">Madrid</option>
+                                <option value="ibiza">Ibiza</option>
+                                <option value="andalusia">Andalusia</option>
+                                <option value="canaries">Canary Islands</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Shoot Days -->
+                    <div class="qb-group">
+                        <p class="qb-group-label">Number of Shoot Days</p>
+                        <div class="qb-slider-wrap">
+                            <input type="range" class="qb-slider" id="qbDays" min="1" max="10" value="3">
+                            <span class="qb-slider-val" id="qbDaysVal">3</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Tier -->
+                    <div class="qb-group">
+                        <p class="qb-group-label">Service Tier</p>
+                        <div class="qb-tier-cards">
+                            <div class="qb-tier-card" data-tier="scout" tabindex="0" role="button" aria-pressed="false">
+                                <p class="tc-tier">Tier 1</p>
+                                <p class="tc-name">Scout</p>
+                                <p class="tc-price">&euro;450/day<br>Location only</p>
+                            </div>
+                            <div class="qb-tier-card active" data-tier="coordinate" tabindex="0" role="button" aria-pressed="true">
+                                <p class="tc-tier">Tier 2</p>
+                                <p class="tc-name">Coordinate</p>
+                                <p class="tc-price">&euro;450/day + 18% markup<br>Crew &amp; equipment</p>
+                            </div>
+                            <div class="qb-tier-card" data-tier="full" tabindex="0" role="button" aria-pressed="false">
+                                <p class="tc-tier">Tier 3</p>
+                                <p class="tc-name">Full Service</p>
+                                <p class="tc-price">&euro;450/day + 20% BTL fee<br>End-to-end</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Crew Size -->
+                    <div class="qb-group">
+                        <p class="qb-group-label">Crew Size</p>
+                        <div class="qb-select-wrap">
+                            <select class="qb-select" id="qbCrew">
+                                <option value="minimal">Minimal (1\u20135 crew)</option>
+                                <option value="standard" selected>Standard (6\u201315 crew)</option>
+                                <option value="large">Large (16\u201330 crew)</option>
+                                <option value="major">Major (30+ crew)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Equipment -->
+                    <div class="qb-group">
+                        <p class="qb-group-label">Equipment Package</p>
+                        <div class="qb-select-wrap">
+                            <select class="qb-select" id="qbEquipment">
+                                <option value="none">Client Supplies Own</option>
+                                <option value="basic">Basic (camera + lighting)</option>
+                                <option value="standard" selected>Standard (full stills or motion)</option>
+                                <option value="premium">Premium (cinema package, specialised)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Number of Locations -->
+                    <div class="qb-group">
+                        <p class="qb-group-label">Number of Locations</p>
+                        <div class="qb-select-wrap">
+                            <select class="qb-select" id="qbLocations">
+                                <option value="1">1 location</option>
+                                <option value="2" selected>2 locations</option>
+                                <option value="3">3 locations</option>
+                                <option value="4">4 locations</option>
+                                <option value="5">5+ locations</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Accommodation -->
+                    <div class="qb-group">
+                        <div class="qb-toggle-row">
+                            <span class="qb-toggle-label">Accommodation Required?</span>
+                            <div class="qb-toggle" id="qbAccomToggle" role="switch" aria-checked="false" tabindex="0"></div>
+                        </div>
+                        <div class="qb-toggle-sub" id="qbAccomSub">
+                            <div class="qb-select-wrap">
+                                <select class="qb-select" id="qbAccomTier">
+                                    <option value="budget">Budget (\u20ac80/person/night)</option>
+                                    <option value="midrange" selected>Mid-range (\u20ac150/person/night)</option>
+                                    <option value="premium">Premium (\u20ac300/person/night)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transport -->
+                    <div class="qb-group">
+                        <div class="qb-toggle-row">
+                            <span class="qb-toggle-label">Transport Required?</span>
+                            <div class="qb-toggle" id="qbTransToggle" role="switch" aria-checked="false" tabindex="0"></div>
+                        </div>
+                        <div class="qb-toggle-sub" id="qbTransSub">
+                            <div class="qb-select-wrap">
+                                <select class="qb-select" id="qbTransTier">
+                                    <option value="vans">Vans only (\u20ac400/day)</option>
+                                    <option value="talent" selected>Vans + talent cars (\u20ac800/day)</option>
+                                    <option value="full">Full unit base (\u20ac1,500/day)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="quote-body">
-                    <div class="quote-meta">
-                        <div class="quote-meta-item"><p class="label">Duration</p><p class="value">3 shoot days</p></div>
-                        <div class="quote-meta-item"><p class="label">Location</p><p class="value">Barcelona, Spain</p></div>
-                        <div class="quote-meta-item"><p class="label">Service Tier</p><p class="value">Full Service (Tier 3)</p></div>
+
+                <!-- RIGHT: Live Quote Output -->
+                <div class="qb-output gs-reveal">
+                    <div class="qb-output-card">
+                        <div class="qb-output-header">
+                            <h3 id="qbSummaryTitle">3-Day Shoot \u2014 Barcelona</h3>
+                            <p>Indicative Estimate</p>
+                        </div>
+                        <div class="qb-output-body">
+                            <div class="qb-line">
+                                <span class="qb-line-label">Location Management<small id="qbLocMgmtDesc">3 days &times; &euro;450</small></span>
+                                <span class="qb-line-value" id="qbLocMgmtVal">&euro;1,350</span>
+                            </div>
+                            <div class="qb-line">
+                                <span class="qb-line-label">Location Fees<small id="qbLocFeesDesc">2 locations &times; est. &euro;2,250/loc/day</small></span>
+                                <span class="qb-line-value" id="qbLocFeesVal">&euro;13,500</span>
+                            </div>
+                            <div class="qb-line" id="qbCrewLine">
+                                <span class="qb-line-label">Crew Coordination<small id="qbCrewDesc">10 crew &times; 3 days &times; &euro;380 + 18% markup</small></span>
+                                <span class="qb-line-value" id="qbCrewVal">&euro;13,452</span>
+                            </div>
+                            <div class="qb-line" id="qbEquipLine">
+                                <span class="qb-line-label">Equipment Coordination<small id="qbEquipDesc">Standard package &times; 3 days + 18% markup</small></span>
+                                <span class="qb-line-value" id="qbEquipVal">&euro;8,850</span>
+                            </div>
+                            <div class="qb-line" id="qbMgmtFeeLine" style="display:none">
+                                <span class="qb-line-label">Production Management Fee<small>20% of BTL spend</small></span>
+                                <span class="qb-line-value" id="qbMgmtFeeVal">&euro;0</span>
+                            </div>
+                            <div class="qb-line" id="qbAccomLine" style="display:none">
+                                <span class="qb-line-label">Accommodation<small id="qbAccomDesc"></small></span>
+                                <span class="qb-line-value" id="qbAccomVal">&euro;0</span>
+                            </div>
+                            <div class="qb-line" id="qbTransLine" style="display:none">
+                                <span class="qb-line-label">Transport<small id="qbTransDesc"></small></span>
+                                <span class="qb-line-value" id="qbTransVal">&euro;0</span>
+                            </div>
+                            <div class="qb-total-section">
+                                <div class="qb-total-row grand">
+                                    <span class="label">Estimated Total</span>
+                                    <span class="value" id="qbGrandTotal">&euro;37,152</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="qb-footer-notes">
+                            <p>This is an indicative estimate based on standard rates. Final pricing depends on specific requirements, locations, and crew.</p>
+                            <p><strong>Eligible for Spain's 30% tax rebate</strong> on qualifying expenditure <span id="qbCanaryNote">(54% in the Canary Islands)</span>.</p>
+                            <p>All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients \u2014 0% Spanish IVA). 50% mobilisation fee upon confirmation.</p>
+                        </div>
                     </div>
-                    <table class="quote-table">
-                        <thead><tr><th>Item</th><th>Amount</th></tr></thead>
-                        <tbody>
-                            <tr><td><strong>Location Fees</strong><p class="item-desc">2 premium locations &times; 3 days (luxury villa + urban rooftop)</p></td><td>&euro;9,000</td></tr>
-                            <tr><td><strong>Location Commission</strong><p class="item-desc">Standard 20% agency commission on location fees</p></td><td>&euro;1,800</td></tr>
-                            <tr><td><strong>Local Crew</strong><p class="item-desc">10 crew (camera, grip, electric, art dept, HMU) &times; 3 days @ avg &euro;350/day</p></td><td>&euro;10,500</td></tr>
-                            <tr><td><strong>Equipment Rental</strong><p class="item-desc">Full camera/lighting/grip package via partner rental houses</p></td><td>&euro;6,000</td></tr>
-                            <tr><td><strong>Transport &amp; Logistics</strong><p class="item-desc">Unit base, crew transport, parking permits, fuel</p></td><td>&euro;3,600</td></tr>
-                            <tr><td><strong>Catering</strong><p class="item-desc">Premium on-set catering &times; 3 days (breakfast, lunch, craft services)</p></td><td>&euro;2,400</td></tr>
-                            <tr><td><strong>Permits &amp; Insurance</strong><p class="item-desc">Municipal filming permits, civil liability, equipment coverage</p></td><td>&euro;1,500</td></tr>
-                        </tbody>
-                    </table>
-                    <div class="quote-total-section">
-                        <div class="quote-total-row"><span class="label">Subtotal (BTL Production Costs)</span><span class="value">&euro;34,800</span></div>
-                        <div class="quote-total-row"><span class="label">EP / Location Manager (3 days &times; &euro;450)</span><span class="value">&euro;1,350</span></div>
-                        <div class="quote-total-row"><span class="label">Coordination markup (crew + equipment @ 15%)</span><span class="value">&euro;2,475</span></div>
-                        <div class="quote-total-row grand"><span class="label">Total</span><span class="value">&euro;38,625</span></div>
-                    </div>
-                    <div class="quote-footer-note"><strong>Payment terms:</strong> 50% mobilisation fee upon project confirmation. Balance within 14 days post-wrap. All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients \u2014 0% Spanish IVA). Quote valid 30 days.</div>
+                    <button class="qb-cta" id="qbCta" type="button">Discuss This Quote</button>
                 </div>
             </div>
         </div>
@@ -695,6 +892,7 @@
             <div class="footer-right">
                 <a href="#services">Services</a>
                 <a href="#locations">Locations</a>
+                <a href="#quote-builder">Pricing</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -820,6 +1018,248 @@
 
     // Smooth scroll via GSAP ScrollToPlugin
     document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var h=this.getAttribute('href');if(h==='#'){gsap.to(window,{scrollTo:0,duration:.8,ease:'power2.inOut'});return}var t=document.querySelector(h);if(t){gsap.to(window,{scrollTo:{y:t,offsetY:72},duration:.8,ease:'power2.inOut'})}})});
+
+    // ========== QUOTE BUILDER ==========
+    (function(){
+        // Pricing data
+        var locationFees = {
+            barcelona:{min:1500,max:3000,label:'Barcelona'},
+            mallorca:{min:1000,max:2500,label:'Mallorca'},
+            madrid:{min:1500,max:3000,label:'Madrid'},
+            ibiza:{min:2000,max:4000,label:'Ibiza'},
+            andalusia:{min:800,max:2000,label:'Andalusia'},
+            canaries:{min:800,max:2000,label:'Canary Islands'}
+        };
+        var crewData = {
+            minimal:{count:3,rate:350,label:'3 crew'},
+            standard:{count:10,rate:380,label:'10 crew'},
+            large:{count:22,rate:400,label:'22 crew'},
+            major:{count:35,rate:420,label:'35 crew'}
+        };
+        var equipData = {
+            none:{cost:0,label:'Client supplies'},
+            basic:{cost:800,label:'Basic package'},
+            standard:{cost:2500,label:'Standard package'},
+            premium:{cost:5000,label:'Premium package'}
+        };
+        var accomRates = {budget:80,midrange:150,premium:300};
+        var transRates = {vans:400,talent:800,full:1500};
+
+        var state = {
+            location:'barcelona',days:3,tier:'coordinate',
+            crew:'standard',equipment:'standard',numLocations:2,
+            accomOn:false,accomTier:'midrange',
+            transOn:false,transTier:'talent'
+        };
+
+        // DOM refs
+        var els = {
+            location:document.getElementById('qbLocation'),
+            days:document.getElementById('qbDays'),
+            daysVal:document.getElementById('qbDaysVal'),
+            crew:document.getElementById('qbCrew'),
+            equipment:document.getElementById('qbEquipment'),
+            numLocations:document.getElementById('qbLocations'),
+            accomToggle:document.getElementById('qbAccomToggle'),
+            accomSub:document.getElementById('qbAccomSub'),
+            accomTier:document.getElementById('qbAccomTier'),
+            transToggle:document.getElementById('qbTransToggle'),
+            transSub:document.getElementById('qbTransSub'),
+            transTier:document.getElementById('qbTransTier'),
+            summaryTitle:document.getElementById('qbSummaryTitle'),
+            locMgmtDesc:document.getElementById('qbLocMgmtDesc'),
+            locMgmtVal:document.getElementById('qbLocMgmtVal'),
+            locFeesDesc:document.getElementById('qbLocFeesDesc'),
+            locFeesVal:document.getElementById('qbLocFeesVal'),
+            crewLine:document.getElementById('qbCrewLine'),
+            crewDesc:document.getElementById('qbCrewDesc'),
+            crewVal:document.getElementById('qbCrewVal'),
+            equipLine:document.getElementById('qbEquipLine'),
+            equipDesc:document.getElementById('qbEquipDesc'),
+            equipVal:document.getElementById('qbEquipVal'),
+            mgmtFeeLine:document.getElementById('qbMgmtFeeLine'),
+            mgmtFeeVal:document.getElementById('qbMgmtFeeVal'),
+            accomLine:document.getElementById('qbAccomLine'),
+            accomDesc:document.getElementById('qbAccomDesc'),
+            accomVal:document.getElementById('qbAccomVal'),
+            transLine:document.getElementById('qbTransLine'),
+            transDesc:document.getElementById('qbTransDesc'),
+            transVal:document.getElementById('qbTransVal'),
+            grandTotal:document.getElementById('qbGrandTotal'),
+            canaryNote:document.getElementById('qbCanaryNote'),
+            cta:document.getElementById('qbCta')
+        };
+
+        function fmt(n){return '\u20ac'+n.toLocaleString('en-GB',{minimumFractionDigits:0,maximumFractionDigits:0})}
+
+        function animateValue(el,newText){
+            el.style.transition='opacity .15s ease';
+            el.style.opacity='0';
+            setTimeout(function(){
+                el.textContent=newText;
+                el.style.opacity='1';
+            },150);
+        }
+
+        function calculate(){
+            var d=state.days;
+            var loc=locationFees[state.location];
+            var avgLocFee=Math.round((loc.min+loc.max)/2);
+            var numLoc=parseInt(state.numLocations);
+            var cr=crewData[state.crew];
+            var eq=equipData[state.equipment];
+            var markup=state.tier==='scout'?0:(state.tier==='coordinate'?0.18:0.18);
+            var mgmtMarkup=state.tier==='full'?0.20:0;
+
+            // Line items
+            var locMgmt=d*450;
+            var locFees=numLoc*avgLocFee*d;
+            var crewCost=0,equipCost=0,mgmtFee=0,accomCost=0,transCost=0;
+
+            if(state.tier!=='scout'){
+                crewCost=Math.round(cr.count*d*cr.rate*(1+markup));
+                if(eq.cost>0) equipCost=Math.round(eq.cost*d*(1+markup));
+            }
+
+            if(state.tier==='full'){
+                var btl=crewCost+equipCost+locFees;
+                if(state.accomOn) btl+=accomRates[state.accomTier]*cr.count*d;
+                if(state.transOn) btl+=transRates[state.transTier]*d;
+                mgmtFee=Math.round(btl*mgmtMarkup);
+            }
+
+            if(state.accomOn){
+                accomCost=accomRates[state.accomTier]*cr.count*d;
+            }
+            if(state.transOn){
+                transCost=transRates[state.transTier]*d;
+            }
+
+            var total=locMgmt+locFees+crewCost+equipCost+mgmtFee+accomCost+transCost;
+
+            // Update DOM
+            els.summaryTitle.textContent=d+'-Day Shoot \u2014 '+loc.label;
+            els.locMgmtDesc.textContent=d+' days \u00d7 \u20ac450';
+            animateValue(els.locMgmtVal,fmt(locMgmt));
+            els.locFeesDesc.textContent=numLoc+' location'+(numLoc>1?'s':'')+' \u00d7 est. '+fmt(avgLocFee)+'/loc/day';
+            animateValue(els.locFeesVal,fmt(locFees));
+
+            if(state.tier==='scout'){
+                els.crewLine.style.display='none';
+                els.equipLine.style.display='none';
+                els.mgmtFeeLine.style.display='none';
+            } else {
+                els.crewLine.style.display='';
+                els.crewDesc.textContent=cr.count+' crew \u00d7 '+d+' days \u00d7 \u20ac'+cr.rate+' + '+Math.round(markup*100)+'% markup';
+                animateValue(els.crewVal,fmt(crewCost));
+
+                if(eq.cost>0){
+                    els.equipLine.style.display='';
+                    els.equipDesc.textContent=eq.label+' \u00d7 '+d+' days + '+Math.round(markup*100)+'% markup';
+                    animateValue(els.equipVal,fmt(equipCost));
+                } else {
+                    els.equipLine.style.display='none';
+                }
+
+                if(state.tier==='full'){
+                    els.mgmtFeeLine.style.display='';
+                    animateValue(els.mgmtFeeVal,fmt(mgmtFee));
+                } else {
+                    els.mgmtFeeLine.style.display='none';
+                }
+            }
+
+            if(state.accomOn){
+                els.accomLine.style.display='';
+                els.accomDesc.textContent=cr.count+' people \u00d7 '+d+' nights \u00d7 \u20ac'+accomRates[state.accomTier];
+                animateValue(els.accomVal,fmt(accomCost));
+            } else {
+                els.accomLine.style.display='none';
+            }
+
+            if(state.transOn){
+                els.transLine.style.display='';
+                els.transDesc.textContent=d+' days \u00d7 \u20ac'+transRates[state.transTier].toLocaleString('en-GB');
+                animateValue(els.transVal,fmt(transCost));
+            } else {
+                els.transLine.style.display='none';
+            }
+
+            animateValue(els.grandTotal,fmt(total));
+
+            // Canary note visibility
+            els.canaryNote.style.display=state.location==='canaries'?'':'none';
+            if(state.location==='canaries'){
+                els.canaryNote.textContent='(54% in the Canary Islands \u2014 your selected region)';
+                els.canaryNote.style.color='var(--accent)';
+            }
+        }
+
+        // Event listeners
+        els.location.addEventListener('change',function(){state.location=this.value;calculate()});
+        function updateSliderFill(){var pct=((state.days-1)/9)*100;els.days.style.background='linear-gradient(to right,var(--accent) '+pct+'%,rgba(255,255,255,.08) '+pct+'%)'}
+        els.days.addEventListener('input',function(){state.days=parseInt(this.value);els.daysVal.textContent=this.value;updateSliderFill();calculate()});
+        els.crew.addEventListener('change',function(){state.crew=this.value;calculate()});
+        els.equipment.addEventListener('change',function(){state.equipment=this.value;calculate()});
+        els.numLocations.addEventListener('change',function(){state.numLocations=this.value;calculate()});
+        els.accomTier.addEventListener('change',function(){state.accomTier=this.value;calculate()});
+        els.transTier.addEventListener('change',function(){state.transTier=this.value;calculate()});
+
+        // Tier card selection
+        document.querySelectorAll('.qb-tier-card').forEach(function(card){
+            card.addEventListener('click',function(){
+                document.querySelectorAll('.qb-tier-card').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-pressed','false')});
+                this.classList.add('active');
+                this.setAttribute('aria-pressed','true');
+                state.tier=this.dataset.tier;
+                calculate();
+            });
+            card.addEventListener('keydown',function(e){
+                if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click()}
+            });
+        });
+
+        // Toggle helpers
+        function setupToggle(toggleEl,subEl,stateKey){
+            toggleEl.addEventListener('click',function(){
+                state[stateKey]=!state[stateKey];
+                this.classList.toggle('on',state[stateKey]);
+                this.setAttribute('aria-checked',state[stateKey]?'true':'false');
+                subEl.classList.toggle('show',state[stateKey]);
+                calculate();
+            });
+            toggleEl.addEventListener('keydown',function(e){
+                if(e.key==='Enter'||e.key===' '){e.preventDefault();this.click()}
+            });
+        }
+        setupToggle(els.accomToggle,els.accomSub,'accomOn');
+        setupToggle(els.transToggle,els.transSub,'transOn');
+
+        // CTA: scroll to contact and prefill brief
+        els.cta.addEventListener('click',function(){
+            var loc=locationFees[state.location].label;
+            var d=state.days;
+            var tierNames={scout:'Scout (Tier 1)',coordinate:'Coordinate (Tier 2)',full:'Full Service (Tier 3)'};
+            var crewLabels={minimal:'1-5 (minimal)',standard:'6-15 (standard)',large:'16-30 (large)',major:'30+ (major)'};
+            var brief='Quote Builder Selections:\n'+
+                '- Location: '+loc+'\n'+
+                '- Shoot Days: '+d+'\n'+
+                '- Service Tier: '+tierNames[state.tier]+'\n'+
+                '- Crew Size: '+crewLabels[state.crew]+'\n'+
+                '- Equipment: '+els.equipment.options[els.equipment.selectedIndex].text+'\n'+
+                '- Locations: '+state.numLocations+'\n';
+            if(state.accomOn) brief+='- Accommodation: '+els.accomTier.options[els.accomTier.selectedIndex].text+'\n';
+            if(state.transOn) brief+='- Transport: '+els.transTier.options[els.transTier.selectedIndex].text+'\n';
+            brief+='\nEstimated total: '+els.grandTotal.textContent;
+            var briefEl=document.getElementById('brief');
+            if(briefEl) briefEl.value=brief;
+            gsap.to(window,{scrollTo:{y:'#contact',offsetY:72},duration:.8,ease:'power2.inOut'});
+        });
+
+        // Initial calculation
+        updateSliderFill();
+        calculate();
+    })();
 
     // Form submission
     document.getElementById('contactForm').addEventListener('submit',function(e){
