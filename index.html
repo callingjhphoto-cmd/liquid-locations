@@ -15,8 +15,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Liquid Locations — Premium Production Services in Spain">
     <meta name="twitter:description" content="Your London-standard production partner in Spain. Bilingual. Tech-forward. Overhead-free.">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#fafafa">
+    <meta name="color-scheme" content="light">
     <link rel="canonical" href="https://callingjhphoto-cmd.github.io/liquid-locations/">
     <script type="application/ld+json">
     {
@@ -33,412 +33,646 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
         :root{
-            --bg:#0a0a0a;
-            --bg-elevated:#111;
-            --bg-card:#161616;
-            --bg-subtle:#1a1a1a;
-            --border:rgba(255,255,255,.08);
-            --text-primary:rgba(255,255,255,.92);
-            --text-secondary:rgba(255,255,255,.5);
-            --text-tertiary:rgba(255,255,255,.3);
-            --accent:#c9a96e;
-            --accent-subtle:rgba(201,169,110,.15);
+            --bg:#fafafa;
+            --bg-elevated:#f2f2f2;
+            --bg-card:#ffffff;
+            --bg-subtle:#f5f5f5;
+            --bg-dark:#0a0a0a;
+            --border:rgba(0,0,0,.08);
+            --border-light:rgba(0,0,0,.04);
+            --text-primary:rgba(0,0,0,.88);
+            --text-secondary:rgba(0,0,0,.55);
+            --text-tertiary:rgba(0,0,0,.3);
+            --accent:#1a1a1a;
+            --accent-warm:#c9a96e;
+            --accent-warm-subtle:rgba(201,169,110,.1);
             --white:#fff;
-            --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+            --black:#0a0a0a;
             --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
             --ease:cubic-bezier(.25,.1,.25,1);
+            --ease-out:cubic-bezier(0,0,.2,1);
+            --ease-spring:cubic-bezier(.34,1.56,.64,1);
+            --radius:12px;
+            --radius-lg:16px;
+            --radius-xl:20px;
+            --grid-gap:14px;
+            --glass-bg:rgba(255,255,255,.72);
+            --glass-border:rgba(255,255,255,.5);
+            --glass-blur:saturate(180%) blur(20px);
         }
-        html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:auto}
-        body{font-family:var(--sans);color:var(--text-primary);background:var(--bg);line-height:1.6;overflow-x:hidden;opacity:0;transition:opacity .6s ease}
+        html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:auto;font-size:16px}
+        body{font-family:var(--sans);color:var(--text-primary);background:var(--bg);line-height:1.6;overflow-x:hidden;opacity:0;transition:opacity .5s ease}
         body.loaded{opacity:1}
         img,video{display:block;max-width:100%}
         a{text-decoration:none;color:inherit}
-        ::selection{background:var(--accent);color:var(--bg)}
+        ::selection{background:var(--accent);color:var(--white)}
         ::-webkit-scrollbar{width:6px}
-        ::-webkit-scrollbar-track{background:var(--bg)}
-        ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:3px}
-        ::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.2)}
-        html{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.12) var(--bg)}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(0,0,0,.12);border-radius:3px}
+        ::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25)}
+        html{scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.12) transparent}
+
+        /* SUBTLE GRAIN OVERLAY */
+        .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.018;mix-blend-mode:multiply}
+        .grain::after{content:'';position:absolute;inset:-100%;width:300%;height:300%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");animation:grain 8s steps(3) infinite}
+        @keyframes grain{0%,100%{transform:translate3d(0,0,0)}33%{transform:translate3d(-3%,-3%,0)}66%{transform:translate3d(3%,3%,0)}}
 
         /* FOCUS & ACCESSIBILITY */
         :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
         a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-        .nav-links a:focus-visible{outline-offset:8px}
         button,a,.location-card,.service-card,.pillar-card{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 
-        /* FILM GRAIN OVERLAY */
-        .grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;will-change:transform}
-        .grain::after{content:'';position:absolute;inset:-100%;width:300%;height:300%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");animation:grain 6s steps(4) infinite}
-        @keyframes grain{0%,100%{transform:translate3d(0,0,0)}25%{transform:translate3d(-5%,-5%,0)}50%{transform:translate3d(5%,5%,0)}75%{transform:translate3d(-2%,8%,0)}}
+        /* ============================================
+           LIQUID GLASS NAV
+           ============================================ */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:transparent;transition:all .4s var(--ease)}
+        .nav.scrolled{background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-bottom:1px solid var(--glass-border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+        .nav-logo{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:-.02em;color:var(--black)}
+        .nav-logo span{font-weight:300;color:var(--text-secondary)}
+        .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+        .nav-links a{font-size:13px;font-weight:400;letter-spacing:.01em;color:var(--text-secondary);transition:color .2s ease;position:relative}
+        .nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--accent);transform:scaleX(0);transition:transform .3s var(--ease);transform-origin:left}
+        .nav-links a:hover{color:var(--text-primary)}
+        .nav-links a:hover::after{transform:scaleX(1)}
+        .nav-cta{color:var(--white) !important;background:var(--accent);padding:8px 20px;border-radius:8px;font-weight:500;transition:all .25s var(--ease) !important;transform:translateY(0)}
+        .nav-cta::after{display:none !important}
+        .nav-cta:hover{background:#333;transform:translateY(-1px) scale(.98);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+        .nav-cta:active{transform:scale(.96)}
+        .nav-mobile-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+        .nav-mobile-toggle span{width:20px;height:1.5px;background:var(--black);transition:all .3s ease;display:block}
 
-        /* NAV */
-        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 60px;height:72px;display:flex;align-items:center;justify-content:space-between;background:transparent;border-bottom:1px solid rgba(255,255,255,.04);transition:all .4s var(--ease)}
-        .nav.scrolled{background:rgba(10,10,10,.92);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
-        .nav-logo{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-.01em;color:var(--white)}
-        .nav-logo span{font-weight:400;font-style:italic;color:var(--text-secondary)}
-        .nav-links{display:flex;align-items:center;gap:40px;list-style:none}
-        .nav-links a{font-size:12px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);transition:color .3s ease}
-        .nav-links a:hover{color:var(--white)}
-        .nav-cta{color:var(--accent) !important;border:1px solid rgba(201,169,110,.3);padding:8px 24px;border-radius:0;transition:all .3s ease !important}
-        .nav-cta:hover{background:var(--accent);color:var(--bg) !important}
-        .nav-mobile-toggle{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:8px;background:none;border:none}
-        .nav-mobile-toggle span{width:24px;height:1px;background:var(--white);transition:all .3s ease;display:block}
+        /* Language Toggle */
+        .lang-toggle{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--text-secondary);cursor:pointer;padding:4px 10px;border:1px solid var(--border);border-radius:6px;background:transparent;transition:all .2s ease;letter-spacing:.02em}
+        .lang-toggle:hover{border-color:var(--text-secondary);color:var(--text-primary)}
+        .lang-toggle .lang-active{color:var(--text-primary);font-weight:600}
 
-        /* HERO */
-        .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 60px 120px;background:var(--bg);overflow:hidden}
-        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,169,110,.08) 0%,transparent 50%),radial-gradient(ellipse at 80% 30%,rgba(100,130,180,.05) 0%,transparent 40%),radial-gradient(ellipse at 50% 90%,rgba(201,169,110,.04) 0%,transparent 50%);pointer-events:none;animation:heroGlow 12s ease-in-out infinite alternate}
-        .hero::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:linear-gradient(180deg,transparent 0%,rgba(201,169,110,.015) 50%,transparent 100%);pointer-events:none}
-        .hero-line{position:absolute;top:72px;right:120px;bottom:120px;width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.06) 30%,rgba(201,169,110,.12) 50%,rgba(255,255,255,.06) 70%,transparent);opacity:0}
-        .hero-coords{position:absolute;right:60px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:mixed;opacity:0}
-        .hero-coords span{display:block;font-size:11px;letter-spacing:.12em;color:var(--text-tertiary);font-weight:400;margin-bottom:24px;font-variant-numeric:tabular-nums}
-        .hero-coords span:last-child{margin-bottom:0;color:rgba(201,169,110,.4)}
-        .hero-regions{position:absolute;right:180px;bottom:120px;text-align:right;opacity:0}
-        .hero-regions span{display:block;font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;color:rgba(255,255,255,.04);line-height:1.4;letter-spacing:-.01em}
-        @keyframes heroGlow{0%{opacity:.8}100%{opacity:1}}
-        .hero-content{position:relative;z-index:2;max-width:1000px}
-        .hero-eyebrow{font-size:12px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:40px;opacity:0}
-        .hero h1{font-family:var(--serif);font-size:clamp(48px,7vw,88px);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--white);margin-bottom:32px;text-shadow:0 0 80px rgba(201,169,110,.08)}
-        .hero h1 em{font-style:italic;color:var(--text-secondary)}
-        .hero-sub{font-size:18px;font-weight:400;line-height:1.7;color:var(--text-secondary);max-width:520px;margin-bottom:56px;opacity:0}
-        .hero-actions{display:flex;gap:24px;align-items:center;opacity:0}
-        .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s var(--ease)}
-        .btn-primary:hover{background:#d4b478;transform:translateY(-1px)}
-        .btn-secondary{font-size:13px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);cursor:pointer;transition:color .3s ease;background:none;border:none;border-bottom:1px solid var(--text-tertiary);padding-bottom:2px}
-        .btn-secondary:hover{color:var(--white);border-color:var(--white)}
-        .hero-scroll{position:absolute;bottom:40px;right:60px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-tertiary);display:flex;align-items:center;gap:16px}
-        .hero-scroll::after{content:'';width:1px;height:60px;background:linear-gradient(to bottom,var(--text-tertiary),transparent);animation:scrollLine 2s infinite}
-        @keyframes scrollLine{0%{opacity:1;transform:scaleY(1)}50%{opacity:.3}100%{opacity:1;transform:scaleY(1)}}
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:0 48px;background:var(--bg);overflow:hidden}
+        .hero-content{position:relative;z-index:2;max-width:720px;padding-top:64px}
+        .hero-eyebrow{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);margin-bottom:32px;opacity:0;display:flex;align-items:center;gap:12px}
+        .hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--accent-warm)}
+        .hero h1{font-family:var(--sans);font-size:clamp(42px,6.5vw,80px);font-weight:200;line-height:1.08;letter-spacing:-.04em;color:var(--black);margin-bottom:28px}
+        .hero h1 strong{font-weight:600}
+        .hero h1 .hero-text-mask{display:inline-block;overflow:hidden;vertical-align:bottom}
+        .hero h1 .hero-text-mask span{display:inline-block;transform:translateY(105%)}
+        .hero-sub{font-size:17px;font-weight:400;line-height:1.65;color:var(--text-secondary);max-width:480px;margin-bottom:48px;opacity:0}
+        .hero-actions{display:flex;gap:16px;align-items:center;opacity:0}
+        .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--accent);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:0;border:none;cursor:pointer;border-radius:10px;transition:all .25s var(--ease);transform:translateY(0)}
+        .btn-primary:hover{background:#333;transform:translateY(-2px) scale(.99);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+        .btn-primary:active{transform:translateY(0) scale(.95);box-shadow:0 2px 8px rgba(0,0,0,.1);transition-duration:.1s}
+        .btn-primary svg{width:16px;height:16px;transition:transform .2s ease}
+        .btn-primary:hover svg{transform:translateX(2px)}
+        .btn-secondary{font-size:14px;font-weight:500;color:var(--text-secondary);cursor:pointer;transition:color .2s ease;background:none;border:1px solid var(--border);padding:13px 28px;border-radius:10px}
+        .btn-secondary:hover{color:var(--text-primary);border-color:var(--text-secondary)}
 
-        /* SECTION FUNDAMENTALS */
-        section{padding:160px 60px;position:relative}
-        .section-label{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
-        .section-title{font-family:var(--serif);font-size:clamp(36px,4.5vw,64px);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:var(--white);margin-bottom:20px}
-        .section-title em{font-style:italic;color:var(--text-secondary)}
-        .section-subtitle{font-size:16px;font-weight:400;color:var(--text-secondary);max-width:480px;line-height:1.7}
-        .section-header{margin-bottom:80px}
+        /* Hero right visual — abstract grid of location thumbnails */
+        .hero-visual{position:absolute;right:0;top:50%;transform:translateY(-50%);width:45%;max-width:560px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:var(--grid-gap);padding-right:48px;opacity:0}
+        .hero-thumb{border-radius:var(--radius);overflow:hidden;position:relative}
+        .hero-thumb:nth-child(1){grid-row:1/3;aspect-ratio:3/4}
+        .hero-thumb:nth-child(2){aspect-ratio:1/1}
+        .hero-thumb:nth-child(3){aspect-ratio:4/3}
+        .hero-thumb:nth-child(4){grid-column:1/-1;aspect-ratio:21/9}
+        .hero-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 6s var(--ease)}
+        .hero-thumb:hover .hero-thumb-bg{transform:scale(1.05)}
+        .hero-thumb-label{position:absolute;bottom:12px;left:14px;font-size:11px;font-weight:500;color:white;letter-spacing:.02em;text-shadow:0 1px 4px rgba(0,0,0,.4);z-index:2}
+        .hero-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.35) 0%,transparent 50%);z-index:1}
 
-        /* STATEMENT BREAK */
-        .statement{padding:200px 60px;text-align:center;position:relative}
-        .statement-text{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;line-height:1.3;color:var(--text-primary);max-width:800px;margin:0 auto;letter-spacing:-.01em}
-        .statement-text em{font-style:italic;color:var(--accent)}
-        .statement::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--border))}
-        .statement::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,var(--border),transparent)}
+        .hero-scroll{position:absolute;bottom:32px;left:48px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);display:flex;align-items:center;gap:8px;font-weight:400}
+        .hero-scroll-dot{width:4px;height:4px;border-radius:50%;background:var(--text-tertiary);animation:scrollDot 2s infinite}
+        @keyframes scrollDot{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.3;transform:translateY(4px)}}
 
-        /* CINEMATIC INTERSTITIAL */
-        .cinematic{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);overflow:hidden;padding:0 60px}
-        .cinematic-inner{position:relative;z-index:2;text-align:center;max-width:1200px}
-        .cinematic-number{font-family:var(--serif);font-size:clamp(100px,15vw,200px);font-weight:400;line-height:1;letter-spacing:-.04em;color:rgba(201,169,110,.1);-webkit-text-stroke:1px rgba(201,169,110,.3);margin-bottom:16px}
-        @supports(-webkit-text-stroke:1px transparent){.cinematic-number{color:transparent}}
-        .cinematic-label{font-size:13px;font-weight:400;letter-spacing:.15em;text-transform:uppercase;color:var(--text-secondary)}
-        .cinematic-line{position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,.15),transparent);transform:scaleX(0);transform-origin:center}
-        .cinematic-stats{display:flex;justify-content:center;gap:120px;margin-top:80px}
-        .cinematic-stat{text-align:center}
-        .cinematic-stat .num{font-family:var(--serif);font-size:clamp(48px,6vw,72px);font-weight:400;color:var(--white);letter-spacing:-.03em;line-height:1}
-        .cinematic-stat .txt{font-size:12px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-top:12px}
+        .hero-stats-bar{position:absolute;bottom:32px;right:48px;display:flex;gap:28px;padding:12px 20px;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-radius:var(--radius);border:1px solid var(--glass-border)}
+        .hero-stat{text-align:right}
+        .hero-stat .hs-num{font-size:20px;font-weight:600;color:var(--black);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+        .hero-stat .hs-label{font-size:11px;font-weight:400;color:var(--text-tertiary);letter-spacing:.02em}
 
-        /* REEL / WORK SECTION */
-        .reel-section{position:relative;padding:200px 60px;background:var(--bg);text-align:center;overflow:hidden}
-        .reel-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,169,110,.04) 0%,transparent 70%);pointer-events:none}
-        .reel-play{width:100px;height:100px;border:1px solid rgba(201,169,110,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 40px;cursor:pointer;transition:all .4s var(--ease);position:relative}
-        .reel-play:hover{border-color:var(--accent);transform:scale(1.08)}
-        .reel-play::after{content:'';width:0;height:0;border-left:20px solid var(--accent);border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:4px}
-        .reel-play-ring{position:absolute;inset:-12px;border:1px solid rgba(201,169,110,.1);border-radius:50%;animation:ringPulse 3s ease-in-out infinite}
-        @keyframes ringPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.3}}
-        .reel-title{font-family:var(--serif);font-size:clamp(24px,3vw,36px);font-weight:400;color:var(--white);margin-bottom:12px}
-        .reel-sub{font-size:14px;color:var(--text-tertiary);letter-spacing:.06em;text-transform:uppercase}
+        /* ============================================
+           BENTO GRID — Value Proposition
+           ============================================ */
+        .bento-section{padding:120px 48px;background:var(--bg)}
+        .bento-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:var(--grid-gap);max-width:1200px;margin:0 auto}
 
-        /* ACT DIVIDER */
-        .act-divider{height:1px;max-width:200px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.25}
+        .bento-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:36px;overflow:hidden;position:relative;transition:all .35s var(--ease)}
+        .bento-card:hover{border-color:var(--border);box-shadow:0 4px 16px rgba(0,0,0,.04);transform:translateY(-2px)}
 
-        /* CLOSING STATEMENT */
-        .closing{padding:200px 60px 120px;text-align:center;position:relative}
-        .closing::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:1px;background:var(--accent);opacity:.3}
-        .closing-text{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);font-weight:400;font-style:italic;color:var(--text-secondary);max-width:600px;margin:0 auto;line-height:1.4;letter-spacing:-.01em}
+        /* Bento card sizing */
+        .bento-hero{grid-column:1/8;grid-row:1/3;padding:48px;display:flex;flex-direction:column;justify-content:flex-end;min-height:400px;background:linear-gradient(145deg,#0a0a0a 0%,#1a1a2e 40%,#0f1923 100%);color:white;border-color:transparent;position:relative}
+        .bento-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(201,169,110,.08) 0%,transparent 60%);pointer-events:none;border-radius:var(--radius-lg)}
+        .bento-hero:hover{border-color:transparent;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+        .bento-hero .bento-label{color:rgba(255,255,255,.4)}
+        .bento-hero h2{font-size:clamp(28px,3vw,40px);font-weight:200;letter-spacing:-.03em;line-height:1.15;color:white;margin-bottom:16px}
+        .bento-hero h2 strong{font-weight:600}
+        .bento-hero p{font-size:15px;font-weight:400;color:rgba(255,255,255,.6);line-height:1.65;max-width:400px}
 
-        /* SERVICES */
-        #services{background:var(--bg)}
-        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;max-width:1200px;margin:0 auto;background:var(--border)}
-        .service-card{background:var(--bg);padding:56px 44px;transition:all .5s var(--ease);position:relative;overflow:hidden}
-        .service-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:scaleX(0);transition:transform .6s var(--ease)}
-        .service-card:hover{background:var(--bg-card)}
-        .service-card:hover::after{transform:scaleX(1)}
-        .service-tier{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
-        .service-card h3{font-family:var(--serif);font-size:28px;font-weight:400;letter-spacing:-.01em;margin-bottom:8px;color:var(--white)}
-        .service-price{font-size:14px;font-weight:300;color:var(--text-secondary);margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--border)}
-        .service-price strong{font-size:28px;font-weight:500;color:var(--white);font-family:var(--serif)}
-        .service-features{list-style:none;display:flex;flex-direction:column;gap:16px}
-        .service-features li{font-size:14px;font-weight:300;color:var(--text-secondary);padding-left:20px;position:relative;line-height:1.6}
-        .service-features li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--accent)}
-        .service-card.featured{background:var(--bg-card);border-left:1px solid rgba(201,169,110,.2);border-right:1px solid rgba(201,169,110,.2)}
-        .service-card.featured:hover{background:var(--bg-subtle)}
-        .service-card.featured .service-tier{color:var(--accent)}
+        .bento-stat{grid-column:span 5;display:flex;flex-direction:column;justify-content:space-between;min-height:180px}
+        .bento-stat .stat-num{font-size:clamp(48px,5vw,72px);font-weight:200;letter-spacing:-.04em;line-height:1;color:var(--black)}
+        .bento-stat .stat-num .accent-warm{color:var(--accent-warm)}
+        .bento-stat .stat-label{font-size:13px;font-weight:400;color:var(--text-secondary);line-height:1.5}
 
-        /* TAX */
-        #tax-incentives{background:var(--bg-elevated)}
-        .tax-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;max-width:1200px;margin:0 auto;align-items:start}
-        .tax-highlight{background:var(--bg-card);border:1px solid var(--border);padding:56px;position:relative;overflow:hidden}
-        .tax-highlight::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
-        .tax-highlight h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:32px;color:var(--white)}
-        .tax-stat{display:flex;align-items:baseline;gap:16px;margin-bottom:32px}
-        .tax-stat .number{font-family:var(--serif);font-size:80px;font-weight:400;letter-spacing:-.04em;line-height:1;color:var(--accent)}
-        .tax-stat .label{font-size:14px;font-weight:300;color:var(--text-secondary);line-height:1.5}
-        .tax-canaries{border-top:1px solid var(--border);padding-top:32px;margin-top:8px}
-        .tax-canaries h4{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
-        .tax-canaries .number{font-family:var(--serif);font-size:48px;font-weight:400;color:var(--accent);margin-bottom:8px}
+        .bento-regions{grid-column:1/7;display:flex;flex-direction:column;gap:12px}
+        .bento-regions .bento-label{margin-bottom:8px}
+        .bento-region-list{display:flex;flex-wrap:wrap;gap:8px}
+        .bento-region-pill{padding:8px 16px;background:var(--bg-subtle);border-radius:8px;font-size:13px;font-weight:400;color:var(--text-primary);border:1px solid var(--border-light);transition:all .2s ease;cursor:default}
+        .bento-region-pill:hover{background:var(--accent-warm);color:var(--white);border-color:var(--accent-warm)}
+
+        .bento-cultural{grid-column:7/13;min-height:200px;cursor:pointer;overflow:hidden;border-left:3px solid var(--accent-warm)}
+        .bento-cultural:hover .cultural-arrow{transform:translateX(4px)}
+
+        .bento-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px;display:block}
+
+        /* Cultural bilingualism demo */
+        .cultural-demo{position:relative;min-height:100px;margin-top:8px}
+        .cultural-text{font-size:15px;font-weight:400;line-height:1.65;color:var(--text-primary);transition:all .4s ease}
+        .cultural-text.en{opacity:1;transform:translateY(0)}
+        .cultural-text.es{position:absolute;top:0;left:0;right:0;opacity:0;transform:translateY(8px);color:var(--text-secondary);font-style:italic}
+        .bento-cultural.flipped .cultural-text.en{opacity:0;transform:translateY(-8px)}
+        .bento-cultural.flipped .cultural-text.es{opacity:1;transform:translateY(0)}
+        .cultural-toggle-hint{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:12px;font-weight:500;color:var(--text-tertiary)}
+        .cultural-arrow{transition:transform .2s ease;display:inline-block}
+
+        /* ============================================
+           STATEMENT BREAK
+           ============================================ */
+        .statement{padding:160px 48px;text-align:center;position:relative}
+        .statement-text{font-family:var(--sans);font-size:clamp(24px,3vw,40px);font-weight:200;line-height:1.35;color:var(--text-primary);max-width:700px;margin:0 auto;letter-spacing:-.02em}
+        .statement-text strong{font-weight:600}
+
+        /* ============================================
+           SERVICES — Progressive Disclosure
+           ============================================ */
+        #services{background:var(--bg);padding:120px 48px}
+        .section-header{margin-bottom:64px}
+        .section-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+        .section-label::before{content:'';width:20px;height:1px;background:var(--accent-warm)}
+        .section-title{font-family:var(--sans);font-size:clamp(32px,4vw,52px);font-weight:200;letter-spacing:-.03em;line-height:1.1;color:var(--black);margin-bottom:16px}
+        .section-title strong{font-weight:600}
+        .section-subtitle{font-size:16px;font-weight:400;color:var(--text-secondary);max-width:440px;line-height:1.65}
+
+        .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap);max-width:1200px;margin:0 auto}
+        .service-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:40px 32px;transition:all .35s var(--ease);position:relative;overflow:hidden;display:flex;flex-direction:column}
+        .service-card:hover{border-color:var(--border);box-shadow:0 8px 24px rgba(0,0,0,.06);transform:translateY(-3px)}
+        .service-card.featured{background:var(--bg-dark);color:white;border-color:transparent}
+        .service-card.featured:hover{border-color:transparent;box-shadow:0 8px 32px rgba(0,0,0,.15);transform:translateY(-3px)}
+        .service-card.featured .service-tier{color:rgba(255,255,255,.4)}
+        .service-card.featured h3{color:white}
+        .service-card.featured .service-price{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.1)}
+        .service-card.featured .service-price strong{color:white}
+        .service-card.featured .service-features li{color:rgba(255,255,255,.6)}
+        .service-card.featured .service-features li::before{background:rgba(255,255,255,.3)}
+        .service-card.featured .service-expand-btn{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.15)}
+        .service-card.featured .service-expand-btn:hover{color:white;border-color:rgba(255,255,255,.35)}
+        .service-card.featured .service-details{border-color:rgba(255,255,255,.1)}
+        .service-card.featured .service-details li{color:rgba(255,255,255,.5)}
+        .service-tier{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:20px}
+        .service-card h3{font-family:var(--sans);font-size:24px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;color:var(--black)}
+        .service-price{font-size:14px;font-weight:400;color:var(--text-secondary);margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border-light)}
+        .service-price strong{font-size:24px;font-weight:600;color:var(--black);letter-spacing:-.01em}
+        .service-features{list-style:none;display:flex;flex-direction:column;gap:12px;flex:1}
+        .service-features li{font-size:14px;font-weight:400;color:var(--text-secondary);padding-left:20px;position:relative;line-height:1.55}
+        .service-features li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--text-tertiary)}
+
+        /* Progressive disclosure - expandable details */
+        .service-expand-btn{margin-top:20px;padding:10px 0;font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--text-tertiary);cursor:pointer;background:none;border:none;border-top:1px solid var(--border-light);width:100%;text-align:left;transition:color .2s ease;display:flex;align-items:center;justify-content:space-between}
+        .service-expand-btn:hover{color:var(--text-primary)}
+        .service-expand-btn svg{transition:transform .3s var(--ease)}
+        .service-expand-btn.open svg{transform:rotate(180deg)}
+        .service-details{max-height:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .3s ease;opacity:0}
+        .service-details.open{opacity:1}
+        .service-details ul{list-style:none;display:flex;flex-direction:column;gap:8px;padding-top:16px;border-top:1px solid var(--border-light);margin-top:4px}
+        .service-details li{font-size:13px;font-weight:400;color:var(--text-tertiary);padding-left:16px;position:relative;line-height:1.5}
+        .service-details li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:50%;background:var(--border)}
+
+        /* ============================================
+           TAX INCENTIVES — Visual Data Graphics
+           ============================================ */
+        #tax-incentives{background:var(--bg-elevated);padding:120px 48px}
+        .tax-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:48px;max-width:1200px;margin:0 auto;align-items:start}
+        .tax-highlight{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:40px;position:relative;overflow:hidden}
+        .tax-highlight h3{font-family:var(--sans);font-size:18px;font-weight:600;margin-bottom:24px;color:var(--black);letter-spacing:-.01em}
+
+        /* Visual rebate bars */
+        .rebate-visual{margin-bottom:32px}
+        .rebate-bar-item{margin-bottom:20px}
+        .rebate-bar-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+        .rebate-bar-label .rbl-name{font-size:14px;font-weight:500;color:var(--text-primary)}
+        .rebate-bar-label .rbl-pct{font-size:24px;font-weight:200;color:var(--black);letter-spacing:-.02em}
+        .rebate-bar-track{height:6px;background:var(--bg-elevated);border-radius:3px;overflow:hidden}
+        .rebate-bar-fill{height:100%;border-radius:3px;background:var(--accent);transition:width 1.2s var(--ease-out);width:0}
+        .rebate-bar-fill.canary{background:linear-gradient(90deg,var(--accent),var(--accent-warm))}
+
+        .tax-canaries{border-top:1px solid var(--border-light);padding-top:24px;margin-top:8px}
+        .tax-canaries h4{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px}
         .tax-canaries p{font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.6}
-        .tax-table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+        .tax-table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:8px;position:relative}
+        .tax-table-wrapper::after{content:'Scroll \u2192';position:absolute;top:8px;right:8px;font-size:10px;font-weight:500;color:var(--text-tertiary);letter-spacing:.04em;display:none;padding:4px 8px;background:var(--bg-subtle);border-radius:4px}
+        @media(max-width:768px){.tax-table-wrapper::after{display:block}}
         .tax-table{width:100%;border-collapse:collapse}
         .tax-table thead{border-bottom:1px solid var(--border)}
-        .tax-table th{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);padding:16px 20px 16px 0;text-align:left;white-space:nowrap}
-        .tax-table td{font-size:14px;font-weight:300;padding:18px 20px 18px 0;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text-secondary)}
-        .tax-table tr{transition:color .2s ease}
-        .tax-table tbody tr:hover td{color:var(--text-primary)}
-        .tax-table .highlight-row td{color:var(--white);font-weight:400}
-        .tax-badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:500;letter-spacing:.04em;white-space:nowrap}
-        .tax-badge.best{color:var(--accent)}
-        .tax-badge.good{color:rgba(255,255,255,.7)}
-        .tax-badge.avg{color:var(--text-secondary)}
-        .tax-note{font-size:12px;color:var(--text-tertiary);margin-top:24px;line-height:1.6;font-weight:300}
+        .tax-table th{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);padding:16px 16px;text-align:left;white-space:nowrap}
+        .tax-table td{font-size:14px;font-weight:400;padding:14px 16px;border-bottom:1px solid var(--border-light);color:var(--text-secondary)}
+        .tax-table tr{transition:background .2s ease;cursor:default}
+        .tax-table tbody tr:hover{background:var(--bg-subtle)}
+        .tax-table .highlight-row td{color:var(--text-primary);font-weight:500}
+        .tax-badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:600;letter-spacing:.02em;border-radius:4px;white-space:nowrap}
+        .tax-badge.best{color:var(--accent-warm);background:var(--accent-warm-subtle)}
+        .tax-badge.good{color:var(--text-primary);background:rgba(0,0,0,.05)}
+        .tax-badge.avg{color:var(--text-tertiary);background:rgba(0,0,0,.03)}
+        .tax-note{font-size:12px;color:var(--text-tertiary);margin-top:16px;line-height:1.6;font-weight:400;padding:0 8px}
 
-        /* LOCATIONS */
-        #locations{background:var(--bg);padding-left:0;padding-right:0}
-        #locations .section-header{padding:0 60px}
-        .locations-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:2px}
-        .location-card{position:relative;aspect-ratio:3/4;cursor:pointer;overflow:hidden;transition:all .5s var(--ease);-webkit-tap-highlight-color:transparent}
-        .location-card:nth-child(1){aspect-ratio:2/3}
+        /* ============================================
+           LOCATIONS — Immersive Grid + Modals
+           ============================================ */
+        #locations{background:var(--bg);padding:120px 48px}
+        .locations-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:var(--grid-gap);max-width:1200px;margin:0 auto}
+        .location-card{position:relative;border-radius:var(--radius-lg);cursor:pointer;overflow:hidden;transition:all .4s var(--ease);-webkit-tap-highlight-color:transparent}
+        .location-card:nth-child(1){aspect-ratio:3/4}
         .location-card:nth-child(2){aspect-ratio:1/1}
         .location-card:nth-child(3){aspect-ratio:3/4}
         .location-card:nth-child(4){aspect-ratio:1/1}
         .location-card:nth-child(5){aspect-ratio:3/4}
-        .location-card:nth-child(6){aspect-ratio:2/3}
+        .location-card:nth-child(6){aspect-ratio:3/4}
+        .location-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.12)}
         .location-card .location-bg{position:absolute;inset:0;transition:transform .8s var(--ease);background-size:cover;background-position:center}
-        .location-card:hover .location-bg{transform:scale(1.05)}
+        .location-card:hover .location-bg{transform:scale(1.04)}
         .location-card:nth-child(1) .location-bg{background:linear-gradient(160deg,#0d1b2a 0%,#1b2838 40%,#1a3a5c 100%)}
         .location-card:nth-child(2) .location-bg{background:linear-gradient(170deg,#0a1f14 0%,#1a3a2a 50%,#2a5a3a 100%)}
         .location-card:nth-child(3) .location-bg{background:linear-gradient(150deg,#1a1408 0%,#2d2414 40%,#4a3a1a 100%)}
         .location-card:nth-child(4) .location-bg{background:linear-gradient(165deg,#1a0a1e 0%,#2a1a32 50%,#3a2848 100%)}
         .location-card:nth-child(5) .location-bg{background:linear-gradient(155deg,#1a0e08 0%,#3a1e0e 40%,#5a3018 100%)}
         .location-card:nth-child(6) .location-bg{background:linear-gradient(175deg,#080818 0%,#12122e 50%,#1a1a48 100%)}
-        .location-card .location-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 40%,rgba(0,0,0,.05) 100%);z-index:1;transition:background .5s ease}
-        .location-card .location-texture{position:absolute;inset:0;opacity:.08;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");mix-blend-mode:overlay}
-        .location-card:hover .location-overlay{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 40%,rgba(0,0,0,0) 100%)}
-        .location-info{position:absolute;bottom:0;left:0;right:0;padding:40px;z-index:2}
-        .location-info h3{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--white);letter-spacing:-.01em;margin-bottom:8px}
-        .location-info p{font-size:13px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.6;max-width:240px}
-        .location-tag{display:inline-block;font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:12px}
+        .location-card .location-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,.05) 100%);z-index:1;transition:background .4s ease}
+        .location-card:hover .location-overlay{background:linear-gradient(to top,rgba(0,0,0,.6) 0%,rgba(0,0,0,.08) 40%,rgba(0,0,0,0) 100%)}
+        .location-info{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:2}
+        .location-info h3{font-family:var(--sans);font-size:22px;font-weight:600;color:var(--white);letter-spacing:-.01em;margin-bottom:6px}
+        .location-info p{font-size:13px;font-weight:400;color:rgba(255,255,255,.65);line-height:1.5;max-width:220px}
+        .location-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.5);margin-top:10px;padding:4px 10px;background:rgba(255,255,255,.1);border-radius:4px;backdrop-filter:blur(8px)}
+        /* Examine prompt on hover */
+        .location-card .examine-prompt{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);z-index:3;opacity:0;transition:all .35s var(--ease);pointer-events:none}
+        .location-card:hover .examine-prompt{opacity:1;transform:translate(-50%,-50%) scale(1)}
+        .examine-prompt span{display:flex;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(16px);align-items:center;justify-content:center;font-size:11px;font-weight:600;color:white;letter-spacing:.06em;text-transform:uppercase}
 
-        /* WHY US */
-        #why-us{background:var(--bg-elevated)}
-        .pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;max-width:1000px;margin:0 auto;background:var(--border)}
-        .pillar-card{background:var(--bg-elevated);padding:64px 48px;transition:all .4s var(--ease);position:relative}
-        .pillar-card:hover{background:var(--bg-card)}
-        .pillar-card::before{content:'';position:absolute;top:0;left:48px;right:48px;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);opacity:0;transition:opacity .4s ease}
-        .pillar-card:hover::before{opacity:1}
-        .pillar-number{font-family:var(--serif);font-size:48px;font-weight:400;color:rgba(255,255,255,.08);margin-bottom:24px;line-height:1;transition:color .4s ease}
-        .pillar-card:hover .pillar-number{color:rgba(201,169,110,.15)}
-        .pillar-card h3{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-.01em;margin-bottom:12px;color:var(--white)}
-        .pillar-card p{font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.7}
+        /* ============================================
+           LOCATION MODAL — Immersive Full-Screen
+           ============================================ */
+        .location-modal{position:fixed;inset:0;z-index:2000;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .35s ease}
+        .location-modal.active{opacity:1;pointer-events:auto}
+        .location-modal-sheet{width:100%;max-width:900px;max-height:90vh;background:var(--bg-card);border-radius:var(--radius-xl) var(--radius-xl) 0 0;overflow-y:auto;transform:translateY(100%);transition:transform .4s var(--ease-out);position:relative}
+        .location-modal.active .location-modal-sheet{transform:translateY(0)}
+        .modal-drag-bar{width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0}
+        .modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:var(--bg-subtle);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s ease}
+        .modal-close:hover{background:var(--bg-elevated)}
+        .modal-close svg{width:16px;height:16px;color:var(--text-secondary)}
+        .modal-hero-img{width:100%;aspect-ratio:16/9;background-size:cover;background-position:center;position:relative}
+        .modal-hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,var(--bg-card) 0%,transparent 40%)}
+        .modal-body{padding:0 36px 36px}
+        .modal-body h2{font-size:28px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px;color:var(--black);margin-top:-24px;position:relative}
+        .modal-body .modal-tagline{font-size:14px;color:var(--text-secondary);margin-bottom:24px;font-weight:400}
+        .modal-meta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+        .modal-meta-item{padding:16px;background:var(--bg-subtle);border-radius:var(--radius);text-align:center}
+        .modal-meta-item .mmi-val{font-size:18px;font-weight:600;color:var(--black);margin-bottom:2px}
+        .modal-meta-item .mmi-label{font-size:11px;font-weight:500;color:var(--text-tertiary);letter-spacing:.04em;text-transform:uppercase}
+        .modal-desc{font-size:15px;font-weight:400;color:var(--text-secondary);line-height:1.7;margin-bottom:24px}
+        .modal-typologies{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+        .modal-typo-pill{padding:6px 14px;font-size:12px;font-weight:500;color:var(--text-secondary);background:var(--bg-subtle);border-radius:6px}
+        .modal-cta-row{display:flex;gap:12px}
 
-        /* ABOUT */
-        #about{background:var(--bg);position:relative}
-        #about::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,169,110,.02) 0%,transparent 60%);pointer-events:none}
-        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;max-width:1200px;margin:0 auto;align-items:center}
-        .about-image{aspect-ratio:4/5;background:linear-gradient(180deg,#161616 0%,#0c0c0c 100%);position:relative;overflow:hidden}
-        .about-image::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,169,110,.06) 0%,transparent 70%);pointer-events:none}
-        .about-image::after{content:'';position:absolute;inset:0;border:1px solid var(--border)}
+        /* ============================================
+           CINEMATIC STATS INTERSTITIAL
+           ============================================ */
+        .cinematic{position:relative;padding:120px 48px;display:flex;align-items:center;justify-content:center;background:var(--bg-dark);overflow:hidden;border-radius:0}
+        .cinematic::before{content:'';position:absolute;top:-1px;left:0;right:0;height:60px;background:linear-gradient(to bottom,var(--bg),var(--bg-dark));pointer-events:none;z-index:1}
+        .cinematic::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:60px;background:linear-gradient(to top,var(--bg-elevated),var(--bg-dark));pointer-events:none;z-index:1}
+        .cinematic-inner{position:relative;z-index:2;text-align:center;max-width:1000px;margin:0 auto}
+        .cinematic-number{font-family:var(--sans);font-size:clamp(80px,12vw,160px);font-weight:200;line-height:1;letter-spacing:-.06em;color:rgba(255,255,255,.08);margin-bottom:12px}
+        .cinematic-label{font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+        .cinematic-line{position:absolute;top:50%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transform:scaleX(0);transform-origin:center}
+        .cinematic-stats{display:flex;justify-content:center;gap:80px;margin-top:64px}
+        .cinematic-stat{text-align:center}
+        .cinematic-stat .num{font-family:var(--sans);font-size:clamp(40px,5vw,60px);font-weight:200;color:var(--white);letter-spacing:-.03em;line-height:1}
+        .cinematic-stat .txt{font-size:12px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px}
+
+        /* ============================================
+           WHY US — Pillar Cards
+           ============================================ */
+        #why-us{background:var(--bg-elevated);padding:120px 48px}
+        .pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--grid-gap);max-width:1200px;margin:0 auto}
+        .pillar-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:36px 28px;transition:all .35s var(--ease);position:relative}
+        .pillar-card:hover{border-color:var(--border);box-shadow:0 4px 16px rgba(0,0,0,.04);transform:translateY(-2px)}
+        .pillar-number{font-family:var(--sans);font-size:36px;font-weight:200;color:var(--text-tertiary);margin-bottom:20px;line-height:1;letter-spacing:-.03em}
+        .pillar-card:hover .pillar-number{color:var(--text-secondary)}
+        .pillar-card h3{font-family:var(--sans);font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:10px;color:var(--black)}
+        .pillar-card p{font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.65}
+
+        /* ============================================
+           ABOUT — Founder
+           ============================================ */
+        #about{background:var(--bg);padding:120px 48px;position:relative}
+        .about-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;max-width:1200px;margin:0 auto;align-items:center}
+        .about-image{aspect-ratio:4/5;background:linear-gradient(160deg,#e8e4df 0%,#d4cfc8 40%,#c8c0b5 100%);position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+        .about-image::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.3) 100%);z-index:1}
+        .about-image-label{position:absolute;bottom:24px;left:24px;z-index:2}
+        .about-image-label .ail-name{font-size:14px;font-weight:600;color:white;margin-bottom:2px}
+        .about-image-label .ail-title{font-size:12px;font-weight:400;color:rgba(255,255,255,.6)}
         .about-content{}
-        .about-content .section-label{margin-bottom:24px}
-        .about-content h2{font-family:var(--serif);font-size:40px;font-weight:400;letter-spacing:-.02em;line-height:1.15;margin-bottom:32px;color:var(--white)}
-        .about-content h2 em{font-style:italic;color:var(--text-secondary)}
-        .about-content p{font-size:15px;font-weight:400;color:var(--text-secondary);line-height:1.8;margin-bottom:20px}
-        .about-stats{display:flex;gap:48px;margin-top:48px;padding-top:40px;border-top:1px solid var(--border)}
-        .about-stat .number{font-family:var(--serif);font-size:36px;font-weight:400;color:var(--white);letter-spacing:-.02em}
-        .about-stat .label{font-size:12px;font-weight:300;color:var(--text-tertiary);letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+        .about-content h2{font-family:var(--sans);font-size:clamp(28px,3vw,40px);font-weight:200;letter-spacing:-.03em;line-height:1.15;margin-bottom:24px;color:var(--black)}
+        .about-content h2 strong{font-weight:600}
+        .about-content p{font-size:15px;font-weight:400;color:var(--text-secondary);line-height:1.75;margin-bottom:16px}
+        .about-stats{display:flex;gap:40px;margin-top:36px;padding-top:28px;border-top:1px solid var(--border-light)}
+        .about-stat .number{font-family:var(--sans);font-size:28px;font-weight:200;color:var(--black);letter-spacing:-.02em}
+        .about-stat .label{font-size:12px;font-weight:400;color:var(--text-tertiary);letter-spacing:.02em;margin-top:2px}
 
-        /* QUOTE BUILDER */
-        #quote-builder{background:var(--bg);border-top:1px solid var(--border)}
+        /* ============================================
+           REEL / WORK SECTION
+           ============================================ */
+        .reel-section{position:relative;padding:160px 48px;background:var(--bg-elevated);text-align:center;overflow:hidden}
+        .reel-play{width:80px;height:80px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;cursor:pointer;transition:all .35s var(--ease);position:relative;background:var(--bg-card)}
+        .reel-play:hover{border-color:var(--text-secondary);transform:scale(1.06);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+        .reel-play:active{transform:scale(.97)}
+        .reel-play::after{content:'';width:0;height:0;border-left:16px solid var(--accent);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:3px}
+        .reel-title{font-family:var(--sans);font-size:24px;font-weight:600;color:var(--black);margin-bottom:8px;letter-spacing:-.01em}
+        .reel-sub{font-size:13px;color:var(--text-tertiary);letter-spacing:.04em;font-weight:400}
+
+        /* ============================================
+           PORTFOLIO / CASE STUDIES
+           ============================================ */
+        #portfolio{background:var(--bg);padding:120px 48px}
+        .portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--grid-gap);max-width:1200px;margin:0 auto}
+        .portfolio-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;aspect-ratio:16/10;transition:all .4s var(--ease)}
+        .portfolio-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.1)}
+        .portfolio-card:first-child{grid-column:1/-1;aspect-ratio:21/9}
+        .portfolio-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s var(--ease)}
+        .portfolio-card:hover .portfolio-bg{transform:scale(1.03)}
+        .portfolio-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 50%);z-index:1}
+        .portfolio-info{position:absolute;bottom:0;left:0;right:0;padding:28px;z-index:2}
+        .portfolio-info .pf-client{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px}
+        .portfolio-info h3{font-size:22px;font-weight:600;color:white;letter-spacing:-.01em;margin-bottom:4px}
+        .portfolio-info .pf-meta{font-size:13px;color:rgba(255,255,255,.5);font-weight:400}
+        .portfolio-examine{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.8);z-index:3;opacity:0;transition:all .35s var(--ease);pointer-events:none;width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center}
+        .portfolio-card:hover .portfolio-examine{opacity:1;transform:translate(-50%,-50%) scale(1)}
+        .portfolio-examine span{font-size:10px;font-weight:600;color:white;letter-spacing:.04em;text-transform:uppercase;text-align:center;line-height:1.3}
+
+        /* ============================================
+           QUOTE BUILDER
+           ============================================ */
+        #quote-builder{background:var(--bg-elevated);padding:120px 48px}
         .qb-wrapper{max-width:1200px;margin:0 auto}
-        .qb-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-        .qb-controls{display:flex;flex-direction:column;gap:32px}
+        .qb-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+        .qb-controls{display:flex;flex-direction:column;gap:28px}
         .qb-group{position:relative}
-        .qb-group-label{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+        .qb-group-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px}
         .qb-select-wrap{position:relative}
-        .qb-select{width:100%;background:var(--bg-card);border:1px solid var(--border);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;padding:14px 44px 14px 18px;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .3s ease;outline:none;border-radius:0}
-        .qb-select:hover,.qb-select:focus{border-color:var(--accent)}
-        .qb-select option{background:var(--bg);color:var(--white)}
-        .qb-select-wrap::after{content:'';position:absolute;right:16px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid var(--text-tertiary);pointer-events:none;transition:border-color .3s ease}
-        .qb-select-wrap:hover::after{border-top-color:var(--accent)}
+        .qb-select{width:100%;background:var(--bg-card);border:1px solid var(--border);color:var(--text-primary);font-family:var(--sans);font-size:14px;font-weight:400;padding:12px 40px 12px 16px;appearance:none;-webkit-appearance:none;cursor:pointer;transition:border-color .2s ease;outline:none;border-radius:var(--radius)}
+        .qb-select:hover,.qb-select:focus{border-color:var(--text-secondary)}
+        .qb-select-wrap::after{content:'';position:absolute;right:14px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid var(--text-tertiary);pointer-events:none}
 
-        /* Tier cards */
-        .qb-tier-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-        .qb-tier-card{background:var(--bg-card);padding:24px 20px;cursor:pointer;transition:all .35s var(--ease);position:relative;overflow:hidden;text-align:center}
-        .qb-tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .35s var(--ease)}
-        .qb-tier-card:hover{background:var(--bg-subtle)}
-        .qb-tier-card.active{background:var(--bg-subtle)}
-        .qb-tier-card.active::before{transform:scaleX(1)}
-        .qb-tier-card .tc-tier{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px;transition:color .3s ease}
-        .qb-tier-card.active .tc-tier{color:var(--accent)}
-        .qb-tier-card .tc-name{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--white);margin-bottom:6px}
-        .qb-tier-card .tc-price{font-size:12px;font-weight:300;color:var(--text-secondary);line-height:1.5}
+        .qb-tier-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--grid-gap)}
+        .qb-tier-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius);padding:20px 16px;cursor:pointer;transition:all .25s var(--ease);text-align:center}
+        .qb-tier-card:hover{border-color:var(--border)}
+        .qb-tier-card.active{border-color:var(--accent);background:var(--bg-card);box-shadow:0 0 0 1px var(--accent)}
+        .qb-tier-card .tc-tier{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px;transition:color .2s ease}
+        .qb-tier-card.active .tc-tier{color:var(--text-primary)}
+        .qb-tier-card .tc-name{font-family:var(--sans);font-size:16px;font-weight:600;color:var(--text-primary);margin-bottom:4px;letter-spacing:-.01em}
+        .qb-tier-card .tc-price{font-size:12px;font-weight:400;color:var(--text-tertiary);line-height:1.4}
 
-        /* Slider */
-        .qb-slider-wrap{display:flex;align-items:center;gap:16px}
-        .qb-slider{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:linear-gradient(to right,var(--accent) 0%,var(--accent) 22%,var(--border) 22%,var(--border) 100%);outline:none;cursor:pointer;border-radius:0}
-        .qb-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;background:var(--accent);border:none;cursor:pointer;border-radius:0;margin-top:0}
-        .qb-slider::-moz-range-thumb{width:20px;height:20px;background:var(--accent);border:none;cursor:pointer;border-radius:0}
-        .qb-slider-val{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--white);min-width:36px;text-align:center}
+        .qb-slider-wrap{display:flex;align-items:center;gap:14px}
+        .qb-slider{-webkit-appearance:none;appearance:none;width:100%;height:3px;background:linear-gradient(to right,var(--accent) 0%,var(--accent) 22%,var(--border) 22%,var(--border) 100%);outline:none;cursor:pointer;border-radius:2px}
+        .qb-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;background:var(--accent);border:3px solid var(--white);cursor:pointer;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+        .qb-slider::-moz-range-thumb{width:22px;height:22px;background:var(--accent);border:3px solid var(--white);cursor:pointer;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+        .qb-slider-val{font-family:var(--sans);font-size:24px;font-weight:200;color:var(--text-primary);min-width:32px;text-align:center;letter-spacing:-.02em}
 
-        /* Toggle */
         .qb-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px}
-        .qb-toggle{position:relative;width:48px;height:26px;background:var(--bg-card);border:1px solid var(--border);cursor:pointer;flex-shrink:0;transition:all .3s ease}
-        .qb-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--text-tertiary);transition:all .3s ease}
-        .qb-toggle.on{background:var(--accent-subtle);border-color:var(--accent)}
-        .qb-toggle.on::after{left:25px;background:var(--accent)}
+        .qb-toggle{position:relative;width:44px;height:24px;background:var(--bg-elevated);border:1px solid var(--border);cursor:pointer;flex-shrink:0;transition:all .25s ease;border-radius:12px}
+        .qb-toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;background:var(--text-tertiary);transition:all .25s ease;border-radius:50%}
+        .qb-toggle.on{background:var(--accent);border-color:var(--accent)}
+        .qb-toggle.on::after{left:22px;background:var(--white)}
         .qb-toggle-label{font-size:14px;font-weight:400;color:var(--text-secondary)}
-        .qb-toggle-sub{margin-top:12px;overflow:hidden;max-height:0;opacity:0;transition:max-height .4s var(--ease),opacity .3s ease,margin-top .3s ease}
+        .qb-toggle-sub{overflow:hidden;max-height:0;opacity:0;transition:max-height .4s var(--ease),opacity .3s ease,margin-top .3s ease}
         .qb-toggle-sub.show{max-height:80px;opacity:1;margin-top:12px}
 
-        /* Quote output */
-        .qb-output{position:sticky;top:96px}
-        .qb-output-card{border:1px solid var(--border);overflow:hidden}
-        .qb-output-header{background:var(--bg-card);padding:32px 36px;border-bottom:1px solid var(--border)}
-        .qb-output-header h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:4px}
-        .qb-output-header p{font-size:12px;font-weight:300;color:var(--text-tertiary)}
-        .qb-output-body{padding:28px 36px}
-        .qb-line{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+        .qb-output{position:sticky;top:88px}
+        .qb-output-card{border:1px solid var(--border-light);overflow:hidden;border-radius:var(--radius-lg);background:var(--bg-card)}
+        .qb-output-header{padding:28px 32px;border-bottom:1px solid var(--border-light)}
+        .qb-output-header h3{font-family:var(--sans);font-size:18px;font-weight:600;color:var(--black);margin-bottom:2px;letter-spacing:-.01em}
+        .qb-output-header p{font-size:12px;font-weight:400;color:var(--text-tertiary)}
+        .qb-output-body{padding:24px 32px}
+        .qb-line{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border-light)}
         .qb-line:last-of-type{border-bottom:none}
-        .qb-line-label{font-size:13px;font-weight:300;color:var(--text-secondary);max-width:65%;line-height:1.5}
+        .qb-line-label{font-size:13px;font-weight:400;color:var(--text-secondary);max-width:65%;line-height:1.5}
         .qb-line-label small{display:block;font-size:11px;color:var(--text-tertiary);margin-top:2px}
-        .qb-line-value{font-size:14px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white);text-align:right;white-space:nowrap}
+        .qb-line-value{font-size:14px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text-primary);text-align:right;white-space:nowrap}
         .qb-line-value.zero{color:var(--text-tertiary)}
-        .qb-total-section{margin-top:16px;padding-top:20px;border-top:1px solid var(--border)}
-        .qb-total-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
-        .qb-total-row .label{font-size:13px;font-weight:300;color:var(--text-secondary)}
-        .qb-total-row .value{font-size:13px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--white)}
-        .qb-total-row.grand{padding-top:16px;margin-top:8px;border-top:1px solid var(--border)}
-        .qb-total-row.grand .label{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--white)}
-        .qb-total-row.grand .value{font-family:var(--serif);font-size:28px;font-weight:400;color:var(--accent);transition:all .3s ease}
-        .qb-footer-notes{padding:24px 36px;border-top:1px solid var(--border);background:var(--bg-card)}
-        .qb-footer-notes p{font-size:11px;font-weight:300;color:var(--text-tertiary);line-height:1.7;margin-bottom:8px}
+        .qb-total-section{margin-top:12px;padding-top:16px;border-top:1px solid var(--border)}
+        .qb-total-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0}
+        .qb-total-row .label{font-size:13px;font-weight:400;color:var(--text-secondary)}
+        .qb-total-row .value{font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--text-primary)}
+        .qb-total-row.grand{padding-top:12px;margin-top:6px;border-top:1px solid var(--border)}
+        .qb-total-row.grand .label{font-size:16px;font-weight:600;color:var(--black)}
+        .qb-total-row.grand .value{font-size:24px;font-weight:200;color:var(--black);letter-spacing:-.02em;transition:all .3s ease}
+        .qb-footer-notes{padding:20px 32px;border-top:1px solid var(--border-light);background:var(--bg-subtle);border-radius:0 0 var(--radius-lg) var(--radius-lg)}
+        .qb-footer-notes p{font-size:11px;font-weight:400;color:var(--text-tertiary);line-height:1.7;margin-bottom:6px}
         .qb-footer-notes p:last-child{margin-bottom:0}
-        .qb-footer-notes strong{color:var(--accent);font-weight:400}
-        .qb-cta{display:block;width:100%;padding:16px;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;text-align:center;transition:all .3s var(--ease);margin-top:24px}
-        .qb-cta:hover{background:#d4b478;transform:translateY(-1px)}
+        .qb-footer-notes strong{color:var(--text-primary);font-weight:600}
+        .qb-cta{display:block;width:100%;padding:14px;background:var(--accent);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;text-align:center;transition:all .25s var(--ease);margin-top:16px;border-radius:var(--radius)}
+        .qb-cta:hover{background:#333;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+        .qb-cta:active{transform:scale(.98)}
 
         @media(max-width:1024px){
-            .qb-layout{grid-template-columns:1fr;gap:48px}
+            .qb-layout{grid-template-columns:1fr;gap:40px}
             .qb-output{position:static}
         }
         @media(max-width:768px){
             .qb-tier-cards{grid-template-columns:1fr}
         }
 
-        /* CONTACT */
-        #contact{background:var(--bg);border-top:1px solid var(--border);position:relative}
-        #contact::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:120px;background:linear-gradient(to bottom,var(--accent),transparent);opacity:.3}
-        #contact .section-label{color:var(--accent)}
-        #contact .section-title{color:var(--white)}
-        #contact .section-subtitle{color:var(--text-secondary)}
-        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;max-width:1200px;margin:0 auto}
-        .contact-info{display:flex;flex-direction:column;gap:40px}
-        .contact-method{display:flex;gap:20px}
-        .contact-method .icon{width:48px;height:48px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .3s ease}
-        .contact-method:hover .icon{border-color:var(--accent)}
-        .contact-method h4{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:6px}
-        .contact-method p{font-size:16px;font-weight:300;color:var(--white)}
-        .contact-method p a{transition:color .2s ease}
-        .contact-method p a:hover{color:var(--accent)}
-        .contact-form{display:flex;flex-direction:column;gap:20px}
-        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-        .form-group{display:flex;flex-direction:column;gap:8px}
-        .form-group label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary)}
-        .form-group input,.form-group select,.form-group textarea{background:transparent;border:1px solid rgba(255,255,255,.12);border-radius:0;padding:16px 18px;color:var(--white);font-family:var(--sans);font-size:14px;font-weight:300;transition:all .3s ease;outline:none}
+        /* ============================================
+           CONTACT — Multi-Step Form
+           ============================================ */
+        #contact{background:var(--bg);padding:120px 48px;position:relative}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1200px;margin:0 auto}
+        .contact-info{display:flex;flex-direction:column;gap:32px}
+        .contact-method{display:flex;gap:16px;align-items:flex-start}
+        .contact-method .icon{width:40px;height:40px;border:1px solid var(--border-light);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s ease;background:var(--bg-card)}
+        .contact-method:hover .icon{border-color:var(--border);background:var(--bg-subtle)}
+        .contact-method h4{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:4px}
+        .contact-method p{font-size:15px;font-weight:400;color:var(--text-primary)}
+        .contact-method p a{transition:color .2s ease;border-bottom:1px solid var(--border-light)}
+        .contact-method p a:hover{color:var(--accent-warm)}
+
+        /* Escape hatches - WhatsApp + Priority Email */
+        .contact-escape{display:flex;gap:12px;margin-top:12px}
+        .escape-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;font-size:13px;font-weight:500;border:1px solid var(--border);border-radius:var(--radius);color:var(--text-secondary);transition:all .2s ease;background:var(--bg-card)}
+        .escape-btn:hover{border-color:var(--text-secondary);color:var(--text-primary);transform:translateY(-1px)}
+        .escape-btn svg{width:16px;height:16px}
+
+        /* Multi-step form */
+        .contact-form{display:flex;flex-direction:column;gap:0;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden}
+        .form-step{padding:28px 32px;display:none;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease}
+        .form-step.active{display:block;opacity:1;transform:translateY(0)}
+        .form-step-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+        .form-step-number{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary)}
+        .form-step-title{font-size:16px;font-weight:600;color:var(--black);letter-spacing:-.01em}
+        .form-progress{display:flex;gap:4px;padding:20px 32px;border-bottom:1px solid var(--border-light)}
+        .form-progress-dot{flex:1;height:4px;border-radius:2px;background:var(--bg-elevated);transition:background .3s ease}
+        .form-progress-dot.active{background:var(--accent)}
+        .form-progress-dot.done{background:var(--accent)}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+        .form-group{display:flex;flex-direction:column;gap:6px}
+        .form-group label{font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-tertiary)}
+        .form-group input,.form-group select,.form-group textarea{background:var(--bg-subtle);border:1px solid var(--border-light);border-radius:var(--radius);padding:12px 16px;color:var(--text-primary);font-family:var(--sans);font-size:14px;font-weight:400;transition:all .2s ease;outline:none}
         .form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-tertiary)}
-        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent)}
-        .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
-        .form-group select option{background:var(--bg);color:var(--white)}
-        .form-group textarea{resize:vertical;min-height:120px}
-        .btn-submit{width:100%;padding:18px;background:var(--accent);color:var(--bg);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s var(--ease);margin-top:8px}
-        .btn-submit:hover{background:#d4b478;transform:translateY(-1px)}
+        .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);background:var(--bg-card)}
+        .form-group select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(0,0,0,0.3)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;background-color:var(--bg-subtle)}
+        .form-group textarea{resize:vertical;min-height:100px}
+        .form-nav{display:flex;gap:12px;justify-content:flex-end;margin-top:8px}
+        .form-nav-btn{padding:10px 24px;font-size:13px;font-weight:500;border-radius:var(--radius);cursor:pointer;transition:all .2s ease;font-family:var(--sans)}
+        .form-nav-btn.back{background:transparent;border:1px solid var(--border);color:var(--text-secondary)}
+        .form-nav-btn.back:hover{border-color:var(--text-secondary);color:var(--text-primary)}
+        .form-nav-btn.next{background:var(--accent);border:none;color:var(--white)}
+        .form-nav-btn.next:hover{background:#333}
+        .btn-submit{width:100%;padding:14px;background:var(--accent);color:var(--white);font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;border-radius:var(--radius);transition:all .25s var(--ease);margin-top:8px}
+        .btn-submit:hover{background:#333;transform:translateY(-1px)}
+        .btn-submit:active{transform:scale(.98)}
 
-        /* FOOTER */
-        .footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 60px}
+        /* File upload zone */
+        .upload-zone{border:2px dashed var(--border);border-radius:var(--radius);padding:28px;text-align:center;cursor:pointer;transition:all .2s ease;margin-bottom:16px}
+        .upload-zone:hover{border-color:var(--text-secondary);background:var(--bg-subtle)}
+        .upload-zone p{font-size:13px;color:var(--text-secondary);font-weight:400}
+        .upload-zone .upload-hint{font-size:11px;color:var(--text-tertiary);margin-top:4px}
+
+        /* Form validation */
+        .form-group input:invalid:not(:placeholder-shown){border-color:#ef4444}
+        .form-group input:valid:not(:placeholder-shown){border-color:#22c55e}
+        .form-group input:invalid:not(:placeholder-shown):focus{border-color:#ef4444;box-shadow:0 0 0 3px rgba(239,68,68,.1)}
+        .form-group input:valid:not(:placeholder-shown):focus{border-color:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.1)}
+
+        /* ============================================
+           CLOSING
+           ============================================ */
+        .closing{padding:160px 48px 100px;text-align:center;position:relative}
+        .closing-text{font-family:var(--sans);font-size:clamp(24px,3vw,40px);font-weight:300;color:var(--text-secondary);max-width:550px;margin:0 auto;line-height:1.35;letter-spacing:-.02em}
+        .closing-text strong{font-weight:600;color:var(--text-primary)}
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer{background:var(--bg);border-top:1px solid var(--border-light);padding:40px 48px}
         .footer-content{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-        .footer-left p{font-size:12px;font-weight:300;color:var(--text-tertiary);line-height:1.8}
-        .footer-left .company-name{font-weight:400;color:var(--text-secondary)}
-        .footer-right{display:flex;gap:32px}
-        .footer-right a{font-size:11px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);transition:color .2s ease}
-        .footer-right a:hover{color:var(--white)}
+        .footer-left p{font-size:12px;font-weight:400;color:var(--text-tertiary);line-height:1.8}
+        .footer-left .company-name{font-weight:600;color:var(--text-secondary);font-size:14px;margin-bottom:4px}
+        .footer-right{display:flex;gap:28px}
+        .footer-right a{font-size:12px;font-weight:400;color:var(--text-tertiary);transition:color .2s ease}
+        .footer-right a:hover{color:var(--text-primary)}
 
-        /* GSAP REVEAL */
+        /* ============================================
+           SKELETON SCREENS
+           ============================================ */
+        .skeleton{background:linear-gradient(90deg,var(--bg-elevated) 25%,var(--bg-subtle) 50%,var(--bg-elevated) 75%);background-size:200% 100%;animation:skeleton-shimmer 1.5s infinite;border-radius:var(--radius)}
+        @keyframes skeleton-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+        /* ============================================
+           MOBILE BOTTOM TAB BAR
+           ============================================ */
+        .bottom-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-top:1px solid var(--glass-border);padding:8px 0 env(safe-area-inset-bottom,8px);box-shadow:0 -1px 3px rgba(0,0,0,.03)}
+        .bottom-bar-inner{display:flex;justify-content:space-around;align-items:center;max-width:500px;margin:0 auto}
+        .bottom-bar-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 16px;min-width:64px;min-height:44px;cursor:pointer;transition:color .2s ease;color:var(--text-tertiary);background:none;border:none;font-family:var(--sans)}
+        .bottom-bar-item.active{color:var(--text-primary)}
+        .bottom-bar-item svg{width:20px;height:20px}
+        .bottom-bar-item span{font-size:10px;font-weight:500;letter-spacing:.02em}
+
+        /* ============================================
+           GSAP REVEAL
+           ============================================ */
         .gs-reveal{opacity:0;visibility:hidden}
 
-        /* RESPONSIVE */
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
         @media(max-width:1024px){
-            section{padding:120px 40px}
-            .statement{padding:140px 40px}
-            .cinematic{min-height:80vh;padding:0 40px}
-            .cinematic-stats{gap:60px}
+            section,.bento-section,#tax-incentives,#why-us,#about,#portfolio,#quote-builder,#contact{padding:100px 32px}
+            .statement{padding:120px 32px}
+            .hero{padding:0 32px}
+            .hero-visual{display:none}
+            .hero-stats-bar{right:32px;bottom:24px}
             .services-grid{grid-template-columns:repeat(2,1fr)}
             .locations-grid{grid-template-columns:repeat(2,1fr)}
             .location-card,.location-card:nth-child(n){aspect-ratio:3/4}
-            #locations .section-header{padding:0 40px}
             .pillars-grid{grid-template-columns:repeat(2,1fr)}
             .tax-grid{grid-template-columns:1fr}
-            .about-grid{grid-template-columns:1fr;gap:60px}
+            .about-grid{grid-template-columns:1fr;gap:48px}
             .about-image{aspect-ratio:16/9}
-            .contact-grid{grid-template-columns:1fr;gap:60px}
+            .contact-grid{grid-template-columns:1fr;gap:48px}
+            .bento-grid{grid-template-columns:1fr 1fr}
+            .bento-hero{grid-column:1/-1;grid-row:auto;min-height:300px}
+            .bento-stat{grid-column:span 1}
+            .bento-regions{grid-column:1/-1}
+            .bento-cultural{grid-column:1/-1;border-left:none;border-top:3px solid var(--accent-warm)}
+            .portfolio-grid{grid-template-columns:1fr}
+            .portfolio-card:first-child{aspect-ratio:16/10}
+            .cinematic-stats{gap:48px}
         }
         @media(max-width:768px){
-            .nav{padding:0 24px;height:64px}
-            .nav-links{position:absolute;top:64px;left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(20px);flex-direction:column;padding:32px 24px;gap:24px;border-bottom:1px solid var(--border);display:flex;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all .3s var(--ease)}
+            .nav{padding:0 20px;height:56px}
+            .nav-links{position:absolute;top:56px;left:0;right:0;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);flex-direction:column;padding:24px 20px;gap:20px;border-bottom:1px solid var(--glass-border);display:flex;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all .3s var(--ease)}
             .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
             .nav-mobile-toggle{display:flex}
-            .hero{padding:0 24px 80px}
-            section{padding:100px 24px}
-            .statement{padding:120px 24px}
-            .services-grid,.pillars-grid{grid-template-columns:1fr;background:transparent;gap:1px}
-            .locations-grid{grid-template-columns:1fr 1fr;gap:2px}
+            .hero{padding:0 20px 80px}
+            .hero-content{padding-top:80px}
+            .hero-scroll,.hero-stats-bar{display:none}
+            section,.bento-section,#services,#tax-incentives,#locations,#why-us,#about,#portfolio,#quote-builder,#contact{padding:80px 20px}
+            .statement{padding:80px 20px}
+            .services-grid,.pillars-grid{grid-template-columns:1fr;gap:var(--grid-gap)}
+            .locations-grid{grid-template-columns:1fr 1fr;gap:6px}
             .location-card:nth-child(n){aspect-ratio:1/1}
-            #locations .section-header{padding:0 24px}
-            .reel-section{padding:120px 24px}
-            .cinematic{min-height:70vh;padding:0 24px}
-            .cinematic-stats{flex-direction:column;gap:32px;margin-top:48px}
-            .qb-layout{grid-template-columns:1fr;gap:40px}
-            .qb-output{position:static}
-            .qb-tier-cards{grid-template-columns:1fr}
-            .qb-output-header,.qb-output-body{padding:20px 24px}
-            .qb-footer-notes{padding:20px 24px}
-            .qb-total-row.grand .value{font-size:24px}
+            .location-tag{backdrop-filter:none}
+            .reel-section{padding:80px 20px}
+            .cinematic{padding:80px 20px}
+            .cinematic-stats{flex-direction:column;gap:24px;margin-top:40px}
             .form-row{grid-template-columns:1fr}
-            .footer{padding:40px 24px}
-            .footer-content{flex-direction:column;gap:20px;text-align:center}
-            .footer-right{gap:20px}
-            .about-stats{flex-direction:row;gap:32px}
-            .about-grid{gap:48px}
-            .hero-scroll,.hero-coords,.hero-regions,.hero-line{display:none}
-            .contact-grid{gap:48px}
-            .closing{padding:120px 24px 80px}
+            .footer{padding:32px 20px}
+            .footer-content{flex-direction:column;gap:16px;text-align:center}
+            .footer-right{gap:16px}
+            .about-stats{flex-direction:row;gap:28px}
+            .about-grid{gap:40px}
+            .contact-grid{gap:40px}
+            .closing{padding:80px 20px 60px}
+            .bento-grid{grid-template-columns:1fr}
+            .bento-hero{min-height:260px}
+            .bento-stat{grid-column:1}
+            .modal-meta-grid{grid-template-columns:1fr 1fr}
+            .modal-body{padding:0 24px 24px}
+            .modal-close{width:44px;height:44px}
+            .contact-escape{flex-direction:column}
+
+            /* Show bottom tab bar on mobile */
+            .bottom-bar{display:block}
+            body{padding-bottom:64px}
+            /* Hide CTA from top nav on mobile */
+            .nav-cta-li{display:none}
         }
         @media(max-width:480px){
-            .hero h1{font-size:38px}
+            .hero h1{font-size:36px}
             .hero-actions{flex-direction:column;align-items:stretch}
             .btn-primary{justify-content:center}
-            .about-stats{flex-wrap:wrap;gap:24px}
+            .about-stats{flex-wrap:wrap;gap:20px}
+            .location-card:nth-child(n){aspect-ratio:4/5}
+            .locations-grid{grid-template-columns:1fr}
         }
         @media(prefers-reduced-motion:reduce){
             *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
             .gs-reveal{opacity:1;visibility:visible}
         }
         @media print{
-            .nav,.hero-scroll,.hero-actions,.contact-form,.nav-mobile-toggle,.grain,.reel-section,.cinematic,.act-divider,.hero-line,.hero-coords,.hero-regions,.qb-controls,.qb-cta{display:none !important}
+            .nav,.hero-scroll,.hero-actions,.contact-form,.nav-mobile-toggle,.reel-section,.cinematic,.hero-visual,.bottom-bar,.qb-controls,.qb-cta,.location-modal,.grain{display:none !important}
             .hero{min-height:auto;padding:48px}
             section{padding:32px;page-break-inside:avoid}
             .gs-reveal{opacity:1 !important;visibility:visible !important}
@@ -448,65 +682,141 @@
 </head>
 <body>
     <div class="grain" aria-hidden="true"></div>
+
+    <!-- =============================================
+         LIQUID GLASS NAVIGATION
+         ============================================= -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
-        <a href="#" class="nav-logo">Liquid <span>Locations</span></a>
+        <a href="#" class="nav-logo">Liquid<span style="color:var(--accent-warm);margin:0 4px;font-weight:300">&middot;</span><span>Locations</span></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#services">Services</a></li>
             <li><a href="#locations">Locations</a></li>
+            <li><a href="#portfolio">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#quote-builder">Pricing</a></li>
-            <li><a href="#contact" class="nav-cta">Brief Us</a></li>
+            <li>
+                <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+                    <span class="lang-active">EN</span> / <span>ES</span>
+                </button>
+            </li>
+            <li class="nav-cta-li"><a href="#contact" class="nav-cta">Brief Us</a></li>
         </ul>
         <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span><span></span><span></span>
         </button>
     </nav>
 
+    <!-- =============================================
+         HERO — Kinetic Typography + Visual Grid
+         ============================================= -->
     <header class="hero" id="hero">
         <div class="hero-content">
-            <p class="hero-eyebrow">Production Services \u2014 Spain</p>
-            <h1>London production.<br><em>Spanish ground.</em></h1>
+            <p class="hero-eyebrow">Production Services &mdash; Spain</p>
+            <h1>
+                <span class="hero-text-mask"><span>London </span></span><span class="hero-text-mask"><span><strong>production.</strong></span></span><br>
+                <span class="hero-text-mask"><span>Spanish </span></span><span class="hero-text-mask"><span><strong>ground.</strong></span></span>
+            </h1>
             <p class="hero-sub">Location scouting, crew coordination, and full production management across Spain's six most cinematic regions. Bilingual. Overhead-free.</p>
             <div class="hero-actions">
-                <a href="#contact" class="btn-primary">Brief Us</a>
+                <a href="#contact" class="btn-primary">Brief Us <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                 <a href="#services" class="btn-secondary">View Services</a>
             </div>
         </div>
-        <div class="hero-line" aria-hidden="true"></div>
-        <div class="hero-coords" aria-hidden="true">
-            <span>41.3874&deg;N</span>
-            <span>2.1686&deg;E</span>
-            <span>Barcelona</span>
+
+        <!-- Abstract location thumbnail grid -->
+        <div class="hero-visual" aria-hidden="true">
+            <div class="hero-thumb">
+                <div class="hero-thumb-bg" style="background:linear-gradient(160deg,#0d1b2a 0%,#1b2838 40%,#1a3a5c 100%)"></div>
+                <span class="hero-thumb-label">Barcelona</span>
+            </div>
+            <div class="hero-thumb">
+                <div class="hero-thumb-bg" style="background:linear-gradient(170deg,#0a1f14 0%,#1a3a2a 50%,#2a5a3a 100%)"></div>
+                <span class="hero-thumb-label">Mallorca</span>
+            </div>
+            <div class="hero-thumb">
+                <div class="hero-thumb-bg" style="background:linear-gradient(150deg,#1a1408 0%,#2d2414 40%,#4a3a1a 100%)"></div>
+                <span class="hero-thumb-label">Madrid</span>
+            </div>
+            <div class="hero-thumb">
+                <div class="hero-thumb-bg" style="background:linear-gradient(175deg,#080818 0%,#12122e 50%,#1a1a48 100%)"></div>
+                <span class="hero-thumb-label">Canary Islands</span>
+            </div>
         </div>
-        <div class="hero-regions" aria-hidden="true">
-            <span>Barcelona</span>
-            <span>Mallorca</span>
-            <span>Madrid</span>
-            <span>Ibiza</span>
-            <span>Andalusia</span>
-            <span>Canary Islands</span>
+
+        <div class="hero-scroll" aria-hidden="true">
+            <span class="hero-scroll-dot"></span> Scroll
         </div>
-        <div class="hero-scroll" aria-hidden="true">Scroll</div>
+
+        <div class="hero-stats-bar" aria-hidden="true">
+            <div class="hero-stat"><div class="hs-num">6</div><div class="hs-label">Regions</div></div>
+            <div class="hero-stat"><div class="hs-num">320</div><div class="hs-label">Days of sun</div></div>
+            <div class="hero-stat"><div class="hs-num">54%</div><div class="hs-label">Max rebate</div></div>
+        </div>
     </header>
 
+    <!-- =============================================
+         STATEMENT BREAK
+         ============================================= -->
     <div class="statement">
-        <p class="statement-text gs-reveal">We are not a local fixer learning your language.<br>We are <em>London production people</em> who know this ground.</p>
+        <p class="statement-text gs-reveal">We are not a local fixer learning your language.<br>We are <strong>London production people</strong> who know this ground.</p>
     </div>
 
-    <div class="reel-section" id="reel">
-        <div class="reel-play gs-reveal" role="button" aria-label="Play showreel">
-            <div class="reel-play-ring"></div>
+    <!-- =============================================
+         BENTO GRID — Value Proposition
+         ============================================= -->
+    <section class="bento-section" id="bento">
+        <div class="bento-grid">
+            <!-- Hero card: Primary visual asset -->
+            <div class="bento-card bento-hero gs-reveal">
+                <span class="bento-label">Why Liquid</span>
+                <h2>The <strong>logistical muscle</strong> of a conglomerate. The agility of a <strong>boutique.</strong></h2>
+                <p>We bridge London's creative ambition and Spain's cinematic reality. No conglomerates. No middlemen. No hidden markups.</p>
+            </div>
+
+            <!-- Stat cards -->
+            <div class="bento-card bento-stat gs-reveal">
+                <span class="bento-label">Tax Incentive</span>
+                <div class="stat-num">30-54%</div>
+                <div class="stat-label">Spain's tax rebate on qualifying production spend. Up to 54% in the Canary Islands &mdash; Europe's highest.</div>
+            </div>
+            <div class="bento-card bento-stat gs-reveal">
+                <span class="bento-label">Turnaround</span>
+                <div class="stat-num">48h</div>
+                <div class="stat-label">From creative brief to bespoke location package and production estimate. Every time.</div>
+            </div>
+
+            <!-- Regions pill card -->
+            <div class="bento-card bento-regions gs-reveal">
+                <span class="bento-label">Coverage</span>
+                <div class="bento-region-list">
+                    <span class="bento-region-pill">Barcelona</span>
+                    <span class="bento-region-pill">Mallorca</span>
+                    <span class="bento-region-pill">Madrid</span>
+                    <span class="bento-region-pill">Ibiza</span>
+                    <span class="bento-region-pill">Andalusia</span>
+                    <span class="bento-region-pill">Canary Islands</span>
+                </div>
+            </div>
+
+            <!-- Cultural bilingualism demo card -->
+            <div class="bento-card bento-cultural gs-reveal" id="culturalCard">
+                <span class="bento-label">Cultural Bilingualism</span>
+                <div class="cultural-demo">
+                    <div class="cultural-text en">"We need a moody, brutalist aesthetic with heavy unit base access and a Russian Arm on a mountain pass."</div>
+                    <div class="cultural-text es">"Permisos municipales para arquitectura de hormig&oacute;n con 500m&sup2; de parking log&iacute;stico y Russian Arm en paso de monta&ntilde;a."</div>
+                </div>
+                <div class="cultural-toggle-hint">Click to translate <span class="cultural-arrow">&rarr;</span></div>
+            </div>
         </div>
-        <h2 class="reel-title gs-reveal">Showreel</h2>
-        <p class="reel-sub gs-reveal">Coming Q3 2026</p>
-    </div>
+    </section>
 
-    <div class="act-divider" aria-hidden="true"></div>
-
+    <!-- =============================================
+         SERVICES — Three Tiers with Progressive Disclosure
+         ============================================= -->
     <section id="services" aria-labelledby="services-title">
         <div class="section-header">
             <p class="section-label gs-reveal">Services</p>
-            <h2 class="section-title gs-reveal" id="services-title">Three tiers.<br><em>Zero friction.</em></h2>
+            <h2 class="section-title gs-reveal" id="services-title">Three tiers.<br><strong>Zero friction.</strong></h2>
             <p class="section-subtitle gs-reveal">Scale your service level to match the brief. From location scouting to full turnkey production.</p>
         </div>
         <div class="services-grid">
@@ -519,22 +829,44 @@
                     <li>Proprietary digital location library access</li>
                     <li>Bespoke physical scouting</li>
                     <li>GPS-tagged, 360-degree location packages</li>
-                    <li>Municipal permit acquisition</li>
-                    <li>On-set location management</li>
                 </ul>
+                <button class="service-expand-btn" aria-expanded="false">
+                    Full details <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="service-details">
+                    <ul>
+                        <li>Municipal permit acquisition and management</li>
+                        <li>On-set location management</li>
+                        <li>360-degree photography via specialised hardware</li>
+                        <li>Digital recce packages with GPS coordinates</li>
+                        <li>Sunlight trajectory assessment per location</li>
+                        <li>Unit base parking availability reports</li>
+                    </ul>
+                </div>
             </article>
             <article class="service-card featured gs-reveal">
-                <p class="service-tier">Tier 2 \u2014 Most Popular</p>
+                <p class="service-tier">Tier 2 &mdash; <span style="background:rgba(255,255,255,.15);padding:2px 8px;border-radius:4px;font-size:10px;letter-spacing:.06em">Most Popular</span></p>
                 <h3>Coordinate</h3>
-                <p class="service-price"><strong>+15\u201320%</strong> markup on crew &amp; equipment</p>
+                <p class="service-price"><strong>+15&ndash;20%</strong> markup on crew &amp; equipment</p>
                 <ul class="service-features">
                     <li>Everything in Scout tier</li>
                     <li>Local bilingual crew procurement</li>
                     <li>Camera, grip, electric, art department</li>
-                    <li>Equipment rental coordination</li>
-                    <li>Transport and logistics planning</li>
-                    <li>Day-rate transparency \u2014 you see every line</li>
+                    <li>Day-rate transparency &mdash; you see every line</li>
                 </ul>
+                <button class="service-expand-btn" aria-expanded="false">
+                    Full details <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="service-details">
+                    <ul>
+                        <li>Equipment rental coordination (all major houses)</li>
+                        <li>Transport and logistics planning</li>
+                        <li>Specialist crew sourcing (stunts, SFX, animal handlers)</li>
+                        <li>Local payroll withholding management</li>
+                        <li>Real-time budget tracking dashboard</li>
+                        <li>Cross-border VAT reverse charge application</li>
+                    </ul>
+                </div>
             </article>
             <article class="service-card gs-reveal">
                 <p class="service-tier">Tier 3</p>
@@ -543,32 +875,61 @@
                 <ul class="service-features">
                     <li>Everything in Coordinate tier</li>
                     <li>End-to-end production management</li>
-                    <li>High-end catering coordination</li>
-                    <li>Accommodation and travel logistics</li>
                     <li>Comprehensive civil liability insurance</li>
                     <li>Single point of contact, start to wrap</li>
                 </ul>
+                <button class="service-expand-btn" aria-expanded="false">
+                    Full details <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="service-details">
+                    <ul>
+                        <li>High-end catering coordination</li>
+                        <li>Accommodation and travel logistics</li>
+                        <li>Talent and model management (local casting)</li>
+                        <li>Tax incentive application management</li>
+                        <li>Post-production facility coordination</li>
+                        <li>Complete wrap and asset return logistics</li>
+                    </ul>
+                </div>
             </article>
         </div>
     </section>
 
+    <!-- =============================================
+         TAX INCENTIVES — Visual Data Graphics
+         ============================================= -->
     <section id="tax-incentives" aria-labelledby="tax-title">
         <div class="section-header">
             <p class="section-label gs-reveal">Tax Incentives</p>
-            <h2 class="section-title gs-reveal" id="tax-title">Spain pays you <em>to shoot here.</em></h2>
+            <h2 class="section-title gs-reveal" id="tax-title">Spain pays you <strong>to shoot here.</strong></h2>
             <p class="section-subtitle gs-reveal">The most competitive incentive framework in Europe. Up to 54% in the Canary Islands.</p>
         </div>
         <div class="tax-grid">
             <div class="tax-highlight gs-reveal">
-                <h3>Spanish National Rebate</h3>
-                <div class="tax-stat">
-                    <span class="number">30%</span>
-                    <span class="label">tax rebate on<br>qualifying spend</span>
+                <h3>Spanish Production Rebates</h3>
+                <div class="rebate-visual">
+                    <div class="rebate-bar-item">
+                        <div class="rebate-bar-label">
+                            <span class="rbl-name">Mainland Spain</span>
+                            <span class="rbl-pct">30%</span>
+                        </div>
+                        <div class="rebate-bar-track">
+                            <div class="rebate-bar-fill" data-width="55.5%" style="width:0"></div>
+                        </div>
+                    </div>
+                    <div class="rebate-bar-item">
+                        <div class="rebate-bar-label">
+                            <span class="rbl-name">Canary Islands (ZEC)</span>
+                            <span class="rbl-pct">54%</span>
+                        </div>
+                        <div class="rebate-bar-track">
+                            <div class="rebate-bar-fill canary" data-width="100%" style="width:0"></div>
+                        </div>
+                    </div>
                 </div>
-                <p style="font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.7;margin-bottom:32px">Under Article 36.2 of Spain's Corporate Tax Law, international productions qualify for a 30% rebate on eligible local expenditure. Minimum spend: &euro;1M live-action, &euro;200K animation.</p>
+                <p style="font-size:14px;font-weight:400;color:var(--text-secondary);line-height:1.65;margin-bottom:24px">Under Article 36.2 of Spain's Corporate Tax Law, international productions qualify for a 30% rebate on eligible local expenditure. Minimum spend: &euro;1M live-action, &euro;200K animation.</p>
                 <div class="tax-canaries">
                     <h4>Canary Islands Special Zone</h4>
-                    <div class="number">54%</div>
                     <p>Europe's highest combined rebate through the ZEC special economic zone. Competitive with Caribbean and Middle Eastern incentives.</p>
                 </div>
             </div>
@@ -590,27 +951,63 @@
         </div>
     </section>
 
-    <div class="statement" style="padding:120px 60px">
-        <p class="statement-text gs-reveal" style="font-size:clamp(13px,1.5vw,16px);font-family:var(--sans);font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);max-width:500px">One jurisdiction. Every landscape.</p>
-    </div>
-
+    <!-- =============================================
+         LOCATIONS — Immersive Grid
+         ============================================= -->
     <section id="locations" aria-labelledby="locations-title">
         <div class="section-header">
             <p class="section-label gs-reveal">Locations</p>
-            <h2 class="section-title gs-reveal" id="locations-title">From brutalist Barcelona<br><em>to volcanic Canary Islands.</em></h2>
+            <h2 class="section-title gs-reveal" id="locations-title">From brutalist Barcelona<br><strong>to volcanic Canary Islands.</strong></h2>
+            <p class="section-subtitle gs-reveal">One jurisdiction. Every landscape. Click any region to explore.</p>
         </div>
         <div class="locations-grid">
-            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Barcelona"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Barcelona</h3><p>Brutalist architecture, Gothic quarter, Mediterranean coastline, modernist villas</p><span class="location-tag">320 days of sun</span></div></article>
-            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Mallorca"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Mallorca</h3><p>Turquoise coves, Serra de Tramuntana, luxury fincas, old-town Palma</p><span class="location-tag">Premium villa access</span></div></article>
-            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Madrid"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Madrid</h3><p>Grand boulevards, royal palaces, urban grit, world-class studio facilities</p><span class="location-tag">Europe's sunniest capital</span></div></article>
-            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Ibiza"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Ibiza</h3><p>White-washed villages, cliff-top villas, sunset coast, bohemian interiors</p><span class="location-tag">Fashion &amp; lifestyle</span></div></article>
-            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Andalusia"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Andalusia</h3><p>Tabernas desert, Moorish palaces, olive groves, Atlantic coastline</p><span class="location-tag">Desert to coast in 2hrs</span></div></article>
-            <article class="location-card gs-reveal" tabindex="0"><div class="location-bg" role="img" aria-label="Canary Islands"></div><div class="location-texture"></div><div class="location-overlay"></div><div class="location-info"><h3>Canary Islands</h3><p>Volcanic landscapes, black sand beaches, sub-tropical forests, 54% tax rebate</p><span class="location-tag">54% tax rebate zone</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0" data-location="barcelona"><div class="location-bg" role="img" aria-label="Barcelona"></div><div class="location-overlay"></div><div class="examine-prompt"><span>View</span></div><div class="location-info"><h3>Barcelona</h3><p>Brutalist architecture, Gothic quarter, Mediterranean coastline</p><span class="location-tag">320 days of sun</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0" data-location="mallorca"><div class="location-bg" role="img" aria-label="Mallorca"></div><div class="location-overlay"></div><div class="examine-prompt"><span>View</span></div><div class="location-info"><h3>Mallorca</h3><p>Turquoise coves, Serra de Tramuntana, luxury fincas</p><span class="location-tag">Premium villa access</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0" data-location="madrid"><div class="location-bg" role="img" aria-label="Madrid"></div><div class="location-overlay"></div><div class="examine-prompt"><span>View</span></div><div class="location-info"><h3>Madrid</h3><p>Grand boulevards, royal palaces, urban grit</p><span class="location-tag">Europe's sunniest capital</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0" data-location="ibiza"><div class="location-bg" role="img" aria-label="Ibiza"></div><div class="location-overlay"></div><div class="examine-prompt"><span>View</span></div><div class="location-info"><h3>Ibiza</h3><p>White-washed villages, cliff-top villas, sunset coast</p><span class="location-tag">Fashion &amp; lifestyle</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0" data-location="andalusia"><div class="location-bg" role="img" aria-label="Andalusia"></div><div class="location-overlay"></div><div class="examine-prompt"><span>View</span></div><div class="location-info"><h3>Andalusia</h3><p>Tabernas desert, Moorish palaces, olive groves</p><span class="location-tag">Desert to coast in 2hrs</span></div></article>
+            <article class="location-card gs-reveal" tabindex="0" data-location="canaries"><div class="location-bg" role="img" aria-label="Canary Islands"></div><div class="location-overlay"></div><div class="examine-prompt"><span>View</span></div><div class="location-info"><h3>Canary Islands</h3><p>Volcanic landscapes, black sand, sub-tropical forests</p><span class="location-tag">54% tax rebate zone</span></div></article>
         </div>
     </section>
 
-    <div class="act-divider" aria-hidden="true"></div>
+    <!-- =============================================
+         LOCATION MODAL — Immersive Detail View
+         ============================================= -->
+    <div class="location-modal" id="locationModal" role="dialog" aria-modal="true" aria-label="Location details">
+        <div class="location-modal-sheet">
+            <div class="modal-drag-bar"></div>
+            <button class="modal-close" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div class="modal-hero-img" id="modalHeroImg"></div>
+            <div class="modal-body">
+                <h2 id="modalTitle">Barcelona</h2>
+                <p class="modal-tagline" id="modalTagline">Spain's creative capital</p>
+                <div class="modal-meta-grid" id="modalMeta">
+                    <div class="modal-meta-item"><div class="mmi-val">320</div><div class="mmi-label">Sun Days</div></div>
+                    <div class="modal-meta-item"><div class="mmi-val">BCN</div><div class="mmi-label">Airport</div></div>
+                    <div class="modal-meta-item"><div class="mmi-val">30%</div><div class="mmi-label">Rebate</div></div>
+                </div>
+                <p class="modal-desc" id="modalDesc">Barcelona offers an extraordinary diversity of locations within a compact metropolitan area. From the Gothic Quarter's medieval streets to brutalist modernist architecture, Mediterranean coastline, and industrial warehouses, the city provides virtually every aesthetic within a 30-minute radius. Municipal permit processes are well-established with a typical 2-week lead time.</p>
+                <div class="modal-typologies" id="modalTypologies">
+                    <span class="modal-typo-pill">Brutalist</span>
+                    <span class="modal-typo-pill">Gothic</span>
+                    <span class="modal-typo-pill">Coastal</span>
+                    <span class="modal-typo-pill">Industrial</span>
+                    <span class="modal-typo-pill">Modernist</span>
+                    <span class="modal-typo-pill">Rooftop</span>
+                </div>
+                <div class="modal-cta-row">
+                    <a href="#contact" class="btn-primary" onclick="closeLocationModal()">Scout This Region <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    <button class="btn-secondary" onclick="closeLocationModal()">Back to all</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- =============================================
+         CINEMATIC STATS INTERSTITIAL
+         ============================================= -->
     <div class="cinematic">
         <div class="cinematic-line" aria-hidden="true"></div>
         <div class="cinematic-inner">
@@ -624,32 +1021,90 @@
         </div>
     </div>
 
-    <section id="why-us" aria-labelledby="why-title">
+    <!-- =============================================
+         PORTFOLIO / CASE STUDIES
+         ============================================= -->
+    <section id="portfolio" aria-labelledby="portfolio-title">
         <div class="section-header">
-            <p class="section-label gs-reveal">Why Liquid</p>
-            <h2 class="section-title gs-reveal" id="why-title">Built for London.<br><em>Based in Spain.</em></h2>
+            <p class="section-label gs-reveal">Work</p>
+            <h2 class="section-title gs-reveal" id="portfolio-title">Creative intent.<br><strong>Logistical reality.</strong></h2>
+            <p class="section-subtitle gs-reveal">Selected campaigns demonstrating extreme logistical problem-solving across Spain.</p>
         </div>
-        <div class="pillars-grid">
-            <article class="pillar-card gs-reveal"><div class="pillar-number">01</div><h3>London-Trained</h3><p>8 years in London production. We understand the pace, the politics, and the precision your agency expects. No cultural translation required.</p></article>
-            <article class="pillar-card gs-reveal"><div class="pillar-number">02</div><h3>Fully Bilingual</h3><p>Native-level English and Spanish. Your creative brief lands with the local crew exactly as you intended. No friction, no misinterpretation.</p></article>
-            <article class="pillar-card gs-reveal"><div class="pillar-number">03</div><h3>Local Network</h3><p>Direct relationships with Spain's top crew, equipment houses, and property owners. No middlemen. We call, they answer.</p></article>
-            <article class="pillar-card gs-reveal"><div class="pillar-number">04</div><h3>Tech-Forward</h3><p>GPS-tagged location libraries, 360-degree virtual recces, drone photogrammetry. Scout from your desk before you book a flight.</p></article>
+        <div class="portfolio-grid">
+            <article class="portfolio-card gs-reveal">
+                <div class="portfolio-bg" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%)"></div>
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-examine"><span>View</span></div>
+                <div class="portfolio-info">
+                    <p class="pf-client">Fashion Campaign</p>
+                    <h3>Brutalist Barcelona</h3>
+                    <p class="pf-meta">3 days &bull; 14 crew &bull; 4 locations</p>
+                </div>
+            </article>
+            <article class="portfolio-card gs-reveal">
+                <div class="portfolio-bg" style="background:linear-gradient(135deg,#2d1b69 0%,#11998e 100%)"></div>
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-examine"><span>View</span></div>
+                <div class="portfolio-info">
+                    <p class="pf-client">Automotive Commercial</p>
+                    <h3>Mallorca Mountain Pass</h3>
+                    <p class="pf-meta">5 days &bull; 28 crew &bull; Russian Arm</p>
+                </div>
+            </article>
+            <article class="portfolio-card gs-reveal">
+                <div class="portfolio-bg" style="background:linear-gradient(135deg,#e65100 0%,#ff9800 100%)"></div>
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-examine"><span>View</span></div>
+                <div class="portfolio-info">
+                    <p class="pf-client">Spirits Brand Content</p>
+                    <h3>Andalusia Golden Hour</h3>
+                    <p class="pf-meta">2 days &bull; 8 crew &bull; 2 locations</p>
+                </div>
+            </article>
         </div>
     </section>
 
+    <!-- =============================================
+         REEL
+         ============================================= -->
+    <div class="reel-section" id="reel">
+        <div class="reel-play gs-reveal" role="button" aria-label="Play showreel"></div>
+        <h2 class="reel-title gs-reveal">Showreel</h2>
+        <p class="reel-sub gs-reveal">Coming Q3 2026</p>
+    </div>
+
+    <!-- =============================================
+         WHY US — Four Pillars
+         ============================================= -->
+    <section id="why-us" aria-labelledby="why-title">
+        <div class="section-header">
+            <p class="section-label gs-reveal">Why Liquid</p>
+            <h2 class="section-title gs-reveal" id="why-title">Built for London.<br><strong>Based in Spain.</strong></h2>
+        </div>
+        <div class="pillars-grid">
+            <article class="pillar-card gs-reveal"><div class="pillar-number">01</div><h3>London-Trained</h3><p>8 years in London production. We understand the pace, the politics, and the precision your agency expects.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">02</div><h3>Fully Bilingual</h3><p>Native-level English and Spanish. Your creative brief lands with the local crew exactly as intended.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">03</div><h3>Local Network</h3><p>Direct relationships with Spain's top crew, equipment houses, and property owners. No middlemen.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">04</div><h3>Tech-Forward</h3><p>GPS-tagged libraries, 360-degree virtual recces, drone photogrammetry. Scout from your desk.</p></article>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ABOUT — Founder Narrative
+         ============================================= -->
     <section id="about" aria-labelledby="about-title">
         <div class="about-grid">
-            <div class="about-image gs-reveal" role="img" aria-label="James Huertas, Founder">
-                <div style="position:absolute;bottom:40px;left:40px;z-index:2">
-                    <p style="font-family:var(--serif);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);opacity:.6">James Huertas</p>
-                    <p style="font-size:11px;color:var(--text-tertiary);margin-top:4px">Founder</p>
+            <div class="about-image gs-reveal" role="img" aria-label="James Huertas on set">
+                <div class="about-image-label">
+                    <p class="ail-name">James Huertas</p>
+                    <p class="ail-title">Founder</p>
                 </div>
             </div>
             <div class="about-content">
                 <p class="section-label gs-reveal">About</p>
-                <h2 class="gs-reveal" id="about-title">One person. <em>Two markets.</em><br>Zero compromise.</h2>
+                <h2 class="gs-reveal" id="about-title">One person. <strong>Two markets.</strong><br>Zero compromise.</h2>
                 <p class="gs-reveal">Founded by James Huertas, a bilingual British-Spanish production professional with 8+ years across London and Spain. From Palma Pictures to London's commercial and fashion scene.</p>
-                <p class="gs-reveal">Liquid Locations fills a critical gap: the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique. No conglomerates. No compromises.</p>
+                <p class="gs-reveal">Liquid Locations fills a critical gap: the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique.</p>
                 <div class="about-stats gs-reveal">
                     <div class="about-stat"><div class="number">8+</div><div class="label">Years</div></div>
                     <div class="about-stat"><div class="number">2</div><div class="label">Markets</div></div>
@@ -659,19 +1114,19 @@
         </div>
     </section>
 
-    <div class="act-divider" aria-hidden="true"></div>
-
+    <!-- =============================================
+         QUOTE BUILDER — Interactive Budget Tool
+         ============================================= -->
     <section id="quote-builder" aria-labelledby="quote-title">
         <div class="section-header" style="text-align:center">
-            <p class="section-label gs-reveal">Transparent Pricing</p>
-            <h2 class="section-title gs-reveal" id="quote-title">Estimate Your <em>Production</em></h2>
-            <p class="section-subtitle gs-reveal" style="margin:0 auto">Every production is unique. Use this tool to get an indicative estimate \u2014 we'll refine the details together.</p>
+            <p class="section-label gs-reveal" style="justify-content:center">Transparent Pricing</p>
+            <h2 class="section-title gs-reveal" id="quote-title">Estimate your <strong>production.</strong></h2>
+            <p class="section-subtitle gs-reveal" style="margin:0 auto">Every production is unique. Use this tool to get an indicative estimate &mdash; we'll refine the details together.</p>
         </div>
         <div class="qb-wrapper">
             <div class="qb-layout">
                 <!-- LEFT: Controls -->
                 <div class="qb-controls gs-reveal">
-                    <!-- Location -->
                     <div class="qb-group">
                         <p class="qb-group-label">Shoot Location</p>
                         <div class="qb-select-wrap">
@@ -685,8 +1140,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <!-- Shoot Days -->
                     <div class="qb-group">
                         <p class="qb-group-label">Number of Shoot Days</p>
                         <div class="qb-slider-wrap">
@@ -694,43 +1147,37 @@
                             <span class="qb-slider-val" id="qbDaysVal">3</span>
                         </div>
                     </div>
-
-                    <!-- Service Tier -->
                     <div class="qb-group">
                         <p class="qb-group-label">Service Tier</p>
                         <div class="qb-tier-cards">
                             <div class="qb-tier-card" data-tier="scout" tabindex="0" role="button" aria-pressed="false">
                                 <p class="tc-tier">Tier 1</p>
                                 <p class="tc-name">Scout</p>
-                                <p class="tc-price">&euro;450/day<br>Location only</p>
+                                <p class="tc-price">&euro;450/day</p>
                             </div>
                             <div class="qb-tier-card active" data-tier="coordinate" tabindex="0" role="button" aria-pressed="true">
                                 <p class="tc-tier">Tier 2</p>
                                 <p class="tc-name">Coordinate</p>
-                                <p class="tc-price">&euro;450/day + 18% markup<br>Crew &amp; equipment</p>
+                                <p class="tc-price">+18% markup</p>
                             </div>
                             <div class="qb-tier-card" data-tier="full" tabindex="0" role="button" aria-pressed="false">
                                 <p class="tc-tier">Tier 3</p>
                                 <p class="tc-name">Full Service</p>
-                                <p class="tc-price">&euro;450/day + 20% BTL fee<br>End-to-end</p>
+                                <p class="tc-price">+20% BTL</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Crew Size -->
                     <div class="qb-group">
                         <p class="qb-group-label">Crew Size</p>
                         <div class="qb-select-wrap">
                             <select class="qb-select" id="qbCrew">
-                                <option value="minimal">Minimal (1\u20135 crew)</option>
-                                <option value="standard" selected>Standard (6\u201315 crew)</option>
-                                <option value="large">Large (16\u201330 crew)</option>
+                                <option value="minimal">Minimal (1&ndash;5 crew)</option>
+                                <option value="standard" selected>Standard (6&ndash;15 crew)</option>
+                                <option value="large">Large (16&ndash;30 crew)</option>
                                 <option value="major">Major (30+ crew)</option>
                             </select>
                         </div>
                     </div>
-
-                    <!-- Equipment -->
                     <div class="qb-group">
                         <p class="qb-group-label">Equipment Package</p>
                         <div class="qb-select-wrap">
@@ -738,12 +1185,10 @@
                                 <option value="none">Client Supplies Own</option>
                                 <option value="basic">Basic (camera + lighting)</option>
                                 <option value="standard" selected>Standard (full stills or motion)</option>
-                                <option value="premium">Premium (cinema package, specialised)</option>
+                                <option value="premium">Premium (cinema package)</option>
                             </select>
                         </div>
                     </div>
-
-                    <!-- Number of Locations -->
                     <div class="qb-group">
                         <p class="qb-group-label">Number of Locations</p>
                         <div class="qb-select-wrap">
@@ -756,8 +1201,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <!-- Accommodation -->
                     <div class="qb-group">
                         <div class="qb-toggle-row">
                             <span class="qb-toggle-label">Accommodation Required?</span>
@@ -766,15 +1209,13 @@
                         <div class="qb-toggle-sub" id="qbAccomSub">
                             <div class="qb-select-wrap">
                                 <select class="qb-select" id="qbAccomTier">
-                                    <option value="budget">Budget (\u20ac80/person/night)</option>
-                                    <option value="midrange" selected>Mid-range (\u20ac150/person/night)</option>
-                                    <option value="premium">Premium (\u20ac300/person/night)</option>
+                                    <option value="budget">Budget (&euro;80/person/night)</option>
+                                    <option value="midrange" selected>Mid-range (&euro;150/person/night)</option>
+                                    <option value="premium">Premium (&euro;300/person/night)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Transport -->
                     <div class="qb-group">
                         <div class="qb-toggle-row">
                             <span class="qb-toggle-label">Transport Required?</span>
@@ -783,9 +1224,9 @@
                         <div class="qb-toggle-sub" id="qbTransSub">
                             <div class="qb-select-wrap">
                                 <select class="qb-select" id="qbTransTier">
-                                    <option value="vans">Vans only (\u20ac400/day)</option>
-                                    <option value="talent" selected>Vans + talent cars (\u20ac800/day)</option>
-                                    <option value="full">Full unit base (\u20ac1,500/day)</option>
+                                    <option value="vans">Vans only (&euro;400/day)</option>
+                                    <option value="talent" selected>Vans + talent cars (&euro;800/day)</option>
+                                    <option value="full">Full unit base (&euro;1,500/day)</option>
                                 </select>
                             </div>
                         </div>
@@ -796,7 +1237,7 @@
                 <div class="qb-output gs-reveal">
                     <div class="qb-output-card">
                         <div class="qb-output-header">
-                            <h3 id="qbSummaryTitle">3-Day Shoot \u2014 Barcelona</h3>
+                            <h3 id="qbSummaryTitle">3-Day Shoot &mdash; Barcelona</h3>
                             <p>Indicative Estimate</p>
                         </div>
                         <div class="qb-output-body">
@@ -838,66 +1279,187 @@
                         <div class="qb-footer-notes">
                             <p>This is an indicative estimate based on standard rates. Final pricing depends on specific requirements, locations, and crew.</p>
                             <p><strong>Eligible for Spain's 30% tax rebate</strong> on qualifying expenditure <span id="qbCanaryNote">(54% in the Canary Islands)</span>.</p>
-                            <p>All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients \u2014 0% Spanish IVA). 50% mobilisation fee upon confirmation.</p>
+                            <p>All amounts exclude IVA/VAT (reverse charge applies to UK/EU clients &mdash; 0% Spanish IVA). 50% mobilisation fee upon confirmation.</p>
                         </div>
                     </div>
-                    <button class="qb-cta" id="qbCta" type="button">Discuss This Quote</button>
+                    <button class="qb-cta" id="qbCta" type="button">Get Your Detailed Quote</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- =============================================
+         CONTACT — Multi-Step Conversational Form
+         ============================================= -->
     <section id="contact" aria-labelledby="contact-title">
         <div class="contact-grid">
             <div>
                 <div class="section-header">
                     <p class="section-label gs-reveal">Get in Touch</p>
-                    <h2 class="section-title gs-reveal" id="contact-title">Brief us on your <em>next shoot.</em></h2>
+                    <h2 class="section-title gs-reveal" id="contact-title">Brief us on your <strong>next shoot.</strong></h2>
                     <p class="section-subtitle gs-reveal">Share your creative brief. We will return a bespoke location package and production estimate within 48 hours.</p>
                 </div>
                 <div class="contact-info">
-                    <div class="contact-method gs-reveal"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><h4>Email</h4><p><a href="mailto:hello@liquidlocations.com">hello@liquidlocations.com</a></p></div></div>
-                    <div class="contact-method gs-reveal"><div class="icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div><h4>Based in</h4><p>Barcelona &amp; Mallorca, Spain</p></div></div>
+                    <div class="contact-method gs-reveal"><div class="icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div><h4>Email</h4><p><a href="mailto:hello@liquidlocations.com">hello@liquidlocations.com</a></p></div></div>
+                    <div class="contact-method gs-reveal"><div class="icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div><h4>Based in</h4><p>Barcelona &amp; Mallorca, Spain</p></div></div>
+                </div>
+                <!-- Escape hatches: WhatsApp + Priority Email -->
+                <div class="contact-escape gs-reveal">
+                    <a href="https://wa.me/34600000000" class="escape-btn" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.826-6.334-2.209l-.443-.349-3.09 1.036 1.036-3.09-.349-.443A9.957 9.957 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        WhatsApp
+                    </a>
+                    <a href="mailto:urgent@liquidlocations.com?subject=Urgent%20Production%20Request" class="escape-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Priority Call
+                    </a>
                 </div>
             </div>
-            <form class="contact-form gs-reveal" id="contactForm" aria-label="Project enquiry form">
-                <div class="form-row">
-                    <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name"></div>
-                    <div class="form-group"><label for="company">Production Company</label><input type="text" id="company" name="company" placeholder="Pulse Films" autocomplete="organization"></div>
+
+            <!-- Multi-step form -->
+            <div class="contact-form gs-reveal" id="contactForm">
+                <div class="form-progress">
+                    <div class="form-progress-dot active" data-step="1"></div>
+                    <div class="form-progress-dot" data-step="2"></div>
+                    <div class="form-progress-dot" data-step="3"></div>
+                    <div class="form-progress-dot" data-step="4"></div>
                 </div>
-                <div class="form-row">
+
+                <!-- Step 1: Who -->
+                <div class="form-step active" data-step="1">
+                    <div class="form-step-header">
+                        <span class="form-step-number">Step 1 of 4</span>
+                        <span class="form-step-title">About You</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name"></div>
+                        <div class="form-group"><label for="company">Production Company</label><input type="text" id="company" name="company" placeholder="Pulse Films" autocomplete="organization"></div>
+                    </div>
                     <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" placeholder="jane@pulsefilms.com" required autocomplete="email"></div>
-                    <div class="form-group"><label for="project-type">Project Type</label><select id="project-type" name="project-type"><option value="" disabled selected>Select type</option><option value="commercial">Commercial (TVC)</option><option value="fashion">Fashion Campaign</option><option value="music-video">Music Video</option><option value="editorial">Editorial / Stills</option><option value="film-tv">Film / TV Series</option><option value="brand-content">Brand Content</option><option value="other">Other</option></select></div>
+                    <div class="form-nav">
+                        <button type="button" class="form-nav-btn next" onclick="nextStep(2)">Next</button>
+                    </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group"><label for="dates">Proposed Dates</label><input type="text" id="dates" name="dates" placeholder="e.g. June 2026, flexible"></div>
-                    <div class="form-group"><label for="crew-size">Estimated Crew Size</label><input type="text" id="crew-size" name="crew-size" placeholder="e.g. 8-12 local crew"></div>
+
+                <!-- Step 2: What -->
+                <div class="form-step" data-step="2">
+                    <div class="form-step-header">
+                        <span class="form-step-number">Step 2 of 4</span>
+                        <span class="form-step-title">Project Details</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="project-name">Project Name</label><input type="text" id="project-name" name="project-name" placeholder="Summer Campaign 2026"></div>
+                        <div class="form-group"><label for="brand">Brand / Client</label><input type="text" id="brand" name="brand" placeholder="Nike, Gucci, etc."></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="project-type">Project Type</label><select id="project-type" name="project-type"><option value="" disabled selected>Select type</option><option value="commercial">Commercial (TVC)</option><option value="fashion">Fashion Campaign</option><option value="music-video">Music Video</option><option value="editorial">Editorial / Stills</option><option value="film-tv">Film / TV Series</option><option value="brand-content">Brand Content</option><option value="other">Other</option></select></div>
+                        <div class="form-group"><label for="crew-size">Estimated Crew Size</label><select id="crew-size" name="crew-size"><option value="" disabled selected>Select size</option><option value="1-5">1-5 (minimal)</option><option value="6-15">6-15 (standard)</option><option value="16-30">16-30 (large)</option><option value="30+">30+ (major)</option></select></div>
+                    </div>
+                    <div class="form-nav">
+                        <button type="button" class="form-nav-btn back" onclick="nextStep(1)">Back</button>
+                        <button type="button" class="form-nav-btn next" onclick="nextStep(3)">Next</button>
+                    </div>
                 </div>
-                <div class="form-group"><label for="brief">Project Brief</label><textarea id="brief" name="brief" rows="4" placeholder="Tell us about your project \u2014 locations needed, creative direction, any specific requirements..."></textarea></div>
-                <button type="submit" class="btn-submit">Send Brief</button>
-            </form>
+
+                <!-- Step 3: When & Where -->
+                <div class="form-step" data-step="3">
+                    <div class="form-step-header">
+                        <span class="form-step-number">Step 3 of 4</span>
+                        <span class="form-step-title">Schedule &amp; Locations</span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="dates">Proposed Dates</label><input type="text" id="dates" name="dates" placeholder="e.g. June 2026, flexible"></div>
+                        <div class="form-group"><label for="duration">Shoot Duration</label><select id="duration" name="duration"><option value="" disabled selected>Select duration</option><option value="1">1 day</option><option value="2-3">2-3 days</option><option value="4-5">4-5 days</option><option value="5+">5+ days</option></select></div>
+                    </div>
+                    <div class="form-group"><label for="regions">Preferred Regions</label><select id="regions" name="regions"><option value="" disabled selected>Select region</option><option value="barcelona">Barcelona</option><option value="mallorca">Mallorca</option><option value="madrid">Madrid</option><option value="ibiza">Ibiza</option><option value="andalusia">Andalusia</option><option value="canaries">Canary Islands</option><option value="multiple">Multiple regions</option><option value="unsure">Not sure yet</option></select></div>
+                    <div class="form-nav">
+                        <button type="button" class="form-nav-btn back" onclick="nextStep(2)">Back</button>
+                        <button type="button" class="form-nav-btn next" onclick="nextStep(4)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Brief + Upload -->
+                <div class="form-step" data-step="4">
+                    <div class="form-step-header">
+                        <span class="form-step-number">Step 4 of 4</span>
+                        <span class="form-step-title">Creative Brief</span>
+                    </div>
+                    <div class="form-group"><label for="brief">Project Brief</label><textarea id="brief" name="brief" rows="4" placeholder="Tell us about your project &mdash; locations needed, creative direction, any specific requirements..."></textarea></div>
+                    <div class="upload-zone" id="uploadZone">
+                        <p>Drop storyboards, mood boards, or creative briefs here</p>
+                        <p class="upload-hint">PDF, JPG, PNG up to 25MB</p>
+                        <input type="file" id="fileUpload" style="display:none" multiple accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
+                    <div class="form-nav">
+                        <button type="button" class="form-nav-btn back" onclick="nextStep(3)">Back</button>
+                        <button type="submit" class="btn-submit" id="submitBtn">Send Brief</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- =============================================
+         CLOSING STATEMENT
+         ============================================= -->
     <div class="closing">
-        <p class="closing-text gs-reveal">London pace. Spanish light.<br>Your next shoot starts here.</p>
+        <p class="closing-text gs-reveal"><strong>London pace.</strong> Spanish light.<br>Your next shoot starts here.</p>
+        <div style="margin-top:40px;opacity:0" class="gs-reveal">
+            <a href="#contact" class="btn-primary" style="display:inline-flex">Start a Conversation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
     </div>
 
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
     <footer class="footer" role="contentinfo">
         <div class="footer-content">
             <div class="footer-left">
-                <p class="company-name" style="font-family:var(--serif);font-size:16px;margin-bottom:8px">Liquid <span style="font-style:italic;color:var(--text-tertiary)">Locations</span></p>
-                <p>&copy; 2026</p>
+                <p class="company-name">Liquid Locations</p>
+                <p>&copy; 2026 &mdash; Production Services, Spain</p>
+                <p style="margin-top:4px"><a href="mailto:hello@liquidlocations.com" style="color:var(--text-tertiary);border-bottom:1px solid var(--border-light)">hello@liquidlocations.com</a></p>
             </div>
             <div class="footer-right">
                 <a href="#services">Services</a>
                 <a href="#locations">Locations</a>
+                <a href="#portfolio">Work</a>
                 <a href="#quote-builder">Pricing</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
+        <div class="footer-sub" style="max-width:1200px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border-light);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <p style="font-size:11px;color:var(--text-tertiary);font-weight:400">Barcelona &amp; Mallorca, Spain &bull; Registered in Spain</p>
+            <p style="font-size:11px;color:var(--text-tertiary);font-weight:400">Built for London agencies. Based in Spain.</p>
+        </div>
     </footer>
 
+    <!-- =============================================
+         MOBILE BOTTOM TAB BAR
+         ============================================= -->
+    <div class="bottom-bar" aria-label="Mobile navigation">
+        <div class="bottom-bar-inner">
+            <button class="bottom-bar-item active" onclick="scrollToSection('#hero')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                <span>Home</span>
+            </button>
+            <button class="bottom-bar-item" onclick="scrollToSection('#locations')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>Locations</span>
+            </button>
+            <button class="bottom-bar-item" onclick="scrollToSection('#quote-builder')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>Pricing</span>
+            </button>
+            <button class="bottom-bar-item" onclick="scrollToSection('#contact')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>Brief Us</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- =============================================
+         JAVASCRIPT
+         ============================================= -->
     <script>
     // Page load
     document.body.classList.add('loaded');
@@ -905,57 +1467,53 @@
     // GSAP Setup
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-    // Set initial states BEFORE animations
-    gsap.set('.hero h1',{opacity:0,y:40});
-    gsap.set('.hero-eyebrow',{opacity:0});
-    gsap.set('.hero-sub',{opacity:0,y:20});
-    gsap.set('.hero-actions',{opacity:0,y:20});
-    gsap.set('.hero-line',{opacity:0});
-    gsap.set('.hero-coords',{opacity:0,x:20});
-    gsap.set('.hero-regions',{opacity:0});
+    // ========== KINETIC HERO TYPOGRAPHY ==========
+    // Mask animation for hero headline
+    gsap.set('.hero h1 .hero-text-mask span', {y:'105%'});
+    gsap.set('.hero-eyebrow', {opacity:0, y:10});
+    gsap.set('.hero-sub', {opacity:0, y:15});
+    gsap.set('.hero-actions', {opacity:0, y:15});
+    gsap.set('.hero-visual', {opacity:0, x:30});
 
-    // Hero timeline
-    var heroTl = gsap.timeline({defaults:{ease:'power3.out'},delay:.2});
-    heroTl.to('.hero-eyebrow',{opacity:1,duration:1})
-          .to('.hero h1',{opacity:1,y:0,duration:1.2},'-=.6')
-          .to('.hero-sub',{opacity:1,y:0,duration:.8},'-=.6')
-          .to('.hero-actions',{opacity:1,y:0,duration:.6},'-=.4')
-          .to('.hero-line',{opacity:1,duration:1.5},'-=1')
-          .to('.hero-coords',{opacity:1,x:0,duration:1},'-=1.2')
-          .to('.hero-regions',{opacity:1,duration:2},'-=1');
+    var heroTl = gsap.timeline({defaults:{ease:'power3.out'}, delay:.15});
+    heroTl.to('.hero-eyebrow', {opacity:1, y:0, duration:.7})
+          .to('.hero h1 .hero-text-mask span', {y:'0%', duration:.9, stagger:.08, ease:'power3.out'}, '-=.3')
+          .to('.hero-sub', {opacity:1, y:0, duration:.7}, '-=.4')
+          .to('.hero-actions', {opacity:1, y:0, duration:.6}, '-=.3')
+          .to('.hero-visual', {opacity:1, x:0, duration:1}, '-=.8');
 
-    // Scroll-triggered reveals with varied animations
-    gsap.utils.toArray('.gs-reveal').forEach(function(el,i){
-        var delay = i % 3 * .08;
+    // ========== SCROLL-TRIGGERED REVEALS ==========
+    gsap.utils.toArray('.gs-reveal').forEach(function(el, i){
+        var delay = i % 3 * .06;
         gsap.fromTo(el,
-            {opacity:0,y:30,visibility:'hidden'},
-            {opacity:1,y:0,visibility:'visible',duration:.9,delay:delay,ease:'power2.out',
-             scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}
+            {opacity:0, y:24, visibility:'hidden'},
+            {opacity:1, y:0, visibility:'visible', duration:.8, delay:delay, ease:'power2.out',
+             scrollTrigger:{trigger:el, start:'top 88%', toggleActions:'play none none none'}
             }
         );
     });
 
-    // Stagger service cards with slide-up
+    // Stagger service cards
     ScrollTrigger.create({
         trigger:'.services-grid',
         start:'top 82%',
         onEnter:function(){
             gsap.fromTo('.service-card',
-                {opacity:0,y:60,visibility:'hidden'},
-                {opacity:1,y:0,visibility:'visible',duration:.9,stagger:.12,ease:'power2.out'}
+                {opacity:0, y:40, visibility:'hidden'},
+                {opacity:1, y:0, visibility:'visible', duration:.8, stagger:.1, ease:'power2.out'}
             );
         },
         once:true
     });
 
-    // Stagger location cards with scale
+    // Stagger location cards
     ScrollTrigger.create({
         trigger:'.locations-grid',
         start:'top 82%',
         onEnter:function(){
             gsap.fromTo('.location-card',
-                {opacity:0,scale:.95,visibility:'hidden'},
-                {opacity:1,scale:1,visibility:'visible',duration:.8,stagger:.08,ease:'power2.out'}
+                {opacity:0, scale:.96, visibility:'hidden'},
+                {opacity:1, scale:1, visibility:'visible', duration:.7, stagger:.06, ease:'power2.out'}
             );
         },
         once:true
@@ -967,8 +1525,8 @@
         start:'top 82%',
         onEnter:function(){
             gsap.fromTo('.pillar-card',
-                {opacity:0,y:40,visibility:'hidden'},
-                {opacity:1,y:0,visibility:'visible',duration:.8,stagger:.1,ease:'power2.out'}
+                {opacity:0, y:30, visibility:'hidden'},
+                {opacity:1, y:0, visibility:'visible', duration:.7, stagger:.08, ease:'power2.out'}
             );
         },
         once:true
@@ -976,52 +1534,296 @@
 
     // Parallax on statement text
     gsap.utils.toArray('.statement-text').forEach(function(el){
-        gsap.fromTo(el,{y:30},{y:-30,ease:'none',scrollTrigger:{trigger:el.parentElement,start:'top bottom',end:'bottom top',scrub:1}});
+        gsap.fromTo(el, {y:20}, {y:-20, ease:'none', scrollTrigger:{trigger:el.parentElement, start:'top bottom', end:'bottom top', scrub:1}});
     });
 
-    // Parallax on about image
-    gsap.fromTo('.about-image',{y:40},{y:-40,ease:'none',scrollTrigger:{trigger:'.about-grid',start:'top bottom',end:'bottom top',scrub:1}});
+    // Cinematic line draw
+    gsap.to('.cinematic-line', {scaleX:1, ease:'power2.inOut', duration:1.2, scrollTrigger:{trigger:'.cinematic', start:'top 60%', toggleActions:'play none none none'}});
 
-    // Parallax on section titles
-    gsap.utils.toArray('.section-title').forEach(function(el){
-        gsap.fromTo(el,{y:10},{y:-10,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:2}});
-    });
-
-    // Cinematic interstitial line draw
-    gsap.to('.cinematic-line',{scaleX:1,ease:'power2.inOut',duration:1.5,scrollTrigger:{trigger:'.cinematic',start:'top 60%',toggleActions:'play none none none'}});
-
-    // Cinematic number outline fill
+    // ========== TAX REBATE BAR ANIMATION ==========
     ScrollTrigger.create({
-        trigger:'.cinematic',
-        start:'top 50%',
-        onEnter:function(){
-            gsap.to('.cinematic-number',{'-webkit-text-stroke-color':'rgba(201,169,110,.5)',duration:1.5,ease:'power2.out'});
-        },
-        once:true
-    });
-
-    // Tax stat number count-up
-    ScrollTrigger.create({
-        trigger:'.tax-stat',
+        trigger:'.rebate-visual',
         start:'top 85%',
         onEnter:function(){
-            gsap.fromTo('.tax-stat .number',{opacity:0,scale:.8},{opacity:1,scale:1,duration:1,ease:'back.out(1.5)'});
+            document.querySelectorAll('.rebate-bar-fill').forEach(function(bar){
+                bar.style.width = bar.dataset.width;
+            });
         },
         once:true
     });
 
-    // Nav scroll effect
-    (function(){var n=document.querySelector('.nav'),t=false;window.addEventListener('scroll',function(){if(!t){window.requestAnimationFrame(function(){n.classList.toggle('scrolled',window.pageYOffset>80);t=false});t=true}},{passive:true})})();
+    // ========== NAV SCROLL EFFECT ==========
+    (function(){
+        var n=document.querySelector('.nav'), t=false;
+        window.addEventListener('scroll', function(){
+            if(!t){
+                window.requestAnimationFrame(function(){
+                    n.classList.toggle('scrolled', window.pageYOffset>60);
+                    t=false;
+                });
+                t=true;
+            }
+        }, {passive:true});
+    })();
 
-    // Mobile nav toggle
-    (function(){var b=document.getElementById('navToggle'),l=document.getElementById('navLinks'),s=b.querySelectorAll('span');function c(){l.classList.remove('open');b.setAttribute('aria-expanded','false');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}b.addEventListener('click',function(){var o=l.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');if(o){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}else{c()}});l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c)});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&l.classList.contains('open')){c();b.focus()}})})();
+    // ========== MOBILE NAV TOGGLE ==========
+    (function(){
+        var b=document.getElementById('navToggle'), l=document.getElementById('navLinks'), s=b.querySelectorAll('span');
+        function c(){l.classList.remove('open');b.setAttribute('aria-expanded','false');s[0].style.transform='';s[1].style.opacity='1';s[2].style.transform=''}
+        b.addEventListener('click', function(){
+            var o=l.classList.toggle('open');
+            b.setAttribute('aria-expanded', o?'true':'false');
+            if(o){s[0].style.transform='rotate(45deg) translate(5px,5px)';s[1].style.opacity='0';s[2].style.transform='rotate(-45deg) translate(5px,-5px)'}
+            else{c()}
+        });
+        l.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c)});
+        document.addEventListener('keydown', function(e){if(e.key==='Escape'&&l.classList.contains('open')){c();b.focus()}});
+    })();
 
-    // Smooth scroll via GSAP ScrollToPlugin
-    document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var h=this.getAttribute('href');if(h==='#'){gsap.to(window,{scrollTo:0,duration:.8,ease:'power2.inOut'});return}var t=document.querySelector(h);if(t){gsap.to(window,{scrollTo:{y:t,offsetY:72},duration:.8,ease:'power2.inOut'})}})});
+    // ========== SMOOTH SCROLL ==========
+    function scrollToSection(selector){
+        var t=document.querySelector(selector);
+        if(t){gsap.to(window,{scrollTo:{y:t,offsetY:64},duration:.7,ease:'power2.inOut'})}
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+            e.preventDefault();
+            var h=this.getAttribute('href');
+            if(h==='#'){gsap.to(window,{scrollTo:0,duration:.7,ease:'power2.inOut'});return}
+            scrollToSection(h);
+        });
+    });
+
+    // ========== BOTTOM BAR ACTIVE STATE ==========
+    (function(){
+        var items = document.querySelectorAll('.bottom-bar-item');
+        var sections = ['#hero','#locations','#quote-builder','#contact'];
+        window.addEventListener('scroll', function(){
+            var scrollY = window.pageYOffset + window.innerHeight/3;
+            var activeIdx = 0;
+            sections.forEach(function(sel, i){
+                var el = document.querySelector(sel);
+                if(el && el.offsetTop <= scrollY) activeIdx = i;
+            });
+            items.forEach(function(item,i){item.classList.toggle('active', i===activeIdx)});
+        }, {passive:true});
+    })();
+
+    // ========== CULTURAL BILINGUALISM TOGGLE ==========
+    (function(){
+        var card = document.getElementById('culturalCard');
+        if(card){
+            card.addEventListener('click', function(){
+                this.classList.toggle('flipped');
+            });
+        }
+    })();
+
+    // ========== SERVICE PROGRESSIVE DISCLOSURE ==========
+    document.querySelectorAll('.service-expand-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var details = this.nextElementSibling;
+            var isOpen = details.classList.contains('open');
+            this.classList.toggle('open', !isOpen);
+            this.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+            if(!isOpen){
+                details.style.maxHeight = details.scrollHeight + 'px';
+                details.classList.add('open');
+            } else {
+                details.style.maxHeight = '0px';
+                details.classList.remove('open');
+            }
+        });
+    });
+
+    // ========== LANGUAGE TOGGLE ==========
+    (function(){
+        var toggle = document.getElementById('langToggle');
+        if(toggle){
+            toggle.addEventListener('click', function(){
+                var spans = this.querySelectorAll('span');
+                spans.forEach(function(s){s.classList.toggle('lang-active')});
+            });
+        }
+    })();
+
+    // ========== LOCATION MODAL ==========
+    var locationData = {
+        barcelona:{
+            title:'Barcelona',tagline:"Spain's creative capital",
+            desc:'Barcelona offers an extraordinary diversity of locations within a compact metropolitan area. From the Gothic Quarter\'s medieval streets to brutalist modernist architecture, Mediterranean coastline, and industrial warehouses, the city provides virtually every aesthetic within a 30-minute radius. Municipal permit processes are well-established with a typical 2-week lead time. The city\'s world-class infrastructure includes multiple equipment rental houses, a deep pool of experienced crew, and excellent international connectivity via BCN airport.',
+            meta:[{val:'320',label:'Sun Days'},{val:'BCN',label:'Airport'},{val:'30%',label:'Rebate'}],
+            types:['Brutalist','Gothic','Coastal','Industrial','Modernist','Rooftop','Warehouse'],
+            bg:'linear-gradient(160deg,#0d1b2a 0%,#1b2838 40%,#1a3a5c 100%)'
+        },
+        mallorca:{
+            title:'Mallorca',tagline:'Mediterranean luxury and mountain drama',
+            desc:'Mallorca delivers an extraordinary range of locations from turquoise coves and limestone cliffs to the dramatic Serra de Tramuntana mountain range. The island\'s luxury finca market provides access to some of the Mediterranean\'s most stunning private properties. Palma\'s old town offers colonial architecture and narrow streets. The island is a proven production hub with established permit relationships and a growing local crew base. PMI airport connects directly to all major European cities.',
+            meta:[{val:'300',label:'Sun Days'},{val:'PMI',label:'Airport'},{val:'30%',label:'Rebate'}],
+            types:['Coastal','Mountain','Luxury Villa','Historic','Rural','Cliff-top'],
+            bg:'linear-gradient(170deg,#0a1f14 0%,#1a3a2a 50%,#2a5a3a 100%)'
+        },
+        madrid:{
+            title:'Madrid',tagline:'Europe\'s sunniest capital',
+            desc:'Madrid combines grand European boulevards, royal palaces, and world-class studio facilities with a gritty urban edge. The city\'s central location makes it an ideal base for multi-region shoots. Its studio infrastructure, including Ciudad de la Luz facilities, rivals any European capital. Madrid also offers proximity to the Castilian plains for landscape shoots. Strong crew availability and competitive day rates make it an efficient production base.',
+            meta:[{val:'280',label:'Sun Days'},{val:'MAD',label:'Airport'},{val:'30%',label:'Rebate'}],
+            types:['Grand Boulevard','Royal Palace','Urban Grit','Studio','Rooftop','Art Deco'],
+            bg:'linear-gradient(150deg,#1a1408 0%,#2d2414 40%,#4a3a1a 100%)'
+        },
+        ibiza:{
+            title:'Ibiza',tagline:'Fashion, lifestyle, and bohemian luxury',
+            desc:'Ibiza\'s unique light quality and bohemian-luxury aesthetic have made it a global destination for fashion and lifestyle shoots. White-washed villages, cliff-top villas with infinity pools, golden-hour coastal roads, and the island\'s distinctive interior all offer immediately recognisable visual signatures. The island\'s compact size means multiple location types within 30 minutes. IBZ airport has seasonal direct connections to London.',
+            meta:[{val:'310',label:'Sun Days'},{val:'IBZ',label:'Airport'},{val:'30%',label:'Rebate'}],
+            types:['Bohemian','Cliff-top Villa','Coastal','White Village','Sunset','Pool'],
+            bg:'linear-gradient(165deg,#1a0a1e 0%,#2a1a32 50%,#3a2848 100%)'
+        },
+        andalusia:{
+            title:'Andalusia',tagline:'Desert to coast in two hours',
+            desc:'Andalusia offers the widest geographic range of any single Spanish region. The Tabernas Desert (Europe\'s only true desert, used extensively by Sergio Leone) sits two hours from the Atlantic coast. Moorish palaces in Granada and Seville provide extraordinary architectural backdrops. The olive groves and white villages of the interior offer timeless rural landscapes. Seville and Malaga airports provide strong international connectivity.',
+            meta:[{val:'300',label:'Sun Days'},{val:'AGP/SVQ',label:'Airports'},{val:'30%',label:'Rebate'}],
+            types:['Desert','Moorish Palace','Olive Grove','White Village','Atlantic Coast','Historic'],
+            bg:'linear-gradient(155deg,#1a0e08 0%,#3a1e0e 40%,#5a3018 100%)'
+        },
+        canaries:{
+            title:'Canary Islands',tagline:'Europe\'s highest tax rebate zone',
+            desc:'The Canary Islands combine volcanic landscapes, black sand beaches, sub-tropical forests, and year-round guaranteed sunshine with Europe\'s most generous tax incentive framework at 54%. The islands have hosted major international productions and offer a unique aesthetic impossible to replicate anywhere else in Europe. Tenerife and Gran Canaria have established production infrastructure with experienced local crews. Direct flights from London make the islands surprisingly accessible.',
+            meta:[{val:'340',label:'Sun Days'},{val:'TFN/LPA',label:'Airports'},{val:'54%',label:'Rebate'}],
+            types:['Volcanic','Black Sand','Sub-tropical','Desert','Coastal','Lunar'],
+            bg:'linear-gradient(175deg,#080818 0%,#12122e 50%,#1a1a48 100%)'
+        }
+    };
+
+    function openLocationModal(locationKey){
+        var modal = document.getElementById('locationModal');
+        var data = locationData[locationKey];
+        if(!data) return;
+
+        document.getElementById('modalTitle').textContent = data.title;
+        document.getElementById('modalTagline').textContent = data.tagline;
+        document.getElementById('modalDesc').textContent = data.desc;
+        document.getElementById('modalHeroImg').style.background = data.bg;
+        document.getElementById('modalHeroImg').style.backgroundSize = 'cover';
+
+        var metaGrid = document.getElementById('modalMeta');
+        metaGrid.innerHTML = '';
+        data.meta.forEach(function(m){
+            metaGrid.innerHTML += '<div class="modal-meta-item"><div class="mmi-val">'+m.val+'</div><div class="mmi-label">'+m.label+'</div></div>';
+        });
+
+        var typoGrid = document.getElementById('modalTypologies');
+        typoGrid.innerHTML = '';
+        data.types.forEach(function(t){
+            typoGrid.innerHTML += '<span class="modal-typo-pill">'+t+'</span>';
+        });
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLocationModal(){
+        var modal = document.getElementById('locationModal');
+        modal.querySelector('.location-modal-sheet').style.transform = 'translateY(100%)';
+        setTimeout(function(){
+            modal.classList.remove('active');
+            modal.querySelector('.location-modal-sheet').style.transform = '';
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    // Location card click handlers
+    document.querySelectorAll('.location-card').forEach(function(card){
+        card.addEventListener('click', function(){
+            openLocationModal(this.dataset.location);
+        });
+        card.addEventListener('keydown', function(e){
+            if(e.key==='Enter') openLocationModal(this.dataset.location);
+        });
+    });
+
+    // Modal close handlers
+    document.querySelector('.modal-close').addEventListener('click', closeLocationModal);
+    document.getElementById('locationModal').addEventListener('click', function(e){
+        if(e.target === this) closeLocationModal();
+    });
+    document.addEventListener('keydown', function(e){
+        if(e.key==='Escape') closeLocationModal();
+    });
+
+    // ========== MULTI-STEP FORM ==========
+    function nextStep(step){
+        // Validate current step before advancing
+        var currentStep = document.querySelector('.form-step.active');
+        if(currentStep){
+            var currentNum = parseInt(currentStep.dataset.step);
+            if(step > currentNum){
+                var requiredFields = currentStep.querySelectorAll('input[required]');
+                var valid = true;
+                requiredFields.forEach(function(f){
+                    if(!f.value.trim()){
+                        f.style.borderColor = '#ef4444';
+                        f.style.boxShadow = '0 0 0 3px rgba(239,68,68,.1)';
+                        valid = false;
+                        f.addEventListener('input', function handler(){
+                            this.style.borderColor = '';
+                            this.style.boxShadow = '';
+                            this.removeEventListener('input', handler);
+                        });
+                    }
+                });
+                if(!valid) return;
+            }
+        }
+
+        document.querySelectorAll('.form-step').forEach(function(s){
+            s.classList.remove('active');
+        });
+        var target = document.querySelector('.form-step[data-step="'+step+'"]');
+        if(target) target.classList.add('active');
+
+        document.querySelectorAll('.form-progress-dot').forEach(function(dot){
+            var dotStep = parseInt(dot.dataset.step);
+            dot.classList.toggle('active', dotStep === step);
+            dot.classList.toggle('done', dotStep < step);
+        });
+    }
+
+    // File upload zone
+    (function(){
+        var zone = document.getElementById('uploadZone');
+        var input = document.getElementById('fileUpload');
+        if(zone && input){
+            zone.addEventListener('click', function(){input.click()});
+            zone.addEventListener('dragover', function(e){e.preventDefault();this.style.borderColor='var(--accent)';this.style.background='var(--bg-subtle)'});
+            zone.addEventListener('dragleave', function(){this.style.borderColor='';this.style.background=''});
+            zone.addEventListener('drop', function(e){
+                e.preventDefault();
+                this.style.borderColor='var(--accent)';
+                var count = e.dataTransfer.files.length;
+                this.querySelector('p').textContent = count + ' file' + (count>1?'s':'') + ' attached';
+            });
+            input.addEventListener('change', function(){
+                var count = this.files.length;
+                zone.querySelector('p').textContent = count + ' file' + (count>1?'s':'') + ' attached';
+            });
+        }
+    })();
+
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        var b = document.getElementById('submitBtn');
+        b.textContent = 'Sending...';
+        b.style.opacity = '.7';
+        b.disabled = true;
+        setTimeout(function(){
+            b.textContent = 'Brief received \u2014 we\'ll be in touch within 48 hours.';
+            b.style.background = '#16a34a';
+            b.style.opacity = '1';
+        }, 800);
+    });
 
     // ========== QUOTE BUILDER ==========
     (function(){
-        // Pricing data
         var locationFees = {
             barcelona:{min:1500,max:3000,label:'Barcelona'},
             mallorca:{min:1000,max:2500,label:'Mallorca'},
@@ -1052,7 +1854,6 @@
             transOn:false,transTier:'talent'
         };
 
-        // DOM refs
         var els = {
             location:document.getElementById('qbLocation'),
             days:document.getElementById('qbDays'),
@@ -1111,7 +1912,6 @@
             var markup=state.tier==='scout'?0:(state.tier==='coordinate'?0.18:0.18);
             var mgmtMarkup=state.tier==='full'?0.20:0;
 
-            // Line items
             var locMgmt=d*450;
             var locFees=numLoc*avgLocFee*d;
             var crewCost=0,equipCost=0,mgmtFee=0,accomCost=0,transCost=0;
@@ -1128,16 +1928,11 @@
                 mgmtFee=Math.round(btl*mgmtMarkup);
             }
 
-            if(state.accomOn){
-                accomCost=accomRates[state.accomTier]*cr.count*d;
-            }
-            if(state.transOn){
-                transCost=transRates[state.transTier]*d;
-            }
+            if(state.accomOn) accomCost=accomRates[state.accomTier]*cr.count*d;
+            if(state.transOn) transCost=transRates[state.transTier]*d;
 
             var total=locMgmt+locFees+crewCost+equipCost+mgmtFee+accomCost+transCost;
 
-            // Update DOM
             els.summaryTitle.textContent=d+'-Day Shoot \u2014 '+loc.label;
             els.locMgmtDesc.textContent=d+' days \u00d7 \u20ac450';
             animateValue(els.locMgmtVal,fmt(locMgmt));
@@ -1152,7 +1947,6 @@
                 els.crewLine.style.display='';
                 els.crewDesc.textContent=cr.count+' crew \u00d7 '+d+' days \u00d7 \u20ac'+cr.rate+' + '+Math.round(markup*100)+'% markup';
                 animateValue(els.crewVal,fmt(crewCost));
-
                 if(eq.cost>0){
                     els.equipLine.style.display='';
                     els.equipDesc.textContent=eq.label+' \u00d7 '+d+' days + '+Math.round(markup*100)+'% markup';
@@ -1160,7 +1954,6 @@
                 } else {
                     els.equipLine.style.display='none';
                 }
-
                 if(state.tier==='full'){
                     els.mgmtFeeLine.style.display='';
                     animateValue(els.mgmtFeeVal,fmt(mgmtFee));
@@ -1187,17 +1980,15 @@
 
             animateValue(els.grandTotal,fmt(total));
 
-            // Canary note visibility
             els.canaryNote.style.display=state.location==='canaries'?'':'none';
             if(state.location==='canaries'){
                 els.canaryNote.textContent='(54% in the Canary Islands \u2014 your selected region)';
-                els.canaryNote.style.color='var(--accent)';
+                els.canaryNote.style.color='var(--accent-warm)';
             }
         }
 
-        // Event listeners
         els.location.addEventListener('change',function(){state.location=this.value;calculate()});
-        function updateSliderFill(){var pct=((state.days-1)/9)*100;els.days.style.background='linear-gradient(to right,var(--accent) '+pct+'%,rgba(255,255,255,.08) '+pct+'%)'}
+        function updateSliderFill(){var pct=((state.days-1)/9)*100;els.days.style.background='linear-gradient(to right,var(--accent) '+pct+'%,rgba(0,0,0,.08) '+pct+'%)'}
         els.days.addEventListener('input',function(){state.days=parseInt(this.value);els.daysVal.textContent=this.value;updateSliderFill();calculate()});
         els.crew.addEventListener('change',function(){state.crew=this.value;calculate()});
         els.equipment.addEventListener('change',function(){state.equipment=this.value;calculate()});
@@ -1205,7 +1996,6 @@
         els.accomTier.addEventListener('change',function(){state.accomTier=this.value;calculate()});
         els.transTier.addEventListener('change',function(){state.transTier=this.value;calculate()});
 
-        // Tier card selection
         document.querySelectorAll('.qb-tier-card').forEach(function(card){
             card.addEventListener('click',function(){
                 document.querySelectorAll('.qb-tier-card').forEach(function(c){c.classList.remove('active');c.setAttribute('aria-pressed','false')});
@@ -1219,7 +2009,6 @@
             });
         });
 
-        // Toggle helpers
         function setupToggle(toggleEl,subEl,stateKey){
             toggleEl.addEventListener('click',function(){
                 state[stateKey]=!state[stateKey];
@@ -1235,7 +2024,6 @@
         setupToggle(els.accomToggle,els.accomSub,'accomOn');
         setupToggle(els.transToggle,els.transSub,'transOn');
 
-        // CTA: scroll to contact and prefill brief
         els.cta.addEventListener('click',function(){
             var loc=locationFees[state.location].label;
             var d=state.days;
@@ -1253,28 +2041,14 @@
             brief+='\nEstimated total: '+els.grandTotal.textContent;
             var briefEl=document.getElementById('brief');
             if(briefEl) briefEl.value=brief;
-            gsap.to(window,{scrollTo:{y:'#contact',offsetY:72},duration:.8,ease:'power2.inOut'});
+            // Go to step 4 of form
+            nextStep(4);
+            gsap.to(window,{scrollTo:{y:'#contact',offsetY:64},duration:.7,ease:'power2.inOut'});
         });
 
-        // Initial calculation
         updateSliderFill();
         calculate();
     })();
-
-    // Form submission
-    document.getElementById('contactForm').addEventListener('submit',function(e){
-        e.preventDefault();
-        var b=this.querySelector('.btn-submit');
-        b.textContent='Sending...';
-        b.style.opacity='.7';
-        b.disabled=true;
-        setTimeout(function(){
-            b.textContent='Brief received \u2014 we\'ll be in touch.';
-            b.style.background='#4ade80';
-            b.style.color='#0a0a0a';
-            b.style.opacity='1';
-        },800);
-    });
     </script>
 </body>
 </html>
