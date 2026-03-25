@@ -31,8 +31,14 @@
         "knowsLanguage": ["English", "Spanish"]
     }
     </script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-PLACEHOLDER');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -574,6 +580,16 @@
         .footer-right a:hover{color:var(--text-primary)}
 
         /* ============================================
+           TRUSTED BY
+           ============================================ */
+        .trusted-section{padding:80px 48px;text-align:center;background:var(--bg)}
+        .trusted-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:24px}
+        .trusted-strip{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 24px}
+        .trusted-name{font-size:15px;font-weight:500;color:var(--text-secondary);letter-spacing:-.01em;transition:color .2s ease}
+        .trusted-name:hover{color:var(--text-primary)}
+        .trusted-divider{color:var(--text-tertiary);font-size:12px}
+
+        /* ============================================
            SKELETON SCREENS
            ============================================ */
         .skeleton{background:linear-gradient(90deg,var(--bg-elevated) 25%,var(--bg-subtle) 50%,var(--bg-elevated) 75%);background-size:200% 100%;animation:skeleton-shimmer 1.5s infinite;border-radius:var(--radius)}
@@ -621,6 +637,9 @@
             .cinematic-stats{gap:48px}
         }
         @media(max-width:768px){
+            .trusted-section{padding:60px 20px}
+            .trusted-strip{gap:8px 16px}
+            .trusted-name{font-size:13px}
             .nav{padding:0 20px;height:56px}
             .nav-links{position:absolute;top:56px;left:0;right:0;background:var(--glass-bg);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);flex-direction:column;padding:24px 20px;gap:20px;border-bottom:1px solid var(--glass-border);display:flex;transform:translateY(-10px);opacity:0;pointer-events:none;transition:all .3s var(--ease)}
             .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
@@ -1036,9 +1055,9 @@
                 <div class="portfolio-overlay"></div>
                 <div class="portfolio-examine"><span>View</span></div>
                 <div class="portfolio-info">
-                    <p class="pf-client">Fashion Campaign</p>
-                    <h3>Brutalist Barcelona</h3>
-                    <p class="pf-meta">3 days &bull; 14 crew &bull; 4 locations</p>
+                    <p class="pf-client">Questex / Fierce Network TV</p>
+                    <h3>MWC Barcelona</h3>
+                    <p class="pf-meta">4 days &bull; Fira Gran Via &bull; Full production</p>
                 </div>
             </article>
             <article class="portfolio-card gs-reveal">
@@ -1046,9 +1065,9 @@
                 <div class="portfolio-overlay"></div>
                 <div class="portfolio-examine"><span>View</span></div>
                 <div class="portfolio-info">
-                    <p class="pf-client">Automotive Commercial</p>
-                    <h3>Mallorca Mountain Pass</h3>
-                    <p class="pf-meta">5 days &bull; 28 crew &bull; Russian Arm</p>
+                    <p class="pf-client">Palma Pictures</p>
+                    <h3>Mallorca Production Services</h3>
+                    <p class="pf-meta">Multi-project &bull; Location scouting &bull; Crew coordination</p>
                 </div>
             </article>
             <article class="portfolio-card gs-reveal">
@@ -1061,8 +1080,36 @@
                     <p class="pf-meta">2 days &bull; 8 crew &bull; 2 locations</p>
                 </div>
             </article>
+            <article class="portfolio-card gs-reveal">
+                <div class="portfolio-bg" style="background:linear-gradient(135deg,#0a2540 0%,#1a3a5c 50%,#2a5a7c 100%)"></div>
+                <div class="portfolio-overlay"></div>
+                <div class="portfolio-examine"><span>View</span></div>
+                <div class="portfolio-info">
+                    <p class="pf-client">Fashion &amp; Lifestyle</p>
+                    <h3>Brutalist Barcelona</h3>
+                    <p class="pf-meta">3 days &bull; 14 crew &bull; 4 locations</p>
+                </div>
+            </article>
         </div>
     </section>
+
+    <!-- =============================================
+         TRUSTED BY — Client Logos / Names
+         ============================================= -->
+    <div class="trusted-section">
+        <p class="trusted-label gs-reveal">Trusted By</p>
+        <div class="trusted-strip gs-reveal">
+            <span class="trusted-name">Palma Pictures</span>
+            <span class="trusted-divider">&middot;</span>
+            <span class="trusted-name">Questex</span>
+            <span class="trusted-divider">&middot;</span>
+            <span class="trusted-name">Fierce Network TV</span>
+            <span class="trusted-divider">&middot;</span>
+            <span class="trusted-name">Chelsea &amp; Co</span>
+            <span class="trusted-divider">&middot;</span>
+            <span class="trusted-name">Sherry UK</span>
+        </div>
+    </div>
 
     <!-- =============================================
          REEL
@@ -1082,7 +1129,7 @@
             <h2 class="section-title gs-reveal" id="why-title">Built for London.<br><strong>Based in Spain.</strong></h2>
         </div>
         <div class="pillars-grid">
-            <article class="pillar-card gs-reveal"><div class="pillar-number">01</div><h3>London-Trained</h3><p>8 years in London production. We understand the pace, the politics, and the precision your agency expects.</p></article>
+            <article class="pillar-card gs-reveal"><div class="pillar-number">01</div><h3>London-Trained</h3><p>17 years across London and Spain. We understand the pace, the politics, and the precision your agency expects.</p></article>
             <article class="pillar-card gs-reveal"><div class="pillar-number">02</div><h3>Fully Bilingual</h3><p>Native-level English and Spanish. Your creative brief lands with the local crew exactly as intended.</p></article>
             <article class="pillar-card gs-reveal"><div class="pillar-number">03</div><h3>Local Network</h3><p>Direct relationships with Spain's top crew, equipment houses, and property owners. No middlemen.</p></article>
             <article class="pillar-card gs-reveal"><div class="pillar-number">04</div><h3>Tech-Forward</h3><p>GPS-tagged libraries, 360-degree virtual recces, drone photogrammetry. Scout from your desk.</p></article>
@@ -1103,10 +1150,10 @@
             <div class="about-content">
                 <p class="section-label gs-reveal">About</p>
                 <h2 class="gs-reveal" id="about-title">One person. <strong>Two markets.</strong><br>Zero compromise.</h2>
-                <p class="gs-reveal">Founded by James Huertas, a bilingual British-Spanish production professional with 8+ years across London and Spain. From Palma Pictures to London's commercial and fashion scene.</p>
-                <p class="gs-reveal">Liquid Locations fills a critical gap: the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique.</p>
+                <p class="gs-reveal">Founded by James Huertas, a bilingual British-Spanish production professional with 17 years across London and Spain. From Palma Pictures and Questex to London's commercial, fashion, and broadcast scene &mdash; including work with brands like Estrella Damm, Seat, and Mango.</p>
+                <p class="gs-reveal">Liquid Locations fills a critical gap: the logistical muscle and production value of an established service company, with the agility, transparency, and cultural fluency of a modern boutique. James has managed shoots across six Spanish regions and understands both the creative ambition of London agencies and the on-the-ground reality of Spanish production.</p>
                 <div class="about-stats gs-reveal">
-                    <div class="about-stat"><div class="number">8+</div><div class="label">Years</div></div>
+                    <div class="about-stat"><div class="number">17</div><div class="label">Years</div></div>
                     <div class="about-stat"><div class="number">2</div><div class="label">Markets</div></div>
                     <div class="about-stat"><div class="number">6</div><div class="label">Regions</div></div>
                 </div>
@@ -1305,7 +1352,7 @@
                 </div>
                 <!-- Escape hatches: WhatsApp + Priority Email -->
                 <div class="contact-escape gs-reveal">
-                    <a href="https://wa.me/34600000000" class="escape-btn" target="_blank" rel="noopener">
+                    <a href="https://wa.me/34644444444" class="escape-btn" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.826-6.334-2.209l-.443-.349-3.09 1.036 1.036-3.09-.349-.443A9.957 9.957 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
                         WhatsApp
                     </a>
@@ -1428,7 +1475,7 @@
             </div>
         </div>
         <div class="footer-sub" style="max-width:1200px;margin:20px auto 0;padding-top:16px;border-top:1px solid var(--border-light);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-            <p style="font-size:11px;color:var(--text-tertiary);font-weight:400">Barcelona &amp; Mallorca, Spain &bull; Registered in Spain</p>
+            <p style="font-size:11px;color:var(--text-tertiary);font-weight:400">Mallorca &amp; Barcelona, Spain &bull; Registered in Spain</p>
             <p style="font-size:11px;color:var(--text-tertiary);font-weight:400">Built for London agencies. Based in Spain.</p>
         </div>
     </footer>
