@@ -814,12 +814,7 @@
             <li><a href="#portfolio">Work</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#quote-builder">Pricing</a></li>
-            <li>
-                <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
-                    <span class="lang-active">EN</span> / <span>ES</span>
-                </button>
-            </li>
-            <li class="nav-cta-li"><a href="#contact" class="nav-cta">Brief Us</a></li>
+<li class="nav-cta-li"><a href="#contact" class="nav-cta">Brief Us</a></li>
         </ul>
         <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -1650,23 +1645,6 @@
     </div>
 
     <!-- =============================================
-         7. CLIENT PORTAL
-         ============================================= -->
-    <section class="ll-section" id="client-portal">
-        <h2 class="ll-title gs-reveal" style="text-align:center">Client Portal</h2>
-        <p class="ll-sub gs-reveal" style="text-align:center;margin-left:auto;margin-right:auto">Access your project dashboard, deliverables, and invoices.</p>
-        <div class="portal-mock gs-reveal">
-            <div style="font-size:48px;margin-bottom:16px;opacity:.2">&#128274;</div>
-            <h3>Log in to your project</h3>
-            <p>View active projects, track deliverables, and download invoices.</p>
-            <input type="email" class="portal-input" placeholder="Email address">
-            <input type="password" class="portal-input" placeholder="Password">
-            <button class="portal-btn" onclick="this.textContent='Coming soon \u2014 launching Q3 2026'">Log In</button>
-            <p style="font-size:12px;color:var(--text-tertiary);margin-top:16px">Client portal launching Q3 2026. <a href="#contact" style="color:var(--accent-warm)">Contact us</a> for project updates.</p>
-        </div>
-    </section>
-
-    <!-- =============================================
          8. EQUIPMENT LIST
          ============================================= -->
     <div class="ll-section-dark">
@@ -1677,31 +1655,15 @@
         </div>
     </div>
 
-    <!-- =============================================
-         9. TESTIMONIALS
-         ============================================= -->
-    <section class="ll-section" id="testimonials">
-        <h2 class="ll-title gs-reveal">What Clients Say</h2>
-        <p class="ll-sub gs-reveal">Trusted by London production companies and global brands.</p>
-        <div class="ll-grid ll-grid-3" id="testGrid"></div>
-    </section>
+    <!-- Testimonials removed — real quotes to be added when obtained -->
 
     <!-- =============================================
-         10. AVAILABILITY CALENDAR
+         10. AVAILABILITY
          ============================================= -->
     <div class="ll-section-dark">
         <div class="ll-inner" id="availability">
             <h2 class="ll-title gs-reveal" style="color:#fff">Availability</h2>
-            <p class="ll-sub gs-reveal" style="color:rgba(255,255,255,.6)">Real-time availability for production services across Spain.</p>
-            <div class="gs-reveal" style="max-width:600px;margin:0 auto">
-                <div style="text-align:center;margin-bottom:24px"><span style="font-size:18px;font-weight:600;color:#fff" id="calMonth">April 2026</span></div>
-                <div class="cal-month" id="calGrid"></div>
-                <div class="cal-legend">
-                    <span><span class="dot" style="background:#34d399"></span> Available</span>
-                    <span><span class="dot" style="background:#fbbf24"></span> Tentative</span>
-                    <span><span class="dot" style="background:#f87171"></span> Booked</span>
-                </div>
-            </div>
+            <p class="ll-sub gs-reveal" style="color:rgba(255,255,255,.6);max-width:520px;margin-left:auto;margin-right:auto;text-align:center">We work across Spain year-round. <a href="#contact" style="color:var(--accent-warm);text-decoration:none">Contact us</a> to check availability for your shoot dates.</p>
         </div>
     </div>
 
@@ -1944,17 +1906,6 @@
             }
         });
     });
-
-    // ========== LANGUAGE TOGGLE ==========
-    (function(){
-        var toggle = document.getElementById('langToggle');
-        if(toggle){
-            toggle.addEventListener('click', function(){
-                var spans = this.querySelectorAll('span');
-                spans.forEach(function(s){s.classList.toggle('lang-active')});
-            });
-        }
-    })();
 
     // ========== LOCATION MODAL ==========
     var locationData = {
@@ -2520,28 +2471,6 @@
     var eGrid=document.getElementById('equipGrid');
     equipData.forEach(function(e){var d=document.createElement('div');d.className='ll-card equip-card gs-reveal';d.innerHTML='<div class="tag tag-commercial" style="margin-bottom:8px">'+e.cat+'</div><h3 style="font-size:14px">'+e.name+'</h3><div class="price" style="margin-top:8px">'+e.rate+'</div>';eGrid.appendChild(d)});
 
-    // 9. Testimonials
-    var testData=[
-        {quote:"James is the best fixer we've worked with in Spain. Bilingual, tech-savvy, and he knows every location from Barcelona to the Canaries.",author:"Production Manager",company:"Palma Pictures"},
-        {quote:"We needed a last-minute location change in Mallorca and James had three alternatives scouted within 4 hours. Incredible.",author:"Executive Producer",company:"Questex"},
-        {quote:"The permit process in Spain used to terrify us. Now we just brief James and it's handled. No stress, no surprises.",author:"Head of Production",company:"Fierce Network TV"},
-        {quote:"Working with Liquid Locations cut our Spanish production costs by 30%. The local knowledge is invaluable.",author:"Commercial Director",company:"Chelsea & Co"},
-        {quote:"From crew to kit to catering, everything was sorted. We just had to show up and shoot. That's the dream.",author:"Creative Director",company:"Sherry UK"},
-    ];
-    var tGrid=document.getElementById('testGrid');
-    testData.forEach(function(t){var d=document.createElement('div');d.className='ll-card testimonial-card gs-reveal';d.innerHTML='<blockquote>"'+t.quote+'"</blockquote><div class="author">'+t.author+'</div><div class="company">'+t.company+'</div>';tGrid.appendChild(d)});
-
-    // 10. Calendar
-    (function(){
-        var grid=document.getElementById('calGrid');
-        var days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-        days.forEach(function(d){var h=document.createElement('div');h.className='cal-hdr';h.textContent=d;h.style.color='rgba(255,255,255,.4)';grid.appendChild(h)});
-        // April 2026 starts on Wednesday (index 2, so 2 empty)
-        var booked=[3,4,10,11,17,18,24,25]; // weekends booked
-        var tent=[7,8,14,15]; // some weekdays tentative
-        for(var i=0;i<2;i++){var e=document.createElement('div');e.className='cal-cell empty';grid.appendChild(e)}
-        for(var d=1;d<=30;d++){var c=document.createElement('div');c.className='cal-cell';c.textContent=d;c.style.color='rgba(255,255,255,.6)';if(booked.indexOf(d)!==-1){c.className+=' booked'}else if(tent.indexOf(d)!==-1){c.className+=' tent'}else{c.className+=' avail'}grid.appendChild(c)}
-    })();
     </script>
 </body>
 </html>
