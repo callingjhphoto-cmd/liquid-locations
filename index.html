@@ -1037,7 +1037,7 @@
                         <tr><td>Greece</td><td>40%</td><td>40%</td><td>&euro;100K</td><td><span class="tax-badge best">Competitive</span></td></tr>
                     </tbody>
                 </table>
-                <p class="tax-note">Rates reflect 2025/2026 fiscal frameworks. We handle all incentive applications as part of our Full Service tier.</p>
+                <p class="tax-note">Rates reflect 2025/2026 fiscal frameworks. We handle all incentive applications as part of our Full Service tier. Sources: Spain &mdash; <a href="https://www.icaa.gob.es" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">ICAA (Art. 36.2)</a>; UK &mdash; <a href="https://www.bfi.org.uk/industry-data-insights/incentives/film-tax-relief" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">BFI Film Tax Relief</a>; France &mdash; <a href="https://www.cnc.fr/professionnels/aides-et-financements/tournage-en-france/credit-dimpot-international_191816" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">CNC TRIP</a>; Italy &mdash; <a href="https://www.mibact.gov.it/it/attivita/cinema/tax-credit" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">MIC Tax Credit</a>; Portugal &mdash; <a href="https://www.ica-ip.pt/en/incentives/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">ICA Portugal</a>; Greece &mdash; <a href="https://ekome.media/en/cash-rebate/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">EKOME</a>.</p>
             </div>
         </div>
     </section>
@@ -1166,20 +1166,16 @@
     </section>
 
     <!-- =============================================
-         TRUSTED BY — Client Logos / Names
+         RECENT PROJECTS — verified only
          ============================================= -->
     <div class="trusted-section">
-        <p class="trusted-label gs-reveal">Trusted By</p>
+        <p class="trusted-label gs-reveal">Recent Projects</p>
         <div class="trusted-strip gs-reveal">
             <span class="trusted-name">Palma Pictures</span>
             <span class="trusted-divider">&middot;</span>
             <span class="trusted-name">Questex</span>
             <span class="trusted-divider">&middot;</span>
             <span class="trusted-name">Fierce Network TV</span>
-            <span class="trusted-divider">&middot;</span>
-            <span class="trusted-name">Chelsea &amp; Co</span>
-            <span class="trusted-divider">&middot;</span>
-            <span class="trusted-name">Sherry UK</span>
         </div>
     </div>
 
@@ -1559,12 +1555,15 @@
     </div>
 
     <!-- =============================================
-         3. CREW DIRECTORY
+         3. CREW
          ============================================= -->
     <section class="ll-section" id="crew-directory">
-        <h2 class="ll-title gs-reveal">Crew Directory</h2>
-        <p class="ll-sub gs-reveal">Verified Spanish crew across all departments. Bilingual. London-experienced.</p>
-        <div class="ll-grid ll-grid-4" id="crewGrid"></div>
+        <h2 class="ll-title gs-reveal">Crew</h2>
+        <p class="ll-sub gs-reveal">We build bespoke teams for each production. Every crew is assembled to brief — department heads, on-set support, and specialist roles sourced from our working network across Spain.</p>
+        <div class="gs-reveal" style="max-width:600px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:40px 36px;text-align:center">
+            <p style="font-size:15px;color:var(--text-secondary);line-height:1.75;margin-bottom:28px">Crew roster by project. Day rates vary by department and production type — typical ranges run from EUR 200/day (runners) to EUR 650/day (senior DPs). All rates quoted transparently with zero hidden markup beyond our stated coordination fee.</p>
+            <a href="#contact" class="btn-primary">Enquire for Your Shoot <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+        </div>
     </section>
 
     <!-- =============================================
@@ -2383,26 +2382,7 @@
         document.getElementById('iqLines').innerHTML=html;document.getElementById('iqTotal').textContent='EUR '+total.toLocaleString();
     };
 
-    // 3. Crew Directory
-    var crewData=[
-        {name:"Carlos M.",role:"DP / Cinematographer",exp:"12 years",rate:"EUR 650/day",avail:"Available"},
-        {name:"Maria L.",role:"Gaffer",exp:"8 years",rate:"EUR 400/day",avail:"Available"},
-        {name:"Javier R.",role:"Sound Recordist",exp:"10 years",rate:"EUR 380/day",avail:"Available"},
-        {name:"Ana P.",role:"Art Director",exp:"9 years",rate:"EUR 500/day",avail:"Available"},
-        {name:"Pablo S.",role:"Stylist",exp:"7 years",rate:"EUR 450/day",avail:"Available"},
-        {name:"Laura G.",role:"Producer",exp:"11 years",rate:"EUR 600/day",avail:"Tentative"},
-        {name:"Miguel T.",role:"1st AD",exp:"6 years",rate:"EUR 450/day",avail:"Available"},
-        {name:"Elena V.",role:"Makeup Artist",exp:"8 years",rate:"EUR 350/day",avail:"Available"},
-        {name:"David K.",role:"Grip",exp:"5 years",rate:"EUR 320/day",avail:"Available"},
-        {name:"Sofia C.",role:"Production Coordinator",exp:"4 years",rate:"EUR 300/day",avail:"Available"},
-        {name:"Tomas B.",role:"DIT / Data Manager",exp:"6 years",rate:"EUR 400/day",avail:"Available"},
-        {name:"Lucia H.",role:"Location Manager",exp:"7 years",rate:"EUR 420/day",avail:"Tentative"},
-        {name:"Marco D.",role:"Camera Assistant",exp:"4 years",rate:"EUR 280/day",avail:"Available"},
-        {name:"Isabel F.",role:"Wardrobe",exp:"6 years",rate:"EUR 350/day",avail:"Available"},
-        {name:"Raul N.",role:"Driver / Runner",exp:"3 years",rate:"EUR 200/day",avail:"Available"},
-    ];
-    var crewGrid=document.getElementById('crewGrid');
-    crewData.forEach(function(c){var d=document.createElement('div');d.className='ll-card crew-card gs-reveal';var init=c.name.split(' ').map(function(w){return w[0]}).join('');d.innerHTML='<div class="avatar">'+init+'</div><div class="role">'+c.role+'</div><h3 style="font-size:15px">'+c.name+'</h3><p style="font-size:13px">'+c.exp+' experience</p><div class="rate">'+c.rate+'</div><div style="margin-top:8px"><span class="ll-badge '+(c.avail==='Available'?'ll-badge-green':'ll-badge-warm')+'">'+c.avail+'</span></div>';crewGrid.appendChild(d)});
+    // 3. Crew — placeholder (no fabricated roster)
 
     // 5. Weather Planner
     var weatherData=[
